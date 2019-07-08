@@ -96,18 +96,19 @@
 
 
 
-  <meta name="description" content="目录  业务背景 定义问题 相关包导入 EDA 特征工程 模型建立 预测结果  业务背景Santander 是一家银行，Santander的数据科学家，一直在通过二分类回答如下问题：我们的消费者满意吗？消费者会买这个产品吗？消费者能支付该贷款吗？这样的问题。 本次比赛，参赛选手的任务是在不考虑消费金额的前提下，预测消费者是否会在未来某个时间点做出某笔交易。 定义问题和业务流程目标本赛题，本质上是一">
+  <meta name="description" content="title: Santander Customer Transaction Predictiondate: 2019/7/8 目录  业务背景 定义问题 相关包导入 EDA 特征工程 模型建立 预测结果  业务背景Santander 是一家银行，Santander的数据科学家，一直在通过二分类回答如下问题：我们的消费者满意吗？消费者会买这个产品吗？消费者能支付该贷款吗？这样的问题。 本次比赛，参">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一颗西蓝花🥦">
 <meta property="og:url" content="http://yoursite.com/2019/07/08/Santander Customer Transaction Prediction/index.html">
 <meta property="og:site_name" content="一颗西蓝花🥦">
-<meta property="og:description" content="目录  业务背景 定义问题 相关包导入 EDA 特征工程 模型建立 预测结果  业务背景Santander 是一家银行，Santander的数据科学家，一直在通过二分类回答如下问题：我们的消费者满意吗？消费者会买这个产品吗？消费者能支付该贷款吗？这样的问题。 本次比赛，参赛选手的任务是在不考虑消费金额的前提下，预测消费者是否会在未来某个时间点做出某笔交易。 定义问题和业务流程目标本赛题，本质上是一">
+<meta property="og:description" content="title: Santander Customer Transaction Predictiondate: 2019/7/8 目录  业务背景 定义问题 相关包导入 EDA 特征工程 模型建立 预测结果  业务背景Santander 是一家银行，Santander的数据科学家，一直在通过二分类回答如下问题：我们的消费者满意吗？消费者会买这个产品吗？消费者能支付该贷款吗？这样的问题。 本次比赛，参">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/07/08/Santander%20Customer%20Transaction%20Prediction/output_26_1.png">
-<meta property="og:updated_time" content="2019-07-08T13:52:19.698Z">
+<meta property="og:image" content="http://yoursite.com/2019/07/08/Santander%20Customer%20Transaction%20Prediction/">
+<meta property="og:updated_time" content="2019-07-08T14:02:52.656Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一颗西蓝花🥦">
-<meta name="twitter:description" content="目录  业务背景 定义问题 相关包导入 EDA 特征工程 模型建立 预测结果  业务背景Santander 是一家银行，Santander的数据科学家，一直在通过二分类回答如下问题：我们的消费者满意吗？消费者会买这个产品吗？消费者能支付该贷款吗？这样的问题。 本次比赛，参赛选手的任务是在不考虑消费金额的前提下，预测消费者是否会在未来某个时间点做出某笔交易。 定义问题和业务流程目标本赛题，本质上是一">
+<meta name="twitter:description" content="title: Santander Customer Transaction Predictiondate: 2019/7/8 目录  业务背景 定义问题 相关包导入 EDA 特征工程 模型建立 预测结果  业务背景Santander 是一家银行，Santander的数据科学家，一直在通过二分类回答如下问题：我们的消费者满意吗？消费者会买这个产品吗？消费者能支付该贷款吗？这样的问题。 本次比赛，参">
 <meta name="twitter:image" content="http://yoursite.com/2019/07/08/Santander%20Customer%20Transaction%20Prediction/output_26_1.png">
 
 
@@ -385,9 +386,13 @@
                 
               
 
-              <time title="Created: 2019-07-08 21:52:19" itemprop="dateCreated datePublished" datetime="2019-07-08T21:52:19+08:00">2019-07-08</time>
+              <time title="Created: 2019-07-08 21:52:19 / Modified: 22:02:52" itemprop="dateCreated datePublished" datetime="2019-07-08T21:52:19+08:00">2019-07-08</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -420,7 +425,9 @@
       
 
       
-        <p>目录</p>
+        <hr>
+<p>title: Santander Customer Transaction Prediction<br>date: 2019/7/8</p>
+<p>目录</p>
 <ol>
 <li>业务背景</li>
 <li>定义问题</li>
@@ -1395,7 +1402,10 @@ LGBMClassifier(boosting_type=&apos;gbdt&apos;, class_weight=None, colsample_bytr
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result = pd.DataFrame()</span><br><span class="line">result[<span class="string">'ID_code'</span>] = test[<span class="string">'ID_code'</span>]</span><br><span class="line">result[<span class="string">'target'</span>] = predict</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result.to_csv(<span class="string">'submission'</span>,index = <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
 <ol>
-<li>最后代码得分：0.88918</li>
+<li><ol>
+<li>最后代码得分：0.88918<img src="/2019/07/08/Santander Customer Transaction Prediction/" alt></li>
+</ol>
+</li>
 </ol>
 
       

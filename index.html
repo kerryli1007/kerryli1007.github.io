@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/22/CV四小龙引发的思考/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/22/现模型和心智模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="一颗西蓝花🥦">
@@ -343,7 +343,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/04/22/CV四小龙引发的思考/" class="post-title-link" itemprop="url">CV四小龙引发的思考</a>
+                <a href="/2020/04/22/现模型和心智模型/" class="post-title-link" itemprop="url">实现模型和心智模型</a>
               
             
           </h1>
@@ -368,7 +368,7 @@
                 
               
 
-              <time title="Created: 2020-04-22 00:00:00 / Modified: 20:51:36" itemprop="dateCreated datePublished" datetime="2020-04-22T00:00:00+08:00">2020-04-22</time>
+              <time title="Created: 2020-04-22 00:00:00 / Modified: 22:27:53" itemprop="dateCreated datePublished" datetime="2020-04-22T00:00:00+08:00">2020-04-22</time>
             
 
             
@@ -390,7 +390,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/work/" itemprop="url" rel="index"><span itemprop="name">work</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/思考/" itemprop="url" rel="index"><span itemprop="name">思考</span></a></span>
 
                 
                 
@@ -427,18 +427,35 @@
       
         
           
-            <p>一个现象：目前AI行业的落地，头部公司都是CV科技公司。</p>
-<p>这里说的AI的头部公司是哪些呢？<br>CV四小龙。分别是旷视、依图、商汤、云从。</p>
-<p>更严格来说，这个四家公司，是CV行业的头部公司。我们知道，AI赛道，不只有CV，还有NLP、ML、ASR。</p>
-<p>为什么没有NLP、ML、或者ASR四小龙呢？为什么CV四小龙就等于AI赛道的头部公司？</p>
-<p>从两个角度，尝试来回答这个问题。</p>
-<pre><code>1. 技术成熟度
-2. 商业模式
-</code></pre><p>看看各个技术领域的常用技术的SOTA。CV行业用的最多的是人脸识别，而目前人脸识别的开源效果都能做到90以上，是工业可用。</p>
-<p>且CV有一个非常好的特点，就是，人脸数据，这类数据，不涉及商业隐私。这个和NLP、ML、ASR不一样。</p>
-<p>比如说ML，做推荐，那需要用到的数据，都是商业核心数据，顾客信息、交易数据等。</p>
-<p>比如说ASR，很多语音数据，语音转文本本来就贵，而且语音数据涉及到一些Domain Knowledge。一般来说，这类数据，单纯做技术的AI公司也不容易拿到。</p>
-<p>所以，单纯做技术的AI公司，除了CV之外，下一个突破点在哪里呢？</p>
+            <p>思考一个问题：符合用户思考和工作方式的软件都是如何设计的？</p>
+<p>问题比较抽象，我们尝试，让这个问题不那么抽象。</p>
+<p>将上述问题，置换为以下问题：有哪些符合用户思考和工作方式的软件呢？他们的哪些功能、设计符合用户思考和工作方式？为什么？</p>
+<p>想要更好的回答上述问题，我们来了解一下几个概念：</p>
+<ul>
+<li>实现模型</li>
+<li>用户心智模型</li>
+<li>表现模型</li>
+</ul>
+<p>飞机是一种近代的交通方式，其实现逻辑是空气动力学。但是，作为乘客，我们根本不关心，飞机是如何飞到天上。我们只关心，我们是否能安全、准时地达到目的地。上述提到的，飞机的实现逻辑是空气动力学，这是实现模型。而，用户关心的，是否能安全、准时地到达目的地，这是用户心智模型。</p>
+<p>展开解释一下实现模型和用户心智模型。</p>
+<h1 id="实现模型"><a href="#实现模型" class="headerlink" title="实现模型"></a>实现模型</h1><blockquote>
+<p>任何机器都有实现其目标的机制。例如，电影放映机使用复杂的移动图片序列来创建这种动态的感觉。它在一个瞬间让明亮的光线透过半透明的微缩图像，然后在它移向另外一副微缩图像的瞬间挡住光线，接着在下一个瞬间再次投射光线。电影放映机每秒24次放映新的图像，重复这个过程。基于软件的产品并没有这样的机制，取而代之，他们使用算法和相互通信的代码模块。这种有关机器和程序如何实现工作的表达被Donald Norman和其他人称为系统模型。</p>
+</blockquote>
+<h1 id="用户心智模型"><a href="#用户心智模型" class="headerlink" title="用户心智模型"></a>用户心智模型</h1><blockquote>
+<p>从电影观众的角度来说，在观看一部引人入胜的电影时，实际上根本不知道放映机是如何工作的，或者是它工作的方式和电视有什么差异。在观众的想象里，放映机只不过是发射出在大屏幕上移动的图片而已。这就称为用户的心智模型，或者概念模型。</p>
+<p>人们并不需要知道复杂产品的实际工作细节来掌握它的使用方法，为了便于使用，人们在认知上创建了一种简洁的解释方式，这种方式对他们与产品的交互来说已经足够，但并不一定能够反映产品实际的内部工作机制。</p>
+</blockquote>
+<p>举一个例子，比如，云计算时代，每个人都可以上阿里云、腾讯云购买算力。按需购买，按量计费。用户从来不会关心，算力的底层硬件，也不会关心，云服务商，是通过何种技术来实现按需提供给用户算力的实现方式。</p>
+<blockquote>
+<p>对于软件应用来说，实现模型和心智模型之间的差异非常明显。</p>
+</blockquote>
+<h1 id="好的契合用户心智模型的产品"><a href="#好的契合用户心智模型的产品" class="headerlink" title="好的契合用户心智模型的产品"></a>好的契合用户心智模型的产品</h1><p>我一直都非常喜欢工具类产品，因为这类产品，可以辅助我开展工作，提高工作效率，或者给予我一些功能上的支持，使我能完成一些之前我不能完成的工作。</p>
+<p>介绍一款产品，Smiple Antnotes，这款产品是一款备忘。为什么说这款产品契合用户心智模型呢？</p>
+<p>我们为什么需要备忘？我们需要一些提醒，并且我们希望这些提醒，我们是随时随刻都可以看见的。回想一下，我们在自己书桌上贴的备忘，这个行为我们从小学时候就有，小学时候，我们是在桌上刻字。鲁迅在三味书屋的书桌上，刻“早”，你可还记得？</p>
+<p>因此，我们是需要这样的备忘，我们随时都可以看见，这样来提醒我们。</p>
+<p>Simple Antnotes就可以实现。备忘上面有一个帽钉，这个设计是模仿现实生活中，我们用帽钉让备忘贴在书桌的设计。<br><img src="https://kerryli1007.github.io/images/实现模型和心智模型/便利贴.png" alt></p>
+<p>在Simple Antnotes，只要我们通过点击的方式，开启了这个帽钉，我们就可以让这个备忘悬浮于我们工作的软件之上，可以随时提醒我们，效果如下图。<br><img src="https://kerryli1007.github.io/images/实现模型和心智模型/SA.png" alt></p>
+<p>好的设计来源于生活～多观察，多思考。</p>
 
           
         
@@ -3537,7 +3554,9 @@ LGBMClassifier(boosting_type=&apos;gbdt&apos;, class_weight=None, colsample_bytr
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>

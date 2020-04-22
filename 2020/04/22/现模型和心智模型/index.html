@@ -96,18 +96,20 @@
 
 
 
-  <meta name="description" content="目录：  虚拟机 容器 K8S  一、虚拟机1.1 虚拟机是什么虚拟机是什么？虚拟机是运行操作系统和应用程序的软件计算机。 先复习3个基础概念：  操作系统：Windows Ubantu 应用程序：QQ WeChat 软件计算机：和软件计算机相对应的是硬件计算机  我们要了解虚拟机，就需要了解虚拟机背后的技术虚拟化。 虚拟化是使用虚拟机管理程序软件从一台物理设备创建若干个虚拟机（vitual ma">
-<meta name="keywords" content="技术">
+  <meta name="description" content="思考一个问题：符合用户思考和工作方式的软件都是如何设计的？ 问题比较抽象，我们尝试，让这个问题不那么抽象。 将上述问题，置换为以下问题：有哪些符合用户思考和工作方式的软件呢？他们的哪些功能、设计符合用户思考和工作方式？为什么？ 想要更好的回答上述问题，我们来了解一下几个概念：  实现模型 用户心智模型 表现模型  飞机是一种近代的交通方式，其实现逻辑是空气动力学。但是，作为乘客，我们根本不关心，飞">
 <meta property="og:type" content="article">
-<meta property="og:title" content="虚拟机、容器、K8S">
-<meta property="og:url" content="http://yoursite.com/2020/04/20/虚拟机、容器、K8S/index.html">
+<meta property="og:title" content="实现模型和心智模型">
+<meta property="og:url" content="http://yoursite.com/2020/04/22/现模型和心智模型/index.html">
 <meta property="og:site_name" content="一颗西蓝花🥦">
-<meta property="og:description" content="目录：  虚拟机 容器 K8S  一、虚拟机1.1 虚拟机是什么虚拟机是什么？虚拟机是运行操作系统和应用程序的软件计算机。 先复习3个基础概念：  操作系统：Windows Ubantu 应用程序：QQ WeChat 软件计算机：和软件计算机相对应的是硬件计算机  我们要了解虚拟机，就需要了解虚拟机背后的技术虚拟化。 虚拟化是使用虚拟机管理程序软件从一台物理设备创建若干个虚拟机（vitual ma">
+<meta property="og:description" content="思考一个问题：符合用户思考和工作方式的软件都是如何设计的？ 问题比较抽象，我们尝试，让这个问题不那么抽象。 将上述问题，置换为以下问题：有哪些符合用户思考和工作方式的软件呢？他们的哪些功能、设计符合用户思考和工作方式？为什么？ 想要更好的回答上述问题，我们来了解一下几个概念：  实现模型 用户心智模型 表现模型  飞机是一种近代的交通方式，其实现逻辑是空气动力学。但是，作为乘客，我们根本不关心，飞">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-20T10:08:05.495Z">
+<meta property="og:image" content="https://kerryli1007.github.io/images/实现模型和心智模型/便利贴.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/实现模型和心智模型/SA.png">
+<meta property="og:updated_time" content="2020-04-22T14:27:53.485Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="虚拟机、容器、K8S">
-<meta name="twitter:description" content="目录：  虚拟机 容器 K8S  一、虚拟机1.1 虚拟机是什么虚拟机是什么？虚拟机是运行操作系统和应用程序的软件计算机。 先复习3个基础概念：  操作系统：Windows Ubantu 应用程序：QQ WeChat 软件计算机：和软件计算机相对应的是硬件计算机  我们要了解虚拟机，就需要了解虚拟机背后的技术虚拟化。 虚拟化是使用虚拟机管理程序软件从一台物理设备创建若干个虚拟机（vitual ma">
+<meta name="twitter:title" content="实现模型和心智模型">
+<meta name="twitter:description" content="思考一个问题：符合用户思考和工作方式的软件都是如何设计的？ 问题比较抽象，我们尝试，让这个问题不那么抽象。 将上述问题，置换为以下问题：有哪些符合用户思考和工作方式的软件呢？他们的哪些功能、设计符合用户思考和工作方式？为什么？ 想要更好的回答上述问题，我们来了解一下几个概念：  实现模型 用户心智模型 表现模型  飞机是一种近代的交通方式，其实现逻辑是空气动力学。但是，作为乘客，我们根本不关心，飞">
+<meta name="twitter:image" content="https://kerryli1007.github.io/images/实现模型和心智模型/便利贴.png">
 
 
 
@@ -115,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2020/04/20/虚拟机、容器、K8S/">
+  <link rel="canonical" href="http://yoursite.com/2020/04/22/现模型和心智模型/">
 
 
 
@@ -125,7 +127,7 @@
   };
 </script>
 
-  <title>虚拟机、容器、K8S | 一颗西蓝花🥦</title>
+  <title>实现模型和心智模型 | 一颗西蓝花🥦</title>
   
 
 
@@ -324,7 +326,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/20/虚拟机、容器、K8S/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/22/现模型和心智模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="一颗西蓝花🥦">
@@ -341,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">虚拟机、容器、K8S
+          <h1 class="post-title" itemprop="name headline">实现模型和心智模型
 
               
             
@@ -367,7 +369,7 @@
                 
               
 
-              <time title="Created: 2020-04-20 15:06:04 / Modified: 18:08:05" itemprop="dateCreated datePublished" datetime="2020-04-20T15:06:04+08:00">2020-04-20</time>
+              <time title="Created: 2020-04-22 00:00:00 / Modified: 22:27:53" itemprop="dateCreated datePublished" datetime="2020-04-22T00:00:00+08:00">2020-04-22</time>
             
 
             
@@ -389,7 +391,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/思考/" itemprop="url" rel="index"><span itemprop="name">思考</span></a></span>
 
                 
                 
@@ -424,50 +426,36 @@
       
 
       
-        <p>目录：</p>
-<ol>
-<li>虚拟机</li>
-<li>容器</li>
-<li>K8S</li>
-</ol>
-<h1 id="一、虚拟机"><a href="#一、虚拟机" class="headerlink" title="一、虚拟机"></a>一、虚拟机</h1><h2 id="1-1-虚拟机是什么"><a href="#1-1-虚拟机是什么" class="headerlink" title="1.1 虚拟机是什么"></a>1.1 虚拟机是什么</h2><p>虚拟机是什么？<br>虚拟机是运行操作系统和应用程序的软件计算机。</p>
-<p>先复习3个基础概念：</p>
+        <p>思考一个问题：符合用户思考和工作方式的软件都是如何设计的？</p>
+<p>问题比较抽象，我们尝试，让这个问题不那么抽象。</p>
+<p>将上述问题，置换为以下问题：有哪些符合用户思考和工作方式的软件呢？他们的哪些功能、设计符合用户思考和工作方式？为什么？</p>
+<p>想要更好的回答上述问题，我们来了解一下几个概念：</p>
 <ul>
-<li>操作系统：Windows Ubantu</li>
-<li>应用程序：QQ WeChat</li>
-<li>软件计算机：和软件计算机相对应的是硬件计算机</li>
+<li>实现模型</li>
+<li>用户心智模型</li>
+<li>表现模型</li>
 </ul>
-<p>我们要了解虚拟机，就需要了解虚拟机背后的技术虚拟化。</p>
-<p>虚拟化是使用虚拟机管理程序软件从一台物理设备创建若干个虚拟机（vitual machine, VM）的过程。虚拟机的行为和运转方式与物理机一样，但是虚拟机会使用物理机器的计算资源，如CPU、内存和存储。虚拟管理程序会根据需要将这些计算资源分配给每个虚拟机。</p>
-<p>思考：虚拟管理程序如何根据需要将这些计算资源分配给每个虚拟机?</p>
-<h2 id="1-2-虚拟机与物理机的对比"><a href="#1-2-虚拟机与物理机的对比" class="headerlink" title="1.2 虚拟机与物理机的对比"></a>1.2 虚拟机与物理机的对比</h2><ul>
-<li>左边，可以发现，原来如果我们需要3个操作系统，那么我们也需要3个硬件</li>
-<li><p>右边，可以发现，现在，我们需要3个操作系统，但是我们需要一个硬件就够了。</p>
+<p>飞机是一种近代的交通方式，其实现逻辑是空气动力学。但是，作为乘客，我们根本不关心，飞机是如何飞到天上。我们只关心，我们是否能安全、准时地达到目的地。上述提到的，飞机的实现逻辑是空气动力学，这是实现模型。而，用户关心的，是否能安全、准时地到达目的地，这是用户心智模型。</p>
+<p>展开解释一下实现模型和用户心智模型。</p>
+<h1 id="实现模型"><a href="#实现模型" class="headerlink" title="实现模型"></a>实现模型</h1><blockquote>
+<p>任何机器都有实现其目标的机制。例如，电影放映机使用复杂的移动图片序列来创建这种动态的感觉。它在一个瞬间让明亮的光线透过半透明的微缩图像，然后在它移向另外一副微缩图像的瞬间挡住光线，接着在下一个瞬间再次投射光线。电影放映机每秒24次放映新的图像，重复这个过程。基于软件的产品并没有这样的机制，取而代之，他们使用算法和相互通信的代码模块。这种有关机器和程序如何实现工作的表达被Donald Norman和其他人称为系统模型。</p>
+</blockquote>
+<h1 id="用户心智模型"><a href="#用户心智模型" class="headerlink" title="用户心智模型"></a>用户心智模型</h1><blockquote>
+<p>从电影观众的角度来说，在观看一部引人入胜的电影时，实际上根本不知道放映机是如何工作的，或者是它工作的方式和电视有什么差异。在观众的想象里，放映机只不过是发射出在大屏幕上移动的图片而已。这就称为用户的心智模型，或者概念模型。</p>
+<p>人们并不需要知道复杂产品的实际工作细节来掌握它的使用方法，为了便于使用，人们在认知上创建了一种简洁的解释方式，这种方式对他们与产品的交互来说已经足够，但并不一定能够反映产品实际的内部工作机制。</p>
+</blockquote>
+<p>举一个例子，比如，云计算时代，每个人都可以上阿里云、腾讯云购买算力。按需购买，按量计费。用户从来不会关心，算力的底层硬件，也不会关心，云服务商，是通过何种技术来实现按需提供给用户算力的实现方式。</p>
 <blockquote>
-<p>需要注意的是，虚拟机是直接运行在物理硬件之上。《第一本Docker书》</p>
+<p>对于软件应用来说，实现模型和心智模型之间的差异非常明显。</p>
 </blockquote>
-</li>
-</ul>
-<h2 id="1-3-虚拟机为什么得到了发展"><a href="#1-3-虚拟机为什么得到了发展" class="headerlink" title="1.3 虚拟机为什么得到了发展"></a>1.3 虚拟机为什么得到了发展</h2><blockquote>
-<ol>
-<li>在现代计算机系统中，隔离和安全的重要性在增长。</li>
-<li>标准操作系统安全性和可靠性的方面存在缺陷。</li>
-<li>在云环境中，多个不相关的用户共享一台计算机。</li>
-<li>过去10年，计算机处理大幅发展，使得虚拟机的开销降低到可接受的范围内。<br>《计算机组成与设计硬件/软件接口》</li>
-</ol>
-</blockquote>
-<h2 id="1-4-虚拟机的优势"><a href="#1-4-虚拟机的优势" class="headerlink" title="1.4 虚拟机的优势"></a>1.4 虚拟机的优势</h2><ol>
-<li>最大限度使用已有服务器，虚拟机能够让一台机器像多台机器一样运行，可以节省硬件、冷却和维护成本。</li>
-<li>不需要单独的服务器来运行传统应用和不同的操作系统类型和版本。借助虚拟化，可以在统一台机器上运行多种类型的应用、桌面和操作系统。</li>
-</ol>
-<h2 id="1-5-使用场景"><a href="#1-5-使用场景" class="headerlink" title="1.5 使用场景"></a>1.5 使用场景</h2><h1 id="二、容器"><a href="#二、容器" class="headerlink" title="二、容器"></a>二、容器</h1><h2 id="2-1-容器是什么"><a href="#2-1-容器是什么" class="headerlink" title="2.1 容器是什么"></a>2.1 容器是什么</h2><p>容器是直接运行在操作系统内核之上的用户空间，因此容器也被称为操作系统级虚拟化。《第一本Docker书》</p>
-<p>由于容器“客居”于操作系统，容器只能运行与底层宿主机相同或相似的操作系统，这并不灵活。比如，可以在Ubuntu服务器中运行RedHat，但是无法在Ubuntu服务器中运行Microsoft。</p>
-<p>container就像虚拟机（vitual machine, VM）一样，除了所有的container都在一个operating system上面</p>
-<h2 id="2-2-容器的弊端"><a href="#2-2-容器的弊端" class="headerlink" title="2.2 容器的弊端"></a>2.2 容器的弊端</h2><ol>
-<li>容器本身复杂，不易安装，管理和自动化都很困难</li>
-</ol>
-<h2 id="2-3-使用场景Case"><a href="#2-3-使用场景Case" class="headerlink" title="2.3 使用场景Case"></a>2.3 使用场景Case</h2><h3 id="2-3-1-交付场景"><a href="#2-3-1-交付场景" class="headerlink" title="2.3.1 交付场景"></a>2.3.1 交付场景</h3><h1 id="三、K8S"><a href="#三、K8S" class="headerlink" title="三、K8S"></a>三、K8S</h1><h2 id="3-1-K8S是什么？"><a href="#3-1-K8S是什么？" class="headerlink" title="3.1 K8S是什么？"></a>3.1 K8S是什么？</h2><p>K8S是对容器的调度系统。</p>
-<h2 id="3-2-为什么要使用K8S？"><a href="#3-2-为什么要使用K8S？" class="headerlink" title="3.2 为什么要使用K8S？"></a>3.2 为什么要使用K8S？</h2><h2 id="3-3-使用场景Case"><a href="#3-3-使用场景Case" class="headerlink" title="3.3 使用场景Case"></a>3.3 使用场景Case</h2>
+<h1 id="好的契合用户心智模型的产品"><a href="#好的契合用户心智模型的产品" class="headerlink" title="好的契合用户心智模型的产品"></a>好的契合用户心智模型的产品</h1><p>我一直都非常喜欢工具类产品，因为这类产品，可以辅助我开展工作，提高工作效率，或者给予我一些功能上的支持，使我能完成一些之前我不能完成的工作。</p>
+<p>介绍一款产品，Smiple Antnotes，这款产品是一款备忘。为什么说这款产品契合用户心智模型呢？</p>
+<p>我们为什么需要备忘？我们需要一些提醒，并且我们希望这些提醒，我们是随时随刻都可以看见的。回想一下，我们在自己书桌上贴的备忘，这个行为我们从小学时候就有，小学时候，我们是在桌上刻字。鲁迅在三味书屋的书桌上，刻“早”，你可还记得？</p>
+<p>因此，我们是需要这样的备忘，我们随时都可以看见，这样来提醒我们。</p>
+<p>Simple Antnotes就可以实现。备忘上面有一个帽钉，这个设计是模仿现实生活中，我们用帽钉让备忘贴在书桌的设计。<br><img src="https://kerryli1007.github.io/images/实现模型和心智模型/便利贴.png" alt></p>
+<p>在Simple Antnotes，只要我们通过点击的方式，开启了这个帽钉，我们就可以让这个备忘悬浮于我们工作的软件之上，可以随时提醒我们，效果如下图。<br><img src="https://kerryli1007.github.io/images/实现模型和心智模型/SA.png" alt></p>
+<p>好的设计来源于生活～多观察，多思考。</p>
+
       
     </div>
 
@@ -488,12 +476,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/技术/" rel="tag"># 技术</a>
-          
-        </div>
-      
 
       
       
@@ -503,8 +485,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/20/article/" rel="next" title="读《人月神话，学项目管理》">
-                <i class="fa fa-chevron-left"></i> 读《人月神话，学项目管理》
+              <a href="/2020/04/21/记职场思维的一次转变/" rel="next" title="记职场思维的一次转变">
+                <i class="fa fa-chevron-left"></i> 记职场思维的一次转变
               </a>
             
           </div>
@@ -512,10 +494,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/20/记一次推荐项目POC/" rel="prev" title="记一次推荐项目POC">
-                记一次推荐项目POC <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -674,7 +652,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、虚拟机"><span class="nav-number">1.</span> <span class="nav-text">一、虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-虚拟机是什么"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 虚拟机是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-虚拟机与物理机的对比"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 虚拟机与物理机的对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-虚拟机为什么得到了发展"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 虚拟机为什么得到了发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-虚拟机的优势"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 虚拟机的优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-使用场景"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 使用场景</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、容器"><span class="nav-number">2.</span> <span class="nav-text">二、容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-容器是什么"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 容器是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-容器的弊端"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 容器的弊端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-使用场景Case"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 使用场景Case</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-交付场景"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 交付场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、K8S"><span class="nav-number">3.</span> <span class="nav-text">三、K8S</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-K8S是什么？"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 K8S是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-为什么要使用K8S？"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 为什么要使用K8S？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-使用场景Case"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 使用场景Case</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实现模型"><span class="nav-number">1.</span> <span class="nav-text">实现模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户心智模型"><span class="nav-number">2.</span> <span class="nav-text">用户心智模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#好的契合用户心智模型的产品"><span class="nav-number">3.</span> <span class="nav-text">好的契合用户心智模型的产品</span></a></li></ol></div>
             
 
           </div>

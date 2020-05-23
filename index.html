@@ -323,6 +323,221 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/16/Q2_Week2_工作总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/16/Q2_Week2_工作总结/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-16 15:20:57" itemprop="dateCreated datePublished" datetime="2020-05-16T15:20:57+08:00">2020-05-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-05-23 16:01:53" itemprop="dateModified" datetime="2020-05-23T16:01:53+08:00">2020-05-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Q2-Week2-工作总结"><a href="#Q2-Week2-工作总结" class="headerlink" title="Q2_Week2_工作总结"></a>Q2_Week2_工作总结</h1><p>原则：将自己的成长，拆分成为以周为粒度的迭代。高频输出，持续迭代。</p>
+<p>老规矩，回顾一下过去一周，成长与不足。</p>
+<h1 id="成长-对推荐系统有了更深的理解"><a href="#成长-对推荐系统有了更深的理解" class="headerlink" title="成长 | 对推荐系统有了更深的理解"></a>成长 | 对推荐系统有了更深的理解</h1><p>本周加深了自己对推荐系统的2个认知：推荐流程，推荐场景可使用的高标准产品</p>
+<h2 id="推荐流程"><a href="#推荐流程" class="headerlink" title="推荐流程"></a>推荐流程</h2><p>一点感慨，说实话，我大概从2019年6月就开始看推荐系统相关的书籍，如《推荐系统实战》。最近做项目，要在工业可用概念上，交付一个可使用的模型，我才感受到，一切都是有那么一点不一样。这个不一样的感受，我尝试用一句话来表达：别人写成文字的内容，就是一两句话，对没有接触实际业务的我来说，无法深刻体会，其意义。比如，作者对召回，一句轻描淡写的带过</p>
+<blockquote>
+<p>对于在线部分来说，一般要经历几个阶段。首先通过召回环节，将给用户推荐的物品降到千以下规模；如果召回阶段返回的物品还是太多，可以加入粗排阶段，这个阶段是可选的，粗排可以通过一些简单排序模型进一步减少往后续环节传递的物品；再往后是精排阶段，这里可以使用复杂的模型来对少量物品精准排序。<a href="https://zhuanlan.zhihu.com/p/58160982" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/58160982</a></p>
+</blockquote>
+<p>默认，上面引用的文章作者，会更加关注技术，所以对业务层面的分析会比较少。</p>
+<p>对于，我这类非常关注业务的同学，会关注以下这些问题：<br>对于为什么要用召回，不用召回行不行，不用是否会有严重的后果？如果必须要用，那么到底要怎么用？谁来用？算法来用？还是业务来设置？涉及到一个推荐系统，要和业务紧密结合时候，是需要考虑非常多的问题，推荐系统不单单是算法的事。</p>
+<p>发表完上述感慨，切入正题。推荐流程。<br>推荐系统的本质，是将人和内容连接起来，这个过程中，有2个主体，一个是人，一个是内容。<br>根据这两个主题，参考流程图<br><img src="https://kerryli1007.github.io/images/Q2_Week2_工作总结/1.jpng" alt></p>
+<p>从左下角的手机icon开始，理解整个流程图，用户在手机端操作，产生了一系列行为，系统将这些行为收集上来，这些数据都是用户的实时用户行为</p>
+<ul>
+<li>如果是要实时推荐，就进入实时模型，进行实时模型时候，阶段一般分为两个阶段，分别为召回和精排序。召回也好，精排序也好，其主体都是内容。我们也将这里的内容称为物料库。<ul>
+<li>召回阶段：算法模型从物料库中召回一些商品。</li>
+<li>精排阶段：算法模型将这些召回回来的item进行精排序<br>完成上述两个阶段之后，这些被召回的内容，需要再通过业务策略，最后才会展示给用户。</li>
+</ul>
+</li>
+<li>如果不是实时推荐，就写入历史用户行为log，将这些数据进行离线模型训练<br>了解了上述流程之后，来回答之前的所有问题</li>
+</ul>
+<blockquote>
+<p>对于为什么要用召回，不用召回行不行，不用是否会有严重的后果？如果必须要用，那么到底要怎么用？谁来用？算法来用？还是业务来设置？涉及到一个推荐系统，要和业务紧密结合时候，是需要考虑非常多的问题，推荐系统不单单是算法的事。</p>
+</blockquote>
+<p>举例珠宝电商场景，他们销售的商品数量一共有6W。如果说没有召回阶段的话，那么算法模型需要将消费者和这6W商品依次进行打分。这样的直接影响需要大量时间，速度低。<br>试想这样一个场景，你正在兴致勃勃地刷着抖音，刷完一个短视频之后，你期望立刻刷到下一个，如果这个时候，算法模型要对物料库中的上亿个短视频都进行打分，最后计算出你最喜欢的商品，然后推送给你，这个过程，可能都需要1个小时。正在手机端前的你能等吗？不能是吧。因为用户是期望无感知，刷完这个视频，就立刻有下一个视频。珠宝场景同理。<br>为了实时性，就需要在原来的物料库中进行一次筛选，这就是召回。这都说的是召回的优点，那召回有缺点吗？有的。召回会在一定程度上牺牲精准度。</p>
+<p>继续回答上述的问题。这个召回是怎么用？算法来用？还是业务来用。<br>我的理解是算法和业务要配合。如何理解。<br>算法要做模型做召回，但是需要和业务配合。比如，有一些商品，过期了，不能被销售，那么这种变化，是需要实时更新的，因为不能推送不能被购买的商品给消费者。如果要做到业务逻辑实时更新，那么久需要一个可视化交互界面。谈到这里，我也想说一下，推荐在一个业务场景中的使用，真的不是算法代码的事，这里面，需要大量业务的配合。而业务的配合，是需要有一个可视化交互界面，让业务同学完成一些运营动作的操作。</p>
+<p>这里顺便说一下业界企业的做法，一般来说，大的企业，比如腾讯、百度，他们的推荐系统都是有可视化交互界面；小的企业，一般都是通过redis或者API来操作。</p>
+<h2 id="推荐场景可使用的高标准产品"><a href="#推荐场景可使用的高标准产品" class="headerlink" title="推荐场景可使用的高标准产品"></a>推荐场景可使用的高标准产品</h2><p>思考一个场景，企业A，主营业务是珠宝销售，期望使用AI模型来进行精准化推荐。<br>但是，当前由于种种原因，作为技术服务提供商，我们提供的产品，只能解决算法层面的问题。<br>提问，这是一个推荐场景的高可用标准产品吗？<br>答案：不是。</p>
+<p>那推荐场景可使用的高可用标准产品是什么呢？<br>市场上有没有这样的产品呢？有的，比如达观、神策。</p>
+<p>对神策的推荐产品进行分析，神策提供两个场景的推荐</p>
+<ul>
+<li>文娱Demo</li>
+<li>电商Demo</li>
+</ul>
+<p>文娱适用于资讯项目。<br>点击【创建信息】，展示<img src="https://kerryli1007.github.io/images/Q2_Week2_工作总结/2.jpng" alt></p>
+<p>基础信息：创建人、创建信息<br>可推物品筛选条件：</p>
+<ul>
+<li>文章</li>
+<li>视频</li>
+</ul>
+<p>点击【物品规则】<br><img src="https://kerryli1007.github.io/images/Q2_Week2_工作总结/3.jpng" alt></p>
+<p>物品规则字段：</p>
+<ul>
+<li>ID</li>
+<li>物品名称</li>
+<li>权重</li>
+<li>必推（设为必推后，将在必推截止时间前，为每个用户推荐该物品一次。同一栏位下，最多支持同时设置10条必推）</li>
+<li>类目</li>
+<li>标签</li>
+<li>类别</li>
+</ul>
+<p>点击【推荐规则】<br><img src="https://kerryli1007.github.io/images/Q2_Week2_工作总结/4.jpng" alt></p>
+<p>去重规则</p>
+<ul>
+<li>展示数量去重</li>
+<li>展示时间去重</li>
+<li>点击数量去重</li>
+<li>点击时间去重</li>
+</ul>
+<p>比例规则<br>文章 <em>% + 视频 </em>% = 100%</p>
+<p>最后，神策还提供【统计分析】功能，用过神策产品的同学，已经对这个设计不陌生，神策在做统计分析方面是非常在行了！</p>
+<h1 id="成长-总结一下对竞赛领域的版图理解"><a href="#成长-总结一下对竞赛领域的版图理解" class="headerlink" title="成长 | 总结一下对竞赛领域的版图理解"></a>成长 | 总结一下对竞赛领域的版图理解</h1><p>关于竞赛行业的理解，我想更深入的写，仔细分析竞赛领域到底有没有想象空间？所以，会专门写一篇文章来梳理。</p>
+<p>这是Q2_Week2的工作总结！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/人月神话（3）| 贵族专制、民主政治和系统设计/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2060,190 +2275,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/22/CV四小龙引发的思考/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/04/22/CV四小龙引发的思考/" class="post-title-link" itemprop="url">CV四小龙引发的思考</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-22T00:00:00+08:00">2020-04-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-05-05 13:02:01" itemprop="dateModified" datetime="2020-05-05T13:02:01+08:00">2020-05-05</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一个现象：目前AI行业的落地，头部公司都是CV科技公司。</p>
-<p>这里说的AI的头部公司是哪些呢？<br>CV四小龙。分别是旷视、依图、商汤、云从。</p>
-<p>更严格来说，这个四家公司，是CV行业的头部公司。我们知道，AI赛道，不只有CV，还有NLP、ML、ASR。</p>
-<p>为什么没有NLP、ML、或者ASR四小龙呢？为什么CV四小龙就等于AI赛道的头部公司？</p>
-<p>从两个角度，尝试来回答这个问题。</p>
-<pre><code>1. 技术成熟度
-2. 商业模式
-</code></pre><p>看看各个技术领域的常用技术的SOTA。CV行业用的最多的是人脸识别，而目前人脸识别的开源效果都能做到90以上，是工业可用。</p>
-<p>且CV有一个非常好的特点，就是，人脸数据，这类数据，不涉及商业隐私。这个和NLP、ML、ASR不一样。</p>
-<p>比如说ML，做推荐，那需要用到的数据，都是商业核心数据，顾客信息、交易数据等。</p>
-<p>比如说ASR，很多语音数据，语音转文本本来就贵，而且语音数据涉及到一些Domain Knowledge。一般来说，这类数据，单纯做技术的AI公司也不容易拿到。</p>
-<p>所以，单纯做技术的AI公司，除了CV之外，下一个突破点在哪里呢？</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2292,7 +2323,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

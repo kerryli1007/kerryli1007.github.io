@@ -323,6 +323,1435 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/20/如何写出一份结构化的PRD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/20/如何写出一份结构化的PRD/" class="post-title-link" itemprop="url">如何写出一份结构化的PRD</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-02-20 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-20T00:00:00+08:00">2020-02-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-05-06 21:53:49" itemprop="dateModified" datetime="2020-05-06T21:53:49+08:00">2020-05-06</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/产品/" itemprop="url" rel="index"><span itemprop="name">产品</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>为什么会写这个主题？</p>
+<p>由于公司组织结构调整，我换到了另一个部门，并且承担新部门官网设计的产品工作，到这里，我成为了一名正式的PM，从Project Manager，到PProduct Manager。</p>
+<p>作为PM，需要设计产品，写PRD文档。</p>
+<blockquote>
+<p>优秀的产品经理，一定会写一份优秀的PRD。  </p>
+</blockquote>
+<p>本文主题，围绕我写的第一份PRD文档。我会将V1版本，和最终交付版本进行对比，从而阐明主题，如何写出一份结构化的PRD文档。</p>
+<p>对V1和最终交付版本PRD的比较，会从下面两个维度展开比对：</p>
+<ul>
+<li>格式</li>
+<li>产品逻辑</li>
+</ul>
+<p>在回顾的过程中，也会顺带对评审会时候大家讨论的一些产品细节，进行复盘思考。</p>
+<p>介绍一下背景：<br>部门官网有待优化，因此，我需要给出产品优化文档。</p>
+<p>我首先参考了网上的一个官网注册登录需求文档，写了第一版的PRD。写完后，发给了组长，组长给了反馈：觉得我写的比较像流水账，像是意识流，不够结构化。接着，他给了一份PRD文稿模版。</p>
+<p>关于“结构化”这里比较有意思，虾宝给了如下建议：</p>
+<pre><code>1. 什么是结构化？结构化是拆分组块业务逻辑
+2. 文字是脑子的表现，写得不清晰，不是文档的问题，是对业务逻辑的理解不够
+</code></pre><p>同时，虾宝建议：</p>
+<pre><code>1. 可以先找研发对一下需求，连接上下游的关系。然后再写，把层次关系梳理出现，再用图表或流程图表现
+</code></pre><p>虾宝的建议，对我非常有启发。如果说PRD模版给我的是一个框架，框架可以让我有地方填东西。虾宝给的反馈，让我懂得了如何思考。通过思考，将经过梳理的内容正确地填进框架之中。单有框架是远远不够的，还需要，知道思考如何把内容填进框架中。</p>
+<p>拆分组块业务逻辑，梳理业务上下游。这是思考的方式。</p>
+<p>于此时，我终于开始知道了如何正确地用PRD文档来表达我的需求。下面，我会仔细描述一下修改后的PRD文档以及在评审会时候大家的讨论，通过这个描述，梳理总结出正确的思考表达逻辑。</p>
+<p>目录</p>
+<hr>
+<ol>
+<li>产品背景<ol>
+<li>背景概述</li>
+<li>问题和机会（可选）</li>
+<li>产品目标与范围（可选）</li>
+</ol>
+</li>
+<li>名次解释</li>
+<li>产品综述</li>
+<li>用户故事</li>
+<li>需求详述</li>
+<li>评审记录</li>
+<li>其他问题描述</li>
+</ol>
+<p>对于每一个小模块，我都会分别从3个方面阐述：含义解释、PRD描述正文、以及注释。</p>
+<p>含义解释是从定义上界定该模块需要描述的内容，PRD描述正文是PRD文档中我对该模块的详细展开，注释是解释为什么PRD描述正文会这样展开，背后的思考逻辑。</p>
+<h1 id="一、产品背景"><a href="#一、产品背景" class="headerlink" title="一、产品背景"></a>一、产品背景</h1><h2 id="1-1-背景概述"><a href="#1-1-背景概述" class="headerlink" title="1.1 背景概述"></a>1.1 背景概述</h2><p>含义解释：<br>背景概述是用简单的语言大概概括一下大的背景，让人知道我们本次要讲的内容大概是什么。</p>
+<p>描述正文：<br>官网为用户提供产品试用，目前，完整的试用流程如下：<br>用户在官网进行注册，填写申请试用表单。商务（运营）在管理后台，对用户的申请进行授权操作（允许/拒绝）。</p>
+<p>注释：<br>这样的背景描述，是将云官网，本次的产品需求，用业务流程串联起来，从前端到后端。从业务流程出发，将业务串联起来，这是一种非常好的方式。用一个事件，将涉及的所有产品功能都串联起来，让本次讨论有主线。</p>
+<h2 id="1-2-问题与机会"><a href="#1-2-问题与机会" class="headerlink" title="1.2 问题与机会"></a>1.2 问题与机会</h2><p>含义解释：<br>问题与机会描述我们希望通过这个产品需要解决的问题，或者是我们正在寻求的机遇。一般来说，这段话的作用在于让人阅读后明白我们为什么要花时间做这件事，以及明白了这件事的意义所在。重点在WHY，关于WHY的重要性，大家可以看一个演讲叫做How great leaders inspire action。</p>
+<h3 id="1-2-1-当前流程存在如下问题"><a href="#1-2-1-当前流程存在如下问题" class="headerlink" title="1.2.1 当前流程存在如下问题"></a>1.2.1 当前流程存在如下问题</h3><p>描述正文：<br>1）用户端（官网）：</p>
+<pre><code>* 试用注册流程繁琐
+* 试用申请表单无法支持用户身份区别（企业/ 个人）
+* 未申请试用的用户进入到控制台，无任何提示
+</code></pre><p>2）运营端（管理后台）</p>
+<pre><code>* 无法查看用户申请试用的时间
+* 不支持运营就试用用户跟进做记录
+* 需要为每个申请试用的用户手动开通账号
+</code></pre><p>注释：<br>在这里我将问题进行了拆分，将前端与后端做分别描述。</p>
+<h3 id="1-2-2-我们的优化目标-机会"><a href="#1-2-2-我们的优化目标-机会" class="headerlink" title="1.2.2 我们的优化目标/机会"></a>1.2.2 我们的优化目标/机会</h3><p>描述正文：<br>通过优化，让来到官网的用户，可以体验良好的进行注册、申请试用产品。</p>
+<p>注释：<br>目标的制定，如果按照管理大师德鲁克在《管理实践》中提出的目标管理方法原则来制定，更好。顺便回顾一下，德鲁克提出的SMART目标计划</p>
+<ol>
+<li>目标要具体</li>
+<li>目标要可衡量</li>
+<li>目标要可实现</li>
+<li>目标要相关</li>
+<li>目标要有实现性</li>
+</ol>
+<h2 id="1-3-边界界定"><a href="#1-3-边界界定" class="headerlink" title="1.3 边界界定"></a>1.3 边界界定</h2><p>含义解释：<br>明确界定产品规划的界限，列出不在此次版本产品规划之内的需求。有利于在未来讨论时不用反复出现“那我们做不做这个？做不做那个”的讨论。</p>
+<p>描述正文：<br>暂无</p>
+<p>注释：<br>值得说明的一点，其实有时候，设计资源、研发资源也会左右边界的界定。</p>
+<h1 id="2-名词解释（可选）"><a href="#2-名词解释（可选）" class="headerlink" title="2. 名词解释（可选）"></a>2. 名词解释（可选）</h1><p>含义解释：<br>名词解释表，用于列举和解释PRD文档中产生的新名词。这一点实在是太重要了，如果在PRD文稿中出现了大家不知道含义的名词，那就是一份非常糟糕的PRD。</p>
+<h1 id="3-产品综述"><a href="#3-产品综述" class="headerlink" title="3. 产品综述"></a>3. 产品综述</h1><p>名词解释：<br>产品需求指从用户的视角撰写的声明。例如“我希望通过这个产品我可以实现……”它不需要包含具体的实施细节，也不需要写具体的界面元素。它们只是对于产品成功的一些具体表现。</p>
+<p>描述正文：<br>暂无</p>
+<p>注释：<br>在产品需求这里的定义值得细细分析，产品需求是说，从用户的角度出发，希望通过这个产品可以实现，而不是简单的功能描述！</p>
+<h1 id="4-用户故事"><a href="#4-用户故事" class="headerlink" title="4. 用户故事"></a>4. 用户故事</h1><p>名词解释：<br>每个用户故事是描述了一段独立的end-to-end的使用体验。它包括：用户画像（persona），使用场景（context), 使用意图（intent), 步骤（flow), 产品价值（value, 产品如何帮助用户实现价值），以及优先级（priority）一般优先级最高的进入MVP（minimal viable product), 然后依次类推，优先级最低的进入backlog，大家有空有资源再考虑实现。</p>
+<p>描述正文：<br>暂无</p>
+<h1 id="5-需求详述"><a href="#5-需求详述" class="headerlink" title="5. 需求详述"></a>5. 需求详述</h1><h2 id="5-1-需求一"><a href="#5-1-需求一" class="headerlink" title="5.1 需求一"></a>5.1 需求一</h2><p><img src="https://kerryli1007.github.io/images/写出一份结构化的PRD/1.png" alt></p>
+<p>在试用注册流程简化，同事小A提出了疑问：“当判断用户是否登陆时，如何用户未登陆，那么应该跳转到登录页面，而不是注册页面。”</p>
+<p>我对此进行了解释，但解释比较糟糕，并没有很好地defend myself：</p>
+<ol>
+<li>我们官网To B，受众小，其实是没有什么用户来注册的。</li>
+<li>如果用户已有账号，网站支持登录状态保持，那么其实不需要重新登录</li>
+</ol>
+<p>因此，我将判断未登陆的用户，下一个页面是注册页面。</p>
+<p>显然，我的解释，并不能让小A满意，他补充到：</p>
+<ol>
+<li>第一，我们目前官网逻辑的都是跳转到登录页</li>
+<li>第二，网站支持的登录保持状态，其实也是有时效性的</li>
+</ol>
+<p>当这里，我其实有点不知道怎么解释我的观点了。同事小B帮我解释：</p>
+<ol>
+<li>目前我们官网的注册用户比较少，绝大部份来到官网的用户，都是新用户，大家都需要注册，我理解这个设计逻辑是以优化新用户注册流程为导向的</li>
+</ol>
+<p>听到同事小B的解释，我都要泪流满面了。他准确地表达出了，我没有表达出的意思。</p>
+<p>我讲第一点，我们官网目前没有什么用户是已注册的，表达的意思就是，目前来官网的用户，大部分都是新用户，新用户需要经过注册、登录，才能申请试用我们的产品，因此我们的目标是降低新用户试用我们产品的门槛。</p>
+<p>暂停一下，我再放慢速度，重新回复回顾一下，这里的思考逻辑。</p>
+<p>为什么我要设计这样的产品，我是设计给谁使用的，来到我们网站的用户，他们是谁？他们为什么来？按照这个思考方式，我重新来阐述一下我的思路。</p>
+<p>我们的网站To B，目前存量用户少。我们的需求是，通过运营活动，或者自然流量，来到官网的用户，能够在最快时间内完成申请试用，只有试用了我们的产品，才有可能推进下一步。同时，每增加一个步骤，用户就会减少一些。因此，我的设计原则是，通过减少注册环节，来尽可能得提高注册成功率。</p>
+<p>分解一下：<br>目标： 缩短注册流程，尽可能地让来到官网的用户都注册。<br>逻辑：每多一个环节，用户就大量流失<br>我的操作 ：将用户链接到注册页面</p>
+<p>对上一个争论点复盘完毕，我们来看下一个争论点。</p>
+<p>用户完成注册后自动登录，是否会跳转会产品试用页面。</p>
+<p>在这个产品设计实现的前提是，用户注册之后，会自动登录。我先去看看，这个自动登录的功能是如何实现的<a href="https://www.php.cn/blog/detail/7587.html" target="_blank" rel="noopener">注册成功后自动登录 - ThinkPHP5.1 - php中文网博客</a></p>
+<p>注册后自动登录这个功能技术上是完全可以实现。但是，自动登录后是否需要跳回申请试用页面？这是我们讨论的重点，另一位同事提出，不需要，这个对开发的工作量要求比较大。并且，不跳转回试用页面，用户自己回去点击试用，其实也没有很大区别。这里哦，其实是因为我在设计产品流程的时候，没有考虑工作量。这从侧面确实是说明我在这一块知识积累不充足。需要有一定改进。（产品经理也需要站在研发的角度考虑问题奥！）</p>
+<h2 id="5-2-需求二"><a href="#5-2-需求二" class="headerlink" title="5.2 需求二"></a>5.2 需求二</h2><p><img src="https://kerryli1007.github.io/images/写出一份结构化的PRD/2.png" alt></p>
+<p>讲述优化后的产品试用申请，我的逻辑是，先给大家展示原来的申请试用页面，然后讲述修改版本后的申请试用页面。通过最近的工作，我发现，对比在产品经理的工作中是非常重要的一部分。因此，产品经理的工作，很多时候都是在对原有流程，做完善和优化。既然是完善和优化，那么产品经理就需要向运营、向研发证明，为什么这样的修改，相较于原来的流程，更好。因此，对比是与研发和运营沟通中，非常重要的一点。产品经理要让运营知道，修改后的产品逻辑，可以更好的支持业务运转；产品经理也要让研发知道，修改后的产品逻辑，是更有价值的，并没有浪费研发的工作，并没有让他们的汗白流（在被组长说了几次之后，终于有的领悟，心酸</p>
+<p>我总的讲述逻辑是没有问题的，但一个小问题在于，在讲解修改版本后的申请试用页面的时候，没有逻辑。重温一下，《金字塔原理》里面的讲述逻辑，在我们写文章或者讲述业务时候，我们的思想必须符合以下原则：</p>
+<p><img src="https://kerryli1007.github.io/images/写出一份结构化的PRD/3.png" alt></p>
+<p>画重点，我们必须有明确的理由说明，为什么要把第二个原因放在第二个，而不是放在第一个或者第三个。为什么说这个呢？因为在讲述申请试用页面的修改时候，我的讲述是没有逻辑的，让我们来看看我在会上的讲述是多么没有逻辑：</p>
+<blockquote>
+<p>第一个点，对联系电话进行了删除<br>第二个点，添加了身份属性，企业用户和个人用户<br>接下来对企业用户身份属性和个人用户身份属性进行了分别描述  </p>
+</blockquote>
+<p>更好的讲述逻辑示例是什么？</p>
+<blockquote>
+<p>我将从增删两个角度来说明，我们对该申请试页面的修改。  </p>
+<p>在增加部分，我们添加了身份属性，企业用户和个人用户。<br>在删除部分，我们将联系电话进行了删除。  </p>
+<p>接下来，分别说一下增加和删除的背后逻辑。增加身份属性，是为了方便运营开展工作，删除联系方式是因为在注册环节，用户已经填写过联系电话，并且通过验证。  </p>
+</blockquote>
+<p>总分的方式，首先让大家知道我描述的总体内容是什么，界定范围，给听众安全感，然后分点描述，这才是更好的描述方式。</p>
+<p>接下来示例如下：</p>
+<blockquote>
+<p>用户可以在身份属性这里，对个人的身份属性做选择。<br>当选择企业用户时候，当前默认页面不做变化；<br>当选择个人用户时候，当前默认页面做变化；相对应的最下方的三个输入框会进行变化，分别变成：  </p>
+<ol>
+<li>研究方向  </li>
+<li>身份  </li>
+<li>您期待产品为您解决什么样的问题？  </li>
+</ol>
+</blockquote>
+<p>在研究方向这里的讲述没有什么好复盘的，重点来看看身份这里。<br>身份选项这里我在评审会上的讲述，堪称灾难，毫无逻辑。会后反思，我应该首先介绍，身份这里的产品设计是什么，接着再描述为什么要有身份这个设计。</p>
+<p>示例如下：</p>
+<blockquote>
+<p>在身份设计，我们通过下拉框的方式，提供给个人用户两个选项“ 在校/在职”。<br>个人用户的身份属性字段，是为了方便运营工作的开展，在校和在职身份，可以辅助后续的用户画像分析，对两个维度有帮助  </p>
+<ul>
+<li>用户付费能力分析  </li>
+<li>拉新渠道质量分析  </li>
+</ul>
+</blockquote>
+<p>注释：<br>如果我的讲述逻辑是，产品功能设计是什么，设计这样产品功能的背后逻辑，那么我的讲述就会更简洁明了，提高同事的体验</p>
+<p>本来还想继续写，但是涉及业务层面的知识太多了，讲解起来非常费力，就写到这里吧～以后有时间再继续更新。</p>
+<p>总结一下，如何写一份结构化的PRD？<br>思考原则：拆分组块业务逻辑，梳理业务上下游。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/08/Santander Customer Transaction Prediction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/08/Santander Customer Transaction Prediction/" class="post-title-link" itemprop="url">Santander Customer Transaction Prediction</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-08 00:00:00 / Modified: 22:11:27" itemprop="dateCreated datePublished" datetime="2019-07-08T00:00:00+08:00">2019-07-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>目录</p>
+<ol>
+<li>业务背景</li>
+<li>定义问题</li>
+<li>相关包导入</li>
+<li>EDA</li>
+<li>特征工程</li>
+<li>模型建立</li>
+<li>预测结果</li>
+</ol>
+<h1 id="业务背景"><a href="#业务背景" class="headerlink" title="业务背景"></a>业务背景</h1><p>Santander 是一家银行，Santander的数据科学家，一直在通过二分类回答如下问题：我们的消费者满意吗？消费者会买这个产品吗？消费者能支付该贷款吗？这样的问题。</p>
+<p>本次比赛，参赛选手的任务是在不考虑消费金额的前提下，预测消费者是否会在未来某个时间点做出某笔交易。</p>
+<h1 id="定义问题和业务流程"><a href="#定义问题和业务流程" class="headerlink" title="定义问题和业务流程"></a>定义问题和业务流程</h1><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>本赛题，本质上是一个二分类问题，预测消费者是否会在未来某个时间点做出某笔交易。<br>目标是预测<code>target</code> 列的值，比赛的输出为<code>0</code>或<code>1</code>。</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>本次比赛，提供给参赛选手的数据集是处理后的脱敏数据集，主要包括三个类别：</p>
+<ol>
+<li>数字特征变量（合计200个维度）</li>
+<li>target列</li>
+<li>ID_code</li>
+</ol>
+<h2 id="测评指标"><a href="#测评指标" class="headerlink" title="测评指标"></a>测评指标</h2><p>比赛的测评标准是<code>AUC</code>。</p>
+<h2 id="业务流程"><a href="#业务流程" class="headerlink" title="业务流程"></a>业务流程</h2><ol>
+<li><p>首先，探索数据，做好特征工程</p>
+</li>
+<li><p>接着，选择合适的二分类模型</p>
+</li>
+<li><p>最后，对模型进行优化</p>
+</li>
+</ol>
+<h1 id="相关包导入"><a href="#相关包导入" class="headerlink" title="相关包导入"></a>相关包导入</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></table></figure>
+<h1 id="EDA"><a href="#EDA" class="headerlink" title="EDA"></a>EDA</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
+<pre><code>1.txt
+Santander Customer Transaction Prediction.ipynb
+Untitled.ipynb
+Untitled1.ipynb
+[31mfor_lqy.ipynb[m[m*
+idx.npy
+[34mimg[m[m/
+real_test.npy
+[31mtest.csv[m[m*
+[31mtrain.csv[m[m*
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train = pd.read_csv(<span class="string">'train.csv'</span>)</span><br><span class="line">test  = pd.read_csv(<span class="string">'test.csv'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(train.shape)</span><br><span class="line">print(train.head())</span><br></pre></td></tr></table></figure>
+<pre><code>(200000, 202)
+   ID_code  target    var_0   var_1    var_2   var_3    var_4   var_5   var_6  \
+0  train_0       0   8.9255 -6.7863  11.9081  5.0930  11.4607 -9.2834  5.1187   
+1  train_1       0  11.5006 -4.1473  13.8588  5.3890  12.3622  7.0433  5.6208   
+2  train_2       0   8.6093 -2.7457  12.0805  7.8928  10.5825 -9.0837  6.9427   
+3  train_3       0  11.0604 -2.1518   8.9522  7.1957  12.5846 -1.8361  5.8428   
+4  train_4       0   9.8369 -1.4834  12.8746  6.6375  12.2772  2.4486  5.9405   
+
+     var_7   ...     var_190  var_191  var_192  var_193  var_194  var_195  \
+0  18.6266   ...      4.4354   3.9642   3.1364   1.6910  18.5227  -2.3978   
+1  16.5338   ...      7.6421   7.7214   2.5837  10.9516  15.4305   2.0339   
+2  14.6155   ...      2.9057   9.7905   1.6704   1.6858  21.6042   3.1417   
+3  14.9250   ...      4.4666   4.7433   0.7178   1.4214  23.0347  -1.2706   
+4  19.2514   ...     -1.4905   9.5214  -0.1508   9.1942  13.2876  -1.5121   
+
+   var_196  var_197  var_198  var_199  
+0   7.8784   8.5635  12.7803  -1.0914  
+1   8.1267   8.7889  18.3560   1.9518  
+2  -6.5213   8.2675  14.7222   0.3965  
+3  -2.9275  10.2922  17.9697  -8.9996  
+4   3.9267   9.5031  17.9974  -8.8104  
+
+[5 rows x 202 columns]
+</code></pre><p>总结：</p>
+<ol>
+<li>训练集中一共有200000条数据</li>
+<li>训练集中一共有202列数据</li>
+<li>训练集中的特征一共有200列，特征有200维。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(test.shape)</span><br><span class="line">print(test.head())</span><br></pre></td></tr></table></figure>
+<pre><code>(200000, 201)
+  ID_code    var_0    var_1    var_2   var_3    var_4   var_5   var_6  \
+0  test_0  11.0656   7.7798  12.9536  9.4292  11.4327 -2.3805  5.8493   
+1  test_1   8.5304   1.2543  11.3047  5.1858   9.1974 -4.0117  6.0196   
+2  test_2   5.4827 -10.3581  10.1407  7.0479  10.2628  9.8052  4.8950   
+3  test_3   8.5374  -1.3222  12.0220  6.5749   8.8458  3.1744  4.9397   
+4  test_4  11.7058  -0.1327  14.1295  7.7506   9.1035 -8.5848  6.8595   
+
+     var_7   var_8   ...     var_190  var_191  var_192  var_193  var_194  \
+0  18.2675  2.1337   ...     -2.1556  11.8495  -1.4300   2.4508  13.7112   
+1  18.6316 -4.4131   ...     10.6165   8.8349   0.9403  10.1282  15.5765   
+2  20.2537  1.5233   ...     -0.7484  10.9935   1.9803   2.1800  12.9813   
+3  20.5660  3.3755   ...      9.5702   9.0766   1.6580   3.5813  15.1874   
+4  10.6048  2.9890   ...      4.2259   9.1723   1.2835   3.3778  19.5542   
+
+   var_195  var_196  var_197  var_198  var_199  
+0   2.4669   4.3654  10.7200  15.4722  -8.7197  
+1   0.4773  -1.4852   9.8714  19.1293 -20.9760  
+2   2.1281  -7.1086   7.0618  19.8956 -23.1794  
+3   3.1656   3.9567   9.2295  13.0168  -4.2108  
+4  -0.2860  -5.1612   7.2882  13.9260  -9.1846  
+
+[5 rows x 201 columns]
+</code></pre><p>总结：</p>
+<ol>
+<li>训练集中一共有200000条数据</li>
+<li>训练集中一共有201列数据，和train相比较，少一列label</li>
+<li>训练集中的特征一共有200列，即特征有200维。</li>
+</ol>
+<h2 id="对train进行EDA"><a href="#对train进行EDA" class="headerlink" title="对train进行EDA"></a>对train进行EDA</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train.info()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+RangeIndex: 200000 entries, 0 to 199999
+Columns: 202 entries, ID_code to var_199
+dtypes: float64(200), int64(1), object(1)
+memory usage: 308.2+ MB
+</code></pre><p>总结：</p>
+<ol>
+<li>train一共有20000条，共占内存308MB</li>
+<li>数据类型一共有3类：浮点（200列）、整数（1列），对象（1列）</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train.isnull().sum().sum()</span><br></pre></td></tr></table></figure>
+<pre><code>0
+</code></pre><p>总结：</p>
+<ol>
+<li>train中不存在NA，说明train中的数据集不需要我们进行任何填充，比较方便</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train.describe()</span><br></pre></td></tr></table></figure>
+<div><br><style scoped><br>    .dataframe tbody tr th:only-of-type {<br>        vertical-align: middle;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br><br>    .dataframe thead th {<br>        text-align: right;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>target</th><br>      <th>var_0</th><br>      <th>var_1</th><br>      <th>var_2</th><br>      <th>var_3</th><br>      <th>var_4</th><br>      <th>var_5</th><br>      <th>var_6</th><br>      <th>var_7</th><br>      <th>var_8</th><br>      <th>…</th><br>      <th>var_190</th><br>      <th>var_191</th><br>      <th>var_192</th><br>      <th>var_193</th><br>      <th>var_194</th><br>      <th>var_195</th><br>      <th>var_196</th><br>      <th>var_197</th><br>      <th>var_198</th><br>      <th>var_199</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>count</th><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>…</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>      <td>200000.000000</td><br>    </tr><br>    <tr><br>      <th>mean</th><br>      <td>0.100490</td><br>      <td>10.679914</td><br>      <td>-1.627622</td><br>      <td>10.715192</td><br>      <td>6.796529</td><br>      <td>11.078333</td><br>      <td>-5.065317</td><br>      <td>5.408949</td><br>      <td>16.545850</td><br>      <td>0.284162</td><br>      <td>…</td><br>      <td>3.234440</td><br>      <td>7.438408</td><br>      <td>1.927839</td><br>      <td>3.331774</td><br>      <td>17.993784</td><br>      <td>-0.142088</td><br>      <td>2.303335</td><br>      <td>8.908158</td><br>      <td>15.870720</td><br>      <td>-3.326537</td><br>    </tr><br>    <tr><br>      <th>std</th><br>      <td>0.300653</td><br>      <td>3.040051</td><br>      <td>4.050044</td><br>      <td>2.640894</td><br>      <td>2.043319</td><br>      <td>1.623150</td><br>      <td>7.863267</td><br>      <td>0.866607</td><br>      <td>3.418076</td><br>      <td>3.332634</td><br>      <td>…</td><br>      <td>4.559922</td><br>      <td>3.023272</td><br>      <td>1.478423</td><br>      <td>3.992030</td><br>      <td>3.135162</td><br>      <td>1.429372</td><br>      <td>5.454369</td><br>      <td>0.921625</td><br>      <td>3.010945</td><br>      <td>10.438015</td><br>    </tr><br>    <tr><br>      <th>min</th><br>      <td>0.000000</td><br>      <td>0.408400</td><br>      <td>-15.043400</td><br>      <td>2.117100</td><br>      <td>-0.040200</td><br>      <td>5.074800</td><br>      <td>-32.562600</td><br>      <td>2.347300</td><br>      <td>5.349700</td><br>      <td>-10.505500</td><br>      <td>…</td><br>      <td>-14.093300</td><br>      <td>-2.691700</td><br>      <td>-3.814500</td><br>      <td>-11.783400</td><br>      <td>8.694400</td><br>      <td>-5.261000</td><br>      <td>-14.209600</td><br>      <td>5.960600</td><br>      <td>6.299300</td><br>      <td>-38.852800</td><br>    </tr><br>    <tr><br>      <th>25%</th><br>      <td>0.000000</td><br>      <td>8.453850</td><br>      <td>-4.740025</td><br>      <td>8.722475</td><br>      <td>5.254075</td><br>      <td>9.883175</td><br>      <td>-11.200350</td><br>      <td>4.767700</td><br>      <td>13.943800</td><br>      <td>-2.317800</td><br>      <td>…</td><br>      <td>-0.058825</td><br>      <td>5.157400</td><br>      <td>0.889775</td><br>      <td>0.584600</td><br>      <td>15.629800</td><br>      <td>-1.170700</td><br>      <td>-1.946925</td><br>      <td>8.252800</td><br>      <td>13.829700</td><br>      <td>-11.208475</td><br>    </tr><br>    <tr><br>      <th>50%</th><br>      <td>0.000000</td><br>      <td>10.524750</td><br>      <td>-1.608050</td><br>      <td>10.580000</td><br>      <td>6.825000</td><br>      <td>11.108250</td><br>      <td>-4.833150</td><br>      <td>5.385100</td><br>      <td>16.456800</td><br>      <td>0.393700</td><br>      <td>…</td><br>      <td>3.203600</td><br>      <td>7.347750</td><br>      <td>1.901300</td><br>      <td>3.396350</td><br>      <td>17.957950</td><br>      <td>-0.172700</td><br>      <td>2.408900</td><br>      <td>8.888200</td><br>      <td>15.934050</td><br>      <td>-2.819550</td><br>    </tr><br>    <tr><br>      <th>75%</th><br>      <td>0.000000</td><br>      <td>12.758200</td><br>      <td>1.358625</td><br>      <td>12.516700</td><br>      <td>8.324100</td><br>      <td>12.261125</td><br>      <td>0.924800</td><br>      <td>6.003000</td><br>      <td>19.102900</td><br>      <td>2.937900</td><br>      <td>…</td><br>      <td>6.406200</td><br>      <td>9.512525</td><br>      <td>2.949500</td><br>      <td>6.205800</td><br>      <td>20.396525</td><br>      <td>0.829600</td><br>      <td>6.556725</td><br>      <td>9.593300</td><br>      <td>18.064725</td><br>      <td>4.836800</td><br>    </tr><br>    <tr><br>      <th>max</th><br>      <td>1.000000</td><br>      <td>20.315000</td><br>      <td>10.376800</td><br>      <td>19.353000</td><br>      <td>13.188300</td><br>      <td>16.671400</td><br>      <td>17.251600</td><br>      <td>8.447700</td><br>      <td>27.691800</td><br>      <td>10.151300</td><br>      <td>…</td><br>      <td>18.440900</td><br>      <td>16.716500</td><br>      <td>8.402400</td><br>      <td>18.281800</td><br>      <td>27.928800</td><br>      <td>4.272900</td><br>      <td>18.321500</td><br>      <td>12.000400</td><br>      <td>26.079100</td><br>      <td>28.500700</td><br>    </tr><br>  </tbody><br></table><br><p>8 rows × 201 columns</p><br></div>
+
+
+
+<p>总结：</p>
+<ol>
+<li>在train中，target中的<code>1</code>和<code>0</code>的label占比约为：<code>1</code>占比10%；<code>0</code>占比90%。</li>
+</ol>
+<p>分析：</p>
+<ol>
+<li>label为<code>1</code>占比10%，label为<code>0</code>占比90%，说明数据存在偏态分布，业务意义是说有过购买行为的1占比10%而已。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df1 = train[train[<span class="string">'target'</span>] == <span class="number">0</span>]</span><br><span class="line">df2 = train[train[<span class="string">'target'</span>] == <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">features = train.columns.values[<span class="number">2</span>:]</span><br></pre></td></tr></table></figure>
+<p>分析：</p>
+<ol>
+<li><p>因为label存在 1 和 0 两种状态，我们可以将label为 0 和label为 1 的observation分开，将其进行<br>对比，看其的features之间，是否存在区别。</p>
+</li>
+<li><p>为了完成上述目标，我们需要进行 2 步操作</p>
+<ul>
+<li>将train分为2部分，一部分是label为1的DataFrame，另一部分是label为0的DataFrame。</li>
+<li>因为要对比的是features，因此，我们从DataFrame中将features names取出来。</li>
+</ul>
+</li>
+<li><p>完成上述2步操作之后，让我们来看看 df1 和 df2 之间的区别吧。</p>
+<ul>
+<li>首先我们尝试通过 <code>df.describe()</code> 来探索</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(df1.describe())</span><br><span class="line">print(df2.describe())</span><br></pre></td></tr></table></figure>
+<pre><code>         target          var_0          var_1          var_2          var_3  \
+count  179902.0  179902.000000  179902.000000  179902.000000  179902.000000   
+mean        0.0      10.626681      -1.695770      10.665876       6.788979   
+std         0.0       3.008564       4.024813       2.612961       2.040082   
+min         0.0       0.408400     -15.043400       2.117100      -0.040200   
+25%         0.0       8.429500      -4.790775       8.698025       5.247625   
+50%         0.0      10.478600      -1.682600      10.529000       6.817000   
+75%         0.0      12.693075       1.287700      12.463900       8.317875   
+max         0.0      20.315000      10.376800      19.353000      13.188300   
+
+               var_4          var_5          var_6          var_7  \
+count  179902.000000  179902.000000  179902.000000  179902.000000   
+mean       11.072412      -5.146736       5.389620      16.549306   
+std         1.620103       7.827522       0.857983       3.417700   
+min         5.074800     -32.562600       2.347300       5.349700   
+25%         9.880600     -11.260950       4.756425      13.950125   
+50%        11.104400      -4.917700       5.364400      16.460850   
+75%        12.253100       0.844600       5.981300      19.108800   
+max        16.671400      17.251600       8.447700      27.691800   
+
+               var_8      ...              var_190        var_191  \
+count  179902.000000      ...        179902.000000  179902.000000   
+mean        0.262347      ...             3.149130       7.390800   
+std         3.331105      ...             4.522568       2.997847   
+min       -10.505500      ...           -14.093300      -2.691700   
+25%        -2.342575      ...            -0.111850       5.130825   
+50%         0.371400      ...             3.117250       7.297000   
+75%         2.919300      ...             6.296375       9.461300   
+max        10.151300      ...            18.440900      16.716500   
+
+             var_192        var_193        var_194        var_195  \
+count  179902.000000  179902.000000  179902.000000  179902.000000   
+mean        1.949017       3.355403      18.017716      -0.155601   
+std         1.476456       3.982819       3.127715       1.422275   
+min        -3.814500     -10.845500       8.694400      -5.261000   
+25%         0.915300       0.612400      15.656700      -1.178700   
+50%         1.928950       3.417550      17.982400      -0.184200   
+75%         2.969800       6.217075      20.417500       0.813000   
+max         8.402400      18.281800      27.928800       4.272900   
+
+             var_196        var_197        var_198        var_199  
+count  179902.000000  179902.000000  179902.000000  179902.000000  
+mean        2.260297       8.919032      15.924058      -3.415273  
+std         5.441118       0.917467       2.978539      10.434525  
+min       -14.209600       5.960600       6.299300     -38.852800  
+25%        -1.987375       8.262100      13.896000     -11.312025  
+50%         2.359700       8.897700      15.988500      -2.914000  
+75%         6.513425       9.601500      18.095400       4.741400  
+max        18.321500      12.000400      26.079100      28.500700  
+
+[8 rows x 201 columns]
+        target         var_0         var_1         var_2         var_3  \
+count  20098.0  20098.000000  20098.000000  20098.000000  20098.000000   
+mean       1.0     11.156418     -1.017613     11.156633      6.864113   
+std        0.0      3.270293      4.220638      2.841075      2.070898   
+min        1.0      0.452800    -14.037000      2.946200      0.374000   
+25%        1.0      8.695875     -4.203475      8.961125      5.314300   
+50%        1.0     11.001350     -0.992650     11.096700      6.900200   
+75%        1.0     13.343700      2.001375     13.047025      8.384725   
+max        1.0     19.458300      9.029800     18.294100     12.706900   
+
+              var_4         var_5         var_6         var_7         var_8  \
+count  20098.000000  20098.000000  20098.000000  20098.000000  20098.000000   
+mean      11.131337     -4.336522      5.581966     16.514917      0.479432   
+std        1.649266      8.140281      0.922442      3.421365      3.340028   
+min        5.876200    -28.246100      2.496000      7.302400     -9.839100   
+25%        9.911250    -10.615800      4.882250     13.880125     -2.107425   
+50%       11.156300     -4.101950      5.601800     16.412700      0.579600   
+75%       12.328450      1.619950      6.218550     19.044250      3.127825   
+max       15.692500     16.423600      8.285200     27.039800      9.033000   
+
+           ...            var_190       var_191       var_192       var_193  \
+count      ...       20098.000000  20098.000000  20098.000000  20098.000000   
+mean       ...           3.998064      7.864560      1.738266      3.120260   
+std        ...           4.814830      3.210779      1.482537      4.067550   
+min        ...         -11.906900     -2.343000     -3.317700    -11.783400   
+25%        ...           0.466025      5.418550      0.669775      0.343000   
+50%        ...           4.017500      7.846550      1.667500      3.176700   
+75%        ...           7.407925     10.018400      2.749050      6.063825   
+max        ...          16.746100     16.520500      7.647600     17.150400   
+
+            var_194       var_195       var_196       var_197       var_198  \
+count  20098.000000  20098.000000  20098.000000  20098.000000  20098.000000   
+mean      17.779568     -0.021130      2.688583      8.810815     15.393283   
+std        3.193153      1.485975      5.556892      0.952554      3.248123   
+min       10.120700     -5.018500    -14.020400      6.119000      6.558700   
+25%       15.420025     -1.103950     -1.572225      8.155250     13.232500   
+50%       17.730500     -0.057350      2.831050      8.795400     15.427950   
+75%       20.201800      0.986450      6.956250      9.517000     17.776425   
+max       27.295300      4.088100     17.161400     11.706900     25.857100   
+
+            var_199  
+count  20098.000000  
+mean      -2.532243  
+std       10.435910  
+min      -38.852800  
+25%      -10.285050  
+50%       -1.971850  
+75%        5.701475  
+max       24.564600  
+
+[8 rows x 201 columns]
+</code></pre><p>总结：</p>
+<ol>
+<li>很明显，数据描述，无法可视化出<code>df1</code>和<code>df2</code>的区别。</li>
+<li>换个思路，可以采取数据可视化，来查看两个df之间的feature分布形状，是否存在差异</li>
+<li>思考，在绘制两个df的对比图的时候，是选用条形图，还是折线图。<ul>
+<li>折线图是表现随着时间的变化，数据的变化</li>
+<li>条形图是表现数量</li>
+<li>因此，对比时候，选择条形图</li>
+</ul>
+</li>
+</ol>
+<h2 id="对test进行EDA"><a href="#对test进行EDA" class="headerlink" title="对test进行EDA"></a>对test进行EDA</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test.info()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+RangeIndex: 200000 entries, 0 to 199999
+Columns: 201 entries, ID_code to var_199
+dtypes: float64(200), object(1)
+memory usage: 306.7+ MB
+</code></pre><p>总结：</p>
+<ol>
+<li>train一共有20,000条，共占内存308MB</li>
+<li>数据类型一共有3类：浮点（200列），对象（1列）,其中<code>ID_code</code>是的字段信息是对象。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize = (<span class="number">16</span>,<span class="number">6</span>))</span><br><span class="line">features = train.columns.values[<span class="number">2</span>:]</span><br><span class="line">plt.title(<span class="string">'Distribution of mean values per row comparing df1 and df2'</span>)</span><br><span class="line">sns.distplot(df1[features].mean(axis = <span class="number">1</span>), color =<span class="string">'green'</span>, kde = <span class="literal">True</span>, bins =<span class="number">200</span>, </span><br><span class="line">             label = <span class="string">'df1'</span>)</span><br><span class="line">sns.distplot(df2[features].mean(axis = <span class="number">1</span>), color =<span class="string">'blue'</span>, kde = <span class="literal">True</span>, bins =<span class="number">200</span>, </span><br><span class="line">             label = <span class="string">'df2'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<pre><code>/anaconda3/lib/python3.7/site-packages/scipy/stats/stats.py:1713: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+  return np.add.reduce(sorted[indexer] * weights, axis=axis) / sumval
+</code></pre><p><img src="/2019/07/08/Santander Customer Transaction Prediction/output_26_1.png" alt="png"></p>
+<p> 总结：</p>
+<ol>
+<li>从上图可以看出，相比df1，df2的数值分布更加右倾</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train.nunique().sort_values()</span><br></pre></td></tr></table></figure>
+<pre><code>target          2
+var_68        451
+var_91       7962
+var_108      8525
+var_103      9376
+var_12       9561
+var_148     10608
+var_161     11071
+var_71      13527
+var_25      14853
+var_43      15188
+var_125     16059
+var_166     17902
+var_169     18242
+var_133     19236
+var_15      19810
+var_131     21464
+var_23      24913
+var_34      25164
+var_93      26708
+var_95      29387
+var_42      31592
+var_50      32308
+var_126     32411
+var_98      33266
+var_53      33460
+var_57      35545
+var_28      35859
+var_130     36638
+var_59      37744
+            ...  
+var_118    143667
+var_19     144180
+var_83     144281
+var_137    144397
+var_158    144556
+var_54     144776
+var_82     144829
+var_184    145184
+var_178    145235
+var_30     145977
+var_102    146237
+var_96     148099
+var_149    148504
+var_182    149195
+var_199    149430
+var_100    150727
+var_48     152039
+var_70     153193
+var_47     154781
+var_160    156274
+var_136    156615
+var_187    157031
+var_90     157210
+var_120    158269
+var_97     158739
+var_61     159369
+var_74     161058
+var_117    164469
+var_45     169968
+ID_code    200000
+Length: 202, dtype: int64
+</code></pre><p>总结：</p>
+<ol>
+<li>我们发现变量<code>var_68</code>这个变量很特殊，只有451个。</li>
+</ol>
+<h2 id="特征相关性分析"><a href="#特征相关性分析" class="headerlink" title="特征相关性分析"></a>特征相关性分析</h2><p>接着，我们看一下每个特征和<code>label</code>的相关度，便于我们进一步了解特征的重要程度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train.corr()[<span class="string">'target'</span>].abs().sort_values()</span><br></pre></td></tr></table></figure>
+<pre><code>var_185    0.000053
+var_27     0.000582
+var_30     0.000638
+var_17     0.000864
+var_38     0.000970
+var_41     0.001298
+var_126    0.001393
+var_103    0.001395
+var_10     0.002213
+var_100    0.002215
+var_117    0.002591
+var_7      0.003025
+var_96     0.003037
+var_136    0.003554
+var_158    0.003817
+var_98     0.004074
+var_39     0.004090
+var_161    0.004168
+var_124    0.004218
+var_29     0.004682
+var_160    0.005135
+var_183    0.005467
+var_46     0.005690
+var_129    0.005880
+var_60     0.006265
+var_14     0.006332
+var_73     0.006460
+var_153    0.007103
+var_182    0.007198
+var_61     0.007407
+             ...   
+var_40     0.049530
+var_109    0.049926
+var_179    0.050002
+var_115    0.050174
+var_1      0.050343
+var_0      0.052390
+var_34     0.052692
+var_198    0.053000
+var_133    0.054548
+var_148    0.055011
+var_13     0.055156
+var_165    0.055734
+var_2      0.055870
+var_190    0.055973
+var_80     0.057609
+var_166    0.057773
+var_99     0.058367
+var_21     0.058483
+var_22     0.060558
+var_174    0.061669
+var_76     0.061917
+var_26     0.062422
+var_53     0.063399
+var_146    0.063644
+var_110    0.064275
+var_6      0.066731
+var_12     0.069489
+var_139    0.074080
+var_81     0.080917
+target     1.000000
+Name: target, Length: 201, dtype: float64
+</code></pre><p>总结：</p>
+<ol>
+<li>相关性最小的是变量<code>var_185</code>,其相关性是0.000053</li>
+<li>相关性最大的是变量<code>var_81</code>,其相关性是0.080917</li>
+</ol>
+<h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><p>将相关性不高的特征去掉</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">train_x = train.drop([<span class="string">'ID_code'</span>,<span class="string">'var_185'</span>,<span class="string">'var_27'</span>,<span class="string">'var_30'</span>,<span class="string">'var_17'</span>,<span class="string">'var_38'</span>,</span><br><span class="line">                     <span class="string">'var_41'</span>,<span class="string">'var_126'</span>,<span class="string">'var_103'</span>,<span class="string">'target'</span>],axis = <span class="number">1</span>)</span><br><span class="line">test_x = test.drop([<span class="string">'ID_code'</span>,<span class="string">'var_185'</span>,<span class="string">'var_27'</span>,<span class="string">'var_30'</span>,<span class="string">'var_17'</span>,<span class="string">'var_38'</span>,</span><br><span class="line">                     <span class="string">'var_41'</span>,<span class="string">'var_126'</span>,<span class="string">'var_103'</span>],axis = <span class="number">1</span>)</span><br><span class="line">train_y = train[<span class="string">'target'</span>]</span><br></pre></td></tr></table></figure>
+<h1 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</span><br><span class="line">lgb_model = lgb.LGBMClassifier(</span><br><span class="line">    boosting_type=<span class="string">"gbdt"</span>, num_leaves=<span class="number">30</span>, reg_alpha=<span class="number">0</span>, reg_lambda=<span class="number">0.</span>,</span><br><span class="line">    max_depth=<span class="number">-1</span>, n_estimators=<span class="number">2500</span>, objective=<span class="string">'binary'</span>,metric= <span class="string">'auc'</span>,</span><br><span class="line">    subsample=<span class="number">0.9</span>, colsample_bytree=<span class="number">0.7</span>, subsample_freq=<span class="number">1</span>,</span><br><span class="line">    learning_rate=<span class="number">0.1</span>, random_state=<span class="number">2018</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">#模型训练</span></span><br><span class="line">X_train, X_test, Y_train, Y_test= train_test_split(train_x, train_y,</span><br><span class="line">                                                   test_size=<span class="number">0.2</span>,random_state=<span class="number">0</span>)</span><br><span class="line">lgb_model.fit(X_train, Y_train,eval_set=[(X_train, Y_train),(X_test, Y_test)], </span><br><span class="line">              early_stopping_rounds=<span class="number">100</span>,verbose=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#模型预测1，预测概率</span></span><br></pre></td></tr></table></figure>
+<pre><code>[1]    training&apos;s auc: 0.667923    valid_1&apos;s auc: 0.655931
+Training until validation scores don&apos;t improve for 100 rounds.
+[2]    training&apos;s auc: 0.700055    valid_1&apos;s auc: 0.680243
+[3]    training&apos;s auc: 0.722262    valid_1&apos;s auc: 0.701922
+[4]    training&apos;s auc: 0.743563    valid_1&apos;s auc: 0.720751
+[5]    training&apos;s auc: 0.751368    valid_1&apos;s auc: 0.729526
+[6]    training&apos;s auc: 0.768131    valid_1&apos;s auc: 0.743963
+[7]    training&apos;s auc: 0.779217    valid_1&apos;s auc: 0.753297
+[8]    training&apos;s auc: 0.784602    valid_1&apos;s auc: 0.758284
+[9]    training&apos;s auc: 0.789159    valid_1&apos;s auc: 0.76161
+[10]    training&apos;s auc: 0.794783    valid_1&apos;s auc: 0.766658
+[11]    training&apos;s auc: 0.801477    valid_1&apos;s auc: 0.772359
+[12]    training&apos;s auc: 0.807318    valid_1&apos;s auc: 0.777839
+[13]    training&apos;s auc: 0.811805    valid_1&apos;s auc: 0.782093
+[14]    training&apos;s auc: 0.81645    valid_1&apos;s auc: 0.787162
+[15]    training&apos;s auc: 0.819791    valid_1&apos;s auc: 0.789338
+[16]    training&apos;s auc: 0.823462    valid_1&apos;s auc: 0.792981
+[17]    training&apos;s auc: 0.826694    valid_1&apos;s auc: 0.795185
+[18]    training&apos;s auc: 0.82971    valid_1&apos;s auc: 0.796471
+[19]    training&apos;s auc: 0.833108    valid_1&apos;s auc: 0.798868
+[20]    training&apos;s auc: 0.83615    valid_1&apos;s auc: 0.801453
+[21]    training&apos;s auc: 0.839248    valid_1&apos;s auc: 0.803501
+[22]    training&apos;s auc: 0.842092    valid_1&apos;s auc: 0.80569
+[23]    training&apos;s auc: 0.844132    valid_1&apos;s auc: 0.806768
+[24]    training&apos;s auc: 0.846149    valid_1&apos;s auc: 0.80737
+[25]    training&apos;s auc: 0.848712    valid_1&apos;s auc: 0.809792
+[26]    training&apos;s auc: 0.851083    valid_1&apos;s auc: 0.812077
+[27]    training&apos;s auc: 0.853398    valid_1&apos;s auc: 0.813731
+[28]    training&apos;s auc: 0.855374    valid_1&apos;s auc: 0.815894
+[29]    training&apos;s auc: 0.857196    valid_1&apos;s auc: 0.817552
+[30]    training&apos;s auc: 0.859382    valid_1&apos;s auc: 0.819105
+[31]    training&apos;s auc: 0.861022    valid_1&apos;s auc: 0.820354
+[32]    training&apos;s auc: 0.863121    valid_1&apos;s auc: 0.822139
+[33]    training&apos;s auc: 0.86467    valid_1&apos;s auc: 0.823563
+[34]    training&apos;s auc: 0.866346    valid_1&apos;s auc: 0.824579
+[35]    training&apos;s auc: 0.868063    valid_1&apos;s auc: 0.825775
+[36]    training&apos;s auc: 0.869377    valid_1&apos;s auc: 0.826982
+[37]    training&apos;s auc: 0.871411    valid_1&apos;s auc: 0.828624
+[38]    training&apos;s auc: 0.872762    valid_1&apos;s auc: 0.829544
+[39]    training&apos;s auc: 0.873784    valid_1&apos;s auc: 0.83038
+[40]    training&apos;s auc: 0.875417    valid_1&apos;s auc: 0.831754
+[41]    training&apos;s auc: 0.876941    valid_1&apos;s auc: 0.833442
+[42]    training&apos;s auc: 0.87793    valid_1&apos;s auc: 0.834047
+[43]    training&apos;s auc: 0.879483    valid_1&apos;s auc: 0.835804
+[44]    training&apos;s auc: 0.880732    valid_1&apos;s auc: 0.836579
+[45]    training&apos;s auc: 0.881468    valid_1&apos;s auc: 0.837113
+[46]    training&apos;s auc: 0.882515    valid_1&apos;s auc: 0.837551
+[47]    training&apos;s auc: 0.88399    valid_1&apos;s auc: 0.838588
+[48]    training&apos;s auc: 0.885351    valid_1&apos;s auc: 0.839587
+[49]    training&apos;s auc: 0.886336    valid_1&apos;s auc: 0.84068
+[50]    training&apos;s auc: 0.887447    valid_1&apos;s auc: 0.84144
+[51]    training&apos;s auc: 0.888682    valid_1&apos;s auc: 0.842055
+[52]    training&apos;s auc: 0.88981    valid_1&apos;s auc: 0.842932
+[53]    training&apos;s auc: 0.890777    valid_1&apos;s auc: 0.843625
+[54]    training&apos;s auc: 0.891624    valid_1&apos;s auc: 0.844176
+[55]    training&apos;s auc: 0.892606    valid_1&apos;s auc: 0.845134
+[56]    training&apos;s auc: 0.893319    valid_1&apos;s auc: 0.845769
+[57]    training&apos;s auc: 0.894307    valid_1&apos;s auc: 0.846424
+[58]    training&apos;s auc: 0.89513    valid_1&apos;s auc: 0.847148
+[59]    training&apos;s auc: 0.895764    valid_1&apos;s auc: 0.847475
+[60]    training&apos;s auc: 0.896639    valid_1&apos;s auc: 0.848196
+[61]    training&apos;s auc: 0.897383    valid_1&apos;s auc: 0.848451
+[62]    training&apos;s auc: 0.89811    valid_1&apos;s auc: 0.848789
+[63]    training&apos;s auc: 0.89923    valid_1&apos;s auc: 0.849696
+[64]    training&apos;s auc: 0.899986    valid_1&apos;s auc: 0.850134
+[65]    training&apos;s auc: 0.900806    valid_1&apos;s auc: 0.850742
+[66]    training&apos;s auc: 0.901493    valid_1&apos;s auc: 0.851172
+[67]    training&apos;s auc: 0.902277    valid_1&apos;s auc: 0.851724
+[68]    training&apos;s auc: 0.903075    valid_1&apos;s auc: 0.852341
+[69]    training&apos;s auc: 0.903698    valid_1&apos;s auc: 0.852531
+[70]    training&apos;s auc: 0.904426    valid_1&apos;s auc: 0.85275
+[71]    training&apos;s auc: 0.905095    valid_1&apos;s auc: 0.853281
+[72]    training&apos;s auc: 0.905727    valid_1&apos;s auc: 0.853776
+[73]    training&apos;s auc: 0.906332    valid_1&apos;s auc: 0.854497
+[74]    training&apos;s auc: 0.907136    valid_1&apos;s auc: 0.855012
+[75]    training&apos;s auc: 0.907866    valid_1&apos;s auc: 0.855485
+[76]    training&apos;s auc: 0.908379    valid_1&apos;s auc: 0.855842
+[77]    training&apos;s auc: 0.909143    valid_1&apos;s auc: 0.856445
+[78]    training&apos;s auc: 0.909636    valid_1&apos;s auc: 0.856614
+[79]    training&apos;s auc: 0.910341    valid_1&apos;s auc: 0.857097
+[80]    training&apos;s auc: 0.910983    valid_1&apos;s auc: 0.857316
+[81]    training&apos;s auc: 0.91158    valid_1&apos;s auc: 0.85756
+[82]    training&apos;s auc: 0.912069    valid_1&apos;s auc: 0.85798
+[83]    training&apos;s auc: 0.91265    valid_1&apos;s auc: 0.858298
+[84]    training&apos;s auc: 0.913179    valid_1&apos;s auc: 0.858778
+[85]    training&apos;s auc: 0.913738    valid_1&apos;s auc: 0.859048
+[86]    training&apos;s auc: 0.914382    valid_1&apos;s auc: 0.859458
+[87]    training&apos;s auc: 0.915016    valid_1&apos;s auc: 0.859835
+[88]    training&apos;s auc: 0.91557    valid_1&apos;s auc: 0.860216
+[89]    training&apos;s auc: 0.91609    valid_1&apos;s auc: 0.86046
+[90]    training&apos;s auc: 0.916475    valid_1&apos;s auc: 0.860606
+[91]    training&apos;s auc: 0.917059    valid_1&apos;s auc: 0.860715
+[92]    training&apos;s auc: 0.917494    valid_1&apos;s auc: 0.860964
+[93]    training&apos;s auc: 0.918101    valid_1&apos;s auc: 0.861317
+[94]    training&apos;s auc: 0.918533    valid_1&apos;s auc: 0.861529
+[95]    training&apos;s auc: 0.919024    valid_1&apos;s auc: 0.861838
+[96]    training&apos;s auc: 0.919421    valid_1&apos;s auc: 0.861849
+[97]    training&apos;s auc: 0.92    valid_1&apos;s auc: 0.86223
+[98]    training&apos;s auc: 0.920422    valid_1&apos;s auc: 0.862529
+[99]    training&apos;s auc: 0.92079    valid_1&apos;s auc: 0.86287
+[100]    training&apos;s auc: 0.921205    valid_1&apos;s auc: 0.863401
+[101]    training&apos;s auc: 0.921648    valid_1&apos;s auc: 0.863488
+[102]    training&apos;s auc: 0.922054    valid_1&apos;s auc: 0.863746
+[103]    training&apos;s auc: 0.922528    valid_1&apos;s auc: 0.864015
+[104]    training&apos;s auc: 0.923002    valid_1&apos;s auc: 0.864111
+[105]    training&apos;s auc: 0.923607    valid_1&apos;s auc: 0.864253
+[106]    training&apos;s auc: 0.923994    valid_1&apos;s auc: 0.864612
+[107]    training&apos;s auc: 0.924451    valid_1&apos;s auc: 0.864899
+[108]    training&apos;s auc: 0.92489    valid_1&apos;s auc: 0.865223
+[109]    training&apos;s auc: 0.925322    valid_1&apos;s auc: 0.865532
+[110]    training&apos;s auc: 0.925653    valid_1&apos;s auc: 0.86569
+[111]    training&apos;s auc: 0.926114    valid_1&apos;s auc: 0.866027
+[112]    training&apos;s auc: 0.926465    valid_1&apos;s auc: 0.866164
+[113]    training&apos;s auc: 0.926848    valid_1&apos;s auc: 0.866304
+[114]    training&apos;s auc: 0.927238    valid_1&apos;s auc: 0.866739
+[115]    training&apos;s auc: 0.927693    valid_1&apos;s auc: 0.866936
+[116]    training&apos;s auc: 0.928001    valid_1&apos;s auc: 0.867235
+[117]    training&apos;s auc: 0.928342    valid_1&apos;s auc: 0.867293
+[118]    training&apos;s auc: 0.92878    valid_1&apos;s auc: 0.867637
+[119]    training&apos;s auc: 0.929076    valid_1&apos;s auc: 0.867797
+[120]    training&apos;s auc: 0.929514    valid_1&apos;s auc: 0.868185
+[121]    training&apos;s auc: 0.929865    valid_1&apos;s auc: 0.86847
+[122]    training&apos;s auc: 0.930259    valid_1&apos;s auc: 0.868747
+[123]    training&apos;s auc: 0.930635    valid_1&apos;s auc: 0.868887
+[124]    training&apos;s auc: 0.930983    valid_1&apos;s auc: 0.86915
+[125]    training&apos;s auc: 0.931312    valid_1&apos;s auc: 0.869264
+[126]    training&apos;s auc: 0.931676    valid_1&apos;s auc: 0.86952
+[127]    training&apos;s auc: 0.932038    valid_1&apos;s auc: 0.869743
+[128]    training&apos;s auc: 0.932308    valid_1&apos;s auc: 0.869901
+[129]    training&apos;s auc: 0.932639    valid_1&apos;s auc: 0.869992
+[130]    training&apos;s auc: 0.933044    valid_1&apos;s auc: 0.870122
+[131]    training&apos;s auc: 0.933414    valid_1&apos;s auc: 0.870339
+[132]    training&apos;s auc: 0.933741    valid_1&apos;s auc: 0.870475
+[133]    training&apos;s auc: 0.934076    valid_1&apos;s auc: 0.870675
+[134]    training&apos;s auc: 0.934437    valid_1&apos;s auc: 0.870797
+[135]    training&apos;s auc: 0.934679    valid_1&apos;s auc: 0.870938
+[136]    training&apos;s auc: 0.934991    valid_1&apos;s auc: 0.871092
+[137]    training&apos;s auc: 0.935274    valid_1&apos;s auc: 0.871226
+[138]    training&apos;s auc: 0.935532    valid_1&apos;s auc: 0.871319
+[139]    training&apos;s auc: 0.935795    valid_1&apos;s auc: 0.871567
+[140]    training&apos;s auc: 0.936095    valid_1&apos;s auc: 0.87169
+[141]    training&apos;s auc: 0.936345    valid_1&apos;s auc: 0.871932
+[142]    training&apos;s auc: 0.936658    valid_1&apos;s auc: 0.872025
+[143]    training&apos;s auc: 0.936884    valid_1&apos;s auc: 0.872195
+[144]    training&apos;s auc: 0.93716    valid_1&apos;s auc: 0.872421
+[145]    training&apos;s auc: 0.937488    valid_1&apos;s auc: 0.872622
+[146]    training&apos;s auc: 0.93778    valid_1&apos;s auc: 0.872901
+[147]    training&apos;s auc: 0.938049    valid_1&apos;s auc: 0.872903
+[148]    training&apos;s auc: 0.938327    valid_1&apos;s auc: 0.873127
+[149]    training&apos;s auc: 0.93865    valid_1&apos;s auc: 0.873202
+[150]    training&apos;s auc: 0.938961    valid_1&apos;s auc: 0.87339
+[151]    training&apos;s auc: 0.939213    valid_1&apos;s auc: 0.873437
+[152]    training&apos;s auc: 0.939494    valid_1&apos;s auc: 0.873555
+[153]    training&apos;s auc: 0.939811    valid_1&apos;s auc: 0.87369
+[154]    training&apos;s auc: 0.940063    valid_1&apos;s auc: 0.873916
+[155]    training&apos;s auc: 0.940306    valid_1&apos;s auc: 0.874046
+[156]    training&apos;s auc: 0.940528    valid_1&apos;s auc: 0.874203
+[157]    training&apos;s auc: 0.940783    valid_1&apos;s auc: 0.87434
+[158]    training&apos;s auc: 0.94106    valid_1&apos;s auc: 0.874377
+[159]    training&apos;s auc: 0.941307    valid_1&apos;s auc: 0.874496
+[160]    training&apos;s auc: 0.941575    valid_1&apos;s auc: 0.874582
+[161]    training&apos;s auc: 0.94184    valid_1&apos;s auc: 0.874549
+[162]    training&apos;s auc: 0.942124    valid_1&apos;s auc: 0.874701
+[163]    training&apos;s auc: 0.942302    valid_1&apos;s auc: 0.874737
+[164]    training&apos;s auc: 0.942545    valid_1&apos;s auc: 0.874938
+[165]    training&apos;s auc: 0.942806    valid_1&apos;s auc: 0.875032
+[166]    training&apos;s auc: 0.94308    valid_1&apos;s auc: 0.875288
+[167]    training&apos;s auc: 0.943333    valid_1&apos;s auc: 0.875378
+[168]    training&apos;s auc: 0.943651    valid_1&apos;s auc: 0.875559
+[169]    training&apos;s auc: 0.943905    valid_1&apos;s auc: 0.875624
+[170]    training&apos;s auc: 0.944104    valid_1&apos;s auc: 0.875843
+[171]    training&apos;s auc: 0.944416    valid_1&apos;s auc: 0.875988
+[172]    training&apos;s auc: 0.94464    valid_1&apos;s auc: 0.876148
+[173]    training&apos;s auc: 0.944872    valid_1&apos;s auc: 0.876228
+[174]    training&apos;s auc: 0.94507    valid_1&apos;s auc: 0.876372
+[175]    training&apos;s auc: 0.945335    valid_1&apos;s auc: 0.876321
+[176]    training&apos;s auc: 0.945594    valid_1&apos;s auc: 0.876503
+[177]    training&apos;s auc: 0.945798    valid_1&apos;s auc: 0.876516
+[178]    training&apos;s auc: 0.946029    valid_1&apos;s auc: 0.876518
+[179]    training&apos;s auc: 0.946279    valid_1&apos;s auc: 0.876514
+[180]    training&apos;s auc: 0.946473    valid_1&apos;s auc: 0.876597
+[181]    training&apos;s auc: 0.946676    valid_1&apos;s auc: 0.876673
+[182]    training&apos;s auc: 0.94693    valid_1&apos;s auc: 0.876814
+[183]    training&apos;s auc: 0.947169    valid_1&apos;s auc: 0.876774
+[184]    training&apos;s auc: 0.947436    valid_1&apos;s auc: 0.877079
+[185]    training&apos;s auc: 0.947611    valid_1&apos;s auc: 0.877106
+[186]    training&apos;s auc: 0.947827    valid_1&apos;s auc: 0.877176
+[187]    training&apos;s auc: 0.948019    valid_1&apos;s auc: 0.877244
+[188]    training&apos;s auc: 0.948306    valid_1&apos;s auc: 0.877291
+[189]    training&apos;s auc: 0.948537    valid_1&apos;s auc: 0.877349
+[190]    training&apos;s auc: 0.94872    valid_1&apos;s auc: 0.877488
+[191]    training&apos;s auc: 0.948972    valid_1&apos;s auc: 0.877548
+[192]    training&apos;s auc: 0.949102    valid_1&apos;s auc: 0.877549
+[193]    training&apos;s auc: 0.949269    valid_1&apos;s auc: 0.877622
+[194]    training&apos;s auc: 0.949451    valid_1&apos;s auc: 0.877733
+[195]    training&apos;s auc: 0.94972    valid_1&apos;s auc: 0.877779
+[196]    training&apos;s auc: 0.949953    valid_1&apos;s auc: 0.877877
+[197]    training&apos;s auc: 0.950191    valid_1&apos;s auc: 0.878049
+[198]    training&apos;s auc: 0.950392    valid_1&apos;s auc: 0.878129
+[199]    training&apos;s auc: 0.950623    valid_1&apos;s auc: 0.87826
+[200]    training&apos;s auc: 0.950832    valid_1&apos;s auc: 0.878285
+[201]    training&apos;s auc: 0.951092    valid_1&apos;s auc: 0.878367
+[202]    training&apos;s auc: 0.95132    valid_1&apos;s auc: 0.878536
+[203]    training&apos;s auc: 0.951514    valid_1&apos;s auc: 0.878641
+[204]    training&apos;s auc: 0.951658    valid_1&apos;s auc: 0.878818
+[205]    training&apos;s auc: 0.95185    valid_1&apos;s auc: 0.878938
+[206]    training&apos;s auc: 0.952031    valid_1&apos;s auc: 0.87908
+[207]    training&apos;s auc: 0.952207    valid_1&apos;s auc: 0.879074
+[208]    training&apos;s auc: 0.95235    valid_1&apos;s auc: 0.879052
+[209]    training&apos;s auc: 0.952538    valid_1&apos;s auc: 0.879145
+[210]    training&apos;s auc: 0.952727    valid_1&apos;s auc: 0.879258
+[211]    training&apos;s auc: 0.952899    valid_1&apos;s auc: 0.879487
+[212]    training&apos;s auc: 0.953072    valid_1&apos;s auc: 0.879544
+[213]    training&apos;s auc: 0.953218    valid_1&apos;s auc: 0.879576
+[214]    training&apos;s auc: 0.953421    valid_1&apos;s auc: 0.879667
+[215]    training&apos;s auc: 0.953671    valid_1&apos;s auc: 0.879677
+[216]    training&apos;s auc: 0.953902    valid_1&apos;s auc: 0.879695
+[217]    training&apos;s auc: 0.954072    valid_1&apos;s auc: 0.879754
+[218]    training&apos;s auc: 0.954332    valid_1&apos;s auc: 0.879895
+[219]    training&apos;s auc: 0.954516    valid_1&apos;s auc: 0.879941
+[220]    training&apos;s auc: 0.954662    valid_1&apos;s auc: 0.879992
+[221]    training&apos;s auc: 0.954848    valid_1&apos;s auc: 0.880053
+[222]    training&apos;s auc: 0.955008    valid_1&apos;s auc: 0.880176
+[223]    training&apos;s auc: 0.955212    valid_1&apos;s auc: 0.880303
+[224]    training&apos;s auc: 0.955398    valid_1&apos;s auc: 0.880363
+[225]    training&apos;s auc: 0.955619    valid_1&apos;s auc: 0.880403
+[226]    training&apos;s auc: 0.955831    valid_1&apos;s auc: 0.88054
+[227]    training&apos;s auc: 0.956004    valid_1&apos;s auc: 0.880551
+[228]    training&apos;s auc: 0.956167    valid_1&apos;s auc: 0.880625
+[229]    training&apos;s auc: 0.956396    valid_1&apos;s auc: 0.88064
+[230]    training&apos;s auc: 0.956552    valid_1&apos;s auc: 0.880748
+[231]    training&apos;s auc: 0.956736    valid_1&apos;s auc: 0.880797
+[232]    training&apos;s auc: 0.956833    valid_1&apos;s auc: 0.880889
+[233]    training&apos;s auc: 0.957034    valid_1&apos;s auc: 0.880957
+[234]    training&apos;s auc: 0.957195    valid_1&apos;s auc: 0.880963
+[235]    training&apos;s auc: 0.957368    valid_1&apos;s auc: 0.881015
+[236]    training&apos;s auc: 0.957497    valid_1&apos;s auc: 0.881099
+[237]    training&apos;s auc: 0.957683    valid_1&apos;s auc: 0.881122
+[238]    training&apos;s auc: 0.957858    valid_1&apos;s auc: 0.881114
+[239]    training&apos;s auc: 0.95802    valid_1&apos;s auc: 0.881125
+[240]    training&apos;s auc: 0.958191    valid_1&apos;s auc: 0.881147
+[241]    training&apos;s auc: 0.958348    valid_1&apos;s auc: 0.881191
+[242]    training&apos;s auc: 0.958525    valid_1&apos;s auc: 0.881227
+[243]    training&apos;s auc: 0.95868    valid_1&apos;s auc: 0.881188
+[244]    training&apos;s auc: 0.958837    valid_1&apos;s auc: 0.881239
+[245]    training&apos;s auc: 0.958998    valid_1&apos;s auc: 0.881294
+[246]    training&apos;s auc: 0.959182    valid_1&apos;s auc: 0.88135
+[247]    training&apos;s auc: 0.959329    valid_1&apos;s auc: 0.881492
+[248]    training&apos;s auc: 0.959489    valid_1&apos;s auc: 0.881503
+[249]    training&apos;s auc: 0.959633    valid_1&apos;s auc: 0.881541
+[250]    training&apos;s auc: 0.959796    valid_1&apos;s auc: 0.881688
+[251]    training&apos;s auc: 0.959936    valid_1&apos;s auc: 0.881683
+[252]    training&apos;s auc: 0.960094    valid_1&apos;s auc: 0.881732
+[253]    training&apos;s auc: 0.960271    valid_1&apos;s auc: 0.88178
+[254]    training&apos;s auc: 0.960463    valid_1&apos;s auc: 0.881813
+[255]    training&apos;s auc: 0.960683    valid_1&apos;s auc: 0.881925
+[256]    training&apos;s auc: 0.960833    valid_1&apos;s auc: 0.881909
+[257]    training&apos;s auc: 0.960949    valid_1&apos;s auc: 0.881994
+[258]    training&apos;s auc: 0.961042    valid_1&apos;s auc: 0.882144
+[259]    training&apos;s auc: 0.961181    valid_1&apos;s auc: 0.882217
+[260]    training&apos;s auc: 0.961317    valid_1&apos;s auc: 0.882223
+[261]    training&apos;s auc: 0.96148    valid_1&apos;s auc: 0.882277
+[262]    training&apos;s auc: 0.961642    valid_1&apos;s auc: 0.882287
+[263]    training&apos;s auc: 0.961798    valid_1&apos;s auc: 0.882307
+[264]    training&apos;s auc: 0.961965    valid_1&apos;s auc: 0.882376
+[265]    training&apos;s auc: 0.962118    valid_1&apos;s auc: 0.882376
+[266]    training&apos;s auc: 0.962307    valid_1&apos;s auc: 0.882354
+[267]    training&apos;s auc: 0.962467    valid_1&apos;s auc: 0.882366
+[268]    training&apos;s auc: 0.962617    valid_1&apos;s auc: 0.882357
+[269]    training&apos;s auc: 0.962765    valid_1&apos;s auc: 0.882415
+[270]    training&apos;s auc: 0.962866    valid_1&apos;s auc: 0.882549
+[271]    training&apos;s auc: 0.962967    valid_1&apos;s auc: 0.88266
+[272]    training&apos;s auc: 0.963077    valid_1&apos;s auc: 0.882673
+[273]    training&apos;s auc: 0.963176    valid_1&apos;s auc: 0.88269
+[274]    training&apos;s auc: 0.963314    valid_1&apos;s auc: 0.882795
+[275]    training&apos;s auc: 0.963441    valid_1&apos;s auc: 0.882826
+[276]    training&apos;s auc: 0.963564    valid_1&apos;s auc: 0.882794
+[277]    training&apos;s auc: 0.963721    valid_1&apos;s auc: 0.882895
+[278]    training&apos;s auc: 0.96381    valid_1&apos;s auc: 0.88286
+[279]    training&apos;s auc: 0.963945    valid_1&apos;s auc: 0.882937
+[280]    training&apos;s auc: 0.964077    valid_1&apos;s auc: 0.883046
+[281]    training&apos;s auc: 0.964201    valid_1&apos;s auc: 0.883009
+[282]    training&apos;s auc: 0.964366    valid_1&apos;s auc: 0.883029
+[283]    training&apos;s auc: 0.964546    valid_1&apos;s auc: 0.88299
+[284]    training&apos;s auc: 0.964702    valid_1&apos;s auc: 0.883034
+[285]    training&apos;s auc: 0.964862    valid_1&apos;s auc: 0.883033
+[286]    training&apos;s auc: 0.96499    valid_1&apos;s auc: 0.883077
+[287]    training&apos;s auc: 0.965153    valid_1&apos;s auc: 0.883055
+[288]    training&apos;s auc: 0.96523    valid_1&apos;s auc: 0.88305
+[289]    training&apos;s auc: 0.965384    valid_1&apos;s auc: 0.88309
+[290]    training&apos;s auc: 0.965496    valid_1&apos;s auc: 0.883105
+[291]    training&apos;s auc: 0.965637    valid_1&apos;s auc: 0.883092
+[292]    training&apos;s auc: 0.965775    valid_1&apos;s auc: 0.883149
+[293]    training&apos;s auc: 0.965926    valid_1&apos;s auc: 0.883232
+[294]    training&apos;s auc: 0.966057    valid_1&apos;s auc: 0.883324
+[295]    training&apos;s auc: 0.966165    valid_1&apos;s auc: 0.883349
+[296]    training&apos;s auc: 0.966278    valid_1&apos;s auc: 0.883368
+[297]    training&apos;s auc: 0.966426    valid_1&apos;s auc: 0.883476
+[298]    training&apos;s auc: 0.96656    valid_1&apos;s auc: 0.883512
+[299]    training&apos;s auc: 0.966679    valid_1&apos;s auc: 0.883537
+[300]    training&apos;s auc: 0.966809    valid_1&apos;s auc: 0.883536
+[301]    training&apos;s auc: 0.966968    valid_1&apos;s auc: 0.883626
+[302]    training&apos;s auc: 0.967079    valid_1&apos;s auc: 0.883623
+[303]    training&apos;s auc: 0.967177    valid_1&apos;s auc: 0.883701
+[304]    training&apos;s auc: 0.967317    valid_1&apos;s auc: 0.883659
+[305]    training&apos;s auc: 0.967482    valid_1&apos;s auc: 0.883694
+[306]    training&apos;s auc: 0.967609    valid_1&apos;s auc: 0.883718
+[307]    training&apos;s auc: 0.967774    valid_1&apos;s auc: 0.88375
+[308]    training&apos;s auc: 0.967883    valid_1&apos;s auc: 0.883793
+[309]    training&apos;s auc: 0.967987    valid_1&apos;s auc: 0.883805
+[310]    training&apos;s auc: 0.968108    valid_1&apos;s auc: 0.883823
+[311]    training&apos;s auc: 0.968261    valid_1&apos;s auc: 0.8838
+[312]    training&apos;s auc: 0.968418    valid_1&apos;s auc: 0.883843
+[313]    training&apos;s auc: 0.968544    valid_1&apos;s auc: 0.883846
+[314]    training&apos;s auc: 0.968661    valid_1&apos;s auc: 0.883837
+[315]    training&apos;s auc: 0.968794    valid_1&apos;s auc: 0.883863
+[316]    training&apos;s auc: 0.96892    valid_1&apos;s auc: 0.883869
+[317]    training&apos;s auc: 0.969076    valid_1&apos;s auc: 0.883834
+[318]    training&apos;s auc: 0.96919    valid_1&apos;s auc: 0.883841
+[319]    training&apos;s auc: 0.969382    valid_1&apos;s auc: 0.88381
+[320]    training&apos;s auc: 0.969521    valid_1&apos;s auc: 0.883771
+[321]    training&apos;s auc: 0.969655    valid_1&apos;s auc: 0.883847
+[322]    training&apos;s auc: 0.969738    valid_1&apos;s auc: 0.88384
+[323]    training&apos;s auc: 0.969871    valid_1&apos;s auc: 0.883835
+[324]    training&apos;s auc: 0.969988    valid_1&apos;s auc: 0.883789
+[325]    training&apos;s auc: 0.970095    valid_1&apos;s auc: 0.883866
+[326]    training&apos;s auc: 0.97024    valid_1&apos;s auc: 0.883825
+[327]    training&apos;s auc: 0.970345    valid_1&apos;s auc: 0.883824
+[328]    training&apos;s auc: 0.970434    valid_1&apos;s auc: 0.883775
+[329]    training&apos;s auc: 0.970535    valid_1&apos;s auc: 0.883833
+[330]    training&apos;s auc: 0.970632    valid_1&apos;s auc: 0.883818
+[331]    training&apos;s auc: 0.970755    valid_1&apos;s auc: 0.883778
+[332]    training&apos;s auc: 0.970869    valid_1&apos;s auc: 0.883816
+[333]    training&apos;s auc: 0.97099    valid_1&apos;s auc: 0.883884
+[334]    training&apos;s auc: 0.971155    valid_1&apos;s auc: 0.883902
+[335]    training&apos;s auc: 0.97125    valid_1&apos;s auc: 0.883838
+[336]    training&apos;s auc: 0.971375    valid_1&apos;s auc: 0.883856
+[337]    training&apos;s auc: 0.971468    valid_1&apos;s auc: 0.883816
+[338]    training&apos;s auc: 0.971566    valid_1&apos;s auc: 0.883764
+[339]    training&apos;s auc: 0.971665    valid_1&apos;s auc: 0.883811
+[340]    training&apos;s auc: 0.971787    valid_1&apos;s auc: 0.88385
+[341]    training&apos;s auc: 0.971912    valid_1&apos;s auc: 0.883892
+[342]    training&apos;s auc: 0.972016    valid_1&apos;s auc: 0.883942
+[343]    training&apos;s auc: 0.972138    valid_1&apos;s auc: 0.883933
+[344]    training&apos;s auc: 0.972298    valid_1&apos;s auc: 0.883935
+[345]    training&apos;s auc: 0.972394    valid_1&apos;s auc: 0.883972
+[346]    training&apos;s auc: 0.972512    valid_1&apos;s auc: 0.883975
+[347]    training&apos;s auc: 0.972668    valid_1&apos;s auc: 0.883999
+[348]    training&apos;s auc: 0.972774    valid_1&apos;s auc: 0.883997
+[349]    training&apos;s auc: 0.972884    valid_1&apos;s auc: 0.884065
+[350]    training&apos;s auc: 0.972961    valid_1&apos;s auc: 0.88412
+[351]    training&apos;s auc: 0.973085    valid_1&apos;s auc: 0.88421
+[352]    training&apos;s auc: 0.973181    valid_1&apos;s auc: 0.884237
+[353]    training&apos;s auc: 0.973274    valid_1&apos;s auc: 0.884226
+[354]    training&apos;s auc: 0.973389    valid_1&apos;s auc: 0.884232
+[355]    training&apos;s auc: 0.973538    valid_1&apos;s auc: 0.884201
+[356]    training&apos;s auc: 0.973668    valid_1&apos;s auc: 0.884201
+[357]    training&apos;s auc: 0.9738    valid_1&apos;s auc: 0.884197
+[358]    training&apos;s auc: 0.973905    valid_1&apos;s auc: 0.884226
+[359]    training&apos;s auc: 0.974004    valid_1&apos;s auc: 0.884225
+[360]    training&apos;s auc: 0.974099    valid_1&apos;s auc: 0.884219
+[361]    training&apos;s auc: 0.974215    valid_1&apos;s auc: 0.884201
+[362]    training&apos;s auc: 0.974334    valid_1&apos;s auc: 0.884169
+[363]    training&apos;s auc: 0.974426    valid_1&apos;s auc: 0.88419
+[364]    training&apos;s auc: 0.974525    valid_1&apos;s auc: 0.884158
+[365]    training&apos;s auc: 0.974588    valid_1&apos;s auc: 0.884137
+[366]    training&apos;s auc: 0.974671    valid_1&apos;s auc: 0.884119
+[367]    training&apos;s auc: 0.974805    valid_1&apos;s auc: 0.88414
+[368]    training&apos;s auc: 0.974914    valid_1&apos;s auc: 0.884181
+[369]    training&apos;s auc: 0.975053    valid_1&apos;s auc: 0.884161
+[370]    training&apos;s auc: 0.975196    valid_1&apos;s auc: 0.88414
+[371]    training&apos;s auc: 0.9753    valid_1&apos;s auc: 0.884104
+[372]    training&apos;s auc: 0.975425    valid_1&apos;s auc: 0.884161
+[373]    training&apos;s auc: 0.975573    valid_1&apos;s auc: 0.884118
+[374]    training&apos;s auc: 0.97569    valid_1&apos;s auc: 0.884106
+[375]    training&apos;s auc: 0.975822    valid_1&apos;s auc: 0.884127
+[376]    training&apos;s auc: 0.975913    valid_1&apos;s auc: 0.884169
+[377]    training&apos;s auc: 0.976001    valid_1&apos;s auc: 0.884169
+[378]    training&apos;s auc: 0.976133    valid_1&apos;s auc: 0.884189
+[379]    training&apos;s auc: 0.97625    valid_1&apos;s auc: 0.884167
+[380]    training&apos;s auc: 0.976381    valid_1&apos;s auc: 0.884195
+[381]    training&apos;s auc: 0.97654    valid_1&apos;s auc: 0.884305
+[382]    training&apos;s auc: 0.976699    valid_1&apos;s auc: 0.884309
+[383]    training&apos;s auc: 0.976815    valid_1&apos;s auc: 0.884301
+[384]    training&apos;s auc: 0.976906    valid_1&apos;s auc: 0.884283
+[385]    training&apos;s auc: 0.977021    valid_1&apos;s auc: 0.884233
+[386]    training&apos;s auc: 0.977155    valid_1&apos;s auc: 0.884203
+[387]    training&apos;s auc: 0.977231    valid_1&apos;s auc: 0.884172
+[388]    training&apos;s auc: 0.977312    valid_1&apos;s auc: 0.884207
+[389]    training&apos;s auc: 0.977423    valid_1&apos;s auc: 0.884185
+[390]    training&apos;s auc: 0.977509    valid_1&apos;s auc: 0.884191
+[391]    training&apos;s auc: 0.97759    valid_1&apos;s auc: 0.884208
+[392]    training&apos;s auc: 0.977663    valid_1&apos;s auc: 0.884263
+[393]    training&apos;s auc: 0.977764    valid_1&apos;s auc: 0.884278
+[394]    training&apos;s auc: 0.977868    valid_1&apos;s auc: 0.884266
+[395]    training&apos;s auc: 0.977991    valid_1&apos;s auc: 0.884295
+[396]    training&apos;s auc: 0.978104    valid_1&apos;s auc: 0.884325
+[397]    training&apos;s auc: 0.978179    valid_1&apos;s auc: 0.884374
+[398]    training&apos;s auc: 0.978301    valid_1&apos;s auc: 0.884441
+[399]    training&apos;s auc: 0.978392    valid_1&apos;s auc: 0.884411
+[400]    training&apos;s auc: 0.978484    valid_1&apos;s auc: 0.8844
+[401]    training&apos;s auc: 0.978622    valid_1&apos;s auc: 0.884413
+[402]    training&apos;s auc: 0.97873    valid_1&apos;s auc: 0.884467
+[403]    training&apos;s auc: 0.978817    valid_1&apos;s auc: 0.88444
+[404]    training&apos;s auc: 0.978878    valid_1&apos;s auc: 0.884432
+[405]    training&apos;s auc: 0.978958    valid_1&apos;s auc: 0.88448
+[406]    training&apos;s auc: 0.979089    valid_1&apos;s auc: 0.884477
+[407]    training&apos;s auc: 0.979158    valid_1&apos;s auc: 0.884521
+[408]    training&apos;s auc: 0.979248    valid_1&apos;s auc: 0.884526
+[409]    training&apos;s auc: 0.979359    valid_1&apos;s auc: 0.88451
+[410]    training&apos;s auc: 0.979459    valid_1&apos;s auc: 0.884539
+[411]    training&apos;s auc: 0.979567    valid_1&apos;s auc: 0.884627
+[412]    training&apos;s auc: 0.979653    valid_1&apos;s auc: 0.884644
+[413]    training&apos;s auc: 0.979729    valid_1&apos;s auc: 0.884658
+[414]    training&apos;s auc: 0.979798    valid_1&apos;s auc: 0.884686
+[415]    training&apos;s auc: 0.979887    valid_1&apos;s auc: 0.884705
+[416]    training&apos;s auc: 0.979965    valid_1&apos;s auc: 0.884678
+[417]    training&apos;s auc: 0.980046    valid_1&apos;s auc: 0.884715
+[418]    training&apos;s auc: 0.980145    valid_1&apos;s auc: 0.884669
+[419]    training&apos;s auc: 0.980234    valid_1&apos;s auc: 0.884725
+[420]    training&apos;s auc: 0.980358    valid_1&apos;s auc: 0.884715
+[421]    training&apos;s auc: 0.98043    valid_1&apos;s auc: 0.884721
+[422]    training&apos;s auc: 0.980513    valid_1&apos;s auc: 0.884718
+[423]    training&apos;s auc: 0.980624    valid_1&apos;s auc: 0.884693
+[424]    training&apos;s auc: 0.98067    valid_1&apos;s auc: 0.884672
+[425]    training&apos;s auc: 0.980774    valid_1&apos;s auc: 0.884632
+[426]    training&apos;s auc: 0.980844    valid_1&apos;s auc: 0.884666
+[427]    training&apos;s auc: 0.980923    valid_1&apos;s auc: 0.884722
+[428]    training&apos;s auc: 0.981034    valid_1&apos;s auc: 0.884718
+[429]    training&apos;s auc: 0.98112    valid_1&apos;s auc: 0.884723
+[430]    training&apos;s auc: 0.981204    valid_1&apos;s auc: 0.884666
+[431]    training&apos;s auc: 0.981306    valid_1&apos;s auc: 0.884646
+[432]    training&apos;s auc: 0.98138    valid_1&apos;s auc: 0.88461
+[433]    training&apos;s auc: 0.981454    valid_1&apos;s auc: 0.884636
+[434]    training&apos;s auc: 0.981547    valid_1&apos;s auc: 0.884627
+[435]    training&apos;s auc: 0.981628    valid_1&apos;s auc: 0.884619
+[436]    training&apos;s auc: 0.981696    valid_1&apos;s auc: 0.884748
+[437]    training&apos;s auc: 0.981759    valid_1&apos;s auc: 0.884736
+[438]    training&apos;s auc: 0.981862    valid_1&apos;s auc: 0.884725
+[439]    training&apos;s auc: 0.981908    valid_1&apos;s auc: 0.884736
+[440]    training&apos;s auc: 0.981987    valid_1&apos;s auc: 0.884698
+[441]    training&apos;s auc: 0.982118    valid_1&apos;s auc: 0.884696
+[442]    training&apos;s auc: 0.982214    valid_1&apos;s auc: 0.884714
+[443]    training&apos;s auc: 0.982289    valid_1&apos;s auc: 0.884699
+[444]    training&apos;s auc: 0.982347    valid_1&apos;s auc: 0.884705
+[445]    training&apos;s auc: 0.982433    valid_1&apos;s auc: 0.884713
+[446]    training&apos;s auc: 0.982498    valid_1&apos;s auc: 0.884699
+[447]    training&apos;s auc: 0.982572    valid_1&apos;s auc: 0.884726
+[448]    training&apos;s auc: 0.982648    valid_1&apos;s auc: 0.884696
+[449]    training&apos;s auc: 0.982705    valid_1&apos;s auc: 0.884719
+[450]    training&apos;s auc: 0.982802    valid_1&apos;s auc: 0.884689
+[451]    training&apos;s auc: 0.982864    valid_1&apos;s auc: 0.884676
+[452]    training&apos;s auc: 0.982974    valid_1&apos;s auc: 0.884648
+[453]    training&apos;s auc: 0.983046    valid_1&apos;s auc: 0.884686
+[454]    training&apos;s auc: 0.983117    valid_1&apos;s auc: 0.884679
+[455]    training&apos;s auc: 0.983201    valid_1&apos;s auc: 0.884668
+[456]    training&apos;s auc: 0.983266    valid_1&apos;s auc: 0.884682
+[457]    training&apos;s auc: 0.983332    valid_1&apos;s auc: 0.884718
+[458]    training&apos;s auc: 0.983395    valid_1&apos;s auc: 0.884726
+[459]    training&apos;s auc: 0.983498    valid_1&apos;s auc: 0.884668
+[460]    training&apos;s auc: 0.983571    valid_1&apos;s auc: 0.8847
+[461]    training&apos;s auc: 0.983636    valid_1&apos;s auc: 0.884647
+[462]    training&apos;s auc: 0.983699    valid_1&apos;s auc: 0.884641
+[463]    training&apos;s auc: 0.983767    valid_1&apos;s auc: 0.884624
+[464]    training&apos;s auc: 0.983838    valid_1&apos;s auc: 0.884598
+[465]    training&apos;s auc: 0.983928    valid_1&apos;s auc: 0.884619
+[466]    training&apos;s auc: 0.984016    valid_1&apos;s auc: 0.884595
+[467]    training&apos;s auc: 0.98409    valid_1&apos;s auc: 0.884613
+[468]    training&apos;s auc: 0.984172    valid_1&apos;s auc: 0.884573
+[469]    training&apos;s auc: 0.98424    valid_1&apos;s auc: 0.884624
+[470]    training&apos;s auc: 0.984319    valid_1&apos;s auc: 0.884651
+[471]    training&apos;s auc: 0.984386    valid_1&apos;s auc: 0.884678
+[472]    training&apos;s auc: 0.98447    valid_1&apos;s auc: 0.884631
+[473]    training&apos;s auc: 0.984547    valid_1&apos;s auc: 0.884661
+[474]    training&apos;s auc: 0.984601    valid_1&apos;s auc: 0.884673
+[475]    training&apos;s auc: 0.984682    valid_1&apos;s auc: 0.88464
+[476]    training&apos;s auc: 0.984763    valid_1&apos;s auc: 0.884595
+[477]    training&apos;s auc: 0.984849    valid_1&apos;s auc: 0.884604
+[478]    training&apos;s auc: 0.984964    valid_1&apos;s auc: 0.884576
+[479]    training&apos;s auc: 0.985012    valid_1&apos;s auc: 0.8846
+[480]    training&apos;s auc: 0.985118    valid_1&apos;s auc: 0.884615
+[481]    training&apos;s auc: 0.985209    valid_1&apos;s auc: 0.884617
+[482]    training&apos;s auc: 0.985291    valid_1&apos;s auc: 0.884631
+[483]    training&apos;s auc: 0.985352    valid_1&apos;s auc: 0.884669
+[484]    training&apos;s auc: 0.985433    valid_1&apos;s auc: 0.884643
+[485]    training&apos;s auc: 0.98551    valid_1&apos;s auc: 0.884679
+[486]    training&apos;s auc: 0.985593    valid_1&apos;s auc: 0.884688
+[487]    training&apos;s auc: 0.985665    valid_1&apos;s auc: 0.88469
+[488]    training&apos;s auc: 0.985733    valid_1&apos;s auc: 0.884678
+[489]    training&apos;s auc: 0.985791    valid_1&apos;s auc: 0.884708
+[490]    training&apos;s auc: 0.985853    valid_1&apos;s auc: 0.88468
+[491]    training&apos;s auc: 0.985927    valid_1&apos;s auc: 0.884659
+[492]    training&apos;s auc: 0.985991    valid_1&apos;s auc: 0.884626
+[493]    training&apos;s auc: 0.986051    valid_1&apos;s auc: 0.884647
+[494]    training&apos;s auc: 0.986127    valid_1&apos;s auc: 0.884638
+[495]    training&apos;s auc: 0.986188    valid_1&apos;s auc: 0.884668
+[496]    training&apos;s auc: 0.986247    valid_1&apos;s auc: 0.884695
+[497]    training&apos;s auc: 0.986301    valid_1&apos;s auc: 0.884669
+[498]    training&apos;s auc: 0.986402    valid_1&apos;s auc: 0.884671
+[499]    training&apos;s auc: 0.986474    valid_1&apos;s auc: 0.884723
+[500]    training&apos;s auc: 0.98653    valid_1&apos;s auc: 0.884682
+[501]    training&apos;s auc: 0.986618    valid_1&apos;s auc: 0.884654
+[502]    training&apos;s auc: 0.986668    valid_1&apos;s auc: 0.884627
+[503]    training&apos;s auc: 0.986718    valid_1&apos;s auc: 0.884637
+[504]    training&apos;s auc: 0.986758    valid_1&apos;s auc: 0.884639
+[505]    training&apos;s auc: 0.986808    valid_1&apos;s auc: 0.884597
+[506]    training&apos;s auc: 0.986874    valid_1&apos;s auc: 0.884613
+[507]    training&apos;s auc: 0.986946    valid_1&apos;s auc: 0.884606
+[508]    training&apos;s auc: 0.987007    valid_1&apos;s auc: 0.884672
+[509]    training&apos;s auc: 0.987075    valid_1&apos;s auc: 0.884642
+[510]    training&apos;s auc: 0.987147    valid_1&apos;s auc: 0.884592
+[511]    training&apos;s auc: 0.987207    valid_1&apos;s auc: 0.884585
+[512]    training&apos;s auc: 0.98727    valid_1&apos;s auc: 0.88459
+[513]    training&apos;s auc: 0.987317    valid_1&apos;s auc: 0.884557
+[514]    training&apos;s auc: 0.98737    valid_1&apos;s auc: 0.884545
+[515]    training&apos;s auc: 0.987448    valid_1&apos;s auc: 0.884542
+[516]    training&apos;s auc: 0.987505    valid_1&apos;s auc: 0.884542
+[517]    training&apos;s auc: 0.98756    valid_1&apos;s auc: 0.884565
+[518]    training&apos;s auc: 0.987624    valid_1&apos;s auc: 0.88457
+[519]    training&apos;s auc: 0.987682    valid_1&apos;s auc: 0.884555
+[520]    training&apos;s auc: 0.987759    valid_1&apos;s auc: 0.88458
+[521]    training&apos;s auc: 0.98782    valid_1&apos;s auc: 0.884575
+[522]    training&apos;s auc: 0.987866    valid_1&apos;s auc: 0.884551
+[523]    training&apos;s auc: 0.987918    valid_1&apos;s auc: 0.884527
+[524]    training&apos;s auc: 0.987963    valid_1&apos;s auc: 0.884506
+[525]    training&apos;s auc: 0.988019    valid_1&apos;s auc: 0.884535
+[526]    training&apos;s auc: 0.988057    valid_1&apos;s auc: 0.884516
+[527]    training&apos;s auc: 0.988103    valid_1&apos;s auc: 0.884512
+[528]    training&apos;s auc: 0.98816    valid_1&apos;s auc: 0.884481
+[529]    training&apos;s auc: 0.988232    valid_1&apos;s auc: 0.884493
+[530]    training&apos;s auc: 0.988272    valid_1&apos;s auc: 0.884549
+[531]    training&apos;s auc: 0.988342    valid_1&apos;s auc: 0.884557
+[532]    training&apos;s auc: 0.988418    valid_1&apos;s auc: 0.884577
+[533]    training&apos;s auc: 0.988479    valid_1&apos;s auc: 0.884597
+[534]    training&apos;s auc: 0.988553    valid_1&apos;s auc: 0.884574
+[535]    training&apos;s auc: 0.988623    valid_1&apos;s auc: 0.884603
+[536]    training&apos;s auc: 0.988662    valid_1&apos;s auc: 0.884601
+Early stopping, best iteration is:
+[436]    training&apos;s auc: 0.981696    valid_1&apos;s auc: 0.884748
+
+
+
+
+
+LGBMClassifier(boosting_type=&apos;gbdt&apos;, class_weight=None, colsample_bytree=0.7,
+        importance_type=&apos;split&apos;, learning_rate=0.1, max_depth=-1,
+        metric=&apos;auc&apos;, min_child_samples=20, min_child_weight=0.001,
+        min_split_gain=0.0, n_estimators=2500, n_jobs=-1, num_leaves=30,
+        objective=&apos;binary&apos;, random_state=2018, reg_alpha=0, reg_lambda=0.0,
+        silent=True, subsample=0.9, subsample_for_bin=200000,
+        subsample_freq=1)
+</code></pre><h1 id="预测结果"><a href="#预测结果" class="headerlink" title="预测结果"></a>预测结果</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">predict=lgb_model.predict_proba(test_x)[:,<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result = pd.DataFrame()</span><br><span class="line">result[<span class="string">'ID_code'</span>] = test[<span class="string">'ID_code'</span>]</span><br><span class="line">result[<span class="string">'target'</span>] = predict</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result.to_csv(<span class="string">'submission'</span>,index = <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<ol>
+<li><ol>
+<li>最后代码得分：0.88918<img src="/2019/07/08/Santander Customer Transaction Prediction/" alt></li>
+</ol>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/如何更好地进行OKR管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1583,7 +3012,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

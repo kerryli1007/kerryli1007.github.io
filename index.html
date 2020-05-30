@@ -323,6 +323,426 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/30/Q2_Week4_工作总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/30/Q2_Week4_工作总结/" class="post-title-link" itemprop="url">Q2_Week4_工作总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-30 00:00:00 / Modified: 08:33:13" itemprop="dateCreated datePublished" datetime="2020-05-30T00:00:00+08:00">2020-05-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>原则：从工作中，总结方法论，沉淀知识。如果有与我面临同样迷思的人看到本篇总结，也可以从中收获一二。</p>
+<p>本周关键词：SQL、数据分析思维、简书、实验设计/AB Test、广告推荐系统</p>
+<h1 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h1><p>SQL关键词下，关于本周，我主要想记录的是关于一门新编程语言的学习。<br>如何快速地学习一门新的编程语言？我并非计算机科班背景，专业是心理学，因此，短时间内上手一门新的编程语言对我而言是有一定难度的。但是工作有需求，该使用何种科学的方法，快速上手一门新的编程语言呢？</p>
+<p>系统学习 + 大量应用 + 及时总结 + 定期复习 = 快速上手一门新的编程语言方法论</p>
+<h2 id="系统学习"><a href="#系统学习" class="headerlink" title="系统学习"></a>系统学习</h2><p>什么是系统学习？就是去完整的了解这门语言的背景，以及其相关的语法。<br>在学习SQL时候，有两份资料推荐：</p>
+<ol>
+<li>视频资源 <a href="https://www.youtube.com/watch?v=7S_tz1z_5bA" target="_blank" rel="noopener">https://www.youtube.com/watch?v=7S_tz1z_5bA</a></li>
+<li>SQL必知必会</li>
+</ol>
+<p>视频资源帮我建立了对SQL常用语法的结构，让我在实际工作中，当需要阅读别人的代码，也能轻松理解。<br>SQL必知必会在我遇到SQL语法难题时，作为参考工具，给予了极大的帮助。</p>
+<p>在这两份资料的加持下，短时间学习并应用SQL也变得不那么困难。</p>
+<h2 id="大量应用"><a href="#大量应用" class="headerlink" title="大量应用"></a>大量应用</h2><p>古人云：纸上得来终觉浅，绝知此事要躬行。</p>
+<p>但凡知识，都需要在实践中检验。编程尤为甚，今天学的一条语法，如果不使用，可能明天就忘了，或者，学习的时候，认为自己掌握了，但是实际使用的时候，不是这里少个括号，就是那里多了字符串标记。</p>
+<p>如何应用呢？</p>
+<ol>
+<li>真实case (业务数据，业务数据有真实的场景）</li>
+<li>Leetcode (<a href="https://leetcode-cn.com/" target="_blank" rel="noopener">https://leetcode-cn.com/</a>)</li>
+</ol>
+<p>举一个Leetcode的例子<br>题目<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">表1: Person</span><br><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型     |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| FirstName   | varchar |</span><br><span class="line">| LastName    | varchar |</span><br><span class="line">+-------------+---------+</span><br><span class="line">PersonId 是上表主键</span><br><span class="line"></span><br><span class="line">表2: Address</span><br><span class="line">+-------------+---------+</span><br><span class="line">| 列名         | 类型    |</span><br><span class="line">+-------------+---------+</span><br><span class="line">| AddressId   | int     |</span><br><span class="line">| PersonId    | int     |</span><br><span class="line">| City        | varchar |</span><br><span class="line">| State       | varchar |</span><br><span class="line">+-------------+---------+</span><br><span class="line">AddressId 是上表主键</span><br><span class="line"> </span><br><span class="line">编写一个 SQL 查询，满足条件：无论 person 是否有地址信息，都需要基于上述两表提供 person 的以下信息：</span><br><span class="line">FirstName, LastName, City, State</span><br></pre></td></tr></table></figure></p>
+<p>分析一下题目，一共有两个表，Person和Address表。需要获取的字段<code>FirstName</code>, <code>LastName</code>, <code>City</code>, <code>State</code>来自以上两个表，因此我们需要从两个表中，将这些字段取出来。既然是需要将两个表中的字段取出来，放在一起，那么就势必是需要拼接成一个表，如果要拼接起来，需要设置一个拼接字段。梳理逻辑完毕，写成代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT Person.FirstName, Person.LastName, Address.City, Address.state </span><br><span class="line">FROM Person, Address</span><br><span class="line">WHERE Person.PersonId = Address.PersonId</span><br></pre></td></tr></table></figure></p>
+<p>提交之后发现写错了，查看解法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select FirstName, LastName, City, State</span><br><span class="line">from Person left join Address</span><br><span class="line">on Person.PersonId = Address.PersonId</span><br></pre></td></tr></table></figure></p>
+<p>分析对比，发现和我代码的区别如下：<br>使用的是<code>left join</code>，而我使用的是<code>where</code></p>
+<p>回到题目说明，有一句话表达如下</p>
+<blockquote>
+<p>无论 person 是否有地址信息，都需要基于上述两表提供 person 的以下信息：<br>FirstName, LastName, City, State</p>
+</blockquote>
+<p>理解一下，是说有的person是无address id，也就是，表2，以address id作为主键的表，会缺失一些PersonId，换句话说，表1中的Personid 的集合和表2中personid的集合表示关系如下<br><img src="https://kerryli1007.github.io/images/Q2_Week4_工作总结/1.jpng" alt></p>
+<p>先解释一下为什么用join不用where，再解释为什么使用的是outer join而不是join。</p>
+<ol>
+<li>使用where的话，也只会返回同时在表1和表2都出现了的personid，但是表2中的personid是缺失的。</li>
+<li>如果使用的是inner join，那么就只会有表2中的person id集合了，但是题目要求是无论有地址信息，都要有FirstName、LastName、City、State。所以，应该是表一为准，所以是left join，会将表2中的行放进表1，做补充。</li>
+</ol>
+<p>上面就是一个学习SQL过程中，不断发现自己知识盲区，不断补足，不断进步的过程啦。</p>
+<h1 id="数据分析思维"><a href="#数据分析思维" class="headerlink" title="数据分析思维"></a>数据分析思维</h1><p>所有的决策都要有数据的支撑。这是在数据分析思维这个模块，我的总结。</p>
+<p>一直在跟的推荐项目，客户突然变更了需求，希望使用我们的模型，对TW进行营销推广。</p>
+<p>在AI行业“混饭吃”的搬砖民工都知道，训练的数据集样本分布，需要尽量模拟真实的生产环境。这样才能最大程度保证，模型在生产环境的表现佳。客户需求的变更，可能带来的影响就是我们的模型在这个场景下，效果可能会相比之前实验对比变差。</p>
+<p>但是客户的态度很坚定，那么到底能不能这么做？这么做了，到底会不会好，就需要我们给出判断。</p>
+<p>凡需判断，必须基于数据。<br>凡需判断，必须基于数据。<br>凡需判断，必须基于数据。</p>
+<p>大的思想是对了，但是落在具体执行层面，需要验证哪些指标，以及每个指标的验证需要哪些步骤？是否要做的所有事，以及前后顺序，都已经在心里勾勒出了清晰的框架，如果没有，那么就需要先把思维梳理清楚。</p>
+<p>这是在数据分析思维模块，除了“凡需判断，必须基于数据”，我想强调的第二点，数据分析的步骤。</p>
+<p>数据分析本身是一件很抽象的事，因此在做的过程中，很容易就陷入细节，看不清全局。具体来说，就是会陷入，诶？现在写的这些SQL，做的这些数据分析是为了验证哪个假设来着？</p>
+<p>为了避免上述目标的出现，建议在执行数据分析时候，首先将自己要验证的假设分点陈列，比如，我期望验证的假设有以下3条</p>
+<ol>
+<li>模型在周期内，对TW用户的预测效果<ol>
+<li>30天为营销周期</li>
+<li>90天为营销周期</li>
+</ol>
+</li>
+<li>TW最近2年的每个月交易数量，以及交易数据占总人数比</li>
+</ol>
+<p>其实，我现在回顾一下，今天就验证了这2个大的问题，但是在做的过程中，却花费了大量的时间，如果再来一次，遵循目标优先，然后依次拆解目标，制定可执行步骤的方式来做，时间会被大量节省。</p>
+<h1 id="简书"><a href="#简书" class="headerlink" title="简书"></a>简书</h1><p>简书算是本周发现的一个惊喜。</p>
+<p>这样描述也不太准确，自己很早就接触简书了，不过一直没有用起来，最近开始系统学SQL、Python，心里打算着还是需要将这些笔记都记录下来，于是选择了简书。</p>
+<p>为啥没有选择CSDN呢？其实我以前用过CSDN，CSDN的Markdown太乱了，以及整个网站给人的感觉都很糟糕。</p>
+<p>说回来，简书带给我的惊喜点有什么呢？</p>
+<ol>
+<li>非常简单的Markdown语法</li>
+<li>简洁的编辑页面</li>
+<li>简洁的阅读界面</li>
+</ol>
+<p>展示一下简书的编辑页面<br><img src="https://kerryli1007.github.io/images/Q2_Week4_工作总结/2.jpng" alt></p>
+<p>真的是非常简单，也体现出背后产品设计者的克制。</p>
+<p>我是写作工具爱好者，我常用的写作工具</p>
+<ul>
+<li>Bear</li>
+<li>Notion</li>
+<li>Typora</li>
+<li>MWeb</li>
+<li>Ulysess</li>
+</ul>
+<p>这几款工具都是优秀的书写工具。像简书这样克制的设计，比如，连书写背景的颜色都不支持修改，真的是非常罕见。这么克制，也还奇了怪了，却让我喜欢上了，嘿嘿。我也不是只爱简单的，我也爱Bear，12个主题，任意切换。（关于写作工具，以后再展开</p>
+<p>还有最后两个主题，实验设计/AB Test，广告推荐系统，都是比较大的话题，就不在周总结中展开了，单独另开文章总结。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/28/幕后产品（二）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/28/幕后产品（二）/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-28 06:14:45 / Modified: 09:41:23" itemprop="dateCreated datePublished" datetime="2020-05-28T06:14:45+08:00">2020-05-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近负责的推荐项目，要做生产环境的POC。一方面有些紧张，因为项目后期，基本上前端后端都是我，担心自己表现不好；一方面又比较兴奋，从昨晚的结果来看，模型的表现比客户当前的解决策略效果更佳。</p>
+<p>总体上，本周工作节奏紧张，都在调模型，对比效果。晚上，抽睡前半个小时看书，最近在看《幕后产品》。每读一章节，都会给我相当大的触动，阅读诗沐老师的文字时，感受到他的谦逊，用轻描淡写的笔触展现过去的辉煌成就，在这些文字里，更能感受到诗沐老师作为一位优秀的产品经理，一些值得我学习借鉴的地方，因此，每每读及，感受到自己与其思维方式的差异，都羞愧万分，遂将其悉数记录，一方面警示自己，一方面也做记录之用。</p>
+<blockquote>
+<p>做了多年产品经理，我每天仍在做的一件事是什么？</p>
+<p>那就是日复一日、年复一年地了解用户。</p>
+</blockquote>
+<p>读到这里，不由脸颊发烫。作为一名AI 产品经理，我足够了解我的客户吗？他们是谁？他们在哪里？他们的痛点到底是什么？当整个人陷入项目的细节之中，就容易看不清大的趋势，因此，不断地反思、复盘、总结，就显得尤为重要。</p>
+<p>不过，在我写出上一段话之前，内心另一个声音告诉我。你做的是To B，和To C不一样，To C用户体量大，To B都是客户，客户体量小。这个思考的逻辑是说，客户体量小，就不用了解了吗？其实这个逻辑不过是为自己不足够了解，而找的借口。</p>
+<p>所以，我真的了解客户是谁吗？</p>
+<p>在AI行业，我也是混迹了2年。站在今天这个时间节点，回顾这两年，我做的所有工作，都是围绕两件事在做</p>
+<ul>
+<li>AI 算法竞赛</li>
+<li>AI 技术服务提供</li>
+</ul>
+<p>两件事针对不同的客户，其需求自然千差万别。着重看一下，AI技术服务提供（要回答这个问题，说实话，是需要数据支撑的）数据涉及到公司业务层面隐私，就不写出来。一个大概的画像：</p>
+<p>中小企业，希望短时间、低成本，搭建起一个生产环境可用的算法系统</p>
+<blockquote>
+<p>这个时代变化速度飞快，不断有新的文化、新的群体出现，如果我们不学习、不接触它们，仅仅一两年就有可能落伍。我在校园招聘时与应届毕业生进行交流，常感觉自己与它们之间存在代沟。他们中间流行什么？他们怎么理解互联网？这些疑问萦绕心头，迫使我想要深入理解他们的想法。虽然很残酷，但这个行业永远都是年轻人的世界，而且优秀创业者的年龄越来越小，所以作为产品经理除了每天持续地了解用户，别无他法。</p>
+</blockquote>
+<p>读到这里的感受，只有两字：深刻。</p>
+<p>背后的感慨原因，千千万万，以后再分析了。</p>
+<blockquote>
+<p>在研究电子音乐粉丝之前，我和很多人一样，把电子音乐与DJ、“土嗨”联系在一起，本能地对迪厅里播放的旋律和歌词一般的音乐无感。这是人的天性，对不了解的事情有自我防御机制。</p>
+</blockquote>
+<p>心理防御机制（Defence mechanism）</p>
+<blockquote>
+<p>Defense mechanisms are psychological strategies that are unconsciously used to protect a person from anxiety arising from unacceptable thoughts or feelings.</p>
+</blockquote>
+<p>心理防御机制是一种会被无意识使用的心理策略，人类使用这种策略来使自己远离不可以接受的思想和感受带来的焦虑。</p>
+<p>下图是一些常见的防御机制<img src="https://www.simplypsychology.org/defense-mechanisms.jpg?ezimgfmt=rs:611x451/rscb18/ng:webp/ngcb18" alt="defense mechanisms"></p>
+<p>否认是防御机制的一种。其实这种否认，我也常用。</p>
+<p>我diss一些产品设计无聊，但是我都没有认真去了解这些产品到底为什么会被设计出来。</p>
+<p>我否认自己做技术产品没有天赋，但是我压根都没有真地全力以赴地去学习，如何独立地写一段完整的代码。</p>
+<p>否认是一件非常简单的是，但是真实面对自己，不对自己说谎，更难，但是能产生不一样的结果。</p>
+<p>比如，我现在也开始撇弃对社交产品的偏见，从之前单一地将其归为约炮软件，或者寂寞人来使用的软件，到认识到，约炮也好，寂寞想找人倾诉，这都是人的需求，正视用户的需求，是成为优秀产品经理的第一步。选择看见而不是视而不见。同时，我开始认真严肃地对待Python、SQL，自己也能独立写代码，完成项目交付。</p>
+<p>最后说一下预见趋势。</p>
+<blockquote>
+<p>2014年，虽然当时在各个音乐排行榜上，前十里看不见电子音乐，但我们仍根据研究结果判断电子音乐是未来发展的趋势。我们不遗余力地鼓励电子音乐达人们做歌单、做电台，并在网易云音乐商业上帮助他们推广，与国内的电子音乐推广团队合作，并将电子音乐派在仅次于流行、摇滚、民谣音乐的位置。</p>
+</blockquote>
+<p>诗沐老师能够在2014年时候，就预见电子音乐是未来发展的趋势。其洞察力，不由让人大呼惊叹。仔细思考，对于诗沐老师来说，这也应该是水到渠成的事，因为他长时间对用户的研究，分析。</p>
+<p>只有深入理解了用户，才能做出准确而迅速的判断。</p>
+<p>阅读完这个，我也给我自己布置一个任务吧。</p>
+<ul>
+<li>本周和下周，完成市场上AutoML的使用，产出分析报告</li>
+<li>找10个AutoML的深度用户，做interview</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/27/幕后产品/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -451,186 +871,6 @@
 <p>产品经理做判断时候的唯一标准：是否对用户好？如果不是，那就算了，如果是，那么尽管会得罪竞争对手，也应该推行。</p>
 <p>我想起字节一位产品经理的分享，产品经理的面子就是产品的表现，产品表现不好，就没面子。引用这句话，是想说明，产品好坏，是否对用户有好处，是产品经理思考产品改动的最底层的原则。</p>
 <p>最后：多阅读、多思考、多总结。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/CAIO总结复盘/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/24/CAIO总结复盘/" class="post-title-link" itemprop="url">CAIO总结复盘</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-05-24 00:00:00 / Modified: 13:48:32" itemprop="dateCreated datePublished" datetime="2020-05-24T00:00:00+08:00">2020-05-24</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在卫哲老师的书《21世纪职业生涯完胜之道》，有这样一段描述</p>
-<blockquote>
-<p>问：“请问您的企业是如何成功的？”<br>答：“靠我们丰富的经验。”<br>问：“您是怎样取得这些丰富的经验的？“<br>答：”因为我们犯过许多许多错误。“<br>这个对话告诉了我们要百倍重视总结企业实践，不论成功的或失败的，不仅要善于总结自己的实践，而且应该认真学习别人实践的经验和教训。</p>
-</blockquote>
-<p>这段对话非常有意思，对我也非常有启发，要想更快速的成长，就要多总结，不光总结自己成功的经验，也要总结自己失败的经验。不光要总结自己的经验，也要学习和总结别人的经验。</p>
-<p>最近公司举办了CAIO活动，听了同事们的分享，有一些收获。</p>
-<h1 id="总结一"><a href="#总结一" class="headerlink" title="总结一"></a>总结一</h1><p>对于所有新业务场景的探索都可以问两个问题：</p>
-<ol>
-<li>没有经验，如何往下走</li>
-<li>接下来往哪个方向走</li>
-</ol>
-<h1 id="总结二"><a href="#总结二" class="headerlink" title="总结二"></a>总结二</h1><p>重视客户的诉求。</p>
-<p>Case ：客户想要的是解决一个场景的具体问题，但是我们一直在给客户推平台。有了平台是否等于可以解决这个问题。如果答案不是Y，那么这个客户引导就是错误的。</p>
-<h1 id="总结三"><a href="#总结三" class="headerlink" title="总结三"></a>总结三</h1><p>Critical Thinking<br>在我们读论文也好，读资料也好的时候，一定要有critical thinking，思考3个问题：</p>
-<ol>
-<li>是不是就是这么回事</li>
-<li>如果是，那是为什么</li>
-<li>如果不是，那又是为什么</li>
-</ol>
-<p>最后吐槽一句：市面上的招聘企业，经常把年限作为一个标准，但是实际上，不同的人，其工作习惯不同，在是否善于总结，发现规律，以及总结成方法论这些方面，有很大差异。</p>
 
           
         
@@ -877,6 +1117,372 @@
 <p>客观来说，对于上述流程，每个模块我都可以完成，但是缺乏体系。因此，我会按照这个思路，来整理出来我的思维体系结构。</p>
 <p>修改完这篇复盘，其实已经是Q2过去了3周了。本篇文章里面的目标和措施，在Q2的计划里面做了详细描述，就不在本篇赘述。</p>
 <p>接下来的目标和措施，参考文章《<a href="https://kerryli1007.github.io/2020/05/05/%E6%8E%A5%E4%B8%8B%E6%9D%A53%E4%B8%AA%E6%9C%88%E7%9A%84%E6%88%90%E9%95%BF%E8%A7%84%E5%88%92/" target="_blank" rel="noopener">接下来3个月的成长规划 | 一颗西蓝花🥦</a>》</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/CAIO总结复盘/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/24/CAIO总结复盘/" class="post-title-link" itemprop="url">CAIO总结复盘</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-24 00:00:00 / Modified: 13:48:32" itemprop="dateCreated datePublished" datetime="2020-05-24T00:00:00+08:00">2020-05-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在卫哲老师的书《21世纪职业生涯完胜之道》，有这样一段描述</p>
+<blockquote>
+<p>问：“请问您的企业是如何成功的？”<br>答：“靠我们丰富的经验。”<br>问：“您是怎样取得这些丰富的经验的？“<br>答：”因为我们犯过许多许多错误。“<br>这个对话告诉了我们要百倍重视总结企业实践，不论成功的或失败的，不仅要善于总结自己的实践，而且应该认真学习别人实践的经验和教训。</p>
+</blockquote>
+<p>这段对话非常有意思，对我也非常有启发，要想更快速的成长，就要多总结，不光总结自己成功的经验，也要总结自己失败的经验。不光要总结自己的经验，也要学习和总结别人的经验。</p>
+<p>最近公司举办了CAIO活动，听了同事们的分享，有一些收获。</p>
+<h1 id="总结一"><a href="#总结一" class="headerlink" title="总结一"></a>总结一</h1><p>对于所有新业务场景的探索都可以问两个问题：</p>
+<ol>
+<li>没有经验，如何往下走</li>
+<li>接下来往哪个方向走</li>
+</ol>
+<h1 id="总结二"><a href="#总结二" class="headerlink" title="总结二"></a>总结二</h1><p>重视客户的诉求。</p>
+<p>Case ：客户想要的是解决一个场景的具体问题，但是我们一直在给客户推平台。有了平台是否等于可以解决这个问题。如果答案不是Y，那么这个客户引导就是错误的。</p>
+<h1 id="总结三"><a href="#总结三" class="headerlink" title="总结三"></a>总结三</h1><p>Critical Thinking<br>在我们读论文也好，读资料也好的时候，一定要有critical thinking，思考3个问题：</p>
+<ol>
+<li>是不是就是这么回事</li>
+<li>如果是，那是为什么</li>
+<li>如果不是，那又是为什么</li>
+</ol>
+<p>最后吐槽一句：市面上的招聘企业，经常把年限作为一个标准，但是实际上，不同的人，其工作习惯不同，在是否善于总结，发现规律，以及总结成方法论这些方面，有很大差异。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/产品设计体会（二）数据库快照/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/24/产品设计体会（二）数据库快照/" class="post-title-link" itemprop="url">产品设计体会（二）数据库快照</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-24 00:00:00 / Modified: 14:05:38" itemprop="dateCreated datePublished" datetime="2020-05-24T00:00:00+08:00">2020-05-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="思考一个场景"><a href="#思考一个场景" class="headerlink" title="思考一个场景"></a>思考一个场景</h3><p>基本上我们每个人都会在淘宝购物。添加购物车，支付，签收订单。一笔交易完成。过了一段时间，你再次看到了你购买的商品，这次该款商品正在大促销，它的标价是99，你记得你购买的价格是199。但是，现在，商家的标价确实是99。</p>
+<p>你去翻你的淘宝交易记录，请问这个时候，你的交易价格是多少？<br>199对吧。因为这是你购买这款商品时候的实付价格。</p>
+<p>为什么商品的价格已经被调节成了99，但是你的交易记录中的数据没有随之变化呢？这是因为数据库快照。</p>
+<h1 id="数据库快照"><a href="#数据库快照" class="headerlink" title="数据库快照"></a>数据库快照</h1><p>数据库快照，就是在某一个时间点，对数据库拍了一张快照。这张快照有2个特点：</p>
+<ol>
+<li>静态的</li>
+<li>只读的</li>
+</ol>
+<p>快照生成之后，如果数据库中任何数据页都没有被修改，那么快照的mdf文件是空的，不占用任何磁盘空间，这个时候，快照数据库还是从源数据库中取，快照生成之后，数据库中发生了变动，这个时候快照的mdf文件中就有了数据，但是这里面只放刚刚被修改之前的数据。</p>
+<h1 id="其他应用场景"><a href="#其他应用场景" class="headerlink" title="其他应用场景"></a>其他应用场景</h1><p>真实工作场景中case</p>
+<p>To B的业务中，开通对客户的产品试用。每一条试用信息，在后台生成一条记录。每一条记录的字段有：</p>
+<ul>
+<li>客户ID</li>
+<li>申请试用时间</li>
+<li>试用截止时间</li>
+<li>联系电话</li>
+<li>等</li>
+</ul>
+<p>开始时候，这些试用信息的返回是随机的，就导致一个问题，商务同事无法通过后台来找到最新的试用客户，进行后续跟进。因此，我们在后端数据库接口的返回逻辑进行了处理，按照“申请试用时间”进行逆序排序。</p>
+<p>似乎解决了问题，但是在后续实际业务中发现，因为会对客户的试用时间/周期进行微调，因此，试用时间会变化。那么是不是，其实也应该有一个快照的概念呢？</p>
+<p>有了快照，那么客户申请试用的时间，是不变的。这样排序出来的客户表，还是最新申请的客户在最上面。</p>
+<p>多思考，多总结。</p>
+<p>参考资料</p>
+<ol>
+<li><a href="https://blog.csdn.net/cuiyan1982/article/details/78459817" target="_blank" rel="noopener">数据库快照 database snapshot_数据库_cuiyan1982的专栏-CSDN博客</a></li>
+</ol>
 
           
         
@@ -1336,192 +1942,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/产品设计体会（二）数据库快照/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/24/产品设计体会（二）数据库快照/" class="post-title-link" itemprop="url">产品设计体会（二）数据库快照</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-05-24 00:00:00 / Modified: 14:05:38" itemprop="dateCreated datePublished" datetime="2020-05-24T00:00:00+08:00">2020-05-24</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="思考一个场景"><a href="#思考一个场景" class="headerlink" title="思考一个场景"></a>思考一个场景</h3><p>基本上我们每个人都会在淘宝购物。添加购物车，支付，签收订单。一笔交易完成。过了一段时间，你再次看到了你购买的商品，这次该款商品正在大促销，它的标价是99，你记得你购买的价格是199。但是，现在，商家的标价确实是99。</p>
-<p>你去翻你的淘宝交易记录，请问这个时候，你的交易价格是多少？<br>199对吧。因为这是你购买这款商品时候的实付价格。</p>
-<p>为什么商品的价格已经被调节成了99，但是你的交易记录中的数据没有随之变化呢？这是因为数据库快照。</p>
-<h1 id="数据库快照"><a href="#数据库快照" class="headerlink" title="数据库快照"></a>数据库快照</h1><p>数据库快照，就是在某一个时间点，对数据库拍了一张快照。这张快照有2个特点：</p>
-<ol>
-<li>静态的</li>
-<li>只读的</li>
-</ol>
-<p>快照生成之后，如果数据库中任何数据页都没有被修改，那么快照的mdf文件是空的，不占用任何磁盘空间，这个时候，快照数据库还是从源数据库中取，快照生成之后，数据库中发生了变动，这个时候快照的mdf文件中就有了数据，但是这里面只放刚刚被修改之前的数据。</p>
-<h1 id="其他应用场景"><a href="#其他应用场景" class="headerlink" title="其他应用场景"></a>其他应用场景</h1><p>真实工作场景中case</p>
-<p>To B的业务中，开通对客户的产品试用。每一条试用信息，在后台生成一条记录。每一条记录的字段有：</p>
-<ul>
-<li>客户ID</li>
-<li>申请试用时间</li>
-<li>试用截止时间</li>
-<li>联系电话</li>
-<li>等</li>
-</ul>
-<p>开始时候，这些试用信息的返回是随机的，就导致一个问题，商务同事无法通过后台来找到最新的试用客户，进行后续跟进。因此，我们在后端数据库接口的返回逻辑进行了处理，按照“申请试用时间”进行逆序排序。</p>
-<p>似乎解决了问题，但是在后续实际业务中发现，因为会对客户的试用时间/周期进行微调，因此，试用时间会变化。那么是不是，其实也应该有一个快照的概念呢？</p>
-<p>有了快照，那么客户申请试用的时间，是不变的。这样排序出来的客户表，还是最新申请的客户在最上面。</p>
-<p>多思考，多总结。</p>
-<p>参考资料</p>
-<ol>
-<li><a href="https://blog.csdn.net/cuiyan1982/article/details/78459817" target="_blank" rel="noopener">数据库快照 database snapshot_数据库_cuiyan1982的专栏-CSDN博客</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/23/Q2_Week2_工作总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1901,411 +2321,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/人月神话（3）| 贵族专制、民主政治和系统设计/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/12/人月神话（3）| 贵族专制、民主政治和系统设计/" class="post-title-link" itemprop="url">人月神话（3）| 贵族专制、民主政治和系统设计</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-05-12 21:34:00 / Modified: 21:46:02" itemprop="dateCreated datePublished" datetime="2020-05-12T21:34:00+08:00">2020-05-12</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>大教堂事艺术史上无与伦比的成就。它的原则即不乏味也不混乱…..真正达到了风格上的极致，完成这件作品的艺术家们，完全领会了吸收了以往的成功经验，也完全掌握了他们那个时代的技术，而且在应用的时候做到了恰如其分，绝不轻率，也绝不花哨。</p>
-</blockquote>
-<p>在系统设计中，概念完整性应该是最重要的考虑因素。为了反映一系列连贯的设计思路，宁可省略一些不规则的特性和改进，也不提倡独立和无法整合的系统，哪怕它们其实包含着很多很好的设计。</p>
-<p>如果说概念完整性如此重要，那么如何获得概念的完整性？<br>编程系统（软件）的目的是使计算机更加容易使用。</p>
-<h1 id="获得概念的完整性"><a href="#获得概念的完整性" class="headerlink" title="获得概念的完整性"></a>获得概念的完整性</h1><blockquote>
-<p>编程系统（软件）的目的是使计算机更加容易使用。为了做到这一点，计算机装备了语言和各种工具，这些工具实际上也是被调用的程序，受到编程语言的控制。使用这些工具是有代价的：软件外部描述的规模大小是计算机系统本身说明的十倍。用户会发现寻找一个特定功能是很容易的，但相应却有太多的选择，要记住太多的选项和格式。</p>
-</blockquote>
-<p>作者撰写本书的时候是上个世纪70年代，在这个时候，作者已经意识到了使用工具，会有代价。作者的描述是，寻找一个特定功能是很容易的，但是相对应却有太多的选择，要记住太多的选项和格式。</p>
-<p>我相信，这是作者在几十年前就看到的一个问题。但是，几十年过去了，这个问题，不但没有得到解决，反而越发严重。有好多产品，用户连寻找一个特定功能都很困难。</p>
-<p>报销软件，是一个高频使用的产品。基本上，保持一个月一次的视频频率。<br>在使用场景中，用户需要打印每个月提交的申请表单。<br><img src="https://kerryli1007.github.io/images/人月神话（3）| 贵族专制、民主政治和系统设计/123.png" alt></p>
-<p>用户登陆产品云快报，希望找到自己在手机端已经提交的报销申请。这个时候，有三个选择：</p>
-<ul>
-<li>我的审批</li>
-<li>我的单据</li>
-<li>我的订单</li>
-</ul>
-<p>基本上，每次我都会在我的审批以及我的订单中找报销申请，但是每次都找不到。后来才意识到，原来被提交的报销申请在【我的单据】里面。<br>百度【单据】的含义:</p>
-<blockquote>
-<p>单据，是在经济业务发生时所取得或填制的、载明交易、事项实际情况的书面证明，它是进行会计核算的原始资料和重要依据。</p>
-</blockquote>
-<p>了解到原来【单据】是一个专业的名词。如果说，平台为了保持自己的专业度，让这样一个日常不常见且抽象的概念暴露给用户，牺牲一定的用户体验，那我能理解。</p>
-<p>那是否可以做得更好的，是否可以当鼠标点击在上述的三个选择时，给予一定文字提示，让用户知道，每个选项是什么。</p>
-<p>写到这里的时候，我又重复研究了一下这三个选项。</p>
-<ul>
-<li>我的审批<ul>
-<li>等待审批</li>
-<li>审批记录</li>
-</ul>
-</li>
-<li>我的单据<ul>
-<li>等待处理</li>
-<li>正在审批</li>
-<li>审批完成</li>
-</ul>
-</li>
-<li>我的订单<ul>
-<li>全部</li>
-<li>进行中</li>
-<li>已完成</li>
-</ul>
-</li>
-</ul>
-<p>审批和单据是真的让人傻傻分不清，产品经理应该好好想想。</p>
-<p>回到作者上述描述，其本质还是计算机的易用性。</p>
-<p>::什么是易用性，给其一个定义，易用性 = 功能 / 理解上的复杂程度。::</p>
-<p>单一的功能本身或者是否易于使用，这都无法成为一个设计评判标准。所以，要实现上述目标，并不容易，极其考验产品架构的系统规划能力。</p>
-<h1 id="贵族专制统治和民主政治"><a href="#贵族专制统治和民主政治" class="headerlink" title="贵族专制统治和民主政治"></a>贵族专制统治和民主政治</h1><blockquote>
-<p>概念的完整性要求设计必须由一个人，或者非常少数互有默契的人员来实现。</p>
-</blockquote>
-<p>但是进度压力却要求很多人员来开发系统。有两种方法可以解决这种矛盾。第一种是仔细地区分设计方法和具体实现。第二种是前一章节中所讨论的开发方式。</p>
-<h2 id="区分设计方法和具体实现。"><a href="#区分设计方法和具体实现。" class="headerlink" title="区分设计方法和具体实现。"></a>区分设计方法和具体实现。</h2><p>将设计方法、体系结构方面的工作与具体实现相分离是获得概念完整性的强有力方法。</p>
-<p>什么是体系结构？</p>
-<blockquote>
-<p>系统的体系结构指的是完整和详细的用户接口说明。</p>
-</blockquote>
-<p>为什么要将体系结构（设计方法）和具体实现分开？</p>
-<blockquote>
-<p>体系结构陈述发生了什么，而实现描述的是如何实现。</p>
-</blockquote>
-<p>我感觉体系结构和具体实现的分开，实质上是如今软件开发中产品经理和研发的分工。本书作者弗雷德里克·布鲁克斯撰写本书的时候，大概是上个世纪末，那个时候，软件时代的产品经理更偏向项目管理和推进，按照客户的要求准时上线产品。（《俞军产品方法论》）所以，不难理解为什么作者会在书中强调将体系结构和具体实现分开，今天，在软件产品开发中，体系结构一般是由产品经理定义好，具体的实现方式，由研发思考。</p>
-<p>最后，今天看到一个很有趣的观点：</p>
-<blockquote>
-<p>想要拥有好的的格局和眼界，需要信息输入足够多，可以把自己当成算法模型去训练：</p>
-<ol>
-<li>信息量要大：要开放，大量输入信息，改变固执己见的封闭思维，研究高手、找高手交流、工作生活中总结、看书</li>
-<li>筛选有效信息：要有逻辑、模型</li>
-<li>快速迭代：结合实践后的数据和反馈去调整、优化旧的模型</li>
-<li>继续重复1、2、3<br>自己肯定有盲区，也有继续成长的空间，别自我设限，拥抱变化。</li>
-</ol>
-</blockquote>
-<p>通过足够大的输入，训练自己，深以为然。</p>
-<p>同时，单是输入尚且不够，必须，输出，大量输出。所有的输入，只有经过了认知加工，变成了输出，才会成为自己认知体系中的一环。</p>
-<p>参考</p>
-<ol>
-<li>《软件的黄金时代》</li>
-<li>《人月神话》</li>
-<li>《俞军产品方法论》</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/关于中台的一点思考/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/12/关于中台的一点思考/" class="post-title-link" itemprop="url">关于中台的一点思考</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-05-12 20:18:00 / Modified: 20:18:09" itemprop="dateCreated datePublished" datetime="2020-05-12T20:18:00+08:00">2020-05-12</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/日常思考/" itemprop="url" rel="index"><span itemprop="name">日常思考</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>START WITH WHY | 最近和朋友在讨论中台，将大家的一些交流整理如下</p>
-<p>什么是中台，我对中台的理解：<br>在业务生产过程中重复使用到的组件，抽离出来，避免重复造轮子。</p>
-<p>什么企业适合做中台呢？<br>这个和业务量没有关系。判断标准是，看多条业务线的特征，其重合度。是否有非常多的基础性建设，是重复的。</p>
-<p>再具体一点呢？</p>
-<p>比如做了O2O、社区团购、B2C商城。都需要用到购物车、支付、订单、售后、结算。那就可以考虑中台来统一支持，这些事核心且重复的模块。如果每个业务都自己搞这些模块，那就是浪费资源。</p>
-<p>换句话说，如果，只有一个业务，也要做中台，那就没有必要了～</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2354,7 +2369,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

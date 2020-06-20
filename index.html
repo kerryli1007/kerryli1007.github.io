@@ -323,6 +323,280 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/程序化广告交易（上）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/06/19/程序化广告交易（上）/" class="post-title-link" itemprop="url">程序化广告交易（上）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-06-20 21:01:35" itemprop="dateModified" datetime="2020-06-20T21:01:35+08:00">2020-06-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/思考/" itemprop="url" rel="index"><span itemprop="name">思考</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>目录：</p>
+<ol>
+<li>从广告到程序化广告</li>
+<li>程序化广告交易的生态系统</li>
+<li>程序化广告基础</li>
+<li>点击率预估与推荐算法</li>
+<li>案例</li>
+</ol>
+<p>因为文章较长，所以分为上下两部分，上部分，覆盖目录1和目录2，下部分覆盖接下来的。</p>
+<h1 id="一、从广告到程序化广告"><a href="#一、从广告到程序化广告" class="headerlink" title="一、从广告到程序化广告"></a>一、从广告到程序化广告</h1><h2 id="1-1-什么是广告？"><a href="#1-1-什么是广告？" class="headerlink" title="1.1 什么是广告？"></a>1.1 什么是广告？</h2><p>William F.Arens在《当代广告学》中给出定义</p>
+<blockquote>
+<p>广告是由已确定的出资人通过各种媒介进行的有关产品（商品、服务和观点）的，通常是有偿的、有组织的、综合的、劝服性的非人员的信息传播活动。</p>
+</blockquote>
+<p>回顾历史。</p>
+<blockquote>
+<p>广告这个词汇，最早源于拉丁文“adventure”，意思是引起注意，进行诱导。公元1300-1475年间，中古英语里有了“advertise”，其含义为“某人注意到某事”，后演变为引起别人注意，通知别人某件事。</p>
+</blockquote>
+<p>不难发现，广告的本质/目标，是需要向目标消费者进行告知、诱导和说服，最终，促成购买。</p>
+<p>广告有如下基本特征：</p>
+<ol>
+<li>为广告主（出资人）服务</li>
+<li>传递特定的信息内容</li>
+<li>传播对象具有选择性</li>
+<li>非人际传播方式</li>
+<li>进行说服性沟通</li>
+</ol>
+<p>分别理解一下这些特征，先说一下为什么要了解这些特征，从古至今，广告的发展历经变迁，但是其基本特征始终一致。</p>
+<p>（一）为广告主（出资人）服务</p>
+<blockquote>
+<p> 所谓广告出资人，就是广告活动的发起人，也就是广告主。在商业广告中，广告主通常是企业。</p>
+</blockquote>
+<p>（二）传递特定的信息内容</p>
+<blockquote>
+<p> 广告传播的内容具有一定的规定性，即具有营销的内涵。随着社会经济发展和市场营销活动的变化，广告的信息内容也在向深广开拓。</p>
+</blockquote>
+<p>（三）传播对象具有选择性</p>
+<blockquote>
+<p>广告传播活动不是以所有的消费大众为传播对象，而是向特定的目标市场进行的信息交流。这个目标市场是由企业根据营销目标来确定的，目标市场的消费者即是广告的传播对象。</p>
+</blockquote>
+<p>（四）非人际传播广告</p>
+<blockquote>
+<p>广告需要通过一定的媒体完成其传播过程，采用的是非人际的传播方式。严格意义上讲，广告的发展就是和媒体的进步联系在一起的。没有媒体的演变、进化，广告就失去了存续发展的根基。广告所借助的载体，从一般的媒介物，到大众传播媒体，再到媒体数字化时代的互联网，随着现代科学技术水平的提高，新的媒体还在增加，推动着当代广告活动翻天覆地的变化。</p>
+</blockquote>
+<p>（五）进行说服性沟通</p>
+<blockquote>
+<p>广告的最终目的，是使用目标消费者接受广告发出的信息，从而影响消费行为，促进销售。这样，就要运用各种各样的方式来表现广告信息。</p>
+</blockquote>
+<p>（六）一种付费的传播</p>
+<blockquote>
+<p>广告活动的整个过程，包括策划、制作广告作品，通过媒体发布信息，进行效果调查等每一个环节，都需要付出一定的费用。</p>
+</blockquote>
+<p>广告一般分两种：</p>
+<ol>
+<li>品牌广告：提升商家品牌影响力，促进大众的品牌认知，无需直接提升产品或服务的销售</li>
+<li>促销广告：商家直接为了提升产品或服务的销售而做的广告，能够直接造成用户的转化（例如点击、购买等行为）或商品的销售</li>
+</ol>
+<p>在本篇文章中，我们讨论的是<strong>促销广告</strong>。</p>
+<h2 id="1-2-程序化广告"><a href="#1-2-程序化广告" class="headerlink" title="1.2 程序化广告"></a>1.2 程序化广告</h2><h3 id="1-2-1-程序化交易广告为什么会出现"><a href="#1-2-1-程序化交易广告为什么会出现" class="headerlink" title="1.2.1 程序化交易广告为什么会出现"></a>1.2.1 程序化交易广告为什么会出现</h3><p>程序化交易广告的兴起，是为了满足何种需求？</p>
+<p>需求方希望优化投放效果。</p>
+<blockquote>
+<p> 我的广告费用有一半都是被浪费了的，但是问题是，我不知道是哪一部分。我花两百万美元做广告，但是我不知道这刚够一半还是多一倍。</p>
+</blockquote>
+<p>营销天才约翰.沃纳梅克曾说到。</p>
+<p> 广告投放效果的监控难题，一直存在。互联网的发展，使得大量投放数据得到了追踪。广告主对投放效果的要求也越来越高。因此，催生了程序化交易广告，允许广告主选择他们定义好的用户进行营销，同时，让广告主自行选择流量，以及对每次广告展示，进行独立出价。</p>
+<p>这样的需求，要求<strong>询价</strong>、<strong>出价</strong>和<strong>竞价</strong>同时进行，这就产生了以实时竞价（RTB）为核心的程序化交易市场。</p>
+<h3 id="1-2-2-程序化广告交易的核心RTB-Real-Time-Bidding"><a href="#1-2-2-程序化广告交易的核心RTB-Real-Time-Bidding" class="headerlink" title="1.2.2 程序化广告交易的核心RTB(Real Time Bidding)"></a>1.2.2 程序化广告交易的核心RTB(Real Time Bidding)</h3><p>RTB是指实时竞价广告模式，是一种高度程序化的广告购买与投放流程。RTB利用第三方技术在数以百计的网站或移动程序（App）上针对每一个用户的广告展示请求进行评估以及出价的竞价技术。与大量购买投放频次不同，实时竞价规避了无效的受众到达，针对有意义的用户进行购买。</p>
+<p>RTB是售卖广告展示（impression），下图是一个典型的RTB流程</p>
+<p><img src="https://kerryli1007.github.io/images/程序化广告交易（上）/1.png" alt></p>
+<p>0：用户打开电脑（app）登陆网站，这个动作被传输给Ad Exchange广告交易所</p>
+<p>1：广告交易向各需求方平台所发出竞价请求，用大白话来说，就是“诶，我这个用户，有向他展示广告的机会，你们要不要来？”为了方便各需求方平台做决策，Ad Exchange在发询问的时候，还会附带一些信息，包括用户信息，网页信息，以及上下文。</p>
+<p>2：需求方平台看到Ad Exchange的询问，并且根据已知的信息，对该用户的商业价值以及点击广告可能性进行了预估，结束之后，给出了一个竞价，反馈给Ad Exchange。</p>
+<p>3：Ad Exchange对多方需求平台给的竞价反馈进行综合评估，最后选择一家</p>
+<p>4：Ad Exchange会在竞价中选择一家，选择依据有价格，也有Ad Exchange做的点击预估概率</p>
+<p>5：Ad Exchange将相关广告信息展示给用户，这个用户展示信息里面是附带了用户行为追踪代码的</p>
+<p>6：最终，等待用户的行为。</p>
+<p>上述6个步骤，是一个典型的RTB流程，需要注意的是，整个流程是需要在100毫秒之内完成的。因此，对各个环节的性能要求都是极高的。</p>
+<blockquote>
+<p>RTB的优点：</p>
+<ol>
+<li>规避了无效的受众到达，针对有意义的用户进行购买</li>
+<li>（对广告商和代理公司）最直接的好处就是提高了效果与投资回报率</li>
+<li>（对媒体来说）带来了更多的广告销量、实现销售过程自动化以及减低各项费用的支出《互联网DSP广告揭秘：精准投放与高效转化之道》</li>
+</ol>
+</blockquote>
+<p>RTB这种广告交易方式有一个相对完整的产业链，包括Ad Exchange、DSP、DMP、SSP等4个重要的技术环节。RTB的4个重要技术环节协同实现了广告实时竞价的流程化、程序化，而要实现人群的精准定向，还需要Cookie Mapping技术。</p>
+<h1 id="二、程序化广告交易的生态系统"><a href="#二、程序化广告交易的生态系统" class="headerlink" title="二、程序化广告交易的生态系统"></a>二、程序化广告交易的生态系统</h1><p>上文提到了RTB，由4个主要的技术环节组成，这4个环节，也构成了程序化广告交易的生态系统。</p>
+<p>让我们来了解一下程序化广告交易的生态系统。</p>
+<blockquote>
+<p>生态系统的定义是，一定的生物群体相互依赖和生存的生态环境。《批判性思维工具》</p>
+</blockquote>
+<p>生态系统的中的生物群体，相互依赖和生存。程序化广告交易这个生态系统中的各个关键环节，相互依赖。</p>
+<p>我们分别了解一下这4个技术环节。</p>
+<h4 id="1-2-2-1-DSP（Demand-Side-Platform，需求方平台）"><a href="#1-2-2-1-DSP（Demand-Side-Platform，需求方平台）" class="headerlink" title="1.2.2.1 DSP（Demand Side Platform，需求方平台）"></a>1.2.2.1 DSP（Demand Side Platform，需求方平台）</h4><p>DSP（Demand Side Platform）需求方平台。</p>
+<h4 id="1-2-2-2-SSP"><a href="#1-2-2-2-SSP" class="headerlink" title="1.2.2.2 SSP"></a>1.2.2.2 SSP</h4><blockquote>
+<p>SSP是供应方平台（Supply Side Platform），是面向publisher（媒体主，即站点或APP的开发者或所有人）的供应方管理平台，作用包括帮助媒体主进行流量分配管理、资源定价、广告请求筛选等，更好地进行自身资源的定价和管理，优化营收。</p>
+</blockquote>
+<p>其实上述的这些定义，理解起来还是比较麻烦，举一个case来理解一下</p>
+<h4 id="1-2-2-3-Ad-Exchange"><a href="#1-2-2-3-Ad-Exchange" class="headerlink" title="1.2.2.3 Ad Exchange"></a>1.2.2.3 Ad Exchange</h4><h4 id="1-2-2-4-DMP"><a href="#1-2-2-4-DMP" class="headerlink" title="1.2.2.4 DMP"></a>1.2.2.4 DMP</h4><blockquote>
+<p>数据要发挥价值，就需要一个集中采集、存储、处理、分析、输出运用的系统平台，即大数据管理平台（Data Management Platform，DMP）</p>
+</blockquote>
+<p>DMP系统一般由4个功能模块：数据输入、标签制作、数据输出、数据报表</p>
+<p>未完待续～</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/18/Facebook效应》读书笔记（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -831,6 +1105,186 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/31/幕后产品（三）| 需求分析方法论/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/31/幕后产品（三）| 需求分析方法论/" class="post-title-link" itemprop="url">幕后产品（三）|需求分析方法论</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-31 00:00:00 / Modified: 21:15:50" itemprop="dateCreated datePublished" datetime="2020-05-31T00:00:00+08:00">2020-05-31</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>幕后产品（三）| 需求分析方法论</p>
+<p>写在前面，今天看到一篇《幕后产品》整本书的读后感，脑子一热，也想，趁着下午几个小时，将剩下的几章节都阅读了，然后整理一下，发在公众号，心理记挂着这个目标，阅读时候，也浮光掠影，读了几篇，感觉脑子里一片空白，一无所获，赶紧停下来。</p>
+<p>如果读一本书，读一篇文章，一无所获，那么就没有阅读的必要，这就是浪费时间，还不如将这个时间用在其他地方，比如看电影，逛街。</p>
+<p>调整目标和状态后，重新开始阅读，将今天的阅读心得整理如下。最后，再强调一句，做任何事，都不要舍本逐末，不要为了发公众号而匆匆阅读，要为了思考而阅读，思考本身是一件有趣的事，通过阅读别人的文章，与别人对话，交流心得体验，发公众号也好，发布在hexo也好，都是思考的结果。</p>
+<p>开始今天的阅读吧～Enjoy</p>
+<p>今天阅读的是《幕后产品》第三章。本章开篇，便解答了最近几个月困扰我的问题，那便是需求太多怎么办，当然这些需求里面，包含老板提的需求。因开篇实在是经典，故将其摘录如下，希望任何读到这段文字的产品经理，都能有所感悟，收获一二。</p>
+<blockquote>
+<p>产品经理面对的需求千千万万，应该做哪一个呢？</p>
+<p>这恐怕是实际工作中最恼人的问题之一，原因大致有两个：提出需求的门槛非常低，每个用户一口唾沫星子就能淹死产品经理；需求分析并不像写代码那样有很强的逻辑性，其中存在相当感性的部分，每个人对需求都有自己的理解，因此搞定团队中的所有人是很难的。</p>
+<p>多数产品经理在工作中会遇到进退两难的境地，感觉像是夹心面包，而不是在主导产品。这背后的原因是，搞不定老板、上司提出的需求，说服不了团队做自己想做的需求。这样的情景在每家公司、每天的办公室反复上演，但这不是其他人的责任，反而是产品经理自身的问题。原因如上所述，需求的本质就是这样的——人人都可以参与讨论，人人都觉得自己理解需求。</p>
+<p>绝大部分能成长起来的产品经理都顺利通过了进退两难的这一关。这是一个狭窄的关卡，通过之后的产品经理能形成自己的需求分析方法论，也知道如何赢得上司以及团队的信任，从而更好滴展现执行力。而没有通过的是大多数，在方法论和沟通上或多或少存在问题。</p>
+</blockquote>
+<p>读完这段话，一拍大腿，诗沐老师娓娓道来的讲解实在是让人醍醐灌顶。作为大神级别的产品经理，诗沐老师洞察多数产品经理的真实遭遇，进退两难，所有人都来提需求，每个人都认为自己的需求是最重要的。这件事确实是会让产品经理崩溃。我在工作中，也经历不少。不过，诗沐老师的分享并未止步于此，他也严肃地指出，这实际上是产品经理成长生涯重要的一个关卡，过得了这一关的产品经理，能成长起来，他们沉淀出了自己的方法论，懂得如何赢得上司以及团队的信任，这样的人，在我看来，也才更有可能成为领导人；而没有通过这一关卡的产品经理，即没有感觉到是自己在主导产品，也只有在整日的抱怨中丧失了思考。</p>
+<p>关于需求分析方法论，作者主要分享了3个模块</p>
+<ol>
+<li>收集需求</li>
+<li>评估</li>
+<li>进阶</li>
+</ol>
+<p>关于需求分析方法论，建议结合苏杰老师《人人都是产品经理》，以及李立《腾讯产品法》中关于需求分析的模块，一同学习思考，观察不同产品经理对待需求的视角。</p>
+<h1 id="尽可能多地收集需求"><a href="#尽可能多地收集需求" class="headerlink" title="尽可能多地收集需求"></a>尽可能多地收集需求</h1><h1 id="需求背后的动机"><a href="#需求背后的动机" class="headerlink" title="需求背后的动机"></a>需求背后的动机</h1><h1 id="评估实现需求的影响"><a href="#评估实现需求的影响" class="headerlink" title="评估实现需求的影响"></a>评估实现需求的影响</h1><h1 id="角色、场景、流程"><a href="#角色、场景、流程" class="headerlink" title="角色、场景、流程"></a>角色、场景、流程</h1><h1 id="符合产品目标"><a href="#符合产品目标" class="headerlink" title="符合产品目标"></a>符合产品目标</h1>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/31/在线广告之DSP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -968,186 +1422,6 @@
 <li>在线广告：互联网广告系统的架构以及算法</li>
 </ol>
 
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/31/幕后产品（三）| 需求分析方法论/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/31/幕后产品（三）| 需求分析方法论/" class="post-title-link" itemprop="url">幕后产品（三）|需求分析方法论</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-05-31 00:00:00 / Modified: 21:15:50" itemprop="dateCreated datePublished" datetime="2020-05-31T00:00:00+08:00">2020-05-31</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>幕后产品（三）| 需求分析方法论</p>
-<p>写在前面，今天看到一篇《幕后产品》整本书的读后感，脑子一热，也想，趁着下午几个小时，将剩下的几章节都阅读了，然后整理一下，发在公众号，心理记挂着这个目标，阅读时候，也浮光掠影，读了几篇，感觉脑子里一片空白，一无所获，赶紧停下来。</p>
-<p>如果读一本书，读一篇文章，一无所获，那么就没有阅读的必要，这就是浪费时间，还不如将这个时间用在其他地方，比如看电影，逛街。</p>
-<p>调整目标和状态后，重新开始阅读，将今天的阅读心得整理如下。最后，再强调一句，做任何事，都不要舍本逐末，不要为了发公众号而匆匆阅读，要为了思考而阅读，思考本身是一件有趣的事，通过阅读别人的文章，与别人对话，交流心得体验，发公众号也好，发布在hexo也好，都是思考的结果。</p>
-<p>开始今天的阅读吧～Enjoy</p>
-<p>今天阅读的是《幕后产品》第三章。本章开篇，便解答了最近几个月困扰我的问题，那便是需求太多怎么办，当然这些需求里面，包含老板提的需求。因开篇实在是经典，故将其摘录如下，希望任何读到这段文字的产品经理，都能有所感悟，收获一二。</p>
-<blockquote>
-<p>产品经理面对的需求千千万万，应该做哪一个呢？</p>
-<p>这恐怕是实际工作中最恼人的问题之一，原因大致有两个：提出需求的门槛非常低，每个用户一口唾沫星子就能淹死产品经理；需求分析并不像写代码那样有很强的逻辑性，其中存在相当感性的部分，每个人对需求都有自己的理解，因此搞定团队中的所有人是很难的。</p>
-<p>多数产品经理在工作中会遇到进退两难的境地，感觉像是夹心面包，而不是在主导产品。这背后的原因是，搞不定老板、上司提出的需求，说服不了团队做自己想做的需求。这样的情景在每家公司、每天的办公室反复上演，但这不是其他人的责任，反而是产品经理自身的问题。原因如上所述，需求的本质就是这样的——人人都可以参与讨论，人人都觉得自己理解需求。</p>
-<p>绝大部分能成长起来的产品经理都顺利通过了进退两难的这一关。这是一个狭窄的关卡，通过之后的产品经理能形成自己的需求分析方法论，也知道如何赢得上司以及团队的信任，从而更好滴展现执行力。而没有通过的是大多数，在方法论和沟通上或多或少存在问题。</p>
-</blockquote>
-<p>读完这段话，一拍大腿，诗沐老师娓娓道来的讲解实在是让人醍醐灌顶。作为大神级别的产品经理，诗沐老师洞察多数产品经理的真实遭遇，进退两难，所有人都来提需求，每个人都认为自己的需求是最重要的。这件事确实是会让产品经理崩溃。我在工作中，也经历不少。不过，诗沐老师的分享并未止步于此，他也严肃地指出，这实际上是产品经理成长生涯重要的一个关卡，过得了这一关的产品经理，能成长起来，他们沉淀出了自己的方法论，懂得如何赢得上司以及团队的信任，这样的人，在我看来，也才更有可能成为领导人；而没有通过这一关卡的产品经理，即没有感觉到是自己在主导产品，也只有在整日的抱怨中丧失了思考。</p>
-<p>关于需求分析方法论，作者主要分享了3个模块</p>
-<ol>
-<li>收集需求</li>
-<li>评估</li>
-<li>进阶</li>
-</ol>
-<p>关于需求分析方法论，建议结合苏杰老师《人人都是产品经理》，以及李立《腾讯产品法》中关于需求分析的模块，一同学习思考，观察不同产品经理对待需求的视角。</p>
-<h1 id="尽可能多地收集需求"><a href="#尽可能多地收集需求" class="headerlink" title="尽可能多地收集需求"></a>尽可能多地收集需求</h1><h1 id="需求背后的动机"><a href="#需求背后的动机" class="headerlink" title="需求背后的动机"></a>需求背后的动机</h1><h1 id="评估实现需求的影响"><a href="#评估实现需求的影响" class="headerlink" title="评估实现需求的影响"></a>评估实现需求的影响</h1><h1 id="角色、场景、流程"><a href="#角色、场景、流程" class="headerlink" title="角色、场景、流程"></a>角色、场景、流程</h1><h1 id="符合产品目标"><a href="#符合产品目标" class="headerlink" title="符合产品目标"></a>符合产品目标</h1>
           
         
       
@@ -2236,192 +2510,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/产品设计体会（二）数据库快照/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/24/产品设计体会（二）数据库快照/" class="post-title-link" itemprop="url">产品设计体会（二）数据库快照</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-05-24 00:00:00 / Modified: 14:05:38" itemprop="dateCreated datePublished" datetime="2020-05-24T00:00:00+08:00">2020-05-24</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="思考一个场景"><a href="#思考一个场景" class="headerlink" title="思考一个场景"></a>思考一个场景</h3><p>基本上我们每个人都会在淘宝购物。添加购物车，支付，签收订单。一笔交易完成。过了一段时间，你再次看到了你购买的商品，这次该款商品正在大促销，它的标价是99，你记得你购买的价格是199。但是，现在，商家的标价确实是99。</p>
-<p>你去翻你的淘宝交易记录，请问这个时候，你的交易价格是多少？<br>199对吧。因为这是你购买这款商品时候的实付价格。</p>
-<p>为什么商品的价格已经被调节成了99，但是你的交易记录中的数据没有随之变化呢？这是因为数据库快照。</p>
-<h1 id="数据库快照"><a href="#数据库快照" class="headerlink" title="数据库快照"></a>数据库快照</h1><p>数据库快照，就是在某一个时间点，对数据库拍了一张快照。这张快照有2个特点：</p>
-<ol>
-<li>静态的</li>
-<li>只读的</li>
-</ol>
-<p>快照生成之后，如果数据库中任何数据页都没有被修改，那么快照的mdf文件是空的，不占用任何磁盘空间，这个时候，快照数据库还是从源数据库中取，快照生成之后，数据库中发生了变动，这个时候快照的mdf文件中就有了数据，但是这里面只放刚刚被修改之前的数据。</p>
-<h1 id="其他应用场景"><a href="#其他应用场景" class="headerlink" title="其他应用场景"></a>其他应用场景</h1><p>真实工作场景中case</p>
-<p>To B的业务中，开通对客户的产品试用。每一条试用信息，在后台生成一条记录。每一条记录的字段有：</p>
-<ul>
-<li>客户ID</li>
-<li>申请试用时间</li>
-<li>试用截止时间</li>
-<li>联系电话</li>
-<li>等</li>
-</ul>
-<p>开始时候，这些试用信息的返回是随机的，就导致一个问题，商务同事无法通过后台来找到最新的试用客户，进行后续跟进。因此，我们在后端数据库接口的返回逻辑进行了处理，按照“申请试用时间”进行逆序排序。</p>
-<p>似乎解决了问题，但是在后续实际业务中发现，因为会对客户的试用时间/周期进行微调，因此，试用时间会变化。那么是不是，其实也应该有一个快照的概念呢？</p>
-<p>有了快照，那么客户申请试用的时间，是不变的。这样排序出来的客户表，还是最新申请的客户在最上面。</p>
-<p>多思考，多总结。</p>
-<p>参考资料</p>
-<ol>
-<li><a href="https://blog.csdn.net/cuiyan1982/article/details/78459817" target="_blank" rel="noopener">数据库快照 database snapshot_数据库_cuiyan1982的专栏-CSDN博客</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2470,7 +2558,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

@@ -323,6 +323,198 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/31/在线广告之DSP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/31/在线广告之DSP/" class="post-title-link" itemprop="url">在线广告之DSP</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-31 00:00:00 / Modified: 14:03:25" itemprop="dateCreated datePublished" datetime="2020-05-31T00:00:00+08:00">2020-05-31</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近工作，开始做广告系统，做了一些这个方面的研究，整理出来。</p>
+<p>目标读者：广告系统产品经理、广告系统运营人员</p>
+<h1 id="一、在线广告概览"><a href="#一、在线广告概览" class="headerlink" title="一、在线广告概览"></a>一、在线广告概览</h1><p>一笔在线广告，有两个主体：需求方和供给方。前者可以是广告主、代表广告主利益的代理商或其他技术形态的采买方；后者可以是媒体，也可以是其他技术形态的变现平台。广告中还有一个被动的参与方，即受众。出资人、媒体和受众这三者的利益博弈关系是广告活动的主线</p>
+<p>一笔在线广告的流程如下，（首先，广告主已经决定了要在什么媒体平台上投放广告，以微博为例，在微博这样的大流量平台上进行广告投放<br><img src="https://kerryli1007.github.io/images/在线广告之DSP/1.png" alt></p>
+<p>流量产生：微博资深用户西蓝花同学，早上醒来，拿起手机，点击微博图标，进入微博，微博信息流首页，会有广告位产生，这个时候，微博会发起询问，发送的信息大概如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">userid:00000001</span><br><span class="line">gender:female</span><br><span class="line">interest:exercise</span><br><span class="line">time:2020-05-30</span><br><span class="line">.......</span><br></pre></td></tr></table></figure></p>
+<p>微博发给广告平台的信息，大致如上。主要包含了用户的一些基础属性。<br>平台收到这些信息，系统会自动判断，微博上报的这位用户，是否是自己产品的目标用户。平台1目前主要在投放游戏，平台2目前在投放家电，比如戴森吹风机，平台3在投放运动装备，比如lululemon。上述3个平台，基于我的信息和他们所投放的产品，做了一个关联性分析，判断出我有多大几率购买/下载他们投放的产品，基于这些几率，他们会为获得展示在我手机信息流中的广告位竞价，比如平台1出价5块，平台2出价3块，平台3出价7块。毫无疑问，这个广告位归平台3了。（需要注意的是，这些竞价都是实时完成的，因此也叫Real-Time Bidding）接着，用户的首页便会出现lululemon的广告。</p>
+<p>这就是一个完整的竞价广告流程。上述广告平台的操作，判断微博上报用户与自己在投产品的匹配度，推测广告投放后的成功几率，并给出竞价，做这件事的平台，叫做DSP(Demand Side Platform)，这是一门专门为广告主提供精准投放的平台。也是我们今天文章的主题。</p>
+<h1 id="二、走近DSP"><a href="#二、走近DSP" class="headerlink" title="二、走近DSP"></a>二、走近DSP</h1><p>DSP，全称Demand Side Platform，中文叫需求方平台。在上面关于在线广告主体的介绍时候，我们说过一个在线广告，有两个重要的组成部分，一个是需求方，即需求方平台，一个是供给方，供给方在这里又被叫做Publisher，而Publisher的供给也是基于一个平台，这个平台叫做SSPs（Supply Side Platform）。</p>
+<p>我们目前学习了两个重要概念，DSP和SSP。我们回顾一下，他们分别是什么，以及其作用。</p>
+<p>在线广告，本质是交易，交易就势必有需求方，也有供给方。供给方可以是上文说的微博媒体，这样的平台又被叫做Publisher，他们是有一个SSP，即需求管理平台，来对微博上可以被展示的广告位进行管理。微博的广告管理平台，叫做WAX(Weibo AdeXchange) ，是新浪微博提供给各类广告主的程序化广告交易平台。</p>
+<p>供给方了解之后，再来看看需求方，上文我们讲的是DSP，可能有的读者会有疑问，DSP的作用，说白了，就是精准投放，为什么这件事需求主，不自己做呢？这是一个非常好的问题。</p>
+<p>做这样一件事，是需要投入较大的资源，有些时候，需求主只有一款产品要做推广，为了这一款产品，单独打造一个平台，这事也忒不划算了，还不如外包给专业的人做，这个时候，DSP就产生了。</p>
+<p>到这里，我们基本上梳理清楚了三件事</p>
+<ol>
+<li>一个在线广告的最小运转流程，上下游</li>
+<li>DSP是什么，为什么会产生</li>
+<li>SSP是什么，为什么会产生</li>
+</ol>
+<p>也就对DSP有了大致了解，接下来，我们会围绕DSP深入讲解DSP如何提高投放的效率。</p>
+<h1 id="三、总结“如何学习一个商业新概念？“"><a href="#三、总结“如何学习一个商业新概念？“" class="headerlink" title="三、总结“如何学习一个商业新概念？“"></a>三、总结“如何学习一个商业新概念？“</h1><ol>
+<li>zoom out 了解这个新概念被牵涉进的商业流转，上下游分别是什么</li>
+<li>zoom in 看这个新概念在整个流程中，扮演什么角色，产生什么价值</li>
+</ol>
+<p>哇🤩，和客户开了一次会，然后花费了1个早上的研究成果，我还是比较满意，认知总体上来说还是比较浅显，不过我很享受，从一开始，脑子里一团乱麻，到自己不断发现蛛丝马迹，最后将整个逻辑梳理清楚整个过程。</p>
+<p>思考以及学习这个过程本身的乐趣，是无法被替代，也无法被剥夺。</p>
+<p>明天就六月一日了，提早也祝自己儿童节快乐，希望自己永远保持对世界的好奇。</p>
+<p>享受思考、享受学习、最后，享受成长。<br>推荐阅读：</p>
+<ol>
+<li><a href="https://clearcode.cc/blog/demand-side-platform/" target="_blank" rel="noopener">https://clearcode.cc/blog/demand-side-platform/</a> 入门级别讲解，用case形式讲解了dsp的运转流程</li>
+<li>计算广告</li>
+<li>在线广告：互联网广告系统的架构以及算法</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/31/幕后产品（三）| 需求分析方法论/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1125,6 +1317,186 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/CAIO总结复盘/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/24/CAIO总结复盘/" class="post-title-link" itemprop="url">CAIO总结复盘</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-24 00:00:00 / Modified: 13:48:32" itemprop="dateCreated datePublished" datetime="2020-05-24T00:00:00+08:00">2020-05-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在卫哲老师的书《21世纪职业生涯完胜之道》，有这样一段描述</p>
+<blockquote>
+<p>问：“请问您的企业是如何成功的？”<br>答：“靠我们丰富的经验。”<br>问：“您是怎样取得这些丰富的经验的？“<br>答：”因为我们犯过许多许多错误。“<br>这个对话告诉了我们要百倍重视总结企业实践，不论成功的或失败的，不仅要善于总结自己的实践，而且应该认真学习别人实践的经验和教训。</p>
+</blockquote>
+<p>这段对话非常有意思，对我也非常有启发，要想更快速的成长，就要多总结，不光总结自己成功的经验，也要总结自己失败的经验。不光要总结自己的经验，也要学习和总结别人的经验。</p>
+<p>最近公司举办了CAIO活动，听了同事们的分享，有一些收获。</p>
+<h1 id="总结一"><a href="#总结一" class="headerlink" title="总结一"></a>总结一</h1><p>对于所有新业务场景的探索都可以问两个问题：</p>
+<ol>
+<li>没有经验，如何往下走</li>
+<li>接下来往哪个方向走</li>
+</ol>
+<h1 id="总结二"><a href="#总结二" class="headerlink" title="总结二"></a>总结二</h1><p>重视客户的诉求。</p>
+<p>Case ：客户想要的是解决一个场景的具体问题，但是我们一直在给客户推平台。有了平台是否等于可以解决这个问题。如果答案不是Y，那么这个客户引导就是错误的。</p>
+<h1 id="总结三"><a href="#总结三" class="headerlink" title="总结三"></a>总结三</h1><p>Critical Thinking<br>在我们读论文也好，读资料也好的时候，一定要有critical thinking，思考3个问题：</p>
+<ol>
+<li>是不是就是这么回事</li>
+<li>如果是，那是为什么</li>
+<li>如果不是，那又是为什么</li>
+</ol>
+<p>最后吐槽一句：市面上的招聘企业，经常把年限作为一个标准，但是实际上，不同的人，其工作习惯不同，在是否善于总结，发现规律，以及总结成方法论这些方面，有很大差异。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/2020年Q1复盘/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1315,186 +1687,6 @@
 <p>客观来说，对于上述流程，每个模块我都可以完成，但是缺乏体系。因此，我会按照这个思路，来整理出来我的思维体系结构。</p>
 <p>修改完这篇复盘，其实已经是Q2过去了3周了。本篇文章里面的目标和措施，在Q2的计划里面做了详细描述，就不在本篇赘述。</p>
 <p>接下来的目标和措施，参考文章《<a href="https://kerryli1007.github.io/2020/05/05/%E6%8E%A5%E4%B8%8B%E6%9D%A53%E4%B8%AA%E6%9C%88%E7%9A%84%E6%88%90%E9%95%BF%E8%A7%84%E5%88%92/" target="_blank" rel="noopener">接下来3个月的成长规划 | 一颗西蓝花🥦</a>》</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/CAIO总结复盘/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/24/CAIO总结复盘/" class="post-title-link" itemprop="url">CAIO总结复盘</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-05-24 00:00:00 / Modified: 13:48:32" itemprop="dateCreated datePublished" datetime="2020-05-24T00:00:00+08:00">2020-05-24</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在卫哲老师的书《21世纪职业生涯完胜之道》，有这样一段描述</p>
-<blockquote>
-<p>问：“请问您的企业是如何成功的？”<br>答：“靠我们丰富的经验。”<br>问：“您是怎样取得这些丰富的经验的？“<br>答：”因为我们犯过许多许多错误。“<br>这个对话告诉了我们要百倍重视总结企业实践，不论成功的或失败的，不仅要善于总结自己的实践，而且应该认真学习别人实践的经验和教训。</p>
-</blockquote>
-<p>这段对话非常有意思，对我也非常有启发，要想更快速的成长，就要多总结，不光总结自己成功的经验，也要总结自己失败的经验。不光要总结自己的经验，也要学习和总结别人的经验。</p>
-<p>最近公司举办了CAIO活动，听了同事们的分享，有一些收获。</p>
-<h1 id="总结一"><a href="#总结一" class="headerlink" title="总结一"></a>总结一</h1><p>对于所有新业务场景的探索都可以问两个问题：</p>
-<ol>
-<li>没有经验，如何往下走</li>
-<li>接下来往哪个方向走</li>
-</ol>
-<h1 id="总结二"><a href="#总结二" class="headerlink" title="总结二"></a>总结二</h1><p>重视客户的诉求。</p>
-<p>Case ：客户想要的是解决一个场景的具体问题，但是我们一直在给客户推平台。有了平台是否等于可以解决这个问题。如果答案不是Y，那么这个客户引导就是错误的。</p>
-<h1 id="总结三"><a href="#总结三" class="headerlink" title="总结三"></a>总结三</h1><p>Critical Thinking<br>在我们读论文也好，读资料也好的时候，一定要有critical thinking，思考3个问题：</p>
-<ol>
-<li>是不是就是这么回事</li>
-<li>如果是，那是为什么</li>
-<li>如果不是，那又是为什么</li>
-</ol>
-<p>最后吐槽一句：市面上的招聘企业，经常把年限作为一个标准，但是实际上，不同的人，其工作习惯不同，在是否善于总结，发现规律，以及总结成方法论这些方面，有很大差异。</p>
 
           
         
@@ -2125,217 +2317,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/23/Q2_Week3_工作总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/23/Q2_Week3_工作总结/" class="post-title-link" itemprop="url">Q2_Week3_工作总结</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-05-23 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-23T00:00:00+08:00">2020-05-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-06-19 21:44:01" itemprop="dateModified" datetime="2020-06-19T21:44:01+08:00">2020-06-19</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>原则：将自己的成长，拆分成为以周为粒度的迭代。高频输出，持续迭代。</p>
-<p>上周虾宝和我在讨论什么是好的mentor、以及如何实现自己的职场价值。特此记录，砥砺自己。</p>
-<p>什么是好的mentor。好的mentor一定是经历了实战，并且存活下来，不是失败者。或者，就算失败了也依然继续努力战斗，这才是好的mentor，如果mentor已经是咸鱼，最后只靠嘴皮子说如何个人努力，这种大概率是不太行。字节的老板，都特别喜欢打过硬仗，如何在竞争中厮杀。</p>
-<p>如何实现自己的职场价值。上面关于好的mentor的定义，也适用于个人职场价值的判断，所以，我来衍生一下。个人的职场价值，不是看成长（这个说的有点残酷），而是看这个人打胜/败过多少场商业战争。一个职场人打仗数量，代表了这个人的经验，能力，以及她是否适合这样的生存环境。这些已经不单单是人品或者聪明可以解释的。总结一下，要实现自己的职场价值，就去实战，去赢得一场场战争。</p>
-<p>和虾宝的讨论，暂且谈到这里，接下来回顾上一周的成长。</p>
-<h1 id="推荐系统实战-踩过的坑"><a href="#推荐系统实战-踩过的坑" class="headerlink" title="推荐系统实战 | 踩过的坑"></a>推荐系统实战 | 踩过的坑</h1><p>春节之后，我一直在跟推荐项目。前期尚且有数据科学家的支持，到了4月份，数据科学家驻场去了，因此，整个项目从前端到后端都是我一个人了。好处是，沟通成本大大降低；坏处是，从帮助客户梳理需求，到写代码实现客户需求，都是我一个人了。对业务的理解，对算法的理解，都是一道道横立在我面前的障碍。</p>
-<p>将所有踩过的坑整理总结出来，也丰富自己的知识体系。</p>
-<h2 id="模型训练丢掉产品信息"><a href="#模型训练丢掉产品信息" class="headerlink" title="模型训练丢掉产品信息"></a>模型训练丢掉产品信息</h2><p>背景阐述：<br>做CSS推荐项目，一个基本假设是，使用模型进行商品推荐，效果会好过传统的商品推荐，比如选择上一年度的BestSeller。</p>
-<p>因此，基于传统的商品推荐来构造训练集。但是，在项目实施过程中，发现客户给的传统推荐营销表，存在两个问题：</p>
-<ul>
-<li>传统的营销表中，没有营销商品的信息</li>
-<li>传统的营销表中，没有此笔营销订单是否成功的信息</li>
-</ul>
-<p>在首次，处理数据时候，对于上述两个问题，我分别采用的措施如下：</p>
-<ol>
-<li>营销表中，没有商品信息，但是可以根据相关信息，在交易表中，匹配商品信息。但是这又出现另一个问题，那就是，成单的营销信息，有对应的商品信息，但是没有成单的营销信息，就没有对应的商品信息。所以，当时我的判断是直接拿掉产品信息。</li>
-<li>营销表中，没有成单信息。可以根据userid已经营销时间，在交易表中，为该笔营销匹配上是否成单的信息。</li>
-</ol>
-<p>上述两个措施，第二个是合适的，但是第一个完全不合适。试想，我们是要为消费者推荐商品，怎么能将商品信息直接拿掉呢？对于这个问题的补救措施：<br>营销表中的消费者分为两类，一类是被营销后，有消费记录，一类是被营销后，无消费记录。我们可以选择有消费者记录的消费者，作为我们的样本客户群，有消费记录营销事件的作为正样本，然后，按照正负样本1：10的比例，为每个客户匹配负样本。<br>这样，我们就得到了一个完整的营销表，只不过是伪营销表。</p>
-<p>从这个小的细节，可以看出，从业务逻辑，到算法逻辑，其实是有较大的gap，同时，对数据的处理，很多时候，是会带来其他额外的效应的。</p>
-<h2 id="实验设计"><a href="#实验设计" class="headerlink" title="实验设计"></a>实验设计</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>基于不同的目标，我们有2个模型。模型1的目标是maxmize预测自然购买和真实自然购买的匹配度，模型2的目标是推荐模型的转化率好过传统短信推荐。但是，模型2用来训练的数据量小。模型1的训练数据在千万级别，模型2的训练数据在10万。因此，为了比较2个模型的真实效果。我们需要比较这些模型在测试集上的表现。</p>
-<h3 id="实验设计-1"><a href="#实验设计-1" class="headerlink" title="实验设计"></a>实验设计</h3><p>本实验解决的问题是什么：<br>传统短信营销场景下短信营销转化率低，尝试用推荐模型来给每个用户推荐，从而提高转化率。</p>
-<p>实验假设：<br>SMS模型营销和自然购买模型营销给出的推荐商品在真实购买商品的命中率更高。</p>
-<p>实验组：</p>
-<ol>
-<li>传统营销</li>
-<li>SMS模型营销</li>
-<li>自然购买模型营销</li>
-</ol>
-<p>实验指标：</p>
-<ul>
-<li>命中率</li>
-<li>计算公式<br>{用户1,真实购买item} / {用户1, 预测item1}，{用户1, 预测item2}……{用户1, 预测item10}，这10个，有一个预测命中，则算这个预测准确</li>
-</ul>
-<p>采用命中率做为指标，主要是为了评估，模型推荐的命中率和传统营销的命中率，谁的命中率更高。假设是，命中率更高的推荐方式，即为真实场景中表现更好的推荐。</p>
-<h1 id="产品设计"><a href="#产品设计" class="headerlink" title="产品设计"></a>产品设计</h1><p>在工作中，我既是别的PM设计产品的长时间使用者，最近3周，平均每天，我使用AutoML的时间，大于等于5个小时；我自己也是To B产品的PM，每天都会接到运营、销售、以及其他部门的需求。</p>
-<h2 id="对AutoML使用层面的感受"><a href="#对AutoML使用层面的感受" class="headerlink" title="对AutoML使用层面的感受"></a>对AutoML使用层面的感受</h2><p>AutoML作为工具的初衷是降低生产算法的门槛。</p>
-<p>传统的算法生产，只有数据科学家可以做这件事。但是AutoML的出现改变了这件事，AutoML让一些对机器学习有基础理解的人，也能建模，同时模型的表现，也会不错。</p>
-<p>但是，为了实现上述目标，就会牺牲一些原有的便捷性，同时，AutoML的用户定位一直也非常模糊。<br>（这个不展开</p>
-<h2 id="作为PM，如何分析需求"><a href="#作为PM，如何分析需求" class="headerlink" title="作为PM，如何分析需求"></a>作为PM，如何分析需求</h2><h1 id="一些思考，从AutoML到推荐方案，还有多远"><a href="#一些思考，从AutoML到推荐方案，还有多远" class="headerlink" title="一些思考，从AutoML到推荐方案，还有多远"></a>一些思考，从AutoML到推荐方案，还有多远</h1>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2384,7 +2365,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">45</span>
+                    <span class="site-state-item-count">46</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

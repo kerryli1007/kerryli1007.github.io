@@ -950,224 +950,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/30/幕后产品（2）全面深入地了解用户/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/30/幕后产品（2）全面深入地了解用户/" class="post-title-link" itemprop="url">幕后产品（2）全面深入地了解用户</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-30T00:00:00+08:00">2020-05-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-07-05 09:53:45" itemprop="dateModified" datetime="2020-07-05T09:53:45+08:00">2020-07-05</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近负责的推荐项目，要做生产环境的POC。一方面有些紧张，因为项目后期，基本上前端后端都是我，担心自己表现不好；一方面又比较兴奋，从昨晚的结果来看，模型的表现比客户当前的解决策略效果更佳。</p>
-<p>总体上，本周工作节奏紧张，都在调模型，对比效果。晚上，抽睡前半个小时看书，最近在看《幕后产品》。每读一章节，都会给我相当大的触动，阅读诗沐老师的文字时，感受到他的谦逊，用轻描淡写的笔触展现过去的辉煌成就，在这些文字里，更能感受到诗沐老师作为一位优秀的产品经理，一些值得我学习借鉴的地方，因此，每每读及，感受到自己与其思维方式的差异，都羞愧万分，遂将其悉数记录，一方面警示自己，一方面也做记录之用。</p>
-<blockquote>
-<p>做了多年产品经理，我每天仍在做的一件事是什么？</p>
-<p>那就是日复一日、年复一年地了解用户。</p>
-</blockquote>
-<p>读到这里，不由脸颊发烫。作为一名AI 产品经理，我足够了解我的客户吗？他们是谁？他们在哪里？他们的痛点到底是什么？当整个人陷入项目的细节之中，就容易看不清大的趋势，因此，不断地反思、复盘、总结，就显得尤为重要。</p>
-<p>不过，在我写出上一段话之前，内心另一个声音告诉我。你做的是To B，和To C不一样，To C用户体量大，To B都是客户，客户体量小。这个思考的逻辑是说，客户体量小，就不用了解了吗？其实这个逻辑不过是为自己不足够了解，而找的借口。</p>
-<p>所以，我真的了解客户是谁吗？</p>
-<p>在AI行业，我也是混迹了2年。站在今天这个时间节点，回顾这两年，我做的所有工作，都是围绕两件事在做</p>
-<ul>
-<li>AI 算法竞赛</li>
-<li>AI 技术服务提供</li>
-</ul>
-<p>两件事针对不同的客户，其需求自然千差万别。着重看一下，AI技术服务提供（要回答这个问题，说实话，是需要数据支撑的）数据涉及到公司业务层面隐私，就不写出来。一个大概的画像：</p>
-<p>中小企业，希望短时间、低成本，搭建起一个生产环境可用的算法系统</p>
-<blockquote>
-<p>这个时代变化速度飞快，不断有新的文化、新的群体出现，如果我们不学习、不接触它们，仅仅一两年就有可能落伍。我在校园招聘时与应届毕业生进行交流，常感觉自己与它们之间存在代沟。他们中间流行什么？他们怎么理解互联网？这些疑问萦绕心头，迫使我想要深入理解他们的想法。虽然很残酷，但这个行业永远都是年轻人的世界，而且优秀创业者的年龄越来越小，所以作为产品经理除了每天持续地了解用户，别无他法。</p>
-</blockquote>
-<p>读到这里的感受，只有两字：深刻。</p>
-<p>背后的感慨原因，千千万万，以后再分析了。</p>
-<blockquote>
-<p>在研究电子音乐粉丝之前，我和很多人一样，把电子音乐与DJ、“土嗨”联系在一起，本能地对迪厅里播放的旋律和歌词一般的音乐无感。这是人的天性，对不了解的事情有自我防御机制。</p>
-</blockquote>
-<p>心理防御机制（Defence mechanism）</p>
-<blockquote>
-<p>Defense mechanisms are psychological strategies that are unconsciously used to protect a person from anxiety arising from unacceptable thoughts or feelings.</p>
-</blockquote>
-<p>心理防御机制是一种会被无意识使用的心理策略，人类使用这种策略来使自己远离不可以接受的思想和感受带来的焦虑。</p>
-<p>下图是一些常见的防御机制<img src="https://www.simplypsychology.org/defense-mechanisms.jpg?ezimgfmt=rs:611x451/rscb18/ng:webp/ngcb18" alt="defense mechanisms"></p>
-<p>否认是防御机制的一种。其实这种否认，我也常用。</p>
-<p>我diss一些产品设计无聊，但是我都没有认真去了解这些产品到底为什么会被设计出来。</p>
-<p>我否认自己做技术产品没有天赋，但是我压根都没有真地全力以赴地去学习，如何独立地写一段完整的代码。</p>
-<p>否认是一件非常简单的是，但是真实面对自己，不对自己说谎，更难，但是能产生不一样的结果。</p>
-<p>比如，我现在也开始撇弃对社交产品的偏见，从之前单一地将其归为约炮软件，或者寂寞人来使用的软件，到认识到，约炮也好，寂寞想找人倾诉，这都是人的需求，正视用户的需求，是成为优秀产品经理的第一步。选择看见而不是视而不见。同时，我开始认真严肃地对待Python、SQL，自己也能独立写代码，完成项目交付。</p>
-<p>最后说一下预见趋势。</p>
-<blockquote>
-<p>2014年，虽然当时在各个音乐排行榜上，前十里看不见电子音乐，但我们仍根据研究结果判断电子音乐是未来发展的趋势。我们不遗余力地鼓励电子音乐达人们做歌单、做电台，并在网易云音乐商业上帮助他们推广，与国内的电子音乐推广团队合作，并将电子音乐派在仅次于流行、摇滚、民谣音乐的位置。</p>
-</blockquote>
-<p>诗沐老师能够在2014年时候，就预见电子音乐是未来发展的趋势。其洞察力，不由让人大呼惊叹。仔细思考，对于诗沐老师来说，这也应该是水到渠成的事，因为他长时间对用户的研究，分析。</p>
-<p>只有深入理解了用户，才能做出准确而迅速的判断。</p>
-<p>阅读完这个，我也给我自己布置一个任务吧。</p>
-<ul>
-<li>本周和下周，完成市场上AutoML的使用，产出分析报告</li>
-<li>找10个AutoML的深度用户，做interview</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/30/Q2_Week4_工作总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1344,6 +1126,224 @@
 </ul>
 <p>这几款工具都是优秀的书写工具。像简书这样克制的设计，比如，连书写背景的颜色都不支持修改，真的是非常罕见。这么克制，也还奇了怪了，却让我喜欢上了，嘿嘿。我也不是只爱简单的，我也爱Bear，12个主题，任意切换。（关于写作工具，以后再展开</p>
 <p>还有最后两个主题，实验设计/AB Test，广告推荐系统，都是比较大的话题，就不在周总结中展开了，单独另开文章总结。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/30/幕后产品（2）全面深入地了解用户/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/30/幕后产品（2）全面深入地了解用户/" class="post-title-link" itemprop="url">幕后产品（2）全面深入地了解用户</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-30T00:00:00+08:00">2020-05-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-07-05 09:53:45" itemprop="dateModified" datetime="2020-07-05T09:53:45+08:00">2020-07-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近负责的推荐项目，要做生产环境的POC。一方面有些紧张，因为项目后期，基本上前端后端都是我，担心自己表现不好；一方面又比较兴奋，从昨晚的结果来看，模型的表现比客户当前的解决策略效果更佳。</p>
+<p>总体上，本周工作节奏紧张，都在调模型，对比效果。晚上，抽睡前半个小时看书，最近在看《幕后产品》。每读一章节，都会给我相当大的触动，阅读诗沐老师的文字时，感受到他的谦逊，用轻描淡写的笔触展现过去的辉煌成就，在这些文字里，更能感受到诗沐老师作为一位优秀的产品经理，一些值得我学习借鉴的地方，因此，每每读及，感受到自己与其思维方式的差异，都羞愧万分，遂将其悉数记录，一方面警示自己，一方面也做记录之用。</p>
+<blockquote>
+<p>做了多年产品经理，我每天仍在做的一件事是什么？</p>
+<p>那就是日复一日、年复一年地了解用户。</p>
+</blockquote>
+<p>读到这里，不由脸颊发烫。作为一名AI 产品经理，我足够了解我的客户吗？他们是谁？他们在哪里？他们的痛点到底是什么？当整个人陷入项目的细节之中，就容易看不清大的趋势，因此，不断地反思、复盘、总结，就显得尤为重要。</p>
+<p>不过，在我写出上一段话之前，内心另一个声音告诉我。你做的是To B，和To C不一样，To C用户体量大，To B都是客户，客户体量小。这个思考的逻辑是说，客户体量小，就不用了解了吗？其实这个逻辑不过是为自己不足够了解，而找的借口。</p>
+<p>所以，我真的了解客户是谁吗？</p>
+<p>在AI行业，我也是混迹了2年。站在今天这个时间节点，回顾这两年，我做的所有工作，都是围绕两件事在做</p>
+<ul>
+<li>AI 算法竞赛</li>
+<li>AI 技术服务提供</li>
+</ul>
+<p>两件事针对不同的客户，其需求自然千差万别。着重看一下，AI技术服务提供（要回答这个问题，说实话，是需要数据支撑的）数据涉及到公司业务层面隐私，就不写出来。一个大概的画像：</p>
+<p>中小企业，希望短时间、低成本，搭建起一个生产环境可用的算法系统</p>
+<blockquote>
+<p>这个时代变化速度飞快，不断有新的文化、新的群体出现，如果我们不学习、不接触它们，仅仅一两年就有可能落伍。我在校园招聘时与应届毕业生进行交流，常感觉自己与它们之间存在代沟。他们中间流行什么？他们怎么理解互联网？这些疑问萦绕心头，迫使我想要深入理解他们的想法。虽然很残酷，但这个行业永远都是年轻人的世界，而且优秀创业者的年龄越来越小，所以作为产品经理除了每天持续地了解用户，别无他法。</p>
+</blockquote>
+<p>读到这里的感受，只有两字：深刻。</p>
+<p>背后的感慨原因，千千万万，以后再分析了。</p>
+<blockquote>
+<p>在研究电子音乐粉丝之前，我和很多人一样，把电子音乐与DJ、“土嗨”联系在一起，本能地对迪厅里播放的旋律和歌词一般的音乐无感。这是人的天性，对不了解的事情有自我防御机制。</p>
+</blockquote>
+<p>心理防御机制（Defence mechanism）</p>
+<blockquote>
+<p>Defense mechanisms are psychological strategies that are unconsciously used to protect a person from anxiety arising from unacceptable thoughts or feelings.</p>
+</blockquote>
+<p>心理防御机制是一种会被无意识使用的心理策略，人类使用这种策略来使自己远离不可以接受的思想和感受带来的焦虑。</p>
+<p>下图是一些常见的防御机制<img src="https://www.simplypsychology.org/defense-mechanisms.jpg?ezimgfmt=rs:611x451/rscb18/ng:webp/ngcb18" alt="defense mechanisms"></p>
+<p>否认是防御机制的一种。其实这种否认，我也常用。</p>
+<p>我diss一些产品设计无聊，但是我都没有认真去了解这些产品到底为什么会被设计出来。</p>
+<p>我否认自己做技术产品没有天赋，但是我压根都没有真地全力以赴地去学习，如何独立地写一段完整的代码。</p>
+<p>否认是一件非常简单的是，但是真实面对自己，不对自己说谎，更难，但是能产生不一样的结果。</p>
+<p>比如，我现在也开始撇弃对社交产品的偏见，从之前单一地将其归为约炮软件，或者寂寞人来使用的软件，到认识到，约炮也好，寂寞想找人倾诉，这都是人的需求，正视用户的需求，是成为优秀产品经理的第一步。选择看见而不是视而不见。同时，我开始认真严肃地对待Python、SQL，自己也能独立写代码，完成项目交付。</p>
+<p>最后说一下预见趋势。</p>
+<blockquote>
+<p>2014年，虽然当时在各个音乐排行榜上，前十里看不见电子音乐，但我们仍根据研究结果判断电子音乐是未来发展的趋势。我们不遗余力地鼓励电子音乐达人们做歌单、做电台，并在网易云音乐商业上帮助他们推广，与国内的电子音乐推广团队合作，并将电子音乐派在仅次于流行、摇滚、民谣音乐的位置。</p>
+</blockquote>
+<p>诗沐老师能够在2014年时候，就预见电子音乐是未来发展的趋势。其洞察力，不由让人大呼惊叹。仔细思考，对于诗沐老师来说，这也应该是水到渠成的事，因为他长时间对用户的研究，分析。</p>
+<p>只有深入理解了用户，才能做出准确而迅速的判断。</p>
+<p>阅读完这个，我也给我自己布置一个任务吧。</p>
+<ul>
+<li>本周和下周，完成市场上AutoML的使用，产出分析报告</li>
+<li>找10个AutoML的深度用户，做interview</li>
+</ul>
 
           
         
@@ -1596,186 +1596,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/CAIO总结复盘/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/24/CAIO总结复盘/" class="post-title-link" itemprop="url">CAIO总结复盘</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-05-24 00:00:00 / Modified: 13:48:32" itemprop="dateCreated datePublished" datetime="2020-05-24T00:00:00+08:00">2020-05-24</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在卫哲老师的书《21世纪职业生涯完胜之道》，有这样一段描述</p>
-<blockquote>
-<p>问：“请问您的企业是如何成功的？”<br>答：“靠我们丰富的经验。”<br>问：“您是怎样取得这些丰富的经验的？“<br>答：”因为我们犯过许多许多错误。“<br>这个对话告诉了我们要百倍重视总结企业实践，不论成功的或失败的，不仅要善于总结自己的实践，而且应该认真学习别人实践的经验和教训。</p>
-</blockquote>
-<p>这段对话非常有意思，对我也非常有启发，要想更快速的成长，就要多总结，不光总结自己成功的经验，也要总结自己失败的经验。不光要总结自己的经验，也要学习和总结别人的经验。</p>
-<p>最近公司举办了CAIO活动，听了同事们的分享，有一些收获。</p>
-<h1 id="总结一"><a href="#总结一" class="headerlink" title="总结一"></a>总结一</h1><p>对于所有新业务场景的探索都可以问两个问题：</p>
-<ol>
-<li>没有经验，如何往下走</li>
-<li>接下来往哪个方向走</li>
-</ol>
-<h1 id="总结二"><a href="#总结二" class="headerlink" title="总结二"></a>总结二</h1><p>重视客户的诉求。</p>
-<p>Case ：客户想要的是解决一个场景的具体问题，但是我们一直在给客户推平台。有了平台是否等于可以解决这个问题。如果答案不是Y，那么这个客户引导就是错误的。</p>
-<h1 id="总结三"><a href="#总结三" class="headerlink" title="总结三"></a>总结三</h1><p>Critical Thinking<br>在我们读论文也好，读资料也好的时候，一定要有critical thinking，思考3个问题：</p>
-<ol>
-<li>是不是就是这么回事</li>
-<li>如果是，那是为什么</li>
-<li>如果不是，那又是为什么</li>
-</ol>
-<p>最后吐槽一句：市面上的招聘企业，经常把年限作为一个标准，但是实际上，不同的人，其工作习惯不同，在是否善于总结，发现规律，以及总结成方法论这些方面，有很大差异。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/2020年Q1复盘/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1966,6 +1786,186 @@
 <p>客观来说，对于上述流程，每个模块我都可以完成，但是缺乏体系。因此，我会按照这个思路，来整理出来我的思维体系结构。</p>
 <p>修改完这篇复盘，其实已经是Q2过去了3周了。本篇文章里面的目标和措施，在Q2的计划里面做了详细描述，就不在本篇赘述。</p>
 <p>接下来的目标和措施，参考文章《<a href="https://kerryli1007.github.io/2020/05/05/%E6%8E%A5%E4%B8%8B%E6%9D%A53%E4%B8%AA%E6%9C%88%E7%9A%84%E6%88%90%E9%95%BF%E8%A7%84%E5%88%92/" target="_blank" rel="noopener">接下来3个月的成长规划 | 一颗西蓝花🥦</a>》</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/CAIO总结复盘/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/24/CAIO总结复盘/" class="post-title-link" itemprop="url">CAIO总结复盘</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-24 00:00:00 / Modified: 13:48:32" itemprop="dateCreated datePublished" datetime="2020-05-24T00:00:00+08:00">2020-05-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在卫哲老师的书《21世纪职业生涯完胜之道》，有这样一段描述</p>
+<blockquote>
+<p>问：“请问您的企业是如何成功的？”<br>答：“靠我们丰富的经验。”<br>问：“您是怎样取得这些丰富的经验的？“<br>答：”因为我们犯过许多许多错误。“<br>这个对话告诉了我们要百倍重视总结企业实践，不论成功的或失败的，不仅要善于总结自己的实践，而且应该认真学习别人实践的经验和教训。</p>
+</blockquote>
+<p>这段对话非常有意思，对我也非常有启发，要想更快速的成长，就要多总结，不光总结自己成功的经验，也要总结自己失败的经验。不光要总结自己的经验，也要学习和总结别人的经验。</p>
+<p>最近公司举办了CAIO活动，听了同事们的分享，有一些收获。</p>
+<h1 id="总结一"><a href="#总结一" class="headerlink" title="总结一"></a>总结一</h1><p>对于所有新业务场景的探索都可以问两个问题：</p>
+<ol>
+<li>没有经验，如何往下走</li>
+<li>接下来往哪个方向走</li>
+</ol>
+<h1 id="总结二"><a href="#总结二" class="headerlink" title="总结二"></a>总结二</h1><p>重视客户的诉求。</p>
+<p>Case ：客户想要的是解决一个场景的具体问题，但是我们一直在给客户推平台。有了平台是否等于可以解决这个问题。如果答案不是Y，那么这个客户引导就是错误的。</p>
+<h1 id="总结三"><a href="#总结三" class="headerlink" title="总结三"></a>总结三</h1><p>Critical Thinking<br>在我们读论文也好，读资料也好的时候，一定要有critical thinking，思考3个问题：</p>
+<ol>
+<li>是不是就是这么回事</li>
+<li>如果是，那是为什么</li>
+<li>如果不是，那又是为什么</li>
+</ol>
+<p>最后吐槽一句：市面上的招聘企业，经常把年限作为一个标准，但是实际上，不同的人，其工作习惯不同，在是否善于总结，发现规律，以及总结成方法论这些方面，有很大差异。</p>
 
           
         
@@ -2485,11 +2485,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>

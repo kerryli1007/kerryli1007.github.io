@@ -323,764 +323,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/How Complex Systems Fail/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/06/26/How Complex Systems Fail/" class="post-title-link" itemprop="url">How Complex Systems Fail</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-06-26 00:00:00 / Modified: 11:37:50" itemprop="dateCreated datePublished" datetime="2020-06-26T00:00:00+08:00">2020-06-26</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/思考/" itemprop="url" rel="index"><span itemprop="name">思考</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>James Hamilton<br><img src="https://kerryli1007.github.io/images/HowComplexSystemsFail/1.png" alt><br>谁是James Hamilton？<br>James Hamilton负责亚马逊云计算技术的副总裁和杰出工程师，他曾经还是兰博基尼和法拉利的专业汽修工。</p>
-<p>他的博客地址[<a href="https://perspectives.mvdirona.com/]" target="_blank" rel="noopener">https://perspectives.mvdirona.com/]</a></p>
-<p>今天在他的博客上看到一篇论文：How Complex Systems Fail，因为现在我也在设计复杂系统，同时工作中也会接触一些复杂系统的产品，因此，阅读研究一下，并做一些笔记记录。</p>
-<p>这篇论文一共讲了18个有可能让复杂系统崩溃的原因：</p>
-<ol>
-<li>Complex systems are intrinsically hazardous systems.复杂系统本身就是很危险的系统<br>复杂系统本身就很复杂。云官网和FS大学用的是同一个登录系统。FS有一次对登录系统数据库进行了修改，直接导致我们整个官网所有用户无法登录，无法修改密码。复杂系统彼此之间相互影响，很可能有时候，不知道修改了什么，就会对其他的部分造成影响。</li>
-<li>Complex systems are heavily and successfully defended against failure.复杂系统在很大程度上成功地防御了故障。<br>为了规避复杂系统崩溃带来的严重后果，对于复杂系统会创造一些防御机制</li>
-</ol>
-<ul>
-<li>技术层面，备份</li>
-<li>人员操作层面，知识经验培训</li>
-<li>组织层面，政策，操作流程<br>这些措施在一定层度上可以规避失败。</li>
-</ul>
-<ol start="3">
-<li>Catastrophe requires multiple failures – single point failures are not enough.多重故障导致了灾难，不仅仅是单点故障。</li>
-<li>Complex systems contain changing mixtures of failures latent within them.复杂系统包含潜在的多重故障。</li>
-<li>Complex systems run in degraded mode.复杂系统以降级模式进行。</li>
-<li>Catastrophe is always just around the corner. 灾难无处不在。</li>
-<li>Post-accident attribution accident to a ‘root cause’ is fundamentally wrong.灾难事后归因分析错误。</li>
-<li>Hindsight biases post-accident assessments of human performance.事后分析逻辑带有偏差。</li>
-<li>Human operators have dual roles: as producers &amp; as defenders against failure.系统操作者有双重角色：他创造了系统也要防止系统的崩溃</li>
-<li>All practitioner actions are gambles. 所有的实践操作者都是赌徒（hhhh，这一条好有意思，说白了，就是实践操作者在凭运气，感觉关于系统的失败，本篇论文的一些观点和《失败的逻辑》里面的部分逻辑一致，不过很久没看失败的逻辑了，也回忆不清楚了）</li>
-<li>Actions at the sharp end resolve all ambiguity.果断的行动结束所有的不确定性。</li>
-<li>Human practitioners are the adaptable element of complex systems.人类是复杂系统的可适应元素。</li>
-<li>Human expertise in complex systems is constantly changing.人类关于复杂系统的认知在不断变化。</li>
-<li>Change introduces new forms of failure.改动会带来新的失败。</li>
-<li>Views of “cause” limit the effectiveness of defenses against future events.看待原因的方式会局限我们设计防御失败事件的措施的有效性</li>
-<li>Safety is a characteristic of systems and not of their components.安全是系统的特征，而并非系统的一部分。</li>
-<li>People continuously create safety. 人类持续创造安全。</li>
-<li>Failure free operations require experience with failure.要想无误的操作机器需要有丰富经验的操作者，而这个操作者肯定是有失败经历的。</li>
-</ol>
-<p>最后，James Hamilton是一个非常有意思的Hacker，Wired写过一篇过于他的文章，称他为文艺复兴式黑客，黑掉生活、黑掉一切，然后寻求焕然一新。</p>
-<p>对他有兴趣的同学，可以看Wired的报道：<a href="https://www.wired.com/2013/02/james-hamilton-amazon/" target="_blank" rel="noopener">https://www.wired.com/2013/02/james-hamilton-amazon/</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/Q2_Week8_工作总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/06/26/Q2_Week8_工作总结/" class="post-title-link" itemprop="url">Q2_Week8_工作总结</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-06-26 00:00:00 / Modified: 11:56:24" itemprop="dateCreated datePublished" datetime="2020-06-26T00:00:00+08:00">2020-06-26</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论。</p>
-<p>本周关键词：复杂系统设计、进程1&amp;2、tools-for-thought</p>
-<h1 id="复杂系统设计"><a href="#复杂系统设计" class="headerlink" title="复杂系统设计"></a>复杂系统设计</h1><p>最近在研究云系统，调研了市场上的其他云产品商家：阿里云、腾讯云、百度云、京东云。<br>调研报告，正在撰写中，等完成之后整理出来。</p>
-<h1 id="进程1-amp-2"><a href="#进程1-amp-2" class="headerlink" title="进程1&amp;2"></a>进程1&amp;2</h1><p>关于进程1&amp;2，在另一篇文章，谈谈“不动脑子”这回事，做了复盘。</p>
-<h1 id="tools-for-thought"><a href="#tools-for-thought" class="headerlink" title="tools-for-thought"></a>tools-for-thought</h1><p>tools-for-thought是我本周发现的最让人激动的概念，</p>
-<p>tools-for-thought是Howard Raheingold在1995年发表的论文，该篇论文的全称叫做《Tools For Thought: The History and Future of Mind-Expanding Technology》<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/1.png" alt></p>
-<p>从全称可以看出，作者在关注能够扩展我们大脑的技术，也就是Doug说的augmenting human intelligence。</p>
-<h2 id="关于工具"><a href="#关于工具" class="headerlink" title="关于工具"></a>关于工具</h2><p>我自身对于工具是有一种热爱。我热爱使用各类个人工具来帮我更高效的学习、生活，并且，喜欢研究各类协同办公产品，在线文档、敏捷开发、范OA、视频会议。</p>
-<p>我对工具的热爱，起源于熊掌记Bear。Bear是一款Markdown写作笔记软件，从我第一次下载他，我就喜欢上了这款软件。我喜欢上他的原因也非常简单，因为这款笔记很美。支持多种主题切换，每种主题的配色，都深得我心。感受一下截图<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/2.png" alt><br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/3.png" alt><br>除了主题配色，在类目管理，还支持icon<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/4.png" alt><br>刚下载Bear研究图标时候，设置的小黄鸭icon，因为那个时候，关于程序员用小黄鸭debug的段子非常火。</p>
-<p>所以，我就先是这样“肤浅”地因为“美”喜欢上了这款笔记。<br>同时，因为这款笔记非常的轻量级<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/5.png" alt><br>可以随意新开一个编辑文档，将其调节成合适的大小，就可以开始创作，因此，我爱上了这款软件，与此同时，我也爱上了写作。很难说，这两者之间的关系，如果没有一款这么好的写作软件，我也不知道，我是否会爱上写作，毕竟，一开始，写作确实是一件很枯燥的事。<br>发现了Bear之后，我开始在写作软件的世界里探索，接着我发现了</p>
-<ul>
-<li>MWeb、惊奇于其强大的标签管理体系，遂开始用MWeb来对我的输出文章，做管理<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/6.png" alt></li>
-</ul>
-<ul>
-<li><p>Ulysses，Ulysses支持的可以宽幅度输入，解决了强迫症的我，希望将页面占满的诉求<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/7.png" alt></p>
-</li>
-<li><p>Typora，Typora的TOC功能，让我在写大篇大论时候，总会诉诸于他。<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/8.png" alt></p>
-</li>
-</ul>
-<ul>
-<li>Notion，Notion的创始人Ivan Zhao重新定义了信息的组织形式<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/9.png" alt><br>我第一次知道，原来信息还可以被这样组织起来。在研究Notion的旅程，我发现了tools-for-thougt这个思想，当时的感受，就是一下子被击中了，原来，这就是我一直在寻找的思想。</li>
-</ul>
-<p>对于每一款写作工具，我都了解他们的属性，并且知道，哪一款产品，适合哪个场景下的需求。<br>在大量的使用中，我甚至感觉，和这些软件之间已经建立了某种合作关系。这一年多，我的输出量猛增，并且形成了坚持写作的习惯，很难说，是因为我形成了坚持写作的习惯，所以我不断地去探索和研究这些有趣的工具，还是因为有这些工具，我也乐得写作。不过，有一点是肯定的，这些工具在某种程度上，也塑造了我加工信息的方式。对于文章呢整理这件事，我向来的原则是，1周或者1个月整理一次，那么没有整理的时候，不可避免，这些文章会散落在各个地方。有了Mweb之后，我是会有意识地利用MWeb作为第二个大脑，协助我分类、归纳这些内容。</p>
-<p>关于个人使用工具，暂且聊到这里。除了个人使用工具，我也关注协同办公，使用协同办公的时间都是上班时间，每个人肯定都希望提升上班时间的效率，增加ROI，但是工作中难免有一些流程上的事务工作需要解决，比如报销、比如审批，每次当我使用相关软件时候，都会觉得不可思议。</p>
-<p>关于对报销产品的分析，参考《人月神话（3）》</p>
-<h2 id="关于职业发展"><a href="#关于职业发展" class="headerlink" title="关于职业发展"></a>关于职业发展</h2><p>我对工具是有执着和热爱，同时，我也想创造出好的工具，是Doug说的augmenting human intelligence，也是乔布斯说的 bicycle for our mind。</p>
-<p>写在最后，我每次周总结，都是用MWeb写，今天发现可以直接生成Html，效果如下<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/10.png" alt><br>我在想，是不是可以直接将html文件部署上hexo，这样就方便很多，起码不需要，单个插图。不过暂时，还没有找到具体操作方式，慢慢研究一下<br>～</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/25/Tool Builder/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/06/25/Tool Builder/" class="post-title-link" itemprop="url">Tool Builder</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-06-25 00:00:00 / Modified: 14:32:49" itemprop="dateCreated datePublished" datetime="2020-06-25T00:00:00+08:00">2020-06-25</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://kerryli1007.github.io/images/ToolBuilder/1.png" alt></p>
-<blockquote>
-<p>I think one of the thing that really separates us from the high primates is that we’re tool builders and I read a study that measured the efficiency of locomotion for  various species on the planet . The Condor used the least energy to move a kilometer,  and humans came in with a rather unimpressive showing about a third of the  way down the list it was not too proud of a showing for the crown of creation so that didn’t  look so good but then somebody at  Scientific American had the insight to test the efficiency of locomotion for a man on a bicycle and human on a bicycle blew the Condor away completely off the top of the charts and that’s what a computer is to me what a computer is to me is the most remarkable tool that we’ve ever come up with and it’s the equivalent of a bicycle for our mind.<br> Man is a tool maker, make a tool to amplify an inherent ability that yes and that’s exactly what we’re doing here.</p>
-</blockquote>
-<p>Scientific American做的这个研究，乔布斯在多次演讲中都提到，并且强调他正在做的一件事，那就是making a tool to amplify an inherent ability。</p>
-<p>这是乔布斯在25岁提出的，出生于1955年的乔布斯，做上述演讲时候是1980年。</p>
-<p>用工具来增强人类智能，这个观点也不是乔布斯第一次提出，Douglas Engelbart在1962年的论文《Augmenting Human Intellect: A Conceptual Framework》</p>
-<p>从Doug到乔布斯，大家都在做同一件事，那就是making a tool to amplify an inherent ability。</p>
-<p>这也是Ivan Zhao在解释他创造Notion时，说到2点：</p>
-<blockquote>
-<p>tools for thought<br>我没有创造什么，我只是在复刻历史。</p>
-</blockquote>
-<p>对于Notion，朋友说了一句话：</p>
-<blockquote>
-<p>Notion的交互逻辑和视觉风格都非常有Apple 早期的感觉，对「机构记忆」非常执着，很有趣。</p>
-</blockquote>
-<p>最后，自己一直都痴迷于工具，如今研究这些思想的起源，格外有趣。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/25/怎样的软件才算是优秀软件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/06/25/怎样的软件才算是优秀软件/" class="post-title-link" itemprop="url">怎样的软件才算是优秀软件</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-06-25 00:00:00 / Modified: 16:15:02" itemprop="dateCreated datePublished" datetime="2020-06-25T00:00:00+08:00">2020-06-25</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>大师访谈录：成就非凡的软件人生第二章节。</p>
-<p>写在前面</p>
-<p>从书本结构维度，本书一共有24个章节，每个章节由2个部分组成，部分1是作者的讲解，部分2是作者采访一些硅谷知名人士。</p>
-<ul>
-<li>部分1<br>对于部分1的讲解，我感觉，比较漂在空中，作者提出的一些议题，比如：<ol>
-<li>两类客户：现有用户和潜在用户；</li>
-<li>用户需求：听还是不听</li>
-</ol>
-</li>
-</ul>
-<p>开始看到”两类客户”这个议题时候，我产生了非常强烈的共鸣，To B公司，特别是早期，在维护现有客户时候，是真的需要投入大量的资源，客户提出了定制化需求，做还是不做？做就有收入，员工下个月的工资就可以发出来，不做，就什么都没有。我是预期，作者是可以就这个角度，能有一些精彩且有例证的讲解，毕竟书名都讲的是大师访谈录，结果，作者给出的评论是：</p>
-<blockquote>
-<p>只关注现有客户是十分短视的商业行为，这虽然能促进短期收益增加，但是却不可避免第导致长期收益受限，自我局限了产品的潜在收益。……..<br>产品要想获得成功，就需要兼顾新老用户，而其中的关键在于保持平衡的投入。企业领导需要让整个企业意识到，在产品的成长期，工作重心应该是略微倾向于新用户，而随着市场份额的成熟，重点应该转移到老用户，如何来奠定企业发展基调，让自己的事业发展更上一层楼。</p>
-</blockquote>
-<p>对于作者的评论，情绪强烈一点，我的认为这就是“正确的废话”。</p>
-<p>我只看了两个章节，对于全书的风格不得而知。但是在前两个章节，作者的废话的风格可谓是贯彻地很彻底，比如上面提到的“用户需求：听还是不听”？作者讲述的就是，产品研发需要听市场需求。没错啦，这句话没错，很对。但是就是，你本来期待是一些软件大师，在商业战场上，真刀真枪拼搏的经验分享，没想到，最后讲的都是正确的已知的废话。今天，互联网行业的每个人，不管是产品经理，还是运营，大家都知道，产品研发要听市场需求。</p>
-<ul>
-<li>部分2<br>对于部分2，我感觉，有点故事会的感觉。是的，故事会，对大佬的采访不痛不痒，整个文章以对话的形式展开，列举一些<ul>
-<li>你认为研究生学位有价值吗？</li>
-<li>你如何实现工作和生活的平衡？</li>
-<li>你在软件行业有什么烦心事吗？</li>
-<li>…….<br>诸如此类的问题吧，知乎风格，而且，基本上，对每位大师的采访都是同样的问题。</li>
-</ul>
-</li>
-</ul>
-<p>最后，吐槽有点多，确实是太过于失望，对这本书，但是毕竟读了，也还是有一些收获的，记录下来，后面的章节暂时不会再读了。</p>
-<p>当然，对于大学生，比如大一、大二的学生，读读还是可以的，这也是本书作者的定位。不过，大一、大二的学生，读部分1中的高谈阔论，还不如花这个时间，去学习硬技能，比如编程。</p>
-<h1 id="时机"><a href="#时机" class="headerlink" title="时机"></a>时机</h1><blockquote>
-<p>若想在职的价值，业上所有发展，就要培养一种强大的直觉力，能够分辨什么才是真正优秀的软件，这一点相当重要。懂得什么是优秀的软件，就能觉察项目的价值，避免在注定无望的项目上白费功夫，而是为有前景的项目助力，使之更加成功。Robert Kahn博士是因特网的联合发明人，在我对他的一次采访中，他曾提到，在职业中感知事物的发展趋势是很关键的：<br>“你必须在恰当的时机站在正确的位置…….冰球手 Wayne Gretzky说过一句非常有名的话：“冰球运动的精髓是要时时刻刻明白下一步该站在哪里。”我认为这就是你最应该懂得的道理，对事物发展的方向要有敏锐的洞察力。如果你清楚冰球下一步要滑到哪儿，自然就知道该站在哪个位置上接球。</p>
-</blockquote>
-<p>这段也有一点废话啦，不过对我来说，还是有启发，就是对行业趋势的判断。类似梁宁老师在职业发展中讲的点、线、面，对我而言，我下一步的职业发展是要找到一个面，而这个面肯定是工具属性相关的，且在未来5 - 10年应该是呈发展趋势，但是具体是什么，我一时半会儿也无法回答，只有在不断的探索、研究、沉淀、抽象之后，才能得出最终的结论呢。</p>
-<h1 id="工作的优先级与思考"><a href="#工作的优先级与思考" class="headerlink" title="工作的优先级与思考"></a>工作的优先级与思考</h1><p>这个话题，我觉得非常有意思。</p>
-<h2 id="工作优先级"><a href="#工作优先级" class="headerlink" title="工作优先级"></a>工作优先级</h2><p>工作优先级这个肯定是必须的，对于互联网人来说，对工作进行优先级判断，应该是最底层的基本素养。<br>搜狗CEO王小川最近发布的湖畔大学第一课笔记汇中，也写到了</p>
-<blockquote>
-<p>有了优先级，就不会忙死。<br>对于我们来说，优先级这3个字，一定要和日常工作习惯融入在一起。事事皆有他的优先级。</p>
-</blockquote>
-<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>工作优先级的背后是什么？是思考。这意味着我们在思考，应该如何把有限的时间，花费在最重要的事上。而要做出这个判断，是基于我们对我们当下目标的理解，以及我们对任务的理解，什么样的任务对于目标来说，roi最高。</p>
-<p>同时，思考，也意味着，我们会将一部分优先级不那么高的工作，移除我们的todolist，或者让这些待办一直都留在我们的todolist上，这都是没关系的。</p>
-<p>思考帮助我们制定工作优先级。工作优先级不单是关于我们最应该做什么的管理，同时，也是关于我们不应该做什么的管理。</p>
-<p>一个不会思考的人，和芦苇有什么区别？</p>
-<p>最后，端午节快乐呀～</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/24/关于思考、关于创作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1309,12 +551,24 @@
                 
               
 
-              <time title="Created: 2020-06-23 00:00:00 / Modified: 10:42:06" itemprop="dateCreated datePublished" datetime="2020-06-23T00:00:00+08:00">2020-06-23</time>
+              <time title="Created: 2020-06-23 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-23T00:00:00+08:00">2020-06-23</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-07-05 09:58:58" itemprop="dateModified" datetime="2020-07-05T09:58:58+08:00">2020-07-05</time>
               
             
           </span>
@@ -1331,7 +585,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/产品设计/" itemprop="url" rel="index"><span itemprop="name">产品设计</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
 
                 
                 
@@ -2203,11 +1457,1053 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/程序化广告交易（上）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/06/19/程序化广告交易（上）/" class="post-title-link" itemprop="url">程序化广告交易（上）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-07-05 09:59:17" itemprop="dateModified" datetime="2020-07-05T09:59:17+08:00">2020-07-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>目录：</p>
+<ol>
+<li>从广告到程序化广告</li>
+<li>程序化广告交易的生态系统</li>
+<li>程序化广告基础</li>
+<li>点击率预估与推荐算法</li>
+<li>案例</li>
+</ol>
+<p>因为文章较长，所以分为上下两部分，上部分，覆盖目录1和目录2，下部分覆盖接下来的。</p>
+<h1 id="一、从广告到程序化广告"><a href="#一、从广告到程序化广告" class="headerlink" title="一、从广告到程序化广告"></a>一、从广告到程序化广告</h1><h2 id="1-1-什么是广告？"><a href="#1-1-什么是广告？" class="headerlink" title="1.1 什么是广告？"></a>1.1 什么是广告？</h2><p>William F.Arens在《当代广告学》中给出定义</p>
+<blockquote>
+<p>广告是由已确定的出资人通过各种媒介进行的有关产品（商品、服务和观点）的，通常是有偿的、有组织的、综合的、劝服性的非人员的信息传播活动。</p>
+</blockquote>
+<p>回顾历史。</p>
+<blockquote>
+<p>广告这个词汇，最早源于拉丁文“adventure”，意思是引起注意，进行诱导。公元1300-1475年间，中古英语里有了“advertise”，其含义为“某人注意到某事”，后演变为引起别人注意，通知别人某件事。</p>
+</blockquote>
+<p>不难发现，广告的本质/目标，是需要向目标消费者进行告知、诱导和说服，最终，促成购买。</p>
+<p>广告有如下基本特征：</p>
+<ol>
+<li>为广告主（出资人）服务</li>
+<li>传递特定的信息内容</li>
+<li>传播对象具有选择性</li>
+<li>非人际传播方式</li>
+<li>进行说服性沟通</li>
+</ol>
+<p>分别理解一下这些特征，先说一下为什么要了解这些特征，从古至今，广告的发展历经变迁，但是其基本特征始终一致。</p>
+<p>（一）为广告主（出资人）服务</p>
+<blockquote>
+<p> 所谓广告出资人，就是广告活动的发起人，也就是广告主。在商业广告中，广告主通常是企业。</p>
+</blockquote>
+<p>（二）传递特定的信息内容</p>
+<blockquote>
+<p> 广告传播的内容具有一定的规定性，即具有营销的内涵。随着社会经济发展和市场营销活动的变化，广告的信息内容也在向深广开拓。</p>
+</blockquote>
+<p>（三）传播对象具有选择性</p>
+<blockquote>
+<p>广告传播活动不是以所有的消费大众为传播对象，而是向特定的目标市场进行的信息交流。这个目标市场是由企业根据营销目标来确定的，目标市场的消费者即是广告的传播对象。</p>
+</blockquote>
+<p>（四）非人际传播广告</p>
+<blockquote>
+<p>广告需要通过一定的媒体完成其传播过程，采用的是非人际的传播方式。严格意义上讲，广告的发展就是和媒体的进步联系在一起的。没有媒体的演变、进化，广告就失去了存续发展的根基。广告所借助的载体，从一般的媒介物，到大众传播媒体，再到媒体数字化时代的互联网，随着现代科学技术水平的提高，新的媒体还在增加，推动着当代广告活动翻天覆地的变化。</p>
+</blockquote>
+<p>（五）进行说服性沟通</p>
+<blockquote>
+<p>广告的最终目的，是使用目标消费者接受广告发出的信息，从而影响消费行为，促进销售。这样，就要运用各种各样的方式来表现广告信息。</p>
+</blockquote>
+<p>（六）一种付费的传播</p>
+<blockquote>
+<p>广告活动的整个过程，包括策划、制作广告作品，通过媒体发布信息，进行效果调查等每一个环节，都需要付出一定的费用。</p>
+</blockquote>
+<p>广告一般分两种：</p>
+<ol>
+<li>品牌广告：提升商家品牌影响力，促进大众的品牌认知，无需直接提升产品或服务的销售</li>
+<li>促销广告：商家直接为了提升产品或服务的销售而做的广告，能够直接造成用户的转化（例如点击、购买等行为）或商品的销售</li>
+</ol>
+<p>在本篇文章中，我们讨论的是<strong>促销广告</strong>。</p>
+<h2 id="1-2-程序化广告"><a href="#1-2-程序化广告" class="headerlink" title="1.2 程序化广告"></a>1.2 程序化广告</h2><h3 id="1-2-1-程序化交易广告为什么会出现"><a href="#1-2-1-程序化交易广告为什么会出现" class="headerlink" title="1.2.1 程序化交易广告为什么会出现"></a>1.2.1 程序化交易广告为什么会出现</h3><p>程序化交易广告的兴起，是为了满足何种需求？</p>
+<p>需求方希望优化投放效果。</p>
+<blockquote>
+<p> 我的广告费用有一半都是被浪费了的，但是问题是，我不知道是哪一部分。我花两百万美元做广告，但是我不知道这刚够一半还是多一倍。</p>
+</blockquote>
+<p>营销天才约翰.沃纳梅克曾说到。</p>
+<p> 广告投放效果的监控难题，一直存在。互联网的发展，使得大量投放数据得到了追踪。广告主对投放效果的要求也越来越高。因此，催生了程序化交易广告，允许广告主选择他们定义好的用户进行营销，同时，让广告主自行选择流量，以及对每次广告展示，进行独立出价。</p>
+<p>这样的需求，要求<strong>询价</strong>、<strong>出价</strong>和<strong>竞价</strong>同时进行，这就产生了以实时竞价（RTB）为核心的程序化交易市场。</p>
+<h3 id="1-2-2-程序化广告交易的核心RTB-Real-Time-Bidding"><a href="#1-2-2-程序化广告交易的核心RTB-Real-Time-Bidding" class="headerlink" title="1.2.2 程序化广告交易的核心RTB(Real Time Bidding)"></a>1.2.2 程序化广告交易的核心RTB(Real Time Bidding)</h3><p>RTB是指实时竞价广告模式，是一种高度程序化的广告购买与投放流程。RTB利用第三方技术在数以百计的网站或移动程序（App）上针对每一个用户的广告展示请求进行评估以及出价的竞价技术。与大量购买投放频次不同，实时竞价规避了无效的受众到达，针对有意义的用户进行购买。</p>
+<p>RTB是售卖广告展示（impression），下图是一个典型的RTB流程</p>
+<p><img src="https://kerryli1007.github.io/images/程序化广告交易（上）/1.png" alt></p>
+<p>0：用户打开电脑（app）登陆网站，这个动作被传输给Ad Exchange广告交易所</p>
+<p>1：广告交易向各需求方平台所发出竞价请求，用大白话来说，就是“诶，我这个用户，有向他展示广告的机会，你们要不要来？”为了方便各需求方平台做决策，Ad Exchange在发询问的时候，还会附带一些信息，包括用户信息，网页信息，以及上下文。</p>
+<p>2：需求方平台看到Ad Exchange的询问，并且根据已知的信息，对该用户的商业价值以及点击广告可能性进行了预估，结束之后，给出了一个竞价，反馈给Ad Exchange。</p>
+<p>3：Ad Exchange对多方需求平台给的竞价反馈进行综合评估，最后选择一家</p>
+<p>4：Ad Exchange会在竞价中选择一家，选择依据有价格，也有Ad Exchange做的点击预估概率</p>
+<p>5：Ad Exchange将相关广告信息展示给用户，这个用户展示信息里面是附带了用户行为追踪代码的</p>
+<p>6：最终，等待用户的行为。</p>
+<p>上述6个步骤，是一个典型的RTB流程，需要注意的是，整个流程是需要在100毫秒之内完成的。因此，对各个环节的性能要求都是极高的。</p>
+<blockquote>
+<p>RTB的优点：</p>
+<ol>
+<li>规避了无效的受众到达，针对有意义的用户进行购买</li>
+<li>（对广告商和代理公司）最直接的好处就是提高了效果与投资回报率</li>
+<li>（对媒体来说）带来了更多的广告销量、实现销售过程自动化以及减低各项费用的支出《互联网DSP广告揭秘：精准投放与高效转化之道》</li>
+</ol>
+</blockquote>
+<p>RTB这种广告交易方式有一个相对完整的产业链，包括Ad Exchange、DSP、DMP、SSP等4个重要的技术环节。RTB的4个重要技术环节协同实现了广告实时竞价的流程化、程序化，而要实现人群的精准定向，还需要Cookie Mapping技术。</p>
+<h1 id="二、程序化广告交易的生态系统"><a href="#二、程序化广告交易的生态系统" class="headerlink" title="二、程序化广告交易的生态系统"></a>二、程序化广告交易的生态系统</h1><p>上文提到了RTB，由4个主要的技术环节组成，这4个环节，也构成了程序化广告交易的生态系统。</p>
+<p>让我们来了解一下程序化广告交易的生态系统。</p>
+<blockquote>
+<p>生态系统的定义是，一定的生物群体相互依赖和生存的生态环境。《批判性思维工具》</p>
+</blockquote>
+<p>生态系统的中的生物群体，相互依赖和生存。程序化广告交易这个生态系统中的各个关键环节，相互依赖。</p>
+<p>我们分别了解一下这4个技术环节。</p>
+<h4 id="1-2-2-1-DSP（Demand-Side-Platform，需求方平台）"><a href="#1-2-2-1-DSP（Demand-Side-Platform，需求方平台）" class="headerlink" title="1.2.2.1 DSP（Demand Side Platform，需求方平台）"></a>1.2.2.1 DSP（Demand Side Platform，需求方平台）</h4><p>DSP（Demand Side Platform）需求方平台。</p>
+<h4 id="1-2-2-2-SSP"><a href="#1-2-2-2-SSP" class="headerlink" title="1.2.2.2 SSP"></a>1.2.2.2 SSP</h4><blockquote>
+<p>SSP是供应方平台（Supply Side Platform），是面向publisher（媒体主，即站点或APP的开发者或所有人）的供应方管理平台，作用包括帮助媒体主进行流量分配管理、资源定价、广告请求筛选等，更好地进行自身资源的定价和管理，优化营收。</p>
+</blockquote>
+<p>其实上述的这些定义，理解起来还是比较麻烦，举一个case来理解一下</p>
+<h4 id="1-2-2-3-Ad-Exchange"><a href="#1-2-2-3-Ad-Exchange" class="headerlink" title="1.2.2.3 Ad Exchange"></a>1.2.2.3 Ad Exchange</h4><h4 id="1-2-2-4-DMP"><a href="#1-2-2-4-DMP" class="headerlink" title="1.2.2.4 DMP"></a>1.2.2.4 DMP</h4><blockquote>
+<p>数据要发挥价值，就需要一个集中采集、存储、处理、分析、输出运用的系统平台，即大数据管理平台（Data Management Platform，DMP）</p>
+</blockquote>
+<p>DMP系统一般由4个功能模块：数据输入、标签制作、数据输出、数据报表</p>
+<p>未完待续～</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/18/Facebook效应（1）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/06/18/Facebook效应（1）/" class="post-title-link" itemprop="url">《Facebook效应》读书笔记（1）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-06-18 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-18T00:00:00+08:00">2020-06-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-07-05 10:02:08" itemprop="dateModified" datetime="2020-07-05T10:02:08+08:00">2020-07-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p> 最近在重温《Facebook效应》，发现阅读的书籍，过了一段时间之后，就忘记了，遂起念开始强制性地要求自己，每完成一章节的阅读，都要有记录，有输出。这么一来，阅读的速度肯定是会降下来，但是没有输出的阅读对我而言，是无意义的。</p>
+<h1 id="产品天才"><a href="#产品天才" class="headerlink" title="产品天才"></a>产品天才</h1><p>扎克伯格是一位产品天才，他有着极强的做社交产品的天赋。今天我们所了解到的，皆是他是Facebook的创始人。通过阅读《Facebook效应》，了解到扎克伯克一直都有做一些有趣的项目，一些新奇的产品。</p>
+<h2 id="课程搭配（Course-Match）"><a href="#课程搭配（Course-Match）" class="headerlink" title="课程搭配（Course Match）"></a>课程搭配（Course Match）</h2><p>课程搭配是为了帮助学生们根据别人的选课来确定课程表。只要点击一门课程，就能发现谁报名了这门课程，或者只要点击一个学生的名字，就能知道他报名了哪些课程。扎克伯克对这个项目的评价是：“通过事物就能把人联系起来。”</p>
+<p>这个创意，在今天看来，都是十分有趣的。在大学这样一个封闭的环境，你的所有社交都是围绕同学展开，有这样一个工具的帮助，可以去认识其他你有兴趣的朋友。我当初为了追前男友，也有偷偷跟踪他，最后发现他喜爱在某教学楼的一楼自习室自习，然后一周五天，都去和他偶遇。最后，才谈上了恋爱。</p>
+<h2 id="Facemash"><a href="#Facemash" class="headerlink" title="Facemash"></a>Facemash</h2><p>这个项目旨在标记出校园内最炙手可热的人物。扎克伯克邀请用户比较两位同性同学的相片，指出谁的人气更高。假如一位同学的评分等级更高些，那么此人的相片就会用来与其他更受欢迎的学生相比较。</p>
+<p>扎克伯克做了很多小项目，这些项目都是关于”发现人们如何通过相互参照建立联系“。</p>
+<h2 id="Facebook"><a href="#Facebook" class="headerlink" title="Facebook"></a>Facebook</h2><p>Facebook核心理念：开通一条帮助哈佛人分享更多信息的道路，这样一来，大家就能更多地了解到校园里发生了什么。扎克想做到这一点，所以建立了能得到所有人信息的渠道，而且每个人也都能与人分享自己希望共享的一切信息。</p>
+<blockquote>
+<p> 在这个网站上注册需要一张单人照和少量个人信息以创建个人简介。注册过程中要明确自己的相关状况，会从下拉式菜单中选择：单身或者未确定伴侣关系，还要确定自己的电话号码、AIM用户名、邮箱；说明自己选修的课程；最喜欢的书、电影和音乐；参加的团体；政治立场；态度以及最爱的名言。Facebook自身没有内容，它不过是一个程序，是为满足客户需要而提供的一个平台。</p>
+</blockquote>
+<p>在Facebook上，可以“桶一下”其他用户，对方的主页上就会显示出被“捅”的迹象。这意味着什么，扎克伯克的解释是：“我们认为这是有趣的做法，是一种没有特别意义的特别……那么就随意运用这个功能吧，因为你不会从我们这里得到解释。” </p>
+<p>哈哈，今天重温这段读书笔记，看到这里，突然想起来，微信最近新上线的拍拍功能。<br><img src="https://kerryli1007.github.io/images/《Facebook效应》读书笔记（一）/1.png" alt></p>
+<p>总之，其实很多产品设计，在理念上，都是有传承的，多看，多体验，就像张诗沐老师说的，只有多体验，多感受，才能眼界高。</p>
+<h1 id="第-2-章-锋芒微露"><a href="#第-2-章-锋芒微露" class="headerlink" title="第 2 章 | 锋芒微露"></a>第 2 章 | 锋芒微露</h1><p>Facebook第一批客户中有MasterCard，这家公司为大学生提供特别的信用卡服务。MasterCard的管理者们对 Facebook 是否拥有大流量表示怀疑。因此，MasterCard没有直接支付广告费用，只有在出现第一名学生提交了办卡申请才会同意付费。（对比当下，去公众号投广告，roi好多都为0了～这个现象是值得反省的。）最后，MasterCard收到的信用卡申请数比他们这场4个月的广告活动预计得到的数量多一倍。Facebook凭借正逢其时的客户——就读于顶级学府的富有本科生而赢得广告。MasterCard于是继续在这里投放。</p>
+<p>在扎克伯格看来，以广告获得尽可能多的收入还没有让用户始终开心重要。</p>
+<h2 id="Wirehog"><a href="#Wirehog" class="headerlink" title="Wirehog"></a>Wirehog</h2><p>在将大部分时间用于Facebook的同时，他和另一位大二的编程天才安德鲁.麦科勒伦开始着手设计一款被他们称为Wirehog的新软件，创造它的灵感部分是来自当年声名狼藉的音乐分享网站Napster。</p>
+<p>2003年秋，硅谷的风险投资者们将总金额3,500万美元的资金投向四家刚成立的当红社交网络公司——Friendster、LinkedIn、Spoke、Tribe。<br>(原来LinkedIn已经有17年的历史，而我认识这家公司不过4年。当年四家当红网络公司，如今也只有LinkedIn一家了）</p>
+<p>总结一下今天的阅读收获：</p>
+<ol>
+<li>视野，多看，多看，多学习别人怎么做的，别人如何思考的</li>
+<li>coding，编程真的蛮重要的，可以创造事物</li>
+</ol>
+<p>To Be Continued～</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/18/幕后产品（9）产品负责人的3个能力（上） | 商业嗅觉及推理能力/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/06/18/幕后产品（9）产品负责人的3个能力（上） | 商业嗅觉及推理能力/" class="post-title-link" itemprop="url">幕后产品（9）产品负责人的3个能力（上） | 商业嗅觉及推理能力</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-06-18 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-18T00:00:00+08:00">2020-06-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-07-05 09:57:16" itemprop="dateModified" datetime="2020-07-05T09:57:16+08:00">2020-07-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近看了《幕后产品》第九章，这一章节介绍了产品负责人需要具备的3个能力，产品能力如下：</p>
+<ol>
+<li><strong>商业嗅觉及推理能力</strong>：对产品扩张、商业化的敏锐感觉，以及推导出为何能获得更大的发展、如何能发展壮大。</li>
+<li><strong>业务架构以及创新能力</strong>：规划、实施复杂的业务架构，通过产品、运营、市场的多维度布局来打通用户对产品特性的认知。</li>
+<li><strong>善于沟通以及领导能力</strong>：鼓舞、带领团队向战略方向前进，克服非常之困难，完成非常之突破。</li>
+</ol>
+<p>我本来打算将这3个能力，写在一篇读书笔记中，但在实际撰写的过程中发现，随着最近半年的积累，我的输出能力明显提高，在构思读书笔记的时候，将一些额外的对产品的认知心得，也掺杂揉合了进来，故而越写越多，写完第一个能力字数就1万加了，因此，将这三个能力拆分为上中下三篇文章，每篇文章分别按顺序对应不同的能力。</p>
+<p>本篇主要关注“商业嗅觉以及推理能力”。</p>
+<ul>
+<li>阅读门槛 - </li>
+</ul>
+<ol>
+<li>时间：本篇读书笔记真的比较长了，1万字+，这还是我将文章拆分成上中下三部分。因此，对时间会有要求。</li>
+<li>可读性：说实话，这篇文章中的很多内容，比如认知状态，商业模式，工具型产品，如果不能带着思考阅读，基本上读不懂，如果没有耐心，就还是别读了～不如刷抖音</li>
+<li>适合人群：产品经理，对产品感兴趣的同学</li>
+</ol>
+<h1 id="一、从人的4种认知模式谈起"><a href="#一、从人的4种认知模式谈起" class="headerlink" title="一、从人的4种认知模式谈起"></a>一、从人的4种认知模式谈起</h1><p>商业嗅觉是什么意思，我的理解商业嗅觉即是对潜在商业模式的察觉。</p>
+<p>那什么是商业模式？</p>
+<p>为什么要将什么是商业模式，单独拿出来分析其定义，因为要想理解商业嗅觉离不开对商业模式的洞察，如果我们尚未真正了解什么是商业模式，那么对于商业嗅觉的分析，也无法理解透彻。</p>
+<p>什么叫做“尚未真正了解什么是商业模式”呢？在阅读书籍时候，我们很容易，陷入一种状态，这种状态就是，我们自以为自己知道某个概念的含义。但是我们压根没有理解其含义，也无法讲给别人听。这种状态是很可怕的。想到这里，我突然想起猎豹CEO傅盛在他的认知三部曲中有过极为精辟的讲解与总结，遂将其摘录<br><img src="https://kerryli1007.github.io/images/幕后产品（9）产品负责人的3个能力（上）|商业嗅觉及推理能力/1.png" alt></p>
+<blockquote>
+<p>这是一个人认知的四种状态，也是人的四种境界，可被翻译为：</p>
+<ol>
+<li>不知道自己不知道 —— 以为自己什么都知道，<strong>自以为是的认知状态。</strong></li>
+<li>知道自己不知道——有敬畏之心，开始空杯心态，<strong>准备丰富自己的认知。</strong></li>
+<li>知道自己知道——抓住了事情的规律，<strong>提升了自己的认知。</strong></li>
+<li>不知道自己知道——永远保持空杯心态，<strong>认知的最高境界。</strong></li>
+</ol>
+</blockquote>
+<p>95%的人都在第一阶段，绝大多数人在谈及一个概念时候，很容易出现这种状态，自己以为自己知道。关于其原因，傅盛解释到“自以为是，是自我认知升级的死敌”，这种说法有一定道理，但是我想从另一个角度来谈谈，为什么我们会迈入自己以及自己知道的误区。</p>
+<p>人学习知识并且将其掌握过程，遵循输入-加工-输出这3个步骤，很多时候，我们以为的掌握了某个知识，只是停留在输入这个阶段，或许是在某堂课上听老师讲过某个概念，又或是在某本书、某篇文章中，看到过相关的解读分析。但是，知识的掌握其需要一个内化的过程，单单的知识输入——没有经过知识加工以及独立输出，并不等于掌握了知识，也就是说，我们自以为的知识掌握，其实并不是真正的知识掌握。我们所处在状态，只是我们接受过这个概念的输入，但是我们并未对这个概念进行过加工以及输出。</p>
+<p>那么，如何自我检查，我们是否真的掌握了某个概念呢？<br>讲给别人听。</p>
+<p>爱因斯坦曾说：如果你不能把一件事解释给你祖母听的话，说明你还没有真正理解它。</p>
+<p>当我们知道，我们其实并未掌握某概念之后，我们便会开始尝试去了解这个概念。</p>
+<h2 id="二、到底什么是商业模式"><a href="#二、到底什么是商业模式" class="headerlink" title="二、到底什么是商业模式"></a>二、到底什么是商业模式</h2><p>说回商业模式，我们现在来讲讲到底什么是商业模式？</p>
+<p>商业模式回答了一个重要的问题，即“竞争优势的持续性”。也可以简单地理解为，商业模式回答的是，<strong>企业如何持续性赚钱</strong>。</p>
+<p>不同的时期，商业模式这个术语的用途有所不同，如下图所示。<br><img src="https://kerryli1007.github.io/images/幕后产品（9）产品负责人的3个能力（上）|商业嗅觉及推理能力/2.png" alt><br>如果希望对商业模式有进一步了解，可以阅读书籍《商业模式全史》。</p>
+<h2 id="三、网易云音乐的商业模式"><a href="#三、网易云音乐的商业模式" class="headerlink" title="三、网易云音乐的商业模式"></a>三、网易云音乐的商业模式</h2><p>了解了商业模式，我们回到网易云音乐的商业模式。</p>
+<p>商业模式回答的是如何可持续化赚钱。</p>
+<blockquote>
+<p>互联网的一个重要特征在于规模化，商业嗅觉是一种对扩张和盈利的敏锐直觉。如果按照一般营收业务和用户规模业务来区分，扩张是包含了这两者，无论是做用户规模业务，还是营收业务，都应该对扩张有敏锐的直觉，能够谋求更大的发展。</p>
+</blockquote>
+<p>什么是用户规模业务，我的理解是To C，如微博、微信、王者荣耀。<br>什么是营收业务，我的理解是To B，如SAP，Salesforce，Oracle这一类。</p>
+<p>不管是To B还是To C，MVP经过了市场检验（关于MVP，可以参考相关数据《精益创业》，这本书是一本非常好的书，很多创业者，对里面的一些建议都极佳推崇），都要追求扩张，谋求更大的发展。</p>
+<p>诗沐老师讲到一个产品的广告价值等于展现广告总时长与单位时长价格（这个价格通常与用户群、购买力、算法精准度等相关）的乘积。</p>
+<p>关于广告单位时长价格的影响因素，用户群、购买力、算法精准度。这3个因素，作者并没有展开来讲，因为最近我也正好在研究程序化广告投放，因此，在这一部分做一些补充说明：</p>
+<ul>
+<li>用户群，用户群，是男是女，比如美图秀秀，其女性用户占据绝大部分。</li>
+<li>购买力，这个和用户群有较大关系。</li>
+<li>算法精准度，算法精准度的本质是CTR预估，向某用户展示某广告，预估该用户有多大概率点击该广告。</li>
+</ul>
+<p>产品的广告价值 = 展示广告总时长 * 单位时长价格 </p>
+<p>公式我们知道了，如果说，现在你是这款产品的商业化负责人，现在需要提升产品的广告价值，你的思路是什么？暂停一下，想一下，我一直提倡带着思考的阅读，没有思考的阅读，本质上，毫无意义，单纯浪费时间而已。</p>
+<p>好了，思考结束。我们会想着从产品的广告价值的两个直接影响因素切入，比如提高展示广告总时长，同时，增加单位时长价格。</p>
+<p>我们再看看诗沐老师是如何做的呢？（在我们读书时候，读到关键的节点，我们可以将书合上，推演在这种情景下，我们会如何决策，接着我们再看书中的主人公如何决策，对比两者的差异，思考，总结）</p>
+<blockquote>
+<p>对于一个用来听音乐的App，用户听歌的时间肯定占大头，大部分音乐产品的这个时间都会占据90%以上。听音乐    是一件很随性的事情，可以边听音乐边刷微信、微博、看资讯、看书….这一方面是音乐App获得足够多用户的优势（与其他类型的App在用户时间层面竞争小），另一方面也是因为App获取用户眼球的劣势——用户习惯在后台运行App来听音乐，而不是盯着一个音乐App来听音乐。</p>
+</blockquote>
+<h3 id="3-1-用户使用产品的方式对商业化的影响"><a href="#3-1-用户使用产品的方式对商业化的影响" class="headerlink" title="3.1 用户使用产品的方式对商业化的影响"></a>3.1 用户使用产品的方式对商业化的影响</h3><p>从诗沐老师这段话，我们也可以得知，<strong>用户使用产品的方式</strong>，真的是对产品的商业化，有着非常大的影响。举个例子，“下厨房”这款App，是一款非常优秀的工具产品，日活过百万。</p>
+<blockquote>
+<p>据QuestMobile数据显示，2020年春节前后，下厨房日均DAU为106万。</p>
+</blockquote>
+<p>但商业化做得并不好。我为什么这样说这款产品的商业化做的不好呢？？</p>
+<p>受疫情影响，我这个外卖党，也开始下厨了，当然是需要下厨房这样专业的食谱工具的支持。但是，下厨房的开屏广告让我惊呆了，几个截图，感受一下<br><img src="https://kerryli1007.github.io/images/幕后产品（9）产品负责人的3个能力（上）|商业嗅觉及推理能力/3.png" alt><br><img src="https://kerryli1007.github.io/images/幕后产品（9）产品负责人的3个能力（上）|商业嗅觉及推理能力/4.png" alt><br><img src="https://kerryli1007.github.io/images/幕后产品（9）产品负责人的3个能力（上）|商业嗅觉及推理能力/5.png" alt><br>这是开屏广告哦？用户打开App，很明显，这个动作是有明显意图的，下厨房不是娱乐类产品，不像抖音、快手，这两者是用户无聊、寂寞了会打开看看，但是打开下厨房的用户，只有一个目标，就是要做饭。这样的开屏广告，而且是直接将用户链接到第三方页面，其用户体验可想而知，十分糟糕。除了开屏广告是跳转到第三方网页这个形式，还有的是，这些广告内容，“本社区交友，喜欢大叔型男友，可视频“，这是社交类产品，而且这个文案，也不太正经的样子，从这里可以看出，下厨房的广告选择丝毫没有边界。</p>
+<p>为什么会出现这个现象呢？因为使用下厨房的人，就是将下厨房当作纯粹的工具来使用，用完即走，虽然，下厨房也有尝试一些商业化的操作，比如销售一些商品，不过我测试过，这些商品，下单就会显示，没有库存。（摊手.jpg）</p>
+<p><strong>这就是用户使用产品方式和产品商业化之间的关系，下厨房的分析到此结束，有时间再对下厨房展开更多分析。</strong></p>
+<h3 id="3-2-网易云音乐商业化之路"><a href="#3-2-网易云音乐商业化之路" class="headerlink" title="3.2 网易云音乐商业化之路"></a>3.2 网易云音乐商业化之路</h3><p>回到网易云音乐，上文诗沐老师的分析，已经说到了，用户在使用网易云音乐时候，习惯在后台运行App听音乐。要增加产品的广告营收，就需要增加用户视觉停留在App上的时长。</p>
+<blockquote>
+<p>如果按照听歌前、听歌时、听歌后来划分的话，听歌前在大多数情况下是不行的。如果让用户在听歌前花费很多时间，这将与用户需求相悖。而在听歌时，听歌后，其实有空间可以挖掘。<br>发现没有，诗沐老师在分析问题的时候，是将一个大的议题，根据某种规则，将其分解为小的组成部分，然后对每个部分进行依次分析。同样的，在我们分析大的问题时候，我们也可以从某个维度将其拆解为小的部分。</p>
+</blockquote>
+<blockquote>
+<p> 音乐评论恰恰是能够扩展这个空间的功能。如前面的章节所述，网易云音乐成功地让用户养成了边听音乐边看评论的习惯，大大地增加了用户眼球停留在App上的时长：一首歌接一首地听下去，一条评论接一条地看下去。这样就给网易云音乐的营收业务拓展了新的土壤，而非像许多其他音乐产品那样在音频上加广告——这必然会伤害用户体验。有了不断增加的用户视觉的停留时长，网易云音乐就有了更多的想象空间，在营收业务上也有了更多的结合点，最简单、粗暴的方法就是在评论区放置演唱会门票的售卖链接，这都是以前纯音频App所不可想象的。<br>诗沐老师的这本书首次发版时间是2019年4月。2020年6月，QQ音乐一则相关新闻出现在人们眼球，“QQ音乐开始在歌曲之间自动插播广告了，时长约15秒，如果不想听广告，就开VIP会员“<br><img src="https://kerryli1007.github.io/images/幕后产品（9）产品负责人的3个能力（上）|商业嗅觉及推理能力/6.png" alt></p>
+</blockquote>
+<p>这个举措，毫无疑问，为qq音乐招致骂声一片。写到这里，我方才回过神来，诗沐老师对行业商业化，用户的了解，真的是洞若观火。</p>
+<p>他首先是深刻地了解到在音频上加广告，伤害用户体验，同时，他在很早就开始规划，深耕评论，增加用户的视觉停留时长，这一招，真的是太高了，高手～<br><img src="https://kerryli1007.github.io/images/幕后产品（9）产品负责人的3个能力（上）|商业嗅觉及推理能力/7.png" alt><br>截图是网易云音乐的直播广告位～</p>
+<blockquote>
+<p>整个思考过程就是在营收业务扩张上的商业嗅觉，敏锐地觉察到商业机会在哪里，这些机会往往也是当下没有被充分挖掘的，因此，商业嗅觉才如此重要。</p>
+</blockquote>
+<p>敏锐地觉察到商业机会在哪里。我觉得这里还有一点，就是，在别人还没有觉察到的时候，去觉察到接下来的商业机会。有点像我司，觉察到未来AI行业重要的竞争是算力。</p>
+<p>到上面为止，在商业嗅觉这里，网易云音乐的case分析结束。不过，作者非常给力，除了和我们分享了他亲自操盘的网易云音乐，还分享了他对两个国民应用的观察与分析，今日头条和微信。</p>
+<h1 id="四、今日头条和微信的扩张案例"><a href="#四、今日头条和微信的扩张案例" class="headerlink" title="四、今日头条和微信的扩张案例"></a>四、今日头条和微信的扩张案例</h1><blockquote>
+<p>今日头条在用户量飞速增长时做了什么？剖析它每一个阶段的策略，其实会发现打法很有规律：它在用户规模扩张时最强的一个手段是<strong>扩展领域</strong>。</p>
+<p>今日头条的发展经历了：资讯个性化 &gt; 视频 &gt; 头条号（泛内容平台）&gt; 社交。每一个阶段其实都是在打造不同的引擎，与不同的竞争对手抢用户时间。这里有一个很重要的商业嗅觉，即利用资讯个性化 + 视频与其他新闻资讯产品竞争，这是高一个段位的打法。也就是说，当其他竞争对手在追逐今日头条的资讯个性化优势时，今日头条又增加了一个视频的引擎，双引擎打单引擎。这就在大局上占据了上风，对于原有的资讯产品的用户，吸引力非常大，而对于视频产品，今日头条则能很好地避开直接竞争，因为视频产品现在用户需求大量集中在电视剧、综艺节目、电影、而今日头条上更多的是轻松、搞笑的段视频。</p>
+</blockquote>
+<p>在这里，一共讲了两个关键点：第一个是双引擎打单引擎，我认为在双引擎打单引擎这个维度，作者的分析，其实是泛善可陈，从读者的角度来看，作者并没有讲清楚，为什么双引擎打单引擎就是更好的，只是概括了一句，这就在大局上占据了上风。换个角度，如果字节当时失败了，是不是也可以说，是因为字节对自己的业务没有聚焦；第二点是字节头条的视频产品和当时市面上的产品，其实是错位竞争，并没有直接硬碰硬，这个点，我认为非常具有启发意义，如果有对字节段视频如何火起来，感兴趣的朋友，可以认真去研究一下西瓜视频和抖音。</p>
+<blockquote>
+<p>同样，在通过视频增加了引擎发展之后，今日头条瞄准了新的方向——叫做头条号，把自己变成了一个泛内容平台。这个动作其实是瞄准了微博和微信的定位，它在扩张时通过涉足更广泛的领域，吸引用户更多的碎片时间。当然，当字节头条的边界不断扩张的时，总会和竞争对手发生交集，这样更激烈的竞争就产生了，也就必然意味着今日头条要在内容和设社交领域有所拓展——接连推出好几个短视频产品。<br>上面这一段话，其实内容密度是非常大。短视频作为发展引擎，接着做泛内容平台，瞄准微信和微博，碎片化时间，边界扩张，与竞争对手发生碰撞。一小段，作者写了大量的内容，里面的逻辑道理，是需要读者去细细品味，读一段下来，我感觉是非常烧脑，但是我最近看了一些公众号主，大概3～3天就能读完一本书，然后写出读书笔记，我真的是羡慕！！！<br>读完上面一段话，我脑海里接二连三冒出来了如下问题。</p>
+<pre><code>1. 头条号和今日头条的关系是什么？
+2. 为什么说微博和微信是泛内容平台，什么是泛内容平台？
+3. 字节跳动和哪些竞争对手发生了哪些碰撞？
+4. 为什么发生竞争后字节跳动需要在内容和社交领域有所拓展——接连推出好几个短视频产品？这里说的这几个短视频产品都是什么？我了解到的只有西瓜视频和抖音，西瓜视频因为内容低俗的问题，已经被强制封了。所以，我了解到的，目前字节跳动其实只有一款短视频产品，就是抖音。
+</code></pre></blockquote>
+<p>有问题，不要害怕，我们一个一个来解决。<br>问题一：头条号和今日头条的关系是什么？</p>
+<blockquote>
+<p>头条号是今日头条旗下媒体/自媒体平台，致力于帮助企业、机构、媒体和自媒体在移动端获得更多曝光和关注，在移动互联网时代持续扩大影响力，同时实现品牌传播和内容变现。另一方面也为今日头条这个用户量众多的平台输出更优质的内容，创造更好的用户体验。<br>头条号的作用类似于微信公众账号。</p>
+</blockquote>
+<p>关于字节头条这家公司，如果希望有更深的了解，参考移动猎豹傅盛的文章《我的商业新思考：八位大咖详解商业暗知识 | 案例，为什么今日头条能崛起》</p>
+<p><img src="https://kerryli1007.github.io/images/幕后产品（9）产品负责人的3个能力（上）|商业嗅觉及推理能力/8.png" alt><br>配图是张一鸣在会议上，描述的他关于头条号的vision。</p>
+<p>问题二：什么是泛内容平台，为什么说微博和微信是泛内容平台？</p>
+<blockquote>
+<p>UGC是相对于PGC的一种内容来源，简单来说，由专业的个人，机构针对输出的较为传也、权威的内容都属于PGC，例如电影、电视剧、娱乐节目、书籍刊物、专业媒体资讯等；反之，朋友圈的图文、微博、知乎的答文、唱吧音乐，大都属于UGC。<br>UGC是随着互联网2.0的兴趣而诞生的一种“大众生产内容”的模式，可以说，UGC平台本身就是互联网2.0的精髓的巨象化体现：它本身完全不产生内容，仅为用户提供一个自由的内容提交发布平台，却彻底改变了人们与世界的沟通的方式，满足了用户表达自我的心理需求。<br>UGC是一种泛内容组织以及生产模式，它本身就可以作为一个产品的核心组成结构，如Facebook、QQ空间、微博。<br> 《进化式运营：从互联网菜鸟到决定高手》</p>
+</blockquote>
+<p>我理解的泛内容平台，就是提供一个平台，让用户来创造内容，这些内容就是UGC。这个也不难理解，就是在头条号，字节跳动都是鼓励用户自己来创作，“千人万元计划”就是为了鼓励UGC。</p>
+<p>问题三：字节跳动和哪些竞争对手发生了哪些碰撞？<br>关于这个问题，我有一个很有意思的分享，说的是，字节跳动抢夺了阿里的大量市场。但是，其实阿里本质上是一个To B的企业。字节跳动的产品，都属于泛娱乐，其实其影响最大的对手是腾讯。稍微对这个有点了解的朋友，应该都知道腾讯微视，一句话概括，腾讯是希望微视能够制衡抖音，但是现实确实非常残酷（说实话，这段分析，其实没啥含金量，其中我的思考质量也不高，哎，没有思考沉淀的文字不想写</p>
+<p>问题四：为什么发生竞争后，字节跳动要推出好几款短视频产品？<br>字节跳动旗下的短视频有抖音、快手、火山、西瓜视频、Buzz Video、Vigo Video。</p>
+<p>要了解为什么字节跳动旗下有这么多款短视频产品，我们首先需要了解短视频市场。<br>思考了一下，决定将整个问题在单篇文章中写，一是因为，将这个内容掺杂在本篇文章中，容易让本文主次不清，二是内容太多，对阅读的人，也是极大的考验。</p>
+<p><del>作者分享了3个产品商业化case：</del><br><del>1. 网易云音乐</del><br><del>2. 今日头条</del><br><del>3. 微信</del></p>
+<h1 id="五、关于扩张的两个问题"><a href="#五、关于扩张的两个问题" class="headerlink" title="五、关于扩张的两个问题"></a>五、关于扩张的两个问题</h1><p>分析了两家国民应用的扩张，最后作者收敛回来，引导我们思考关于扩张中的两个问题：</p>
+<pre><code>1. 为何我能获得更大的发展
+2. 我如何能发展壮大
+</code></pre><p>第一个问题可以拆解为我们的产品核心是什么、产品的边界在哪里两个问题。</p>
+<p>作者用网易云音乐的case来帮助我们理解关于扩张的这两个问题：</p>
+<ol>
+<li>产品核心。产品发展初期，产品的核心是让用户听到全世界的好音乐；经过了很多年之后，产品的核心扩展到了：与有趣的灵魂一起享受精神共鸣。</li>
+<li>产品边界。在精神共鸣这个核心点，内容形态的扩张是很可能在网易云音乐产品边界之内的。而超出了精神共鸣，比如电商促销、财经要闻，则显然是在产品边界之外。</li>
+</ol>
+<p>关于扩张最重要的就是要明确产品的核心和边界。在回答如何能够获得更大的发展时，就是在核心之上设计用户与营收增长的发展策略，也就是知道起点和终点并逐渐明确中间路径的过程。</p>
+<p><img src="https://kerryli1007.github.io/images/幕后产品（9）产品负责人的3个能力（上）|商业嗅觉及推理能力/9.png" alt></p>
+<p>在关于扩张的思考与解决问题，有2个需要注意的事项：</p>
+<ol>
+<li>要在发现问题之上的层面来解决问题（The significant problems we face can not be solved at the same level of thinking we were at when we created them）</li>
+<li>如何在复杂的业务架构上打造新的增长引擎</li>
+</ol>
+<p>于是，作者设计了以精神共鸣为核心的内容流与音乐结合，从更高的层面去获得新的发展，一些思考结论如下：</p>
+<ul>
+<li>在内容消费、泛娱乐、精神消费等领域，音乐都与视频、图片、社交等类型的产品在用户的使用时间上有竞争。</li>
+<li>网易云音乐活跃用户量级的下一个大规模的增长，很可能不是与愈发同质化的音乐产品竞争，而是寻求新的增长引擎。</li>
+<li>网易云音乐目前用户使用时间内虽长，但其中看的比重不高。人均每天听的时长已经达到业内顶级水平，但在看的时长上仍有很大的发展空间。</li>
+<li>网易云音乐与很多视频、娱乐、社交产品的用户重合度较高，用户属性较为接近。</li>
+</ul>
+<blockquote>
+<p>对于绝大部份的互联网产品的广告业务而言，流量是更头疼的问题——头部寡头集中了绝大多数的流量，能以此发展广告交易平台，而琉璃那个欠缺的产品则很少有这样的机会。对于商业流量的挖掘，一样需要好的商业嗅觉，即便在现有功能上开广告位也需要一定功底（如何在保证流量充足同事不影响用户体验）。例如，网易云音乐的评论区广告对用户的影响显著低于在播放页上开放广告，另外这其中最好的例子是信息流中的原声广告。传统的广告展示原则是，希望在页面背景中突出广告，以达到吸引用户注目、点击的目的，而原生广告则恰恰反其道而行之，广告的展示和原生内容一样。究其原因在于，信息流非常适合手机屏幕，也培养了用户在流中持续、快速地消费多个任务的习惯，如果广告是突出的，那么用户反而会很快地略过广告，因为继续浏览后面内容的成本非常低；而原生广告则更符合用户的内容消费习惯——快速而沉浸式的体验，当然广告本身的内容也要吸引用户，让用户看下去，从而引发进一步点击的兴趣。</p>
+</blockquote>
+<p>在运用用户注意力时间来形成商业模式的时候，有以下几点需要考虑</p>
+<ol>
+<li><strong>注意力时间的价值</strong>。这个模式让不愿意付费的用户花时间，让愿意付费的用户花钱。核心在于让用户付出的时间产生价值，并且这个价值能获得花时间和花钱用户的认可。</li>
+<li><strong>价值货币化</strong>。在我们设计用户花时间产生价值的策略的时候，请务必将货币化考虑进去。货币化可以大大提高用户对价值的认知，降低未来真正付费的门槛。在游戏、直播产品中都有免费道具，而这些免费道具也是用“货币”标价的——这些“货币”可以免费获得。</li>
+<li><strong>消费场景</strong>。用货币来衡量用户投入的时间价值，最关键的是货币需要有消费场景。</li>
+<li><strong>二八原则</strong>。在注意力时间的商业价值成形之前，绝大部份用户是不会愿意为其付费的。在思考哪些用户为此付费的时候，我们只需要思考整体用户中的一小部分即可。实际上，在游戏、直播、QQ等社交产品的收入分布中，也是少数“土豪”玩家贡献了大部分营收。</li>
+</ol>
+<p>最后，商业嗅觉一方面来自天赋，但是我们绝大多数人都不具备；一方面也可以后天锻炼、培养。（多看，开眼界）</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/13/Q2_Week6_工作总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/06/13/Q2_Week6_工作总结/" class="post-title-link" itemprop="url">Q2_Week6_工作总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-06-13 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-13T00:00:00+08:00">2020-06-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-06-26 18:24:16" itemprop="dateModified" datetime="2020-06-26T18:24:16+08:00">2020-06-26</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论。</p>
+<p>本周关键词：绩效、Hadoop监控Dashboard、gitlab</p>
+<p>一周又过去了，这周的关键词，一共有3个，从上周的的4个关键词，降回到了3个关键词，感动。</p>
+<h1 id="关键词1：绩效-OKR"><a href="#关键词1：绩效-OKR" class="headerlink" title="关键词1：绩效/OKR"></a>关键词1：绩效/OKR</h1><p>关于绩效，主要想讲3个收获，分别是心态的改变、OKR工作法、以及工具。</p>
+<h2 id="1-1-心态"><a href="#1-1-心态" class="headerlink" title="1.1 心态"></a>1.1 心态</h2><p>说实话，以前，我很不喜欢绩效考评这事，我觉得这是形式主义的体现，对员工本质上没有益处，倒是会花费员工大量的时间，做这件事。况且，每个员工的表现，到底如何，有没有偷懒，这不是一件显而易见的事吗。</p>
+<p>但是对于上述两点：</p>
+<ul>
+<li>OKR/绩效考评对员工的影响</li>
+<li>员工的表现是否是显而易见</li>
+</ul>
+<p>我都有了不一样的认识。因此，如果正在阅读这篇文章的你，现在也是之前与我一样的心态的话，建议你，静下心，阅读一下这篇文章。</p>
+<h3 id="OKR-绩效考评对员工的影响"><a href="#OKR-绩效考评对员工的影响" class="headerlink" title="OKR/绩效考评对员工的影响"></a>OKR/绩效考评对员工的影响</h3><p>OKR对员工的好处，在今天看来，主要有三个方面</p>
+<ul>
+<li>设置好的目标</li>
+<li>符合PDCA工作方法论</li>
+<li>有利于和Leader/团队沟通</li>
+</ul>
+<h4 id="目标为什么重要？"><a href="#目标为什么重要？" class="headerlink" title="目标为什么重要？"></a>目标为什么重要？</h4><blockquote>
+<p>如果你不知道目的地在哪里，你可能永远无法到达。</p>
+</blockquote>
+<p>目标的重要性不言而喻，而设置一个好的目标，也同样重要。</p>
+<blockquote>
+<p>1968年，在英特尔公司创立的同一年，马里兰大学的一位心理学教授埃德温.洛克（Edwin Locke）提出了一个理论，对安迪.格鲁夫产生了很大的影响。埃德温.洛克指出:首先，“困难目标”往往比简单目标更能有效提升绩效；其次，具体的、困难的目标往往比含糊其辞的目标“带来更高的产出”。 Edwin Locke,”Toward a Theory of Task Motivation and Incentives,”Organizational Behavior and Human Performance, May 1968</p>
+</blockquote>
+<p>绩效考察/OKR工作法，会push大家设定一个好的目标。</p>
+<h4 id="符合PDCA工作法"><a href="#符合PDCA工作法" class="headerlink" title="符合PDCA工作法"></a>符合PDCA工作法</h4><p>关于PDCA工作法，可以参考文章<a href="https://kerryli1007.github.io/2020/05/05/%E6%8E%A5%E4%B8%8B%E6%9D%A53%E4%B8%AA%E6%9C%88%E7%9A%84%E6%88%90%E9%95%BF%E8%A7%84%E5%88%92/" target="_blank" rel="noopener">https://kerryli1007.github.io/2020/05/05/%E6%8E%A5%E4%B8%8B%E6%9D%A53%E4%B8%AA%E6%9C%88%E7%9A%84%E6%88%90%E9%95%BF%E8%A7%84%E5%88%92/</a></p>
+<h4 id="有利于和Leader-团队沟通"><a href="#有利于和Leader-团队沟通" class="headerlink" title="有利于和Leader/团队沟通"></a>有利于和Leader/团队沟通</h4><p>在职场中，和Leader的沟通，有利于了解Leader对自己的预期，也有利于在执行一段okr之后，看看Leader的反馈，有哪些地方是自己做的好的，哪些地方尚有提升的空间。</p>
+<h2 id="1-2-OKR工作法"><a href="#1-2-OKR工作法" class="headerlink" title="1.2 OKR工作法"></a>1.2 OKR工作法</h2><blockquote>
+<p>启动一个人的变化，开始并结束于人们头脑中的心智地图——他们如何看待组织和他们的工作。正如真实的地图引导人们徒步跋涉穿过喜马拉雅山脉那样，心智地图则引导人们在日常组织生活的各种行为。</p>
+</blockquote>
+<p>在了解了绩效/OKR对工作大有裨益的原因后，让我们来看看OKR是什么，以及如何执行OKR工作法。</p>
+<h3 id="1-2-1-OKR是什么"><a href="#1-2-1-OKR是什么" class="headerlink" title="1.2.1 OKR是什么"></a>1.2.1 OKR是什么</h3><p>OKR，Objective and Key Results，目标与关键结果。</p>
+<h3 id="1-2-2-执行OKR的步骤"><a href="#1-2-2-执行OKR的步骤" class="headerlink" title="1.2.2 执行OKR的步骤"></a>1.2.2 执行OKR的步骤</h3><p><img src="https://kerryli1007.github.io/images/Q2_Week6_工作总结/1.png" alt></p>
+<h4 id="制定目标"><a href="#制定目标" class="headerlink" title="制定目标"></a>制定目标</h4><p>每个季度团队可以设置一个有挑战的，方向明确的目标，同时设置三四个明确且具体的结果指标，并且这些指标能确保目标的完成。思考一下未来三个月团队的目标是什么？有哪些重要的事情看起来很棘手？三个月的时间能否齐心协力把它们解决掉？</p>
+<h4 id="讨论关键结果"><a href="#讨论关键结果" class="headerlink" title="讨论关键结果"></a>讨论关键结果</h4><p>关键结果一定是需要量化，并且，如果关键结果实现了，那么也就意味着目标的实现。</p>
+<h4 id="复盘"><a href="#复盘" class="headerlink" title="复盘"></a>复盘</h4><p>复盘，复盘，再复盘。</p>
+<p>⚠️⚠️⚠️一些会团队无法完成OKR的因素</p>
+<h5 id="因素1-没有给目标设置优先级"><a href="#因素1-没有给目标设置优先级" class="headerlink" title="因素1:没有给目标设置优先级"></a>因素1:没有给目标设置优先级</h5><p>设定一个单一的目标，用三个关键结果来衡量它。</p>
+<h5 id="因素2-缺乏充分沟通，导致没有能准确理解目标"><a href="#因素2-缺乏充分沟通，导致没有能准确理解目标" class="headerlink" title="因素2:缺乏充分沟通，导致没有能准确理解目标"></a>因素2:缺乏充分沟通，导致没有能准确理解目标</h5><blockquote>
+<p>当你说得不想再说了，人们就开始听进去了。——领英首席执行官 杰夫.韦纳</p>
+</blockquote>
+<h5 id="因素3-没有做好计划"><a href="#因素3-没有做好计划" class="headerlink" title="因素3:没有做好计划"></a>因素3:没有做好计划</h5><p>一旦必须要完成一些事情的时候，很多人认为只要有意志就没问题，坚持执行就会有好结果。但是这种观点不正确。我们需要一个目标管理系统来帮助我们一直记得更重要的事情。</p>
+<h5 id="因素4-没有把时间花在重要的事情上"><a href="#因素4-没有把时间花在重要的事情上" class="headerlink" title="因素4:没有把时间花在重要的事情上"></a>因素4:没有把时间花在重要的事情上</h5><blockquote>
+<p>重要的事通常不紧急，紧急的事通常不重要。——德怀特.艾森豪威尔</p>
+</blockquote>
+<p>OKR所需要的是什么，极致聚焦!</p>
+<h5 id="因素5-轻易放弃"><a href="#因素5-轻易放弃" class="headerlink" title="因素5:轻易放弃"></a>因素5:轻易放弃</h5><p>成功实施OKR的企业都有相同的特点：失败后不断尝试。成功为宜的希望是反复尝试，这并不是一味盲目地尝试同样的事情，而是应该密切追踪哪些事情对目标的推进是有效的、哪些是无效的；要多做有效的事情、少做无效的事情；要不断地学习，吸取教训，最后一定能成功。</p>
+<p>最后，欲望让我们起航，但只有专注、规划和学习才能到达成功的彼岸。</p>
+<h2 id="1-3-工具"><a href="#1-3-工具" class="headerlink" title="1.3 工具"></a>1.3 工具</h2><p>写了1个小时了，终于来到了工具篇～嘿嘿，这也是我最喜欢的part，因为，试想一下，我们刚才说的这些好的方法论，如果再辅以一个完美的工具，那是不是，就会执行地更好呢？</p>
+<p>那目前市场上，是否有好的OKR管理工具呢？我们来探索一下吧。</p>
+<p>说起OKR管理工具，首先说SAP的SuccessFactor。说这款产品，有两个原因：</p>
+<ol>
+<li>SAP是To B行业的巨兽，这样跨国企业麾下的产品体验，自然我也抱有极高的预期</li>
+<li>我本周刚刚用了SAP的Success Factor，用同事的两句话，来表达我们对这款产品的感受<ol>
+<li>垃圾傻逼系统</li>
+<li>这个页面怎么出来的？我从来没有看见过<br>是的，这两句话，直观地表现了我们的产品体验，糟糕。加上，原来对SAP产品的极高预期。让我觉得，这一切，不可思议。情绪归情绪，还是回来继续说产品。</li>
+</ol>
+</li>
+</ol>
+<p>介绍一下SAP的Success Factor。</p>
+<blockquote>
+<p>SAP SuccessFactors （SAP HR云，SFSF）是市场上最早模块最全的云端人力资本管理套件，涵盖招聘（Recruiting）、入职（Onboarding)、员工中心（ Employee Central）、目标绩效（PMGM）、发展继任（Succession Management）、薪酬奖金(Compensation)、薪酬核算（Variable Pay）、学习(Learning Managemen)、报表（Reporting）、人力分析（Workforce Analytics）、人力规划（Career Development Planning and Mentoring）等。<br>2001年, SuccessFactors成立于美国硅谷，2003年即斩获超过100家客户、覆盖30万用户。随后，SuccessFactors 一路高速成长，2007年成功在美国纳斯达克上市。2011年，在一阵传统企业软件大厂收购云端应用新厂的风潮中，SAP宣布以34亿美金收购SuccessFactors。自收购后，SAP将其视为亲儿子，大力推广，并将其融入SAP 企业解决方案大家族，使其成为了SAP主推的云HR解决方案。根据SAP官方的数据显示，200 多个国家/地区和 60 多个行业的 6,700 多家客户及超过 1 亿位用户受益于SAP SuccessFactors 解决方案，而这个数字仍在不断增长 <a href="https://blog.csdn.net/qq_42288853/article/details/96108936" target="_blank" rel="noopener">https://blog.csdn.net/qq_42288853/article/details/96108936</a><br>Success Factor居然是一家这么牛逼的公司，我下巴都惊得要掉地上了。<br>大概SF也有很多值得借鉴的地方，但是今天的分析，只站在我作为一个用户的角度，描述我的感受。</p>
+</blockquote>
+<ol>
+<li>奇葩的交互效果<br><img src="https://kerryli1007.github.io/images/Q2_Week6_工作总结/2.png" alt></li>
+</ol>
+<p>场景，当用户输入了上面一段文字，然后出现了下面这段红色的提示文字，是个用户的真实感受都是，诶？我哪里输入不对吗？字符个数没有在[1,500]这个范围吗？日期格式错了吗？<br>用户，会把下面的提示，当作是错误操作提示，但是实际上，这个只是一个提示，并不是操作错误提示。（厉害吧，这个设计，我们还专门去问了HR，哪里填错了？orz，把膝盖献给SF</p>
+<ol start="2">
+<li>奇葩的目标和绩效Tab<br>这一部分的截图，涉及太多公司信息，暂时不展开，等以后有时间，再来自己画原型展示。</li>
+</ol>
+<p>再看看其他的OKR管理工具，经过筛选，选择</p>
+<ul>
+<li>workday</li>
+<li>worktile</li>
+<li>tita</li>
+<li>明道云</li>
+</ul>
+<p>通过几个维度，来筛选出来，值得我研究的okr管理工具。<br>先分别了解一下，上述几款产品，</p>
+<p>登陆，操作。</p>
+<h1 id="关键词2-Hadoop监控Dashboard"><a href="#关键词2-Hadoop监控Dashboard" class="headerlink" title="关键词2:Hadoop监控Dashboard"></a>关键词2:Hadoop监控Dashboard</h1><p>比较开心，Hadoop的监控Dashboard终于交付了。</p>
+<h2 id="背景-为什么做Hadoop监控Dashboard？"><a href="#背景-为什么做Hadoop监控Dashboard？" class="headerlink" title="背景 | 为什么做Hadoop监控Dashboard？"></a>背景 | 为什么做Hadoop监控Dashboard？</h2><p>要清楚明白的说明，为什么要做Hadoop监控Dsahboard，就需要知道，Hadoop到底解决了什么问题。</p>
+<h2 id="问题-遇到了哪些问题？"><a href="#问题-遇到了哪些问题？" class="headerlink" title="问题 | 遇到了哪些问题？"></a>问题 | 遇到了哪些问题？</h2><h2 id="解决-都是如何解决的？"><a href="#解决-都是如何解决的？" class="headerlink" title="解决 | 都是如何解决的？"></a>解决 | 都是如何解决的？</h2><h2 id="得失-在这个整个过程中，有哪些得失？"><a href="#得失-在这个整个过程中，有哪些得失？" class="headerlink" title="得失 | 在这个整个过程中，有哪些得失？"></a>得失 | 在这个整个过程中，有哪些得失？</h2><h2 id="重来-如果重来一次，是否可以做得更好？"><a href="#重来-如果重来一次，是否可以做得更好？" class="headerlink" title="重来 | 如果重来一次，是否可以做得更好？"></a>重来 | 如果重来一次，是否可以做得更好？</h2><p>给Hadoop监控做Dashboard的复盘，在文章《给Hadoop做监控》中，按照上述逻辑，进行了完整的复盘。文章链接</p>
+<h1 id="关键词3-Gitlab"><a href="#关键词3-Gitlab" class="headerlink" title="关键词3:Gitlab"></a>关键词3:Gitlab</h1><h2 id="背景-为什么要用Gitlab"><a href="#背景-为什么要用Gitlab" class="headerlink" title="背景 | 为什么要用Gitlab"></a>背景 | 为什么要用Gitlab</h2><h2 id="问题-都遇到了哪些问题"><a href="#问题-都遇到了哪些问题" class="headerlink" title="问题 | 都遇到了哪些问题"></a>问题 | 都遇到了哪些问题</h2><h2 id="解决-都是如何解决的"><a href="#解决-都是如何解决的" class="headerlink" title="解决 | 都是如何解决的"></a>解决 | 都是如何解决的</h2><h2 id="得失-在这个过程中，有哪些得失"><a href="#得失-在这个过程中，有哪些得失" class="headerlink" title="得失 | 在这个过程中，有哪些得失"></a>得失 | 在这个过程中，有哪些得失</h2><h2 id="重来-如果重来一次，是否可以做得更好。"><a href="#重来-如果重来一次，是否可以做得更好。" class="headerlink" title="重来 | 如果重来一次，是否可以做得更好。"></a>重来 | 如果重来一次，是否可以做得更好。</h2><p>关于Gitlab使用的复盘，也在《Gitlab工作实战》中，做了复盘，文章链接</p>
+<p>参考资料：</p>
+<ol>
+<li>《这就是OKR：让谷歌、亚马逊实现爆炸式增长的工作方法》 推荐指数 4星，讲述了谷歌是如何采纳OKR，并付诸实践</li>
+<li>《OKR：源于英特尔和谷歌的目标管理利器》 推荐指数 3星，这本书作为了解OKR的入门书籍，整本书，通过故事展开，对刚了解OKR的人比较友好，但是通过故事展开，有利也有弊，弊端就是“废话太多”，作者使用了大量的形容词，来描述书中主人翁的心理状态，读起来还是比较难受，同时，不推荐没有任何工作经验的人阅读，因为读不懂，或读不透。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2251,7 +2547,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2282,15 +2578,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>

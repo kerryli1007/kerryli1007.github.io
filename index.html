@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/02/Q3_Week2_工作总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/06/Docker、K8S入门（小白篇）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="一颗西蓝花🥦">
@@ -343,7 +343,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/08/02/Q3_Week2_工作总结/" class="post-title-link" itemprop="url">Q3_Week2_工作总结</a>
+                <a href="/2020/08/06/Docker、K8S入门（小白篇）/" class="post-title-link" itemprop="url">Docker、K8S入门（小白篇）</a>
               
             
           </h1>
@@ -368,237 +368,24 @@
                 
               
 
-              <time title="Created: 2020-08-02 20:26:24 / Modified: 20:59:03" itemprop="dateCreated datePublished" datetime="2020-08-02T20:26:24+08:00">2020-08-02</time>
+              <time title="Created: 2020-08-06 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-06T00:00:00+08:00">2020-08-06</time>
             
 
             
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Q3_W2_工作总结<br>原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论。<br>关键词：时间序列项目、产品设计、LR-CTR模型的核心和基础</p>
-<h1 id="时间序列项目"><a href="#时间序列项目" class="headerlink" title="时间序列项目"></a>时间序列项目</h1><p>最近跟广告CTR项目，从数据检查、数据处理、到模型训练，有一些经验总结。</p>
-<h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><h3 id="手动数据处理"><a href="#手动数据处理" class="headerlink" title="手动数据处理"></a>手动数据处理</h3><p>数据处理部分，在文章《时间序列项目经验积累》中已总结。</p>
-<h3 id="产品提供的数据处理"><a href="#产品提供的数据处理" class="headerlink" title="产品提供的数据处理"></a>产品提供的数据处理</h3><p>最近发现了产品在数据处理功能上特别棒的2个功能点。</p>
-<p><strong>1 数据探索支持自选字段</strong></p>
-<p>在产品中，封装了很多数据处理的算子，比如数据拆分和数据探索算子。<br>数据拆分算子，是将数据进行拆分，在机器学习模型训练中，一般都需要预留一部分测试集。<br>数据拆分算子支持三种不同的拆分方式。（这一部分，之后补，家里网络实在太慢<br>数据探索算子，数据探索算子封装的内容，是python生态中pandas包，支持的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.data_describe()</span><br></pre></td></tr></table></figure>
-<p>这一命令，返回的是这个DataFrame的统计变量。这个命令的物理意义是在于观察这一系列数据的范围、大小、波动趋势。我们可以根据这些指标来判断后续我们选择哪些数据字段来训练模型。<br>算子实现的是同一个功能，区别在于</p>
-<ol>
-<li>python是用代码实现，算子是封装好了，只需要拖拽图标就可实现</li>
-<li><code>pd.data_describe()</code>生成的统计数据，是针对整个数组，产品提供的功能，支持自主选择数据字段，如下图</li>
-</ol>
-<p><strong>2 是数据导入支持标记类型</strong></p>
-<p>经常处理数据的朋友，肯定经常碰到如下数据内容。  <code>HUAWEI-FLA-AL10__weibo__10.6.0__android__android8.0.0</code>,<code>[156097|190503|190535|190552|190556|191068|191080|191081|191082|191087|191088|191089|191093|191096|191101|191115|191149|192184|192198|192223|193484|193938|193999|194003|194437|194438|194439|194440|196362|196611|197695|197709|200262|203756|204638|206168|206367|210008|210893|306949|323816|324448|327464|328103|328117|328179|328208|328209|328215|328414]`</code>。在本项目中，这两个字段的分别含义，前一个字段名“useragent“包含用户使用的设备信息，后一个字段名”ruleid”是用户的兴趣编码，很明显，这个数据不能直接拿给模型进行训练，需要进行拆分。</p>
-<p>实现手段：</p>
-<ol>
-<li>使用python，useragent按照<code>-</code>将数据拆分，ruleid按照<code>|</code>进行拆分。拆分后，我们需要对被拆分后的字段，进行命名。</li>
-<li>产品提供的方法。数据导入时候，有四个参数，分别是字段名、字段类型、标记类型、和是否使用。字段名不用赘述，字段类型是数据本身的属性，标记类型是业务类型，比如同样是1和2，如果代表的是男和女，那么就是离散值，是不能做加减乘除的。同时，在标记类型，产品还支持分割。<br><img src="https://kerryli1007.github.io/images/Q3_Week2_工作总结/1.png" alt></li>
-</ol>
-<h1 id="产品设计"><a href="#产品设计" class="headerlink" title="产品设计"></a>产品设计</h1><h2 id="从中古产品设计学习"><a href="#从中古产品设计学习" class="headerlink" title="从中古产品设计学习"></a>从中古产品设计学习</h2><p>最近看书，学习到这个概念，“从中古产品设计学习”。</p>
-<blockquote>
-<p>产品经理应该多多关注技术领域的动态，没事折腾和体验一下各类开源程序，学习一些技术知识和原理，感受一下技术的魅力。像BBS、Usenet、IRC、Mailing List这些互联网最初的产品架构形态，其实是最应该产品经理们回过头来看看并学习的东西。现在有些非常优秀的产品，都是从这些老产品里面吸取了不少灵感。比如Slack就从IRC中即成了很多优点，微信公众号继承了Mailing List和RSS的原理。</p>
-</blockquote>
-<p>BBS听起来像是上个世纪的产物，我都不屑于去关注，但是其实，从这些中古产品设计中，我们恰恰能学到一些产品架构设计中很底层的思想。</p>
-<p>Usenet、IRC、和Mailing List我都不知道是什么，需要研究一下。</p>
-<p>BBS是一种网站系统，是目前流行网络论坛的前身，它允许用户使用终端程序通过调制解调器或因特网来进行连接，BBS站台提供布告栏、分类讨论区、新闻阅读、软件下载与上传、游戏、与其他用户在线对话等功能。<br>IRC：IRC是一种应用层的协议。主要用于群体聊天，但同样也可以用于个人对个人的聊天。IRC使用的服务器端口有6667（明文传输），6697（SSL加密传输）。</p>
-<h2 id="从书籍中学习"><a href="#从书籍中学习" class="headerlink" title="从书籍中学习"></a>从书籍中学习</h2><p>最近在阅读《Dont Make Me Think》，书中讲了很多概念，读起来有些吃力，但是学习到了很多前人已经总结好的经验。<br>比如一个概念，持续化导航。</p>
-<blockquote>
-<p> 导航有两个显而易见的用途：帮助我们找到想要的东西和公诉我们现在身处何处。<br>持久化导航应该包括 4 个元素，设计者应该一直保持这 4 个元素可见。</p>
-</blockquote>
-<p>到底什么是持久化导航呢？我找了例子辅助大家理解，这是苹果官网的首页，当我往下滑动，首页的导航条一直固定在上方，这就是持久化导航，当用户在首页时候，我们希望用户可以以最短路径，可以去到他希望去的任何其他页面，因此，我们一直将导航条放在上面。<br><img src="https://kerryli1007.github.io/images/Q3_Week2_工作总结/2.png" alt></p>
-<p>还有一个概念，是作者分享的他的可用性第一定律：别让我思考。</p>
-<blockquote>
-<p>设计者应该做到，当用户看到一个页面时，它应该是不言而喻、一目了然、自我解释的。</p>
-</blockquote>
-<blockquote>
-<p>用户应该是能“明白它”——它是什么意思，怎么样用它——而不需要进行额外的思考。</p>
-</blockquote>
-<p>好的不需要思考的体验，是让用户第一眼看到网站，“这是…那是…我想要的东西在这里”。重点是让用户知道，他想要的东西在哪里。</p>
-<p>从我们产品数据中心上传数据，这个地方的显示，如果是新用户，都无法知道，这里还是可以修改数据字段类型的，还有一个问题是，就算我知道，点的时候，基本上也要点2次才能点出来下拉框。<br><img src="https://kerryli1007.github.io/images/Q3_Week2_工作总结/3.png" alt></p>
-<p>学习致用，这是非常重要的一课。</p>
-<p>最后，还学习到读者很擅长从物理世界借用比喻。</p>
-<p>当作者讲述导航设计时候，他借用了真实世界的案例</p>
-<blockquote>
-<p>物理空间，例如城市和建筑物，都有自己的导航系统，有它们自己随着时间发展起来的习惯用法，例如街头指示牌、页码、章节标题。这些习惯用法标明了导航元素的外观和位置，因此我们知道该寻找什么，以及在需要的时候如何找到。<br>从物理世界借概念，做比喻，让我想起潘乱发表在即刻的一段话<br>前阵子头条办了个如何打造个人IP的沙龙，主持人问你觉得谁是过去几年最成功的IP。<br>我说是凯文凯利。他是美国一本杂志，后来有网站，的主编，可能类似，不会超过，极客公园张鹏在国内的位置。但却明显取得了更大的名声。<br>什么叫IP，常销且畅销，能够做到常销需要要有洞察和趋势，畅销就是要深入浅出。<br>Kk能造新名词，同时还会从生物学里借概念。尽管少见他针对具体某家公司某个产品的深入分析，但他善于对趋势做预测，对趋势做总结，他能够深入浅出把这件事讲得普通人都能听懂。<br>KK造新名词，从生物学中借概念。这个很牛逼，就像之前看到的一篇文章，从人类文明的发展历程中借概念。</p>
-</blockquote>
-<p>为什么，从不同地方借概念是一个很不错的阐述事物的方式呢？我认为，原因有2:<br>1是从具像到抽象，从熟悉到陌生，便于读者理解。<br>2是我们可以将从具像中学习到的逻辑复制到抽象的运用中。</p>
-<h1 id="LR-CTR模型的核心和基础"><a href="#LR-CTR模型的核心和基础" class="headerlink" title="LR-CTR模型的核心和基础"></a>LR-CTR模型的核心和基础</h1><p>这个部分的总结是学习的王喆老师在知乎上的分享。</p>
-<h2 id="LR-CTR模型的核心和基础-1"><a href="#LR-CTR模型的核心和基础-1" class="headerlink" title="LR-CTR模型的核心和基础"></a>LR-CTR模型的核心和基础</h2><blockquote>
-<p>传统预估模型的特点：</p>
-<ol>
-<li>LR、FM等传统CTR模型有着可解释性、轻量级的训练部署要求、便于在线学习等不可替代的优势，游泳大量适合的应用场景。</li>
-<li>传统CTR模型是深度学习CTR模型的基础。深度神经网络（Deep Neural Network）从一个神经元发展而来，而LR正是单一神经元的经典结构；此外，影响很大的FNN，DeepFM，NFM等深度学习模型也与传统的FM模型有着千丝万缕的联系。<br>LR模型的流行是有三方面原因的，一是数字形式和含义上的支撑；二是人类的直觉和可解释性的原因；三是工程化的需要。</li>
-</ol>
-</blockquote>
-<blockquote>
-<h2 id="1-1-逻辑回归的数学基础"><a href="#1-1-逻辑回归的数学基础" class="headerlink" title="1.1 逻辑回归的数学基础"></a>1.1 逻辑回归的数学基础</h2><p>直观来说，LR模型目标函数的形式就是各特征的加权和，再施以sigmoid函数。</p>
-</blockquote>
-<blockquote>
-<h2 id="1-2-人类的直觉和可解释性"><a href="#1-2-人类的直觉和可解释性" class="headerlink" title="1.2 人类的直觉和可解释性"></a>1.2 人类的直觉和可解释性</h2><p>使用各特征的加权和是为了综合不同特征对CTR的影响，而由于不同特征的重要程度不一样，所以为不同特征制定不同的权重来代表不同特征的重要程度。最后要套上sigmoid函数，正是希望其值能够映射到0-1之间，使其符合CTR的物理意义。</p>
-</blockquote>
-<blockquote>
-<h2 id="1-3-工程化的需要"><a href="#1-3-工程化的需要" class="headerlink" title="1.3 工程化的需要"></a>1.3 工程化的需要</h2><p>LR模型凭借其易于并行化、模型简单、训练开销小等特点，占据着工程领域的主流</p>
-</blockquote>
-<p>最后，谈下本周我的状态，买了几本书《赋能》《我不是产品经理》《陌生人效应》，其中我最感兴趣的是《我不是产品经理》，这是一本讲信息流的书，等读完之后写总结。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/02/Docker、K8S入门（小白篇）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/08/02/Docker、K8S入门（小白篇）/" class="post-title-link" itemprop="url">Docker、K8S入门（小白篇）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
-              
+                <span class="post-meta-divider">|</span>
+                
 
-              <time title="Created: 2020-08-02 00:00:00 / Modified: 20:52:48" itemprop="dateCreated datePublished" datetime="2020-08-02T00:00:00+08:00">2020-08-02</time>
-            
-
-            
-              
-
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-08-02 21:10:21" itemprop="dateModified" datetime="2020-08-02T21:10:21+08:00">2020-08-02</time>
               
             
           </span>
@@ -735,7 +522,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/02/Q3_Week3_工作总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/Q3_Week5_工作总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="一颗西蓝花🥦">
@@ -755,7 +542,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/08/02/Q3_Week3_工作总结/" class="post-title-link" itemprop="url">Q3_Week3_工作总结</a>
+                <a href="/2020/08/05/Q3_Week5_工作总结/" class="post-title-link" itemprop="url">Q3_Week5_工作总结</a>
               
             
           </h1>
@@ -780,12 +567,422 @@
                 
               
 
-              <time title="Created: 2020-08-02 00:00:00 / Modified: 21:08:21" itemprop="dateCreated datePublished" datetime="2020-08-02T00:00:00+08:00">2020-08-02</time>
+              <time title="Created: 2020-08-05 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-05T00:00:00+08:00">2020-08-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-08-02 21:10:14" itemprop="dateModified" datetime="2020-08-02T21:10:14+08:00">2020-08-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论</p>
+<p>本周关键词：绩效、项目管理、产品GTM</p>
+<h1 id="绩效"><a href="#绩效" class="headerlink" title="绩效"></a>绩效</h1><p>本周聊了绩效。</p>
+<p>老板给了一些反馈，归纳起来，是三点：</p>
+<ol>
+<li>上半年的表现，达到预期。</li>
+<li>最近1个月，成长特别明显。</li>
+<li>下半年，部门的主要精力，都会花在跑客户，整个交付后端就交给我负责了。</li>
+</ol>
+<h2 id="短期目标和长远目标"><a href="#短期目标和长远目标" class="headerlink" title="短期目标和长远目标"></a>短期目标和长远目标</h2><p>一晃眼，也到新部门半年多了。从开始的吃力，到现在处理项目得心应手，确实是有了一大段成长。</p>
+<p>到新部门之后，给我印象很深刻的一点是，新部门会将一些行业解决方案，总结成可复用的材料，并且会在之后打客户的时候，有针对性的选择客户发力。2019年下半年，我们做众包时候，其实是有相同思路的。当时，我们做得多的主要在NLP和CV方向，NLP方向，我们当时做实体抽取，有了一套完整的方法论，但是出去打客户的时候，因为我们获取线索的渠道实在是太单一了，主要靠部门那几个人，所以，基本上这条道路没有怎么走通，但是其实思路是一致的。包括，2019年下半年底的时候，我们将一些CV解决方案，包装为成熟解决方案，比如说火灾识别、安全帽识别，我们其实都是有好的解决方案的。</p>
+<p>目前部门，使用AutoML，对一些特定场景，做出了很成熟、且可复用的解决方案，场景包括营销场景、广告CTR场景。我觉得，这其实是算是短期目标和长期目标结合地比较好的一个真实case。短期是为了部门赚钱，我们要拿下这个case，长期是，如何让部门持续赚钱。上周末和NLP BU Leader聊天，他和我们分享说到，很多时候，老板看问题的角度，其实和我们是不一样的。我们看到的是，当下这个东西，做还是不做，是否能给部门赚钱。Leader看到的是，做这个东西，长远看来是否是有好处的，做了这个，会不会让手里的牌更好看，换句话说，就是是否有利于长远目标的实现。这其实是短期目标和长期目标之间的博弈，关于这个主题，我单独总结了一篇文章，叫做《Long Term Vision VS. Short  Term Goal》。</p>
+<h2 id="人工智能交付先锋：从项目到交付后端"><a href="#人工智能交付先锋：从项目到交付后端" class="headerlink" title="人工智能交付先锋：从项目到交付后端"></a>人工智能交付先锋：从项目到交付后端</h2><p>老板说希望下半年，我将部门整个交付后端take过来。我就自信地将这个认为是对我能力的肯定吧（厚脸皮</p>
+<p>交付人工智能项目，并不是一件简单的事。从底层资源，中间层算法，再到上层业务。作为交付先锋，每个环节都需要理解。说到这里，我还有一个印象异常深刻的点，在做项目时候，有时候，项目会进入我极度不熟悉的领域，比如API性能不达标，需要更新部署架构。这种时候，由于不熟悉，我难免会往后退一两步，不冲在那么前面。但是Leader和我说：“在一个项目中，你应该是最了解项目每个环节的人。算法工程师也好，架构也好，他们对项目的关注，都没有你高。他们对项目成功的渴求，也没有你高。所以，你一定一定是那个对项目最了解的人。”这句话，真的说到我心坎上了。在广告CTR项目中，调节部署架构时候，真的是在我知识盲区，所以我下意识就躲闪，但是后面，架构调整带来的问题，接二连三，我还是step ahead，开始将里面每个环节理顺，理清楚，最后解决了一系列的问题。所以，总结下来就是，作为人工智能交付先锋，一定要时刻站在项目中间。并且，当项目陷入困境时候，站出来，告诉大家“听我的，接下来我们这样做。”</p>
+<p>负责整个交付后端，对我而言，一个心态上的改变，从如何做好手里的项目，到如何帮助部门交付所有的项目。</p>
+<p>那么如何呢？</p>
+<ol>
+<li>总结。总结。总结。最近一次项目，明显感觉到，有很多东西，只有在实战中，才能积累经验，比如数据库的部署，产品的熟练使用。这些经验除了实战，没有别的办法可以获得。</li>
+<li>思考。思考。思考。做一件事，是不是可以这样做。一个问题，解决方案，是不是真的就是这样的。虚心求教，多方确认。</li>
+</ol>
+<h1 id="项目管理"><a href="#项目管理" class="headerlink" title="项目管理"></a>项目管理</h1><h1 id="产品GTM（Go-To-Market）"><a href="#产品GTM（Go-To-Market）" class="headerlink" title="产品GTM（Go To Market）"></a>产品GTM（Go To Market）</h1><p>最近公司有一款用AI方式做BI的产品，我是这款产品的负责人。所以，说一些我对这款产品GTM中的一些理解。</p>
+<h2 id="什么是BI"><a href="#什么是BI" class="headerlink" title="什么是BI"></a>什么是BI</h2><p>BI，即Business Intelligence，中文称为商业智能。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/04/Q3_Week4_工作总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/08/04/Q3_Week4_工作总结/" class="post-title-link" itemprop="url">Q3_Week4_工作总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-08-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-04T00:00:00+08:00">2020-08-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-08-02 21:10:05" itemprop="dateModified" datetime="2020-08-02T21:10:05+08:00">2020-08-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论。</p>
+<p>本周关键词：API上线测试、模型指标</p>
+<h1 id="API上线测试"><a href="#API上线测试" class="headerlink" title="API上线测试"></a>API上线测试</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近在做CTR预估项目，模型已经ready，并且也将模型部署成为了API服务，接着，就是将模型放在生产环境中进行测试。</p>
+<h2 id="实验Set-Up"><a href="#实验Set-Up" class="headerlink" title="实验Set Up"></a>实验Set Up</h2><p>上线一个新的模型，需要进行A /B Test。目的是验证，模型在真实生产环境中的有效性。</p>
+<h3 id="流量切分"><a href="#流量切分" class="headerlink" title="流量切分"></a>流量切分</h3><p>实验设置实验组和对照组。</p>
+<p>实验组，是接受实验变量处理的对象组；</p>
+<p>对照组，也称为控制组，对实验假设而言，是不接受实验变量处理的对象组。</p>
+<p>本次实验假设是：通过使用CTR预估模型，是否能够降低客户的平均获客成本？</p>
+<p>实验组：线上流量的1%，接受模型打分的流量。</p>
+<p>控制组：线上流量的1%，不接受模型打分的流量。</p>
+<h3 id="效果追踪"><a href="#效果追踪" class="headerlink" title="效果追踪"></a>效果追踪</h3><p>在制定指标时候，一定要和业务结合，因为我们的业务是广告投放，因此就涉及到一些诸如处理流量数量、竞价成功数量、点击数、注册用户数、以及CPA的指标。其中，最重要的指标是CPA。</p>
+<h3 id="数据回流"><a href="#数据回流" class="headerlink" title="数据回流"></a>数据回流</h3><p>影响模型效果三要素：数据、算力、模型。</p>
+<p>当API上线生产环境后，会有新的生产数据产生。模型是有时序效应的，不断新的数据添加进去之后，模型效果会变好。因此，我们需要将生产环境中新产生的数据用来继续训练模型。</p>
+<p>因为我们的模型参数在之前已经探索出来，所以，我们现在有三种选择：</p>
+<p>选择1：直接将新的数据放进原来模型，重新训练</p>
+<p>选择2：利用新的数据，重新训练探索脚本</p>
+<p>选择3：将新的数据和旧的数据一起，重新训练探索脚本</p>
+<p>具体上述三种情况，需要根据实际业务数据的情况来做决定。</p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>模型上线后，遇到了性能相关的问题。</p>
+<h3 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h3><p>从SSP发出广告位提示，到DSP给出竞价，整个流程的时间在100ms以内。因为客户处，有很多处理逻辑，需要花费时间，因此留给我们的时间，只有30ms，所以，从客户发起api打分请求，到他们收到打分结果，需要限制在30ms以内。因为客户是从他们机房请求我们机房的服务，所以中间还有公网传输时间。</p>
+<p>当客户前期，将流量控制地很小时候，因为每次请求，基本上就是一个api请求，这种情况下，请求直接超时。</p>
+<p>原因分析，建立tcp连接时候超时，因为放量少，所以导致每隔比较长的时间才会去请求接口，这样就导致client每次请求接口都是新建立一次tcp连接，所以每次都出现超时。</p>
+<h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>整个用时由两部分组成：公网传输时间、后台服务器打分处理时间。</p>
+<p>公网传输时间的影响因素有：网络质量，是否是同一家运营商</p>
+<p>后台服务器打分处理时间的影响因素有：模型复杂度、服务器的稳定</p>
+<h3 id="总结-amp-复盘"><a href="#总结-amp-复盘" class="headerlink" title="总结&amp;复盘"></a>总结&amp;复盘</h3><p>这周的工作内容，涉及到了我的大量知识盲区，所以疯狂地在补基础。</p>
+<h1 id="模型指标"><a href="#模型指标" class="headerlink" title="模型指标"></a>模型指标</h1><p>如何评估一个模型表现的好坏？PR、ROC。</p>
+<p>参考论文：</p>
+<ol>
+<li>The Relationship Between Precision-Recall and ROC Curves</li>
+<li>Understanding receiver operating characteristic curves</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/03/Q3_Week3_工作总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/08/03/Q3_Week3_工作总结/" class="post-title-link" itemprop="url">Q3_Week3_工作总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-08-03 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-03T00:00:00+08:00">2020-08-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-08-02 21:09:54" itemprop="dateModified" datetime="2020-08-02T21:09:54+08:00">2020-08-02</time>
               
             
           </span>
@@ -962,7 +1159,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/02/Q3_Week4_工作总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/02/Q3_Week2_工作总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="一颗西蓝花🥦">
@@ -982,7 +1179,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/08/02/Q3_Week4_工作总结/" class="post-title-link" itemprop="url">Q3_Week4_工作总结</a>
+                <a href="/2020/08/02/Q3_Week2_工作总结/" class="post-title-link" itemprop="url">Q3_Week2_工作总结</a>
               
             
           </h1>
@@ -1007,7 +1204,7 @@
                 
               
 
-              <time title="Created: 2020-08-02 00:00:00 / Modified: 20:45:55" itemprop="dateCreated datePublished" datetime="2020-08-02T00:00:00+08:00">2020-08-02</time>
+              <time title="Created: 2020-08-02 20:26:24 / Modified: 20:59:03" itemprop="dateCreated datePublished" datetime="2020-08-02T20:26:24+08:00">2020-08-02</time>
             
 
             
@@ -1066,220 +1263,71 @@
       
         
           
-            <p>原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论。</p>
-<p>本周关键词：API上线测试、模型指标</p>
-<h1 id="API上线测试"><a href="#API上线测试" class="headerlink" title="API上线测试"></a>API上线测试</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近在做CTR预估项目，模型已经ready，并且也将模型部署成为了API服务，接着，就是将模型放在生产环境中进行测试。</p>
-<h2 id="实验Set-Up"><a href="#实验Set-Up" class="headerlink" title="实验Set Up"></a>实验Set Up</h2><p>上线一个新的模型，需要进行A /B Test。目的是验证，模型在真实生产环境中的有效性。</p>
-<h3 id="流量切分"><a href="#流量切分" class="headerlink" title="流量切分"></a>流量切分</h3><p>实验设置实验组和对照组。</p>
-<p>实验组，是接受实验变量处理的对象组；</p>
-<p>对照组，也称为控制组，对实验假设而言，是不接受实验变量处理的对象组。</p>
-<p>本次实验假设是：通过使用CTR预估模型，是否能够降低客户的平均获客成本？</p>
-<p>实验组：线上流量的1%，接受模型打分的流量。</p>
-<p>控制组：线上流量的1%，不接受模型打分的流量。</p>
-<h3 id="效果追踪"><a href="#效果追踪" class="headerlink" title="效果追踪"></a>效果追踪</h3><p>在制定指标时候，一定要和业务结合，因为我们的业务是广告投放，因此就涉及到一些诸如处理流量数量、竞价成功数量、点击数、注册用户数、以及CPA的指标。其中，最重要的指标是CPA。</p>
-<h3 id="数据回流"><a href="#数据回流" class="headerlink" title="数据回流"></a>数据回流</h3><p>影响模型效果三要素：数据、算力、模型。</p>
-<p>当API上线生产环境后，会有新的生产数据产生。模型是有时序效应的，不断新的数据添加进去之后，模型效果会变好。因此，我们需要将生产环境中新产生的数据用来继续训练模型。</p>
-<p>因为我们的模型参数在之前已经探索出来，所以，我们现在有三种选择：</p>
-<p>选择1：直接将新的数据放进原来模型，重新训练</p>
-<p>选择2：利用新的数据，重新训练探索脚本</p>
-<p>选择3：将新的数据和旧的数据一起，重新训练探索脚本</p>
-<p>具体上述三种情况，需要根据实际业务数据的情况来做决定。</p>
-<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>模型上线后，遇到了性能相关的问题。</p>
-<h3 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h3><p>从SSP发出广告位提示，到DSP给出竞价，整个流程的时间在100ms以内。因为客户处，有很多处理逻辑，需要花费时间，因此留给我们的时间，只有30ms，所以，从客户发起api打分请求，到他们收到打分结果，需要限制在30ms以内。因为客户是从他们机房请求我们机房的服务，所以中间还有公网传输时间。</p>
-<p>当客户前期，将流量控制地很小时候，因为每次请求，基本上就是一个api请求，这种情况下，请求直接超时。</p>
-<p>原因分析，建立tcp连接时候超时，因为放量少，所以导致每隔比较长的时间才会去请求接口，这样就导致client每次请求接口都是新建立一次tcp连接，所以每次都出现超时。</p>
-<h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>整个用时由两部分组成：公网传输时间、后台服务器打分处理时间。</p>
-<p>公网传输时间的影响因素有：网络质量，是否是同一家运营商</p>
-<p>后台服务器打分处理时间的影响因素有：模型复杂度、服务器的稳定</p>
-<h3 id="总结-amp-复盘"><a href="#总结-amp-复盘" class="headerlink" title="总结&amp;复盘"></a>总结&amp;复盘</h3><p>这周的工作内容，涉及到了我的大量知识盲区，所以疯狂地在补基础。</p>
-<h1 id="模型指标"><a href="#模型指标" class="headerlink" title="模型指标"></a>模型指标</h1><p>如何评估一个模型表现的好坏？PR、ROC。</p>
-<p>参考论文：</p>
+            <p>Q3_W2_工作总结<br>原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论。<br>关键词：时间序列项目、产品设计、LR-CTR模型的核心和基础</p>
+<h1 id="时间序列项目"><a href="#时间序列项目" class="headerlink" title="时间序列项目"></a>时间序列项目</h1><p>最近跟广告CTR项目，从数据检查、数据处理、到模型训练，有一些经验总结。</p>
+<h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><h3 id="手动数据处理"><a href="#手动数据处理" class="headerlink" title="手动数据处理"></a>手动数据处理</h3><p>数据处理部分，在文章《时间序列项目经验积累》中已总结。</p>
+<h3 id="产品提供的数据处理"><a href="#产品提供的数据处理" class="headerlink" title="产品提供的数据处理"></a>产品提供的数据处理</h3><p>最近发现了产品在数据处理功能上特别棒的2个功能点。</p>
+<p><strong>1 数据探索支持自选字段</strong></p>
+<p>在产品中，封装了很多数据处理的算子，比如数据拆分和数据探索算子。<br>数据拆分算子，是将数据进行拆分，在机器学习模型训练中，一般都需要预留一部分测试集。<br>数据拆分算子支持三种不同的拆分方式。（这一部分，之后补，家里网络实在太慢<br>数据探索算子，数据探索算子封装的内容，是python生态中pandas包，支持的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.data_describe()</span><br></pre></td></tr></table></figure>
+<p>这一命令，返回的是这个DataFrame的统计变量。这个命令的物理意义是在于观察这一系列数据的范围、大小、波动趋势。我们可以根据这些指标来判断后续我们选择哪些数据字段来训练模型。<br>算子实现的是同一个功能，区别在于</p>
 <ol>
-<li>The Relationship Between Precision-Recall and ROC Curves</li>
-<li>Understanding receiver operating characteristic curves</li>
+<li>python是用代码实现，算子是封装好了，只需要拖拽图标就可实现</li>
+<li><code>pd.data_describe()</code>生成的统计数据，是针对整个数组，产品提供的功能，支持自主选择数据字段，如下图</li>
 </ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/02/Q3_Week5_工作总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/08/02/Q3_Week5_工作总结/" class="post-title-link" itemprop="url">Q3_Week5_工作总结</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-08-02 00:00:00 / Modified: 20:46:30" itemprop="dateCreated datePublished" datetime="2020-08-02T00:00:00+08:00">2020-08-02</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论</p>
-<p>本周关键词：绩效、项目管理、产品GTM</p>
-<h1 id="绩效"><a href="#绩效" class="headerlink" title="绩效"></a>绩效</h1><p>本周聊了绩效。</p>
-<p>老板给了一些反馈，归纳起来，是三点：</p>
+<p><strong>2 是数据导入支持标记类型</strong></p>
+<p>经常处理数据的朋友，肯定经常碰到如下数据内容。  <code>HUAWEI-FLA-AL10__weibo__10.6.0__android__android8.0.0</code>,<code>[156097|190503|190535|190552|190556|191068|191080|191081|191082|191087|191088|191089|191093|191096|191101|191115|191149|192184|192198|192223|193484|193938|193999|194003|194437|194438|194439|194440|196362|196611|197695|197709|200262|203756|204638|206168|206367|210008|210893|306949|323816|324448|327464|328103|328117|328179|328208|328209|328215|328414]`</code>。在本项目中，这两个字段的分别含义，前一个字段名“useragent“包含用户使用的设备信息，后一个字段名”ruleid”是用户的兴趣编码，很明显，这个数据不能直接拿给模型进行训练，需要进行拆分。</p>
+<p>实现手段：</p>
 <ol>
-<li>上半年的表现，达到预期。</li>
-<li>最近1个月，成长特别明显。</li>
-<li>下半年，部门的主要精力，都会花在跑客户，整个交付后端就交给我负责了。</li>
+<li>使用python，useragent按照<code>-</code>将数据拆分，ruleid按照<code>|</code>进行拆分。拆分后，我们需要对被拆分后的字段，进行命名。</li>
+<li>产品提供的方法。数据导入时候，有四个参数，分别是字段名、字段类型、标记类型、和是否使用。字段名不用赘述，字段类型是数据本身的属性，标记类型是业务类型，比如同样是1和2，如果代表的是男和女，那么就是离散值，是不能做加减乘除的。同时，在标记类型，产品还支持分割。<br><img src="https://kerryli1007.github.io/images/Q3_Week2_工作总结/1.png" alt></li>
 </ol>
-<h2 id="短期目标和长远目标"><a href="#短期目标和长远目标" class="headerlink" title="短期目标和长远目标"></a>短期目标和长远目标</h2><p>一晃眼，也到新部门半年多了。从开始的吃力，到现在处理项目得心应手，确实是有了一大段成长。</p>
-<p>到新部门之后，给我印象很深刻的一点是，新部门会将一些行业解决方案，总结成可复用的材料，并且会在之后打客户的时候，有针对性的选择客户发力。2019年下半年，我们做众包时候，其实是有相同思路的。当时，我们做得多的主要在NLP和CV方向，NLP方向，我们当时做实体抽取，有了一套完整的方法论，但是出去打客户的时候，因为我们获取线索的渠道实在是太单一了，主要靠部门那几个人，所以，基本上这条道路没有怎么走通，但是其实思路是一致的。包括，2019年下半年底的时候，我们将一些CV解决方案，包装为成熟解决方案，比如说火灾识别、安全帽识别，我们其实都是有好的解决方案的。</p>
-<p>目前部门，使用AutoML，对一些特定场景，做出了很成熟、且可复用的解决方案，场景包括营销场景、广告CTR场景。我觉得，这其实是算是短期目标和长期目标结合地比较好的一个真实case。短期是为了部门赚钱，我们要拿下这个case，长期是，如何让部门持续赚钱。上周末和NLP BU Leader聊天，他和我们分享说到，很多时候，老板看问题的角度，其实和我们是不一样的。我们看到的是，当下这个东西，做还是不做，是否能给部门赚钱。Leader看到的是，做这个东西，长远看来是否是有好处的，做了这个，会不会让手里的牌更好看，换句话说，就是是否有利于长远目标的实现。这其实是短期目标和长期目标之间的博弈，关于这个主题，我单独总结了一篇文章，叫做《Long Term Vision VS. Short  Term Goal》。</p>
-<h2 id="人工智能交付先锋：从项目到交付后端"><a href="#人工智能交付先锋：从项目到交付后端" class="headerlink" title="人工智能交付先锋：从项目到交付后端"></a>人工智能交付先锋：从项目到交付后端</h2><p>老板说希望下半年，我将部门整个交付后端take过来。我就自信地将这个认为是对我能力的肯定吧（厚脸皮</p>
-<p>交付人工智能项目，并不是一件简单的事。从底层资源，中间层算法，再到上层业务。作为交付先锋，每个环节都需要理解。说到这里，我还有一个印象异常深刻的点，在做项目时候，有时候，项目会进入我极度不熟悉的领域，比如API性能不达标，需要更新部署架构。这种时候，由于不熟悉，我难免会往后退一两步，不冲在那么前面。但是Leader和我说：“在一个项目中，你应该是最了解项目每个环节的人。算法工程师也好，架构也好，他们对项目的关注，都没有你高。他们对项目成功的渴求，也没有你高。所以，你一定一定是那个对项目最了解的人。”这句话，真的说到我心坎上了。在广告CTR项目中，调节部署架构时候，真的是在我知识盲区，所以我下意识就躲闪，但是后面，架构调整带来的问题，接二连三，我还是step ahead，开始将里面每个环节理顺，理清楚，最后解决了一系列的问题。所以，总结下来就是，作为人工智能交付先锋，一定要时刻站在项目中间。并且，当项目陷入困境时候，站出来，告诉大家“听我的，接下来我们这样做。”</p>
-<p>负责整个交付后端，对我而言，一个心态上的改变，从如何做好手里的项目，到如何帮助部门交付所有的项目。</p>
-<p>那么如何呢？</p>
+<h1 id="产品设计"><a href="#产品设计" class="headerlink" title="产品设计"></a>产品设计</h1><h2 id="从中古产品设计学习"><a href="#从中古产品设计学习" class="headerlink" title="从中古产品设计学习"></a>从中古产品设计学习</h2><p>最近看书，学习到这个概念，“从中古产品设计学习”。</p>
+<blockquote>
+<p>产品经理应该多多关注技术领域的动态，没事折腾和体验一下各类开源程序，学习一些技术知识和原理，感受一下技术的魅力。像BBS、Usenet、IRC、Mailing List这些互联网最初的产品架构形态，其实是最应该产品经理们回过头来看看并学习的东西。现在有些非常优秀的产品，都是从这些老产品里面吸取了不少灵感。比如Slack就从IRC中即成了很多优点，微信公众号继承了Mailing List和RSS的原理。</p>
+</blockquote>
+<p>BBS听起来像是上个世纪的产物，我都不屑于去关注，但是其实，从这些中古产品设计中，我们恰恰能学到一些产品架构设计中很底层的思想。</p>
+<p>Usenet、IRC、和Mailing List我都不知道是什么，需要研究一下。</p>
+<p>BBS是一种网站系统，是目前流行网络论坛的前身，它允许用户使用终端程序通过调制解调器或因特网来进行连接，BBS站台提供布告栏、分类讨论区、新闻阅读、软件下载与上传、游戏、与其他用户在线对话等功能。<br>IRC：IRC是一种应用层的协议。主要用于群体聊天，但同样也可以用于个人对个人的聊天。IRC使用的服务器端口有6667（明文传输），6697（SSL加密传输）。</p>
+<h2 id="从书籍中学习"><a href="#从书籍中学习" class="headerlink" title="从书籍中学习"></a>从书籍中学习</h2><p>最近在阅读《Dont Make Me Think》，书中讲了很多概念，读起来有些吃力，但是学习到了很多前人已经总结好的经验。<br>比如一个概念，持续化导航。</p>
+<blockquote>
+<p> 导航有两个显而易见的用途：帮助我们找到想要的东西和公诉我们现在身处何处。<br>持久化导航应该包括 4 个元素，设计者应该一直保持这 4 个元素可见。</p>
+</blockquote>
+<p>到底什么是持久化导航呢？我找了例子辅助大家理解，这是苹果官网的首页，当我往下滑动，首页的导航条一直固定在上方，这就是持久化导航，当用户在首页时候，我们希望用户可以以最短路径，可以去到他希望去的任何其他页面，因此，我们一直将导航条放在上面。<br><img src="https://kerryli1007.github.io/images/Q3_Week2_工作总结/2.png" alt></p>
+<p>还有一个概念，是作者分享的他的可用性第一定律：别让我思考。</p>
+<blockquote>
+<p>设计者应该做到，当用户看到一个页面时，它应该是不言而喻、一目了然、自我解释的。</p>
+</blockquote>
+<blockquote>
+<p>用户应该是能“明白它”——它是什么意思，怎么样用它——而不需要进行额外的思考。</p>
+</blockquote>
+<p>好的不需要思考的体验，是让用户第一眼看到网站，“这是…那是…我想要的东西在这里”。重点是让用户知道，他想要的东西在哪里。</p>
+<p>从我们产品数据中心上传数据，这个地方的显示，如果是新用户，都无法知道，这里还是可以修改数据字段类型的，还有一个问题是，就算我知道，点的时候，基本上也要点2次才能点出来下拉框。<br><img src="https://kerryli1007.github.io/images/Q3_Week2_工作总结/3.png" alt></p>
+<p>学习致用，这是非常重要的一课。</p>
+<p>最后，还学习到读者很擅长从物理世界借用比喻。</p>
+<p>当作者讲述导航设计时候，他借用了真实世界的案例</p>
+<blockquote>
+<p>物理空间，例如城市和建筑物，都有自己的导航系统，有它们自己随着时间发展起来的习惯用法，例如街头指示牌、页码、章节标题。这些习惯用法标明了导航元素的外观和位置，因此我们知道该寻找什么，以及在需要的时候如何找到。<br>从物理世界借概念，做比喻，让我想起潘乱发表在即刻的一段话<br>前阵子头条办了个如何打造个人IP的沙龙，主持人问你觉得谁是过去几年最成功的IP。<br>我说是凯文凯利。他是美国一本杂志，后来有网站，的主编，可能类似，不会超过，极客公园张鹏在国内的位置。但却明显取得了更大的名声。<br>什么叫IP，常销且畅销，能够做到常销需要要有洞察和趋势，畅销就是要深入浅出。<br>Kk能造新名词，同时还会从生物学里借概念。尽管少见他针对具体某家公司某个产品的深入分析，但他善于对趋势做预测，对趋势做总结，他能够深入浅出把这件事讲得普通人都能听懂。<br>KK造新名词，从生物学中借概念。这个很牛逼，就像之前看到的一篇文章，从人类文明的发展历程中借概念。</p>
+</blockquote>
+<p>为什么，从不同地方借概念是一个很不错的阐述事物的方式呢？我认为，原因有2:<br>1是从具像到抽象，从熟悉到陌生，便于读者理解。<br>2是我们可以将从具像中学习到的逻辑复制到抽象的运用中。</p>
+<h1 id="LR-CTR模型的核心和基础"><a href="#LR-CTR模型的核心和基础" class="headerlink" title="LR-CTR模型的核心和基础"></a>LR-CTR模型的核心和基础</h1><p>这个部分的总结是学习的王喆老师在知乎上的分享。</p>
+<h2 id="LR-CTR模型的核心和基础-1"><a href="#LR-CTR模型的核心和基础-1" class="headerlink" title="LR-CTR模型的核心和基础"></a>LR-CTR模型的核心和基础</h2><blockquote>
+<p>传统预估模型的特点：</p>
 <ol>
-<li>总结。总结。总结。最近一次项目，明显感觉到，有很多东西，只有在实战中，才能积累经验，比如数据库的部署，产品的熟练使用。这些经验除了实战，没有别的办法可以获得。</li>
-<li>思考。思考。思考。做一件事，是不是可以这样做。一个问题，解决方案，是不是真的就是这样的。虚心求教，多方确认。</li>
+<li>LR、FM等传统CTR模型有着可解释性、轻量级的训练部署要求、便于在线学习等不可替代的优势，游泳大量适合的应用场景。</li>
+<li>传统CTR模型是深度学习CTR模型的基础。深度神经网络（Deep Neural Network）从一个神经元发展而来，而LR正是单一神经元的经典结构；此外，影响很大的FNN，DeepFM，NFM等深度学习模型也与传统的FM模型有着千丝万缕的联系。<br>LR模型的流行是有三方面原因的，一是数字形式和含义上的支撑；二是人类的直觉和可解释性的原因；三是工程化的需要。</li>
 </ol>
-<h1 id="项目管理"><a href="#项目管理" class="headerlink" title="项目管理"></a>项目管理</h1><h1 id="产品GTM（Go-To-Market）"><a href="#产品GTM（Go-To-Market）" class="headerlink" title="产品GTM（Go To Market）"></a>产品GTM（Go To Market）</h1><p>最近公司有一款用AI方式做BI的产品，我是这款产品的负责人。所以，说一些我对这款产品GTM中的一些理解。</p>
-<h2 id="什么是BI"><a href="#什么是BI" class="headerlink" title="什么是BI"></a>什么是BI</h2><p>BI，即Business Intelligence，中文称为商业智能。</p>
+</blockquote>
+<blockquote>
+<h2 id="1-1-逻辑回归的数学基础"><a href="#1-1-逻辑回归的数学基础" class="headerlink" title="1.1 逻辑回归的数学基础"></a>1.1 逻辑回归的数学基础</h2><p>直观来说，LR模型目标函数的形式就是各特征的加权和，再施以sigmoid函数。</p>
+</blockquote>
+<blockquote>
+<h2 id="1-2-人类的直觉和可解释性"><a href="#1-2-人类的直觉和可解释性" class="headerlink" title="1.2 人类的直觉和可解释性"></a>1.2 人类的直觉和可解释性</h2><p>使用各特征的加权和是为了综合不同特征对CTR的影响，而由于不同特征的重要程度不一样，所以为不同特征制定不同的权重来代表不同特征的重要程度。最后要套上sigmoid函数，正是希望其值能够映射到0-1之间，使其符合CTR的物理意义。</p>
+</blockquote>
+<blockquote>
+<h2 id="1-3-工程化的需要"><a href="#1-3-工程化的需要" class="headerlink" title="1.3 工程化的需要"></a>1.3 工程化的需要</h2><p>LR模型凭借其易于并行化、模型简单、训练开销小等特点，占据着工程领域的主流</p>
+</blockquote>
+<p>最后，谈下本周我的状态，买了几本书《赋能》《我不是产品经理》《陌生人效应》，其中我最感兴趣的是《我不是产品经理》，这是一本讲信息流的书，等读完之后写总结。</p>
 
           
         

@@ -323,6 +323,850 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/23/Q2_Week3_工作总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/23/Q2_Week3_工作总结/" class="post-title-link" itemprop="url">Q2_Week3_工作总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-23 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-23T00:00:00+08:00">2020-05-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-06-19 21:44:01" itemprop="dateModified" datetime="2020-06-19T21:44:01+08:00">2020-06-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>原则：将自己的成长，拆分成为以周为粒度的迭代。高频输出，持续迭代。</p>
+<p>上周虾宝和我在讨论什么是好的mentor、以及如何实现自己的职场价值。特此记录，砥砺自己。</p>
+<p>什么是好的mentor。好的mentor一定是经历了实战，并且存活下来，不是失败者。或者，就算失败了也依然继续努力战斗，这才是好的mentor，如果mentor已经是咸鱼，最后只靠嘴皮子说如何个人努力，这种大概率是不太行。字节的老板，都特别喜欢打过硬仗，如何在竞争中厮杀。</p>
+<p>如何实现自己的职场价值。上面关于好的mentor的定义，也适用于个人职场价值的判断，所以，我来衍生一下。个人的职场价值，不是看成长（这个说的有点残酷），而是看这个人打胜/败过多少场商业战争。一个职场人打仗数量，代表了这个人的经验，能力，以及她是否适合这样的生存环境。这些已经不单单是人品或者聪明可以解释的。总结一下，要实现自己的职场价值，就去实战，去赢得一场场战争。</p>
+<p>和虾宝的讨论，暂且谈到这里，接下来回顾上一周的成长。</p>
+<h1 id="推荐系统实战-踩过的坑"><a href="#推荐系统实战-踩过的坑" class="headerlink" title="推荐系统实战 | 踩过的坑"></a>推荐系统实战 | 踩过的坑</h1><p>春节之后，我一直在跟推荐项目。前期尚且有数据科学家的支持，到了4月份，数据科学家驻场去了，因此，整个项目从前端到后端都是我一个人了。好处是，沟通成本大大降低；坏处是，从帮助客户梳理需求，到写代码实现客户需求，都是我一个人了。对业务的理解，对算法的理解，都是一道道横立在我面前的障碍。</p>
+<p>将所有踩过的坑整理总结出来，也丰富自己的知识体系。</p>
+<h2 id="模型训练丢掉产品信息"><a href="#模型训练丢掉产品信息" class="headerlink" title="模型训练丢掉产品信息"></a>模型训练丢掉产品信息</h2><p>背景阐述：<br>做CSS推荐项目，一个基本假设是，使用模型进行商品推荐，效果会好过传统的商品推荐，比如选择上一年度的BestSeller。</p>
+<p>因此，基于传统的商品推荐来构造训练集。但是，在项目实施过程中，发现客户给的传统推荐营销表，存在两个问题：</p>
+<ul>
+<li>传统的营销表中，没有营销商品的信息</li>
+<li>传统的营销表中，没有此笔营销订单是否成功的信息</li>
+</ul>
+<p>在首次，处理数据时候，对于上述两个问题，我分别采用的措施如下：</p>
+<ol>
+<li>营销表中，没有商品信息，但是可以根据相关信息，在交易表中，匹配商品信息。但是这又出现另一个问题，那就是，成单的营销信息，有对应的商品信息，但是没有成单的营销信息，就没有对应的商品信息。所以，当时我的判断是直接拿掉产品信息。</li>
+<li>营销表中，没有成单信息。可以根据userid已经营销时间，在交易表中，为该笔营销匹配上是否成单的信息。</li>
+</ol>
+<p>上述两个措施，第二个是合适的，但是第一个完全不合适。试想，我们是要为消费者推荐商品，怎么能将商品信息直接拿掉呢？对于这个问题的补救措施：<br>营销表中的消费者分为两类，一类是被营销后，有消费记录，一类是被营销后，无消费记录。我们可以选择有消费者记录的消费者，作为我们的样本客户群，有消费记录营销事件的作为正样本，然后，按照正负样本1：10的比例，为每个客户匹配负样本。<br>这样，我们就得到了一个完整的营销表，只不过是伪营销表。</p>
+<p>从这个小的细节，可以看出，从业务逻辑，到算法逻辑，其实是有较大的gap，同时，对数据的处理，很多时候，是会带来其他额外的效应的。</p>
+<h2 id="实验设计"><a href="#实验设计" class="headerlink" title="实验设计"></a>实验设计</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>基于不同的目标，我们有2个模型。模型1的目标是maxmize预测自然购买和真实自然购买的匹配度，模型2的目标是推荐模型的转化率好过传统短信推荐。但是，模型2用来训练的数据量小。模型1的训练数据在千万级别，模型2的训练数据在10万。因此，为了比较2个模型的真实效果。我们需要比较这些模型在测试集上的表现。</p>
+<h3 id="实验设计-1"><a href="#实验设计-1" class="headerlink" title="实验设计"></a>实验设计</h3><p>本实验解决的问题是什么：<br>传统短信营销场景下短信营销转化率低，尝试用推荐模型来给每个用户推荐，从而提高转化率。</p>
+<p>实验假设：<br>SMS模型营销和自然购买模型营销给出的推荐商品在真实购买商品的命中率更高。</p>
+<p>实验组：</p>
+<ol>
+<li>传统营销</li>
+<li>SMS模型营销</li>
+<li>自然购买模型营销</li>
+</ol>
+<p>实验指标：</p>
+<ul>
+<li>命中率</li>
+<li>计算公式<br>{用户1,真实购买item} / {用户1, 预测item1}，{用户1, 预测item2}……{用户1, 预测item10}，这10个，有一个预测命中，则算这个预测准确</li>
+</ul>
+<p>采用命中率做为指标，主要是为了评估，模型推荐的命中率和传统营销的命中率，谁的命中率更高。假设是，命中率更高的推荐方式，即为真实场景中表现更好的推荐。</p>
+<h1 id="产品设计"><a href="#产品设计" class="headerlink" title="产品设计"></a>产品设计</h1><p>在工作中，我既是别的PM设计产品的长时间使用者，最近3周，平均每天，我使用AutoML的时间，大于等于5个小时；我自己也是To B产品的PM，每天都会接到运营、销售、以及其他部门的需求。</p>
+<h2 id="对AutoML使用层面的感受"><a href="#对AutoML使用层面的感受" class="headerlink" title="对AutoML使用层面的感受"></a>对AutoML使用层面的感受</h2><p>AutoML作为工具的初衷是降低生产算法的门槛。</p>
+<p>传统的算法生产，只有数据科学家可以做这件事。但是AutoML的出现改变了这件事，AutoML让一些对机器学习有基础理解的人，也能建模，同时模型的表现，也会不错。</p>
+<p>但是，为了实现上述目标，就会牺牲一些原有的便捷性，同时，AutoML的用户定位一直也非常模糊。<br>（这个不展开</p>
+<h2 id="作为PM，如何分析需求"><a href="#作为PM，如何分析需求" class="headerlink" title="作为PM，如何分析需求"></a>作为PM，如何分析需求</h2><h1 id="一些思考，从AutoML到推荐方案，还有多远"><a href="#一些思考，从AutoML到推荐方案，还有多远" class="headerlink" title="一些思考，从AutoML到推荐方案，还有多远"></a>一些思考，从AutoML到推荐方案，还有多远</h1>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/23/Q2_Week2_工作总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/23/Q2_Week2_工作总结/" class="post-title-link" itemprop="url">Q2_Week2_工作总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-23 00:00:00 / Modified: 16:06:03" itemprop="dateCreated datePublished" datetime="2020-05-23T00:00:00+08:00">2020-05-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>原则：将自己的成长，拆分成为以周为粒度的迭代。高频输出，持续迭代。</p>
+<p>老规矩，回顾一下过去一周，成长与不足。</p>
+<h1 id="成长-对推荐系统有了更深的理解"><a href="#成长-对推荐系统有了更深的理解" class="headerlink" title="成长 | 对推荐系统有了更深的理解"></a>成长 | 对推荐系统有了更深的理解</h1><p>本周加深了自己对推荐系统的2个认知：推荐流程，推荐场景可使用的高标准产品</p>
+<h2 id="推荐流程"><a href="#推荐流程" class="headerlink" title="推荐流程"></a>推荐流程</h2><p>一点感慨，说实话，我大概从2019年6月就开始看推荐系统相关的书籍，如《推荐系统实战》。最近做项目，要在工业可用概念上，交付一个可使用的模型，我才感受到，一切都是有那么一点不一样。这个不一样的感受，我尝试用一句话来表达：别人写成文字的内容，就是一两句话，对没有接触实际业务的我来说，无法深刻体会，其意义。比如，作者对召回，一句轻描淡写的带过</p>
+<blockquote>
+<p>对于在线部分来说，一般要经历几个阶段。首先通过召回环节，将给用户推荐的物品降到千以下规模；如果召回阶段返回的物品还是太多，可以加入粗排阶段，这个阶段是可选的，粗排可以通过一些简单排序模型进一步减少往后续环节传递的物品；再往后是精排阶段，这里可以使用复杂的模型来对少量物品精准排序。<a href="https://zhuanlan.zhihu.com/p/58160982" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/58160982</a></p>
+</blockquote>
+<p>默认，上面引用的文章作者，会更加关注技术，所以对业务层面的分析会比较少。</p>
+<p>对于，我这类非常关注业务的同学，会关注以下这些问题：<br>对于为什么要用召回，不用召回行不行，不用是否会有严重的后果？如果必须要用，那么到底要怎么用？谁来用？算法来用？还是业务来设置？涉及到一个推荐系统，要和业务紧密结合时候，是需要考虑非常多的问题，推荐系统不单单是算法的事。</p>
+<p>发表完上述感慨，切入正题。推荐流程。<br>推荐系统的本质，是将人和内容连接起来，这个过程中，有2个主体，一个是人，一个是内容。<br>根据这两个主题，参考流程图<br><img src="https://kerryli1007.github.io/images/Q2_Week2_工作总结/1.jpng" alt></p>
+<p>从左下角的手机icon开始，理解整个流程图，用户在手机端操作，产生了一系列行为，系统将这些行为收集上来，这些数据都是用户的实时用户行为</p>
+<ul>
+<li>如果是要实时推荐，就进入实时模型，进行实时模型时候，阶段一般分为两个阶段，分别为召回和精排序。召回也好，精排序也好，其主体都是内容。我们也将这里的内容称为物料库。<ul>
+<li>召回阶段：算法模型从物料库中召回一些商品。</li>
+<li>精排阶段：算法模型将这些召回回来的item进行精排序<br>完成上述两个阶段之后，这些被召回的内容，需要再通过业务策略，最后才会展示给用户。</li>
+</ul>
+</li>
+<li>如果不是实时推荐，就写入历史用户行为log，将这些数据进行离线模型训练<br>了解了上述流程之后，来回答之前的所有问题</li>
+</ul>
+<blockquote>
+<p>对于为什么要用召回，不用召回行不行，不用是否会有严重的后果？如果必须要用，那么到底要怎么用？谁来用？算法来用？还是业务来设置？涉及到一个推荐系统，要和业务紧密结合时候，是需要考虑非常多的问题，推荐系统不单单是算法的事。</p>
+</blockquote>
+<p>举例珠宝电商场景，他们销售的商品数量一共有6W。如果说没有召回阶段的话，那么算法模型需要将消费者和这6W商品依次进行打分。这样的直接影响需要大量时间，速度低。<br>试想这样一个场景，你正在兴致勃勃地刷着抖音，刷完一个短视频之后，你期望立刻刷到下一个，如果这个时候，算法模型要对物料库中的上亿个短视频都进行打分，最后计算出你最喜欢的商品，然后推送给你，这个过程，可能都需要1个小时。正在手机端前的你能等吗？不能是吧。因为用户是期望无感知，刷完这个视频，就立刻有下一个视频。珠宝场景同理。<br>为了实时性，就需要在原来的物料库中进行一次筛选，这就是召回。这都说的是召回的优点，那召回有缺点吗？有的。召回会在一定程度上牺牲精准度。</p>
+<p>继续回答上述的问题。这个召回是怎么用？算法来用？还是业务来用。<br>我的理解是算法和业务要配合。如何理解。<br>算法要做模型做召回，但是需要和业务配合。比如，有一些商品，过期了，不能被销售，那么这种变化，是需要实时更新的，因为不能推送不能被购买的商品给消费者。如果要做到业务逻辑实时更新，那么久需要一个可视化交互界面。谈到这里，我也想说一下，推荐在一个业务场景中的使用，真的不是算法代码的事，这里面，需要大量业务的配合。而业务的配合，是需要有一个可视化交互界面，让业务同学完成一些运营动作的操作。</p>
+<p>这里顺便说一下业界企业的做法，一般来说，大的企业，比如腾讯、百度，他们的推荐系统都是有可视化交互界面；小的企业，一般都是通过redis或者API来操作。</p>
+<h2 id="推荐场景可使用的高标准产品"><a href="#推荐场景可使用的高标准产品" class="headerlink" title="推荐场景可使用的高标准产品"></a>推荐场景可使用的高标准产品</h2><p>思考一个场景，企业A，主营业务是珠宝销售，期望使用AI模型来进行精准化推荐。<br>但是，当前由于种种原因，作为技术服务提供商，我们提供的产品，只能解决算法层面的问题。<br>提问，这是一个推荐场景的高可用标准产品吗？<br>答案：不是。</p>
+<p>那推荐场景可使用的高可用标准产品是什么呢？<br>市场上有没有这样的产品呢？有的，比如达观、神策。</p>
+<p>对神策的推荐产品进行分析，神策提供两个场景的推荐</p>
+<ul>
+<li>文娱Demo</li>
+<li>电商Demo</li>
+</ul>
+<p>文娱适用于资讯项目。<br>点击【创建信息】，展示<img src="https://kerryli1007.github.io/images/Q2_Week2_工作总结/2.jpng" alt></p>
+<p>基础信息：创建人、创建信息<br>可推物品筛选条件：</p>
+<ul>
+<li>文章</li>
+<li>视频</li>
+</ul>
+<p>点击【物品规则】<br><img src="https://kerryli1007.github.io/images/Q2_Week2_工作总结/3.jpng" alt></p>
+<p>物品规则字段：</p>
+<ul>
+<li>ID</li>
+<li>物品名称</li>
+<li>权重</li>
+<li>必推（设为必推后，将在必推截止时间前，为每个用户推荐该物品一次。同一栏位下，最多支持同时设置10条必推）</li>
+<li>类目</li>
+<li>标签</li>
+<li>类别</li>
+</ul>
+<p>点击【推荐规则】<br><img src="https://kerryli1007.github.io/images/Q2_Week2_工作总结/4.jpng" alt></p>
+<p>去重规则</p>
+<ul>
+<li>展示数量去重</li>
+<li>展示时间去重</li>
+<li>点击数量去重</li>
+<li>点击时间去重</li>
+</ul>
+<p>比例规则<br>文章 <em>% + 视频 </em>% = 100%</p>
+<p>最后，神策还提供【统计分析】功能，用过神策产品的同学，已经对这个设计不陌生，神策在做统计分析方面是非常在行了！</p>
+<h1 id="成长-总结一下对竞赛领域的版图理解"><a href="#成长-总结一下对竞赛领域的版图理解" class="headerlink" title="成长 | 总结一下对竞赛领域的版图理解"></a>成长 | 总结一下对竞赛领域的版图理解</h1><p>关于竞赛行业的理解，我想更深入的写，仔细分析竞赛领域到底有没有想象空间？所以，会专门写一篇文章来梳理。</p>
+<p>这是Q2_Week2的工作总结！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/23/可复制的领导力/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/23/可复制的领导力/" class="post-title-link" itemprop="url">可复制的领导力</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-23 00:00:00 / Modified: 18:17:39" itemprop="dateCreated datePublished" datetime="2020-05-23T00:00:00+08:00">2020-05-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>之前带的一个小朋友YW，前段时间拿到了美团推荐策略的offer，由衷地为她开心。我曾经带她做过一段时间的AI项目，在做她mentor的时候，我也是第一次带人。有一些心得体会，总结如下。</p>
+<h1 id="从缺乏耐心到可复制的领导"><a href="#从缺乏耐心到可复制的领导" class="headerlink" title="从缺乏耐心到可复制的领导"></a>从缺乏耐心到可复制的领导</h1><p>AI项目涉及到大量技术细节，各个组成部分，错综复杂，前期，布置任务的时候，我只说一遍。后来发现，YW在执行的过程中，会有很多问题，不断找我确认。有时候，我会耐心较少，甚至会想，这些工作，我自己来做，是否更简单。</p>
+<p>后来和Fox沟通请教了一下我遇到的这个问题。他推荐了我一本书，叫做《可复制的领导力》。</p>
+<p>摘录其中一段让我特别有感触的文本：</p>
+<blockquote>
+<p>布置任务时候，至少说5遍：<br>第一遍，麻烦你帮我做一件XX事。<br>第二遍，麻烦你重复一遍。<br>第三遍，你觉得我让你做这事的目的是什么。<br>第四遍，你觉得做这事会遇到什么意外，遇到什么情况你要向我汇报，遇到什么情况你可以自己做决定？<br>第五遍，如果你自己做，你有什么更好的想法和建议。<br>五遍讲完，员工对各种突发情况、场景都有预案了，再去执行。</p>
+</blockquote>
+<p>确实如此，之前在布置任务时候，讲一遍就结束了，自以为是节约了时间，但是其实是为后期重复来去的沟通确认埋下了伏笔，从一开始分配任务时候，就和对方确认目的，分析各种情况的预案，这样其实是更明智的领导者的选择。</p>
+<p>最后，衡量一个管理者能力的高低，是看他能培养多少能干的人才。因此，我也矫正了之前认为还不如自己来做这些任务的看法。授予小朋友们正确的方法，使其独立承担项目的一部分，既可以让他们成长，也开启了我职业生涯的新篇章，从被mentor的入门者，开始mentor其他人。</p>
+<p>最后在强调一下：</p>
+<blockquote>
+<p>布置任务时候，至少说5遍：<br>第一遍，麻烦你帮我做一件XX事。<br>第二遍，麻烦你重复一遍。<br>第三遍，你觉得我让你做这事的目的是什么。<br>第四遍，你觉得做这事会遇到什么意外，遇到什么情况你要向我汇报，遇到什么情况你可以自己做决定？<br>第五遍，如果你自己做，你有什么更好的想法和建议。<br>五遍讲完，员工对各种突发情况、场景都有预案了，再去执行。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/人月神话（3）| 贵族专制、民主政治和系统设计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/12/人月神话（3）| 贵族专制、民主政治和系统设计/" class="post-title-link" itemprop="url">人月神话（3）| 贵族专制、民主政治和系统设计</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-12 21:34:00 / Modified: 21:46:02" itemprop="dateCreated datePublished" datetime="2020-05-12T21:34:00+08:00">2020-05-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>大教堂事艺术史上无与伦比的成就。它的原则即不乏味也不混乱…..真正达到了风格上的极致，完成这件作品的艺术家们，完全领会了吸收了以往的成功经验，也完全掌握了他们那个时代的技术，而且在应用的时候做到了恰如其分，绝不轻率，也绝不花哨。</p>
+</blockquote>
+<p>在系统设计中，概念完整性应该是最重要的考虑因素。为了反映一系列连贯的设计思路，宁可省略一些不规则的特性和改进，也不提倡独立和无法整合的系统，哪怕它们其实包含着很多很好的设计。</p>
+<p>如果说概念完整性如此重要，那么如何获得概念的完整性？<br>编程系统（软件）的目的是使计算机更加容易使用。</p>
+<h1 id="获得概念的完整性"><a href="#获得概念的完整性" class="headerlink" title="获得概念的完整性"></a>获得概念的完整性</h1><blockquote>
+<p>编程系统（软件）的目的是使计算机更加容易使用。为了做到这一点，计算机装备了语言和各种工具，这些工具实际上也是被调用的程序，受到编程语言的控制。使用这些工具是有代价的：软件外部描述的规模大小是计算机系统本身说明的十倍。用户会发现寻找一个特定功能是很容易的，但相应却有太多的选择，要记住太多的选项和格式。</p>
+</blockquote>
+<p>作者撰写本书的时候是上个世纪70年代，在这个时候，作者已经意识到了使用工具，会有代价。作者的描述是，寻找一个特定功能是很容易的，但是相对应却有太多的选择，要记住太多的选项和格式。</p>
+<p>我相信，这是作者在几十年前就看到的一个问题。但是，几十年过去了，这个问题，不但没有得到解决，反而越发严重。有好多产品，用户连寻找一个特定功能都很困难。</p>
+<p>报销软件，是一个高频使用的产品。基本上，保持一个月一次的视频频率。<br>在使用场景中，用户需要打印每个月提交的申请表单。<br><img src="https://kerryli1007.github.io/images/人月神话（3）| 贵族专制、民主政治和系统设计/123.png" alt></p>
+<p>用户登陆产品云快报，希望找到自己在手机端已经提交的报销申请。这个时候，有三个选择：</p>
+<ul>
+<li>我的审批</li>
+<li>我的单据</li>
+<li>我的订单</li>
+</ul>
+<p>基本上，每次我都会在我的审批以及我的订单中找报销申请，但是每次都找不到。后来才意识到，原来被提交的报销申请在【我的单据】里面。<br>百度【单据】的含义:</p>
+<blockquote>
+<p>单据，是在经济业务发生时所取得或填制的、载明交易、事项实际情况的书面证明，它是进行会计核算的原始资料和重要依据。</p>
+</blockquote>
+<p>了解到原来【单据】是一个专业的名词。如果说，平台为了保持自己的专业度，让这样一个日常不常见且抽象的概念暴露给用户，牺牲一定的用户体验，那我能理解。</p>
+<p>那是否可以做得更好的，是否可以当鼠标点击在上述的三个选择时，给予一定文字提示，让用户知道，每个选项是什么。</p>
+<p>写到这里的时候，我又重复研究了一下这三个选项。</p>
+<ul>
+<li>我的审批<ul>
+<li>等待审批</li>
+<li>审批记录</li>
+</ul>
+</li>
+<li>我的单据<ul>
+<li>等待处理</li>
+<li>正在审批</li>
+<li>审批完成</li>
+</ul>
+</li>
+<li>我的订单<ul>
+<li>全部</li>
+<li>进行中</li>
+<li>已完成</li>
+</ul>
+</li>
+</ul>
+<p>审批和单据是真的让人傻傻分不清，产品经理应该好好想想。</p>
+<p>回到作者上述描述，其本质还是计算机的易用性。</p>
+<p>::什么是易用性，给其一个定义，易用性 = 功能 / 理解上的复杂程度。::</p>
+<p>单一的功能本身或者是否易于使用，这都无法成为一个设计评判标准。所以，要实现上述目标，并不容易，极其考验产品架构的系统规划能力。</p>
+<h1 id="贵族专制统治和民主政治"><a href="#贵族专制统治和民主政治" class="headerlink" title="贵族专制统治和民主政治"></a>贵族专制统治和民主政治</h1><blockquote>
+<p>概念的完整性要求设计必须由一个人，或者非常少数互有默契的人员来实现。</p>
+</blockquote>
+<p>但是进度压力却要求很多人员来开发系统。有两种方法可以解决这种矛盾。第一种是仔细地区分设计方法和具体实现。第二种是前一章节中所讨论的开发方式。</p>
+<h2 id="区分设计方法和具体实现。"><a href="#区分设计方法和具体实现。" class="headerlink" title="区分设计方法和具体实现。"></a>区分设计方法和具体实现。</h2><p>将设计方法、体系结构方面的工作与具体实现相分离是获得概念完整性的强有力方法。</p>
+<p>什么是体系结构？</p>
+<blockquote>
+<p>系统的体系结构指的是完整和详细的用户接口说明。</p>
+</blockquote>
+<p>为什么要将体系结构（设计方法）和具体实现分开？</p>
+<blockquote>
+<p>体系结构陈述发生了什么，而实现描述的是如何实现。</p>
+</blockquote>
+<p>我感觉体系结构和具体实现的分开，实质上是如今软件开发中产品经理和研发的分工。本书作者弗雷德里克·布鲁克斯撰写本书的时候，大概是上个世纪末，那个时候，软件时代的产品经理更偏向项目管理和推进，按照客户的要求准时上线产品。（《俞军产品方法论》）所以，不难理解为什么作者会在书中强调将体系结构和具体实现分开，今天，在软件产品开发中，体系结构一般是由产品经理定义好，具体的实现方式，由研发思考。</p>
+<p>最后，今天看到一个很有趣的观点：</p>
+<blockquote>
+<p>想要拥有好的的格局和眼界，需要信息输入足够多，可以把自己当成算法模型去训练：</p>
+<ol>
+<li>信息量要大：要开放，大量输入信息，改变固执己见的封闭思维，研究高手、找高手交流、工作生活中总结、看书</li>
+<li>筛选有效信息：要有逻辑、模型</li>
+<li>快速迭代：结合实践后的数据和反馈去调整、优化旧的模型</li>
+<li>继续重复1、2、3<br>自己肯定有盲区，也有继续成长的空间，别自我设限，拥抱变化。</li>
+</ol>
+</blockquote>
+<p>通过足够大的输入，训练自己，深以为然。</p>
+<p>同时，单是输入尚且不够，必须，输出，大量输出。所有的输入，只有经过了认知加工，变成了输出，才会成为自己认知体系中的一环。</p>
+<p>参考</p>
+<ol>
+<li>《软件的黄金时代》</li>
+<li>《人月神话》</li>
+<li>《俞军产品方法论》</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/关于中台的一点思考/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1475,773 +2319,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/04/PPT制作复盘/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/04/PPT制作复盘/" class="post-title-link" itemprop="url">PPT制作复盘</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-05-04 00:00:00 / Modified: 16:47:50" itemprop="dateCreated datePublished" datetime="2020-05-04T00:00:00+08:00">2020-05-04</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>实话来说，我得有两年没有正经做PPT了。这次需要为部门的产品做销售PPT，在做PPT的过程中，有一些收获总结如下，以供之后翻阅，从中汲取经验教训，更快成长。</p>
-<h2 id="Learning-1"><a href="#Learning-1" class="headerlink" title="Learning 1"></a>Learning 1</h2><p>做PPT没有诀窍，唯有多思考。<br>无他，多思考尔，且不断追求完美。<br>嘿嘿，上面两句话好装逼哦。（不过我自己好喜欢，开玩笑啦～<br>我曾在咨询行业实习过。众所周知，咨询行业以做PPT而著名，所有从事这个行业的人，都有一个看家本领，做PPT。但是在我在咨询行业那段时间，因为没有有效地成长，故在此方面无积累。<br>客观来说，我在咨询行业也呆了一年（实习），光阴无价，关于PPT关于咨询，在这段时光中，我到底是否有收获？如果有，是什么？为什么会有这些收获？我没有收获什么？为什么没有这些收获，如果我有时光机器，倒回到3年前，还是进入咨询行业，怎么做，我能有收获？</p>
-<h2 id="Learning-2"><a href="#Learning-2" class="headerlink" title="Learning 2"></a>Learning 2</h2><p>呈现的每一页PPT，我希望听众/读者了解什么？他们应该获得何种认知。<br>基本上很多讲PPT制作的书籍、文章，都会说，明确听众是谁，明确目标是什么，明确我们希望听众、读者了解什么？<br>但是How？<br>我曾经和虾虾一致讨论认为，只说要怎么，但是不说how就是怎么能做到的一切评论，都是扯犊子。怎么说呢？就是动动嘴皮子谁不会，但是重点是要告诉别人如何才能做得更好。<br>我认为，要想在每一页PPT都有他自己的使命表达这里做得更好。有以下几个可参考的步骤</p>
-<ol>
-<li>明确自己整个PPT的目标</li>
-<li>故事线在自己脑海中要清晰（对着镜子讲故事线，和女朋友男朋友讲故事线，如果说讲不出来，卡壳，或者自己都不信，那就gg）</li>
-<li>明确每一张PPT在整个PPT中的角色，就像一部电视剧，有主角有配角，比如《我和僵尸有个约会》，里面的主角是马小玲，但是她姑妈最先出场，她姑妈的角色就是配角，目标是为了推动故事发展。对我们的PPT也是同理，如果角色是配角，只是为了介绍背景，推动故事发展，那么就一定要做到详略得当。</li>
-<li>寻找最适合这个点讲述的format<ol>
-<li>格式的展示和目标也是息息相关，比如一个背景铺垫，如果说1张PPT可以搞定，那么就不要搞成3张。</li>
-</ol>
-</li>
-</ol>
-<h2 id="Learning-3"><a href="#Learning-3" class="headerlink" title="Learning 3"></a>Learning 3</h2><p>好的PPT片子需要时间。<br>以前我看别人的PPT，10页，觉得好短啊，读起来也就那样。然后自己做，赶速度，一下午做完，做完之后，逻辑不通顺，格式也不优美。然后百思不得其解，为何如此。久而久之，陷入自怨自艾的深渊，反问自己为什么就没有好的逻辑构思。整体下来，于成长无帮助。<br>好的PPT片子需要时间。好的PPT片子需要时间。好的PPT片子需要时间。重要的话说三次。<br>因为，我们需要时间来梳理整个故事；需要时间来决定每个环节将给听众的故事；需要时间来决定每个环节的权重。比如，是否想主要突出这个环节，还是说，这个环节的主要目的，是让听众/读者知道有这么一回事，但是重点在后面，如果说重点在后面，那么就需要对后面的篇幅用更多的笔墨进行描述。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/23/产品设计体会（1）从目标出发/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/04/23/产品设计体会（1）从目标出发/" class="post-title-link" itemprop="url">产品设计体会（1）从目标出发</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-04-23 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-23T00:00:00+08:00">2020-04-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-07-05 10:06:18" itemprop="dateModified" datetime="2020-07-05T10:06:18+08:00">2020-07-05</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我记得我刚开始接触产品经理那会，有2件事让我难忘。</p>
-<p>第一个事儿是身边的产品经理，都在讲第一性原理，本质思考。我还记得，为了弄清楚第一性原理，我特意去看了Elon Musk的演讲，到最后，我也没有明白，第一性原理，本质思考到底是什么意思。</p>
-<p>第二个事儿是福特的故事，很多讲产品的书和文章都在讲福特的故事，说福特是一位伟大的产品经理，用户想要的是更快的马，但是福特创造出了更快的汽车。</p>
-<p>我还记得看完这两个事例，我脑袋一懵，觉得自己基本上完蛋了，我做不了产品经理。</p>
-<p>我拆分不来火箭的原材料，我也造不来汽车。那是2017年的事。现在回过头来看看，其实是在一些没有品味的书上，浪费了时间。因为这些没有品味的书，没有脑子的兜售概念，讲一些指不定作者自己都不明白的话，浪费读者的时间。</p>
-<p>如今2年过去，关于上面两个事，我也有了一些体会。特此整理，梳理自己思路，也期望能帮助到像当年的我一样的迷惘、无助的少年。</p>
-<p>这两件事，概括起来，都在讲两个字：目标。为这个目标，加一个主体，就是“用户目标”。</p>
-<blockquote>
-<p>什么是用户目标？我们如何识别这些目标？我们如何知道它们是真实的呢？它们是否对所有用户都一样呢？它们是否随着时间发生改变呢？</p>
-</blockquote>
-<blockquote>
-<p>用户目标常常与我们猜测的不同。例如，我们可能会猜测一个会计的目标是高效处理发票。这可能不是事实，有效的发票处理更可能是会计雇主的目标。会计的个人目标更可能是关心自己能否显得胜任本职工作，以及在完成例行的重复任务同时保持这份工作。</p>
-</blockquote>
-<blockquote>
-<p>不管我们所从事的工作和我们必须完成的任务是什么，我们中大多数人都有一些简单而共同的个人目标，即使我们有更高的渴望，它们与工作相关的事情相比也显得更加个人化：如获得提升，了解更多的领域知识，或者成为他人的榜样。</p>
-<p>目标不等于任务。目标是终结条件，相反，任务只是有助于达到目标的中间步骤，目标激发人们去执行任务。不混淆任务和目标非常重要，但它们很容易搅在一起。</p>
-</blockquote>
-<blockquote>
-<p>幸运的是，有一个方法可以非常容易区分任务和目标。目标受人的动机驱使，很难随时间的推移而改变，甚至根本不变。任务是短暂的，几乎完全基于身边的技术。例如，当从圣路易斯到旧金山旅行时，一个人的目标可能是快速、舒适和安全。在1850年，一个移民会选择大篷车旅行，并且，出于安全考虑，他会一直带着他信赖的来复枪。今天，从圣路易斯到旧金山旅行，一个商人会选择喷气式飞机，并且从安全的角度，要求他将防身武器留在家里。目标没有改变，但因为在某些方面完全相反的技术，任务发生了改变。《软件观念革命》</p>
-</blockquote>
-<p>在上面的两个举例中：</p>
-<ul>
-<li>Elon Musk的目标是造火箭，实现手段可以是他直接去买零件，也可以是他直接去买原材料，自己组装，这些都是实现方式而已。</li>
-<li>福特的用户的目标是，可以有更快的通勤工具。</li>
-</ul>
-<p>所以，做产品并没有那么神奇。我觉得所有不说人话的产品经理，要么是故意装逼，要么是自己都没有整明白到底是怎么一回事。自己没有整明白是怎么回事，但是却鼓吹一些概念，我觉得这类人，是蠢。故意装逼的产品经理，倒不是蠢，就是装逼。</p>
-<p>在苏杰的《人人都是产品经理》一书中，他讲述过这样子的一个例子</p>
-<blockquote>
-<p>对于经常做的软件产品，用户需求是“删除数据之前需要我确认，以免误删”，转化分析之后，我们给出的产品需求可能是“数据回收站：删除的数据进入回收站，如果是误删，用户可以去回收站找回数据“。</p>
-</blockquote>
-<p>苏杰老师的这个例子就是非常好。用户的目标是， 避免因为误操作而导致数据丢失。删除确认可以解决这个问题，同理，数据回收站也可以解决这个问题。</p>
-<p>目标是避免数据因误操作而丢失，实现路径可以是多样的。</p>
-<p>读经典，多读有品味的书，少读垃圾书。</p>
-<p>参考：</p>
-<pre><code>1. 软件观念革命
-2. 人人都是产品经理
-3. [First Principles: Elon Musk on the Power of Thinking for Yourself](https://jamesclear.com/first-principles)
-</code></pre>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/22/CV四小龙引发的思考/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/04/22/CV四小龙引发的思考/" class="post-title-link" itemprop="url">CV四小龙引发的思考</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-22T00:00:00+08:00">2020-04-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-05-05 13:02:01" itemprop="dateModified" datetime="2020-05-05T13:02:01+08:00">2020-05-05</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一个现象：目前AI行业的落地，头部公司都是CV科技公司。</p>
-<p>这里说的AI的头部公司是哪些呢？<br>CV四小龙。分别是旷视、依图、商汤、云从。</p>
-<p>更严格来说，这个四家公司，是CV行业的头部公司。我们知道，AI赛道，不只有CV，还有NLP、ML、ASR。</p>
-<p>为什么没有NLP、ML、或者ASR四小龙呢？为什么CV四小龙就等于AI赛道的头部公司？</p>
-<p>从两个角度，尝试来回答这个问题。</p>
-<pre><code>1. 技术成熟度
-2. 商业模式
-</code></pre><p>看看各个技术领域的常用技术的SOTA。CV行业用的最多的是人脸识别，而目前人脸识别的开源效果都能做到90以上，是工业可用。</p>
-<p>且CV有一个非常好的特点，就是，人脸数据，这类数据，不涉及商业隐私。这个和NLP、ML、ASR不一样。</p>
-<p>比如说ML，做推荐，那需要用到的数据，都是商业核心数据，顾客信息、交易数据等。</p>
-<p>比如说ASR，很多语音数据，语音转文本本来就贵，而且语音数据涉及到一些Domain Knowledge。一般来说，这类数据，单纯做技术的AI公司也不容易拿到。</p>
-<p>所以，单纯做技术的AI公司，除了CV之外，下一个突破点在哪里呢？</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/22/实现模型和心智模型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/04/22/实现模型和心智模型/" class="post-title-link" itemprop="url">实现模型和心智模型</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-22T00:00:00+08:00">2020-04-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-07-05 10:01:02" itemprop="dateModified" datetime="2020-07-05T10:01:02+08:00">2020-07-05</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/思考/" itemprop="url" rel="index"><span itemprop="name">思考</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>思考一个问题：符合用户思考和工作方式的软件都是如何设计的？</p>
-<p>问题比较抽象，我们尝试，让这个问题不那么抽象。</p>
-<p>将上述问题，置换为以下问题：有哪些符合用户思考和工作方式的软件呢？他们的哪些功能、设计符合用户思考和工作方式？为什么？</p>
-<p>想要更好的回答上述问题，我们来了解一下几个概念：</p>
-<ul>
-<li>实现模型</li>
-<li>用户心智模型</li>
-<li>表现模型</li>
-</ul>
-<p>飞机是一种近代的交通方式，其实现逻辑是空气动力学。但是，作为乘客，我们根本不关心，飞机是如何飞到天上。我们只关心，我们是否能安全、准时地达到目的地。上述提到的，飞机的实现逻辑是空气动力学，这是实现模型。而，用户关心的，是否能安全、准时地到达目的地，这是用户心智模型。</p>
-<p>展开解释一下实现模型和用户心智模型。</p>
-<h1 id="实现模型"><a href="#实现模型" class="headerlink" title="实现模型"></a>实现模型</h1><blockquote>
-<p>任何机器都有实现其目标的机制。例如，电影放映机使用复杂的移动图片序列来创建这种动态的感觉。它在一个瞬间让明亮的光线透过半透明的微缩图像，然后在它移向另外一副微缩图像的瞬间挡住光线，接着在下一个瞬间再次投射光线。电影放映机每秒24次放映新的图像，重复这个过程。基于软件的产品并没有这样的机制，取而代之，他们使用算法和相互通信的代码模块。这种有关机器和程序如何实现工作的表达被Donald Norman和其他人称为系统模型。</p>
-</blockquote>
-<h1 id="用户心智模型"><a href="#用户心智模型" class="headerlink" title="用户心智模型"></a>用户心智模型</h1><blockquote>
-<p>从电影观众的角度来说，在观看一部引人入胜的电影时，实际上根本不知道放映机是如何工作的，或者是它工作的方式和电视有什么差异。在观众的想象里，放映机只不过是发射出在大屏幕上移动的图片而已。这就称为用户的心智模型，或者概念模型。</p>
-<p>人们并不需要知道复杂产品的实际工作细节来掌握它的使用方法，为了便于使用，人们在认知上创建了一种简洁的解释方式，这种方式对他们与产品的交互来说已经足够，但并不一定能够反映产品实际的内部工作机制。</p>
-</blockquote>
-<p>举一个例子，比如，云计算时代，每个人都可以上阿里云、腾讯云购买算力。按需购买，按量计费。用户从来不会关心，算力的底层硬件，也不会关心，云服务商，是通过何种技术来实现按需提供给用户算力的实现方式。</p>
-<blockquote>
-<p>对于软件应用来说，实现模型和心智模型之间的差异非常明显。</p>
-</blockquote>
-<h1 id="好的契合用户心智模型的产品"><a href="#好的契合用户心智模型的产品" class="headerlink" title="好的契合用户心智模型的产品"></a>好的契合用户心智模型的产品</h1><p>我一直都非常喜欢工具类产品，因为这类产品，可以辅助我开展工作，提高工作效率，或者给予我一些功能上的支持，使我能完成一些之前我不能完成的工作。</p>
-<p>介绍一款产品，Smiple Antnotes，这款产品是一款备忘。为什么说这款产品契合用户心智模型呢？</p>
-<p>我们为什么需要备忘？我们需要一些提醒，并且我们希望这些提醒，我们是随时随刻都可以看见的。回想一下，我们在自己书桌上贴的备忘，这个行为我们从小学时候就有，小学时候，我们是在桌上刻字。鲁迅在三味书屋的书桌上，刻“早”，你可还记得？</p>
-<p>因此，我们是需要这样的备忘，我们随时都可以看见，这样来提醒我们。</p>
-<p>Simple Antnotes就可以实现。备忘上面有一个帽钉，这个设计是模仿现实生活中，我们用帽钉让备忘贴在书桌的设计。<br><img src="https://kerryli1007.github.io/images/实现模型和心智模型/便利贴.png" alt></p>
-<p>在Simple Antnotes，只要我们通过点击的方式，开启了这个帽钉，我们就可以让这个备忘悬浮于我们工作的软件之上，可以随时提醒我们，效果如下图。<br><img src="https://kerryli1007.github.io/images/实现模型和心智模型/SA.png" alt></p>
-<p>好的设计来源于生活～多观察，多思考。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2290,7 +2367,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-count">66</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

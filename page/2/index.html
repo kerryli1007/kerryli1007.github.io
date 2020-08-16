@@ -323,6 +323,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/08/产品设计经验积累/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/07/08/产品设计经验积累/" class="post-title-link" itemprop="url">产品设计经验积累</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-07-08 00:00:00 / Modified: 21:59:34" itemprop="dateCreated datePublished" datetime="2020-07-08T00:00:00+08:00">2020-07-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>对于产品设计这件事，时刻抱着空杯心态，向同事学习更好的设计思路。</p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>To B的官网为用户提供产品试用，试用的入口，一般在右上角，会有一个“控制台”，用户可以从这里看到自己已经申请试用的产品。</p>
+<p>产品试用一般是有周期的，比如7天、12天、14天不等。</p>
+<p>我们的官网A和产品试用环境B，是两个域名。因此，对用户体验来说，从A到B需要一个跳转。</p>
+<p>以上是官网逻辑之间的大的背景。我遇到的问题是当用户西蓝花，她申请试用的产品已经过期了，这个时候，她的操作体验流程如下：<br>点击控制台，来到试用环境，点击登录，被弹出。</p>
+<p>很明显，这个流程非常的奇怪，需要被改善。在这种场景下，我的改善思路，和专业交互的改善思路，是今天复盘思考的重点，分析我们之间的差异，以及背后的原因，从中总结出可复制的方法论，以后复用。</p>
+<h1 id="我的思路"><a href="#我的思路" class="headerlink" title="我的思路"></a>我的思路</h1><p>我的思路是，既然用户是的试用环境登录时候被弹出，那么我们可以在这个页面，做一个弹框，提示用户“你的产品已过试用期，如需继续使用，请联系管理员”。这是我的思路，这个思路，和研发讨论了一下，也说明了一下，这里的问题是，这个登录界面是Prophet的，Prophet是不支持加这些弹框的。</p>
+<p>总结一下：</p>
+<ol>
+<li>我的思路是加弹框，提示用户</li>
+<li>但是我的思路，有可能技术上无法实现，因为产品耦合的关系，Prophet的登录逻辑，我们是不能动的。<h1 id="交互的思路"><a href="#交互的思路" class="headerlink" title="交互的思路"></a>交互的思路</h1>了解背景之后，交互提出得解决方案是，在控制台界面，直接将控制台页面做调整</li>
+<li>展示维度：将产品icon置灰，且可以加一个标签提示语，如“已过试用期”</li>
+<li>交互维度：用户点击，无反应</li>
+</ol>
+<p>听完交互的思路，我觉得这个方案好啊。好在哪里呢？</p>
+<ol>
+<li>首先，避免了用户做跳转的动作。如果让用户跳转了之后，再告诉用户，你已经过了试用期，用户也会不爽</li>
+<li>其次，我们不用动Prophet的逻辑</li>
+<li>最后，当我们上线的产品多了以后，就可以在这个页面，展示所有的产品状态，而不是，用户点击每个产品，都要跳转到对应页面，才能知道是否过了试用期</li>
+</ol>
+<p>综上，这个方案非常好，从用户体验维度、技术实现难度、以及未来发展可复用性，都很好。</p>
+<h1 id="Lessons-Learned"><a href="#Lessons-Learned" class="headerlink" title="Lessons Learned"></a>Lessons Learned</h1><ol>
+<li>多向同事学习，虚心请教。</li>
+<li>多复盘、总结，举一反三。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/08/时间序列项目经验积累/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2492,204 +2677,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/How Complex Systems Fail/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/06/26/How Complex Systems Fail/" class="post-title-link" itemprop="url">How Complex Systems Fail</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-06-26 00:00:00 / Modified: 11:37:50" itemprop="dateCreated datePublished" datetime="2020-06-26T00:00:00+08:00">2020-06-26</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/思考/" itemprop="url" rel="index"><span itemprop="name">思考</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>James Hamilton<br><img src="https://kerryli1007.github.io/images/HowComplexSystemsFail/1.png" alt><br>谁是James Hamilton？<br>James Hamilton负责亚马逊云计算技术的副总裁和杰出工程师，他曾经还是兰博基尼和法拉利的专业汽修工。</p>
-<p>他的博客地址[<a href="https://perspectives.mvdirona.com/]" target="_blank" rel="noopener">https://perspectives.mvdirona.com/]</a></p>
-<p>今天在他的博客上看到一篇论文：How Complex Systems Fail，因为现在我也在设计复杂系统，同时工作中也会接触一些复杂系统的产品，因此，阅读研究一下，并做一些笔记记录。</p>
-<p>这篇论文一共讲了18个有可能让复杂系统崩溃的原因：</p>
-<ol>
-<li>Complex systems are intrinsically hazardous systems.复杂系统本身就是很危险的系统<br>复杂系统本身就很复杂。云官网和FS大学用的是同一个登录系统。FS有一次对登录系统数据库进行了修改，直接导致我们整个官网所有用户无法登录，无法修改密码。复杂系统彼此之间相互影响，很可能有时候，不知道修改了什么，就会对其他的部分造成影响。</li>
-<li>Complex systems are heavily and successfully defended against failure.复杂系统在很大程度上成功地防御了故障。<br>为了规避复杂系统崩溃带来的严重后果，对于复杂系统会创造一些防御机制</li>
-</ol>
-<ul>
-<li>技术层面，备份</li>
-<li>人员操作层面，知识经验培训</li>
-<li>组织层面，政策，操作流程<br>这些措施在一定层度上可以规避失败。</li>
-</ul>
-<ol start="3">
-<li>Catastrophe requires multiple failures – single point failures are not enough.多重故障导致了灾难，不仅仅是单点故障。</li>
-<li>Complex systems contain changing mixtures of failures latent within them.复杂系统包含潜在的多重故障。</li>
-<li>Complex systems run in degraded mode.复杂系统以降级模式进行。</li>
-<li>Catastrophe is always just around the corner. 灾难无处不在。</li>
-<li>Post-accident attribution accident to a ‘root cause’ is fundamentally wrong.灾难事后归因分析错误。</li>
-<li>Hindsight biases post-accident assessments of human performance.事后分析逻辑带有偏差。</li>
-<li>Human operators have dual roles: as producers &amp; as defenders against failure.系统操作者有双重角色：他创造了系统也要防止系统的崩溃</li>
-<li>All practitioner actions are gambles. 所有的实践操作者都是赌徒（hhhh，这一条好有意思，说白了，就是实践操作者在凭运气，感觉关于系统的失败，本篇论文的一些观点和《失败的逻辑》里面的部分逻辑一致，不过很久没看失败的逻辑了，也回忆不清楚了）</li>
-<li>Actions at the sharp end resolve all ambiguity.果断的行动结束所有的不确定性。</li>
-<li>Human practitioners are the adaptable element of complex systems.人类是复杂系统的可适应元素。</li>
-<li>Human expertise in complex systems is constantly changing.人类关于复杂系统的认知在不断变化。</li>
-<li>Change introduces new forms of failure.改动会带来新的失败。</li>
-<li>Views of “cause” limit the effectiveness of defenses against future events.看待原因的方式会局限我们设计防御失败事件的措施的有效性</li>
-<li>Safety is a characteristic of systems and not of their components.安全是系统的特征，而并非系统的一部分。</li>
-<li>People continuously create safety. 人类持续创造安全。</li>
-<li>Failure free operations require experience with failure.要想无误的操作机器需要有丰富经验的操作者，而这个操作者肯定是有失败经历的。</li>
-</ol>
-<p>最后，James Hamilton是一个非常有意思的Hacker，Wired写过一篇过于他的文章，称他为文艺复兴式黑客，黑掉生活、黑掉一切，然后寻求焕然一新。</p>
-<p>对他有兴趣的同学，可以看Wired的报道：<a href="https://www.wired.com/2013/02/james-hamilton-amazon/" target="_blank" rel="noopener">https://www.wired.com/2013/02/james-hamilton-amazon/</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2733,7 +2725,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">70</span>
+                    <span class="site-state-item-count">71</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

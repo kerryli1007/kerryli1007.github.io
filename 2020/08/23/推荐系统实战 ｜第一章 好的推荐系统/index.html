@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="最近再次阅读《推荐系统实战》。第一次阅读《推荐系统实战》是一年前了。时隔一年，再次阅读本书，有了很多不一样的收获。一年前自己的思维，还是过于稚嫩，果真，只有在工作的捶打之下，方能快速成长。 个性化推荐系统的应用，作者从8个应用，分别列举了一些工业最佳实践。 每个细分场景，都涉及到蛮多的Domain Knowledge。我工作中接触最多的两部分是电子商务和个性化广告。 乘着重温书本的机会，将各个子领">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐系统实战 ｜ 第一章 好的推荐系统">
+<meta property="og:url" content="http://yoursite.com/2020/08/23/推荐系统实战 ｜第一章 好的推荐系统/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="最近再次阅读《推荐系统实战》。第一次阅读《推荐系统实战》是一年前了。时隔一年，再次阅读本书，有了很多不一样的收获。一年前自己的思维，还是过于稚嫩，果真，只有在工作的捶打之下，方能快速成长。 个性化推荐系统的应用，作者从8个应用，分别列举了一些工业最佳实践。 每个细分场景，都涉及到蛮多的Domain Knowledge。我工作中接触最多的两部分是电子商务和个性化广告。 乘着重温书本的机会，将各个子领">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-08-23T07:40:34.718Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="推荐系统实战 ｜ 第一章 好的推荐系统">
+<meta name="twitter:description" content="最近再次阅读《推荐系统实战》。第一次阅读《推荐系统实战》是一年前了。时隔一年，再次阅读本书，有了很多不一样的收获。一年前自己的思维，还是过于稚嫩，果真，只有在工作的捶打之下，方能快速成长。 个性化推荐系统的应用，作者从8个应用，分别列举了一些工业最佳实践。 每个细分场景，都涉及到蛮多的Domain Knowledge。我工作中接触最多的两部分是电子商务和个性化广告。 乘着重温书本的机会，将各个子领">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2020/08/23/推荐系统实战 ｜第一章 好的推荐系统/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>推荐系统实战 ｜ 第一章 好的推荐系统 | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一颗西蓝花🥦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/23/推荐系统实战 ｜第一章 好的推荐系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">推荐系统实战 ｜ 第一章 好的推荐系统
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-08-23 00:00:00 / Modified: 15:40:34" itemprop="dateCreated datePublished" datetime="2020-08-23T00:00:00+08:00">2020-08-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/广告系统-推荐策略/" itemprop="url" rel="index"><span itemprop="name">广告系统/推荐策略</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近再次阅读《推荐系统实战》。第一次阅读《推荐系统实战》是一年前了。时隔一年，再次阅读本书，有了很多不一样的收获。一年前自己的思维，还是过于稚嫩，果真，只有在工作的捶打之下，方能快速成长。</p>
+<p>个性化推荐系统的应用，作者从8个应用，分别列举了一些工业最佳实践。</p>
+<p>每个细分场景，都涉及到蛮多的Domain Knowledge。我工作中接触最多的两部分是电子商务和个性化广告。</p>
+<p>乘着重温书本的机会，将各个子领域进行一下认识，同时，侧重梳理分析【电子商务】和【个性化广告】。</p>
+<h1 id="电子商务"><a href="#电子商务" class="headerlink" title="电子商务"></a>电子商务</h1><p>说起推荐系统在电子商务的运用，就不得不提亚马逊。</p>
+<p>为什么不得不提亚马逊呢？</p>
+<p>首先，亚马逊市值1.5万亿美元。全球一共有几家超过万亿美元的公司？</p>
+<p>如果我们要了解某个技术在工业界的落地，我们肯定是需要去了解和学习那些牛逼的公司是怎么应用这些技术的。</p>
+<p>其次，亚马逊的前科学家Greg Linden在他的博客里面曾经说过，在他离开亚马逊的时候，亚马逊至少有20%（之后的一篇博客更为35%）的销售来自推荐算法。</p>
+<p>并且，亚马逊CEO在接受采访时候曾经说过，亚马逊相对于其他电子商务网站的最大优势在于个性化推荐系统，该系统让每个用户都能又有一个自己的在线商店。</p>
+<p>推荐算法对亚马逊营收的重要性由此可见一斑。</p>
+<p>放眼国内，淘宝、京东、拼多多，无一例外，都在做个性化推荐。</p>
+<p>对于电商推荐系统，都会遇到哪些问题呢？</p>
+<ul>
+<li>一个大的电商会有海量的数据，上亿的消费者和数以百万计的商品。</li>
+<li>基本上所有的请求都要求实时返回高质量的请求结果。</li>
+<li>一个来到网站上的新用户，其信息有限。</li>
+<li>老的客户有过多的信息，他们有数以千计的购买和评分。</li>
+<li>消费者的数据是变动的：每次交互都会提供珍贵的消费者数据，并且要求模型能实时将这些新的数据纳入，并作出回应。</li>
+</ul>
+<p>针对这些通用的问题，一般有三种通用的解法：</p>
+<ol>
+<li>传统的协同过滤</li>
+<li>集群模型</li>
+<li>基于搜索的方式</li>
+</ol>
+<h2 id="推荐算法"><a href="#推荐算法" class="headerlink" title="推荐算法"></a>推荐算法</h2><p>大多数推荐算法最开始都是去寻找一大群有相似行为的用户。算法对这些有相同行为的用户购买的物品做聚类，清楚这些用户已经购买了的商品，给他们推荐尚未购买的商品。这种寻找人物相似性的方法有两个代表算法：协同过滤和聚类（cluster models）。而其他的算法，专注于寻找物品的相似性，代表性的算法有基于搜索的算法和亚马逊的item-to-item的协同过滤算法。</p>
+<h3 id="传统的协同过滤"><a href="#传统的协同过滤" class="headerlink" title="传统的协同过滤"></a>传统的协同过滤</h3><p>是什么？特点是什么？</p>
+<p>传统的协同过滤算法将每个消费者视为一个N维向量，这里的N是item的数量。</p>
+<p>对于所有的消费者来说，这个向量都是非常稀疏的。这也非常好理解，比如在淘宝上，有那么多的商品，一个商品是一个维度，一个普通的用户，肯定只是购买了其中的很小一部分的商品。</p>
+<p>协同过滤算法计算用户之间的相似度。计算方式是计算两个向量之间的cosine。</p>
+<p>但是这又有另外一个问题，就是这样的计算耗费的时间是非常大的。如何解决这个耗费时间大的问题呢？减少数据量？我们可以随机抽样。但是，抽样的话是会减少推荐的效果的。</p>
+<h3 id="聚类算法"><a href="#聚类算法" class="headerlink" title="聚类算法"></a>聚类算法</h3><p>为了发现相似的消费者，聚类模型可以将消费者分为很多segment，并且将任务视为一个分类问题。算法的目标是将消费者分到有最多相似消费者的组内，接着基于这个segment来产生推荐。</p>
+<h3 id="基于搜索的算法"><a href="#基于搜索的算法" class="headerlink" title="基于搜索的算法"></a>基于搜索的算法</h3><p>基于搜索或者基于内容的算法将推荐问题时为寻找相关item的问题。基于消费者的购买的活着相关的item，算法会生成一个query来寻找其他同一个作者、艺术家或者导演的受欢迎的item。</p>
+<h3 id="Item-to-Item-协同过滤"><a href="#Item-to-Item-协同过滤" class="headerlink" title="Item-to-Item 协同过滤"></a>Item-to-Item 协同过滤</h3><p>item-to-item协同过滤将消费者购买的和评分的相似商品放在一个待推荐List中。</p>
+<p>对于一个给定的item，为了找到和这个item最相似的商品。</p>
+<p>参考论文：Amazon.com Recommendation Item-to-Item Collaborative Filtering </p>
+<h1 id="电影和视频网站"><a href="#电影和视频网站" class="headerlink" title="电影和视频网站"></a>电影和视频网站</h1><h2 id="Netflix"><a href="#Netflix" class="headerlink" title="Netflix"></a>Netflix</h2><p>Netflix在2006年举办了著名的Netflix Prize推荐系统比赛。希望参赛人员能将推荐算法的预测准确度提升10%。</p>
+<p>Netflix宣称，有60%的用户是通过其推荐系统找到自己感兴趣的电影和视频的。</p>
+<h2 id="YouTube"><a href="#YouTube" class="headerlink" title="YouTube"></a>YouTube</h2><p>WHY？</p>
+<p>YouTube拥有大量用户上传的视频内容，由于视频库非常大，用户在YouTube中面临严重的信息过载问题。</p>
+<h2 id="Hulu"><a href="#Hulu" class="headerlink" title="Hulu"></a>Hulu</h2><p>Hulu也是一家美国著名的视频网站，也有自己的个性化推荐页面。</p>
+<p>上述的3家企业都是外国的，放眼国内，我自己常用的视频网站，腾讯视频、B站，都也是在用推荐策略。</p>
+<p>对于，视频类推荐，我了解还是蛮少的，不过还是有一点比较好奇，视频内容都是靠人工标签来做定义吗？会存在失真吗？</p>
+<h1 id="个性化音乐网络电台"><a href="#个性化音乐网络电台" class="headerlink" title="个性化音乐网络电台"></a>个性化音乐网络电台</h1><blockquote>
+<p>个性化推荐的成功应用需要两个条件。第一是存在信息过载，因为如果用户可以很容易在所有物品中找到喜欢的物品，就不需要个性化推荐了。第二是用户大部分时间没有特别明确的需求，因为如果用户有很明确的需求，可以直接通过搜索引擎找到感兴趣的物品。</p>
+</blockquote>
+<p>我用过的做个性化音乐网络推荐的：</p>
+<ul>
+<li>网易云音乐</li>
+<li>QQ音乐</li>
+<li>豆瓣FM</li>
+</ul>
+<h1 id="社交网络"><a href="#社交网络" class="headerlink" title="社交网络"></a>社交网络</h1><p>社交网络中的个性化推荐技术主要应用在3个方面：</p>
+<ul>
+<li>利用用户的社交网络信息对用户进行个性化的物品推荐</li>
+<li>信息流的会话推荐</li>
+<li>给用户推荐好友</li>
+</ul>
+<p>提起社交网络推荐，就不得不提微博，微博的推荐做得还是蛮好的。</p>
+<h1 id="基于位置的服务"><a href="#基于位置的服务" class="headerlink" title="基于位置的服务"></a>基于位置的服务</h1><p>基于位置的服务，可以叫出名字的APP，大众点评、美团外卖，了解具体细节可以参考文章：美团DSP广告策略实践。</p>
+<h1 id="个性化邮件"><a href="#个性化邮件" class="headerlink" title="个性化邮件"></a>个性化邮件</h1><p>其实个性化邮件的本质，也是一个分类问题，将邮件的类别做分类。</p>
+<p>之前给某公司做的项目，就是给他们收到的投诉邮件做分类，是基于NLP做的。</p>
+<h1 id="个性化广告"><a href="#个性化广告" class="headerlink" title="个性化广告"></a>个性化广告</h1><p>广告是互联网公司生存的根本。很多公司都致力于广告定向投放（Ad Targeting）的研究，即如何将广告投放给它的潜在客户群。</p>
+<p>推荐和广告的区别，个性化推荐着重于帮助用户找到可能令他们感兴趣的物品，而广告推荐着重于帮助广告找到对它们感兴趣的用户，即一个是以用户为核心，而另一个以广告为核心。目前的个性化广告投放技术主要分为3种：</p>
+<ul>
+<li>上下文广告 通过分析用户正在浏览的网页内容，投放和网页内容相关的广告。代表系统是谷歌的Adsense</li>
+</ul>
+<p>什么是上下文广告？</p>
+<p>参考文章</p>
+<p><a href="https://patents.google.com/patent/CN101079043A/zh" target="_blank" rel="noopener">https://patents.google.com/patent/CN101079043A/zh</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/1138732" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1138732</a></p>
+<ul>
+<li>搜索广告 通过分析用户在当前会话中的搜索记录，判断用户的搜索目的，投放和用户目的相关的广告</li>
+</ul>
+<p>这个代表的公司，就是百度。今天和朋友聊百度提升其整体流量价值，说到了精准投放，以及优化广告创意，但是没有谈到说准确理解用户意图，其实理解用户意图也是非常重要的一个模块。</p>
+<ul>
+<li>对于搜索引擎来说，最重要的是两件事，第一是智能程度，指的是理解用户意图和文档，然后快速找出答案，这是智能部分；第二是自然程度（Naturalness），指的是根据用户输入的搜索请求，把搜索结果很自然地展现给用户，整体表现就是搜索非常流畅。自然语言从搜索引擎出现开始一直到今天为止，都对搜索引擎的智能和自然这两个方面起到了极为重要的作用。《微软亚洲研究院周明：NLP的进步将如何改变搜索体验？》</li>
+</ul>
+<p>估计在如何理解用户意图这里，也是有专门的人在做。关于理解用户意图，可以参考上述文章。</p>
+<ul>
+<li>个性化展示广告 个性化定向投放是很多互联网公司的核心技术，雅虎公司发表了大量个性化广告方面的论文。</li>
+</ul>
+<p>雅虎有很多相关的论文吗？我还挺好奇的，如何搜索，他们都是什么内容？</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/22/Q3_Week8_工作总结/" rel="next" title="Q3_Week8_工作总结">
+                <i class="fa fa-chevron-left"></i> Q3_Week8_工作总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="一颗西蓝花🥦">
+            
+              <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+              <div class="site-description motion-element" itemprop="description">AI/思考/学习</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/li-qiao-yi-10" title="Zhihu &rarr; https://www.zhihu.com/people/li-qiao-yi-10" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#电子商务"><span class="nav-number">1.</span> <span class="nav-text">电子商务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐算法"><span class="nav-number">1.1.</span> <span class="nav-text">推荐算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#传统的协同过滤"><span class="nav-number">1.1.1.</span> <span class="nav-text">传统的协同过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚类算法"><span class="nav-number">1.1.2.</span> <span class="nav-text">聚类算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于搜索的算法"><span class="nav-number">1.1.3.</span> <span class="nav-text">基于搜索的算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-to-Item-协同过滤"><span class="nav-number">1.1.4.</span> <span class="nav-text">Item-to-Item 协同过滤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#电影和视频网站"><span class="nav-number">2.</span> <span class="nav-text">电影和视频网站</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Netflix"><span class="nav-number">2.1.</span> <span class="nav-text">Netflix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YouTube"><span class="nav-number">2.2.</span> <span class="nav-text">YouTube</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hulu"><span class="nav-number">2.3.</span> <span class="nav-text">Hulu</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个性化音乐网络电台"><span class="nav-number">3.</span> <span class="nav-text">个性化音乐网络电台</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#社交网络"><span class="nav-number">4.</span> <span class="nav-text">社交网络</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于位置的服务"><span class="nav-number">5.</span> <span class="nav-text">基于位置的服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个性化邮件"><span class="nav-number">6.</span> <span class="nav-text">个性化邮件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个性化广告"><span class="nav-number">7.</span> <span class="nav-text">个性化广告</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

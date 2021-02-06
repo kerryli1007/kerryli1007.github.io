@@ -323,6 +323,205 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/06/Docker、K8S入门（小白篇）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/08/06/Docker、K8S入门（小白篇）/" class="post-title-link" itemprop="url">Docker、K8S入门（小白篇）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-08-06 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-06T00:00:00+08:00">2020-08-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-08-02 21:10:21" itemprop="dateModified" datetime="2020-08-02T21:10:21+08:00">2020-08-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>背景：作为人工智能行业的弄潮儿，工作中基本上每天都能听到K8S系统、Docker交付等名词，虽然在技术上，我不是专业的，但是作为一名勤奋努力的人工智能交付先锋，我决定，还是把我对Docker、K8S的理解，整理出来。也希望看到这篇文章，同样也为小白的朋友，能从中学得一二。</p>
+<blockquote>
+<p>怕什么真理无穷，进一寸有一寸的欢喜。<br>《进一寸有一寸的欢喜：胡适谈读书》</p>
+</blockquote>
+<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="从虚拟机到容器"><a href="#从虚拟机到容器" class="headerlink" title="从虚拟机到容器"></a>从虚拟机到容器</h2><h4 id="虚拟机是什么？虚拟机背后的原理是什么？"><a href="#虚拟机是什么？虚拟机背后的原理是什么？" class="headerlink" title="虚拟机是什么？虚拟机背后的原理是什么？"></a>虚拟机是什么？虚拟机背后的原理是什么？</h4><p>虚拟机是运行操作系统和应用程序的软件计算机。<br>注意：虚拟机是软件计算机，这是虚拟机和硬件计算机，也就是你和我都在使用的电脑的本质区别。<br>操作系统是Windows、Ubantu，应用程序就是我们日常用的，比如说QQ、Wechat。</p>
+<p>要了解虚拟机，就需要了解虚拟机背后的技术 &gt;&gt; 虚拟化。</p>
+<p>虚拟化是使用<em>虚拟机管理程序</em>软件从一台物理设备中创建出若干个虚拟机（VM）的过程。虚拟机的行为和运转方式与物理机一样，但是虚拟机会使用物理机的计算资源，比如CPU、内存和存储。虚拟管理程序会根据需要将这些计算资源分配给每个虚拟机。</p>
+<h4 id="虚拟机与物理机的对比"><a href="#虚拟机与物理机的对比" class="headerlink" title="虚拟机与物理机的对比"></a>虚拟机与物理机的对比</h4><p><img src="https://kerryli1007.github.io/images/Docker、K8S入门/1.png" alt></p>
+<p>物理机：左边，原来如果我们需要3个操作系统，那么我们也需要 3 个硬件，比如说，我们需要3台电脑，来分别安装3个操作系统<br>虚拟机：右边，现在我们需要3个操作系统，但是我们需要一个硬件就够了。</p>
+<h3 id="从容器到Docker"><a href="#从容器到Docker" class="headerlink" title="从容器到Docker"></a>从容器到Docker</h3><p>容器与管理里的机器程序虚拟化（hypervisor virtualization, HV）有所不同，管理程序虚拟化通过中间层将一台或多台独立的机器虚拟运行于物理硬件之上，而容器则是直接运行在操作系统内核之上的用户空间。因此，容易虚拟化也被称为“操作系统级虚拟化”，容器技术可以让多个独立的用户空间运行在同一台宿主机上。<br>容易并没有得到广泛的认可，一个很重要的原因就是容器技术的复杂性：容器本身就比较复杂，不容易安装，管理和自动化也很困难。而Docker就是为这一切而诞生。</p>
+<h2 id="从虚拟机到Docker"><a href="#从虚拟机到Docker" class="headerlink" title="从虚拟机到Docker"></a>从虚拟机到Docker</h2><p>Docker在虚拟化的容器执行环境中增加了一个应用程序部署引擎。该引擎的目标就是提供一个轻量、快速的环境，能够运行开发者的程序，并方便高效地将程序从开发者的笔记本部署到测试环境，然后再部署到生产环境。Docker极其简洁，它所需要的全部环境只是一台安装了兼容版本的Linux内核和二进制文件最小限的宿主机。Docker的目标是提供以下这些东西</p>
+<ul>
+<li>提供一个简单、轻量的建模方式</li>
+<li>职责的逻辑分离：使用Docker，开发人员只需要关心容器中运行的应用程序，而运维人员只需要关心如何管理容器。</li>
+<li>快速、高效的开发生命周期：Docker的目标之一就是缩短代码从开发、测试到部署、上线运行的周期，让你的应用程序具备可移植性、易于构建、并易于协作。</li>
+<li>鼓励使用面向服务的架构<br>贴几个Docker和虚拟机的对比<br><img src="https://kerryli1007.github.io/images/Docker、K8S入门/2.png" alt><br><img src="https://kerryli1007.github.io/images/Docker、K8S入门/3.png" alt></li>
+</ul>
+<h3 id="Docker的核心组件"><a href="#Docker的核心组件" class="headerlink" title="Docker的核心组件"></a>Docker的核心组件</h3><p>Docker的核心组件</p>
+<ul>
+<li>Docker客户端和服务器，也称为Docker引擎</li>
+<li>Docker镜像</li>
+<li>Registry</li>
+<li>Docker镜像</li>
+</ul>
+<h1 id="K8S"><a href="#K8S" class="headerlink" title="K8S"></a>K8S</h1><h2 id="什么是Kubernetes"><a href="#什么是Kubernetes" class="headerlink" title="什么是Kubernetes"></a>什么是Kubernetes</h2><p>Kubernetes，从官方网站上看到，它是一个工业级的容器编排平台。</p>
+<p>K8S为什么用舵手来命名呢？参考下图<br><img src="https://kerryli1007.github.io/images/Docker、K8S入门/4.png" alt><br>这是一艘满载一堆集装箱的轮船，轮船在大海上运着集装箱奔波，把集装箱送到他们该去的地方。K8S的寓意就是称为运送集装箱的一个轮船，来帮助我们管理这些集装箱，也就是管理这些容器。</p>
+<p>具体一点来说，K8S是一个自动化容器编排平台，它负责应用的部署、应用的弹性以及应用的管理，这些都是基于容器的。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/Q3_Week5_工作总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2215,298 +2414,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/幕后产品（5）在激烈的竞争中寻找产品定位 | PART ONE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/07/04/幕后产品（5）在激烈的竞争中寻找产品定位 | PART ONE/" class="post-title-link" itemprop="url">幕后产品（5）在激烈的竞争中寻找产品定位 | PART ONE</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-07-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-04T00:00:00+08:00">2020-07-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-07-05 09:56:34" itemprop="dateModified" datetime="2020-07-05T09:56:34+08:00">2020-07-05</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>互联网发展到现在，基本上已经没有蓝海。面对如此竞争激烈的市场，定位至关重要，因为它决定了：</p>
-<ul>
-<li>产品能否在开始阶段活下来</li>
-<li>产品今后发展的天花板</li>
-</ul>
-<p>产品是否解决了用户真实存在的需求；选择的产品市场，是小而美还是有极大想象空间的市场，这些都是在产品定位时就决定了的。 </p>
-<h1 id="第一节-看清楚一个行业"><a href="#第一节-看清楚一个行业" class="headerlink" title="第一节 看清楚一个行业"></a>第一节 看清楚一个行业</h1><blockquote>
-<p>为什么视频APP能导致电影、电视行业发生变革？</p>
-</blockquote>
-<p>说到视频APP对电影、电视行业产生的影响，就不得不提2020年春节，今日头条买下了徐铮的新年贺岁片《囧妈》版权，并在今日头条APP家族，包括抖音、今日头条、西瓜视频、抖音火山版上免费播放。<br>针对这一事件，浙江省电影行业发表了严厉的批评</p>
-<blockquote>
-<p>电影行业顾全大局、识大体，但欢喜传媒却凭一己之私，置他人利益而不顾，在特殊时期，采取特殊方式，绑架民意，是背信弃义。</p>
-</blockquote>
-<p>电影放映就像搭台唱戏，影院负责提供舞台，出品方负责找人演戏，发行方负责找人来看戏，然后三家共享成果。<br>而徐铮将《囧妈》卖给影院，对影视行业来说，最担心的无疑是中游和下游。</p>
-<blockquote>
-<p>对于中游的宣发来说，要是电影不在影院放，以后还要什么发行公司？甚至营销公司自己的业务也会受到冲击，因为流媒体对内容的宣传有自己的套路和打法，作品在流媒体平台之外的业务需求，可能并不会很多。</p>
-</blockquote>
-<blockquote>
-<p>下游这次受损最为严重，因为这种至少15亿+体量的影片上线流媒体，那么下游一分钱都分不到。单部影片并不值得担忧，如果开了这个头，会不会有更多的影片来做这个事情？那到时候影院就更难活了。（流媒体指将一连串的媒体数据压缩后，在网上即时传输影音以供观赏的一种技术与过程）</p>
-</blockquote>
-<blockquote>
-<p>美国影院和奈飞吵了那么多年，对于电影行业暂时还没有产生什么量变和质变的影响，内容越来越多地往线上走，是一个大势所趋又存在微妙平衡的事情。</p>
-</blockquote>
-<p>美国影院和奈飞为什么吵？利益分歧。</p>
-<p>美国不少保守派导演和斯皮尔伯格都电影流媒体播放的趋势可能会影响电影发展的方向。在他们看来，院线上映意味着电影的质量是优保证的，流媒体平台的门槛要低很多，因此网络电影可以把成本用在别的地方，而不是电影的制作上。</p>
-<p>Netflix回应到：“我们爱电影院，但我们同时也在乎其他的事：让哪些无法负担电影票或者居住地没有电影院的人，能够得以接触电影；让不论身在何地的所有人，都能同时看到新的电影；让电影制作者有更多分享艺术的途径。这些并不相互排斥。“</p>
-<p>双方各执一词。</p>
-<p>回顾一下，春节期间，徐铮的欢喜传媒将新年贺岁片卖给了今日头条，今日头条在旗下APP进行免费播放这件事，在朋友圈基本上是刷屏了，但是，那个时候的我，其实对这一切，没有兴趣，更深层次，应该是说，那个时候的我，看不懂这些争议是为什么。现在回过头来看，争议的背后，是利益。而那个时候看不懂的我，缺乏的是对大市场的把握，以及缺乏对市场中变革因素的敏感。</p>
-<p>今天，当我在看诗沐老师的《幕后产品》一书，再回想起今年春节的故事，这才意识到，这次事件，对中国电影电视行业可能产生的深远影响。</p>
-<p>同时，我也意识到，其实不同国家之间市场的变化，其实是可以有借鉴意义的，比如美国的奈飞，因此，如果，我要切入工具行业，我也可以深刻地去分析美国的工具行业，去了解1993年创建的Salesforce，2011年袁征创立的Zoom，以及2003年诞生的Slack等等。</p>
-<p>视频App对电影行业可能产生的变革影响，暂时说到这里。</p>
-<p>接下来，一起来看诗沐老师的书吧～</p>
-<blockquote>
-<p>中国的互联网视频产品出现距今也不过短短十年时间。在这十年里涌现的视频产品成百上千，用户观看电视、电影的习惯也随之发生了剧烈的变化。以往，电视台的竞争对手只有电视台，电影行业的玩家也一直是制片厂、发行方和院校。而如今，局面已经截然不同，互联网视频产品中的顶尖玩家称为引领行业变革的人，并且也加入了视频制作源头的竞争之中。</p>
-</blockquote>
-<blockquote>
-<p>机会往往出现在未来会发生巨大变化的行业中。如果单看互联网本身，近几年最大的机会无疑会出现在 PC 互联网向移动互联网的发展变化中，社交、新闻、视频、音乐、工具等领域在这个过程中都有改朝换代的机会。而如果结合互联网和其他行业来看，机会则存在于互联网的作用和影响下发生变革的过程中，近几年火热的互联网医疗、教育、O2O等概念皆基于此，但每个像O2O这样的概念在目前并不一定都能实现。</p>
-</blockquote>
-<blockquote>
-<p>近几年最大的机会无疑会出现在PC互联网向移动互联网的发展变化中。<br>在分析一个行业时，问自己三个问题：</p>
-<ul>
-<li>这个行业有哪些玩家？他们之间的关系是怎样的？</li>
-<li>未来几年，这个行业会发生什么变化？在这些变化中会产生什么机会？</li>
-<li>行业里的玩家会如何抓住变化中的机会？<br>谈到行业分析，就这3个问题，但是实际执行起来，确实非常困难，考察的也是产品经理对整个市场的认知，对我而言，我也深知自己在这一方面能力的欠缺，因此，我有意识地在了解诗沐老师分析音乐行业的思路，并且希望能将这些思路，用起来，用在写作软件，一些对其他工具的分析上。</li>
-</ul>
-</blockquote>
-<blockquote>
-<p>想要弄清楚这3个问题，除非自己刚好深处这个行业之中，特别熟悉、了解行业外，每个产品经理都需要进行大量的研究，翻阅大量的资料，与此同时，还需要具备国内外对比，不同行业类比等各种举一反三的能力。<br>国内外对比，不同行业类比，这些说起来，都是很简单，但是做起来，实际上要求很高。但是，要做到的办法也只有一条，那就是practice makes perfect。</p>
-</blockquote>
-<p>对比其他国家:</p>
-<blockquote>
-<p> 如果对比世界上的其他国家，他们同样受互联网的冲击，但音乐行业的情况则要好得多。最典型的是韩国，这个在流行文化输出方面居于世界前列的国家，音乐行业曾经也饱受互联网冲击、盗版横行的影响，但在政府整治盗版的决心之下，它们很快就止住了颓废。</p>
-</blockquote>
-<p>对比不同行业：</p>
-<blockquote>
-<p>和音乐行业最相似的是视频行业，视频行业同样也在互联网的影响之下开始出现大量盗版内容。而后经过正版化的洗牌，这个行业目前正处于蓬勃发展的时期，行业中的人才——无论是专业的导演、演员，还是业余的视频制作者，数量都远比以前多。<br>这是诗沐老师提到的行业类比，他从视频行业的发展中，吸取经验，辅助分析音乐行业。我之前也看过一期财经博主将视频战争的内容，不过看过了，也就忘了，并没有从中收获什么，现在回过头来看看，举一反三也是一种需要刻意练习的能力。</p>
-</blockquote>
-<p>在进行了一些调研，思考后，诗沐老师针对上述问题，得出了如下一些结论。</p>
-<p>Q1:这个行业有哪些玩家？他们之间的关系是怎么样的？<br>音乐行业的玩家可以分类三类：内容源部分、中间部分、听众部分。</p>
-<ul>
-<li>内容源部分：词曲作者等幕后工作人员、艺人</li>
-<li>中间部分：涉及音乐的发行、传播、产生营收等诸多环节，从经纪人、唱片公司到演出公司、在线音乐平台等都可以归为此部分</li>
-<li>听众部分：听众</li>
-</ul>
-<p>Q2:未来几年，这个行业会发生什么变化？在这些变化中会产生什么机会？<br>作者在分析行业变化时候，对比了其他国家，韩国、美国，也参考了其他行业，视频行业，最后得出洞察。<br>洞察1:音乐行业会往好的方向变化，移动互联网和正版化是音乐行业变化的最关键的两个因素。</p>
-<p>洞察2:移动互联网会极大地影响听众关于音乐的体验，进而引发行业中间部分的变革。</p>
-<ul>
-<li>听众随时随地都能听音乐</li>
-<li>听众更愿意互动和分享</li>
-<li>……</li>
-</ul>
-<p>洞察3:音乐传播的方式会发生变化，这也是互联网连接的本质。以前用户需要经过好几个中间环节（唱片公司、电台、排行榜、CD店等）才能接触到音乐，而现在音乐的传播更加直接、迅速、就像形成了一个音乐领域的社交网络。</p>
-<p>洞察4:当音乐传播方式发生变化时，音乐行业的利润分配机制也会随之变化。</p>
-<p>Q3:行业里的玩家会如何抓住变化中的机会？<br>上面已经总结出来音乐行业在未来变化的三个方面：音乐传播、音乐互动、利润分配。这三个方面对每个玩家来说都有很大的变化。</p>
-<p>（1）对内容部分的玩家（艺人、词曲作者等幕后工作人员）来说，变化如下</p>
-<ul>
-<li>能获得更多来自互联网的流量，而且流量结构很扁平、直接。</li>
-<li>能直接获得听众的互动反馈</li>
-<li>能自主地营销、传播自己。</li>
-<li>也许有新的营收方法，能让自己赚钱。</li>
-</ul>
-<p>（2）对中间部分的玩家（经纪人、唱片公司、演出公司、互联网音乐平台等）来说，变化如下</p>
-<ul>
-<li>向互联网的传播方式靠拢，更多地接入互联网公司</li>
-<li>推广音乐和艺人时，逐渐加入了互联网的营销方法</li>
-<li>加快音乐内容的推广节奏，加快对市场的反应速度，加快对年轻用户群体的获取速度</li>
-<li>甚至将自己完全互联网化，或者互联网音乐平台开始有唱片公司的智能</li>
-<li>开始利用互联网媒介，让自己的音乐营收更加多元化，而非仅依靠音乐版权、演出的销售盈利</li>
-</ul>
-<p>（3）对听众部分来说，变化如下</p>
-<ul>
-<li>可以听到全世界的音乐</li>
-<li>可以更容易地找到音乐上的知己——相比于以前只能在现实生活中遇见</li>
-<li>可以更近距离地与偶像互动——微博已经成功证明</li>
-<li>可以对喜欢的音乐鞥有话语权，直接表达自己对音乐的喜恶</li>
-<li>自主地选择自己的音乐兴趣，通过海量内容和数据，更容易地找到自己喜欢的音乐</li>
-<li>可以看到音乐行业上游玩家们的一举一动。制作、传播、演出等过程对大众都变得透明</li>
-</ul>
-<p>好精彩的对市场的分析，学习这个分析思路，我也可以尝试一下对AI行业的分析，我以前也在一些分析报告里面，看过AI行业的分析，但是看到的都是表层的内容，诗沐老师的分析不单只展示给我们他的分析结果，而是层层递进，向我们揭示了每一步如何分析，以及为什么这样分析。<br>对于AI市场，我们也可以问自己如下三个问题：</p>
-<ol>
-<li>这个行业有哪些玩家？他们之间的关系是怎么样？</li>
-<li>未来几年，这个行业会发生什么变化？在这些变化中会产生哪些机会？</li>
-<li>行业里的玩家会如何抓住变化中的机会？<br>接下来，我来尝试分析一下。</li>
-</ol>
-<p>Q1：这个行业有哪些玩家，他们之间的关系是什么？<br>中国AI行业的玩家有下面这几类：</p>
-<ul>
-<li>硬件供应商</li>
-<li>软件供应商</li>
-<li>AI公司</li>
-<li>集成商</li>
-<li>终端消费者</li>
-</ul>
-<p>硬件供应商，提供物理服务器，用来进行数据库存储、网站服务器等；服务器是一般公司必须有的，除了物理服务器，AI行业，比较特殊，还需要有卡，CPU卡、GPU卡。<br>当然，上面说的这些服务器，有物理形式的存在，也有软件形式的存在。</p>
-<p>在这些硬件和软件的基础上，AI公司研究算法，创造出一些非常牛逼的算法，CV用于人脸识别，当下有名的一些公司，比如商汤、旷视他们都有很棒的CV算法。</p>
-<p>单单算法是不能解决问题的，算法需要依靠硬件来解决问题，这就有了集成商，集成商将算法集成到自己的硬件中。<br>最后，就是终端消费者，终端消费者有B端客户，也有C端客户。</p>
-<p>Q2：未来几年，这个行业会发生什么变化？在这些变化中会产生哪些机会？</p>
-<p>最近的行业共识是，对于AI商业化这事，资本也更加理智了，不会盲目投资，除非是真的能看见商业化的成果。而对于这条链路上，扮演着重要角色的AI公司，在这种情况下，也开始努力向行业靠近，探索AI在各行各业的应用。只有AI公司证明，AI技术可以创造商业价值，上述的整个链路才是work的。</p>
-<p>因此，对AI公司而言，更加关注行业，关注行业中的业务场景是未来的变化趋势，而非单打比赛或者单做学术研究。</p>
-<p>对于硬件（软件）供应商而言，当下一个现状，对算力而言，他们提供的算力芯片并非是为AI计算打造的。陆奇在《AI时代创新机会》中讲到，今天的X86 ARM的系统架构的前提假定是Von Neumann假定数据维度是比较低，Cache Hit Ratio足够高。然而人工智能时代实际没有这些特征，人工智能时代都是高纬度的数据，必须要大规模低平行处理。</p>
-<p>对于终端消费者而言，从开始AI热，盲目引进AI项目，到现在，更加冷静，更关注AI是否能在业务中创造真实价值，这一切，又将会倒逼AI公司关注产业。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2555,7 +2462,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2586,7 +2493,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>

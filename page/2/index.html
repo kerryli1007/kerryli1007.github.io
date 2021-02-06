@@ -323,6 +323,251 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/23/推荐系统实战 ｜第一章 好的推荐系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/08/23/推荐系统实战 ｜第一章 好的推荐系统/" class="post-title-link" itemprop="url">推荐系统实战 ｜ 第一章 好的推荐系统</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-08-23 00:00:00 / Modified: 15:45:03" itemprop="dateCreated datePublished" datetime="2020-08-23T00:00:00+08:00">2020-08-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/广告系统-推荐策略/" itemprop="url" rel="index"><span itemprop="name">广告系统/推荐策略</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近再次阅读《推荐系统实战》。第一次阅读《推荐系统实战》是一年前了。时隔一年，再次阅读本书，有了很多不一样的收获。一年前自己的思维，还是过于稚嫩，果真，只有在工作的捶打之下，方能快速成长。</p>
+<p>个性化推荐系统的应用，作者从8个应用，分别列举了一些工业最佳实践。</p>
+<p>每个细分场景，都涉及到蛮多的Domain Knowledge。我工作中接触最多的两部分是电子商务和个性化广告。</p>
+<p>乘着重温书本的机会，将各个子领域进行一下认识，同时，侧重梳理分析【电子商务】和【个性化广告】。</p>
+<h1 id="电子商务"><a href="#电子商务" class="headerlink" title="电子商务"></a>电子商务</h1><p>说起推荐系统在电子商务的运用，就不得不提亚马逊。</p>
+<p>为什么不得不提亚马逊呢？</p>
+<p>首先，亚马逊市值1.5万亿美元。全球一共有几家超过万亿美元的公司？</p>
+<p>如果我们要了解某个技术在工业界的落地，我们肯定是需要去了解和学习那些牛逼的公司是怎么应用这些技术的。</p>
+<p>其次，亚马逊的前科学家Greg Linden在他的博客里面曾经说过，在他离开亚马逊的时候，亚马逊至少有20%（之后的一篇博客更为35%）的销售来自推荐算法。</p>
+<p>并且，亚马逊CEO在接受采访时候曾经说过，亚马逊相对于其他电子商务网站的最大优势在于个性化推荐系统，该系统让每个用户都能又有一个自己的在线商店。</p>
+<p>推荐算法对亚马逊营收的重要性由此可见一斑。</p>
+<p>放眼国内，淘宝、京东、拼多多，无一例外，都在做个性化推荐。</p>
+<p>对于电商推荐系统，都会遇到哪些问题呢？</p>
+<ul>
+<li>一个大的电商会有海量的数据，上亿的消费者和数以百万计的商品。</li>
+<li>基本上所有的请求都要求实时返回高质量的请求结果。</li>
+<li>一个来到网站上的新用户，其信息有限。</li>
+<li>老的客户有过多的信息，他们有数以千计的购买和评分。</li>
+<li>消费者的数据是变动的：每次交互都会提供珍贵的消费者数据，并且要求模型能实时将这些新的数据纳入，并作出回应。</li>
+</ul>
+<p>针对这些通用的问题，一般有三种通用的解法：</p>
+<ol>
+<li>传统的协同过滤</li>
+<li>集群模型</li>
+<li>基于搜索的方式</li>
+</ol>
+<h2 id="推荐算法"><a href="#推荐算法" class="headerlink" title="推荐算法"></a>推荐算法</h2><p>大多数推荐算法最开始都是去寻找一大群有相似行为的用户。算法对这些有相同行为的用户购买的物品做聚类，清楚这些用户已经购买了的商品，给他们推荐尚未购买的商品。这种寻找人物相似性的方法有两个代表算法：协同过滤和聚类（cluster models）。而其他的算法，专注于寻找物品的相似性，代表性的算法有基于搜索的算法和亚马逊的item-to-item的协同过滤算法。</p>
+<h3 id="传统的协同过滤"><a href="#传统的协同过滤" class="headerlink" title="传统的协同过滤"></a>传统的协同过滤</h3><p>是什么？特点是什么？</p>
+<p>传统的协同过滤算法将每个消费者视为一个N维向量，这里的N是item的数量。</p>
+<p>对于所有的消费者来说，这个向量都是非常稀疏的。这也非常好理解，比如在淘宝上，有那么多的商品，一个商品是一个维度，一个普通的用户，肯定只是购买了其中的很小一部分的商品。</p>
+<p>协同过滤算法计算用户之间的相似度。计算方式是计算两个向量之间的cosine。</p>
+<p>但是这又有另外一个问题，就是这样的计算耗费的时间是非常大的。如何解决这个耗费时间大的问题呢？减少数据量？我们可以随机抽样。但是，抽样的话是会减少推荐的效果的。</p>
+<h3 id="聚类算法"><a href="#聚类算法" class="headerlink" title="聚类算法"></a>聚类算法</h3><p>为了发现相似的消费者，聚类模型可以将消费者分为很多segment，并且将任务视为一个分类问题。算法的目标是将消费者分到有最多相似消费者的组内，接着基于这个segment来产生推荐。</p>
+<h3 id="基于搜索的算法"><a href="#基于搜索的算法" class="headerlink" title="基于搜索的算法"></a>基于搜索的算法</h3><p>基于搜索或者基于内容的算法将推荐问题时为寻找相关item的问题。基于消费者的购买的活着相关的item，算法会生成一个query来寻找其他同一个作者、艺术家或者导演的受欢迎的item。</p>
+<h3 id="Item-to-Item-协同过滤"><a href="#Item-to-Item-协同过滤" class="headerlink" title="Item-to-Item 协同过滤"></a>Item-to-Item 协同过滤</h3><p>item-to-item协同过滤将消费者购买的和评分的相似商品放在一个待推荐List中。</p>
+<p>对于一个给定的item，为了找到和这个item最相似的商品。</p>
+<p>参考论文：Amazon.com Recommendation Item-to-Item Collaborative Filtering </p>
+<p>顺便补充一下，这篇论文发布于2003年，是电商推荐领域一篇非常经典的文章。</p>
+<h1 id="电影和视频网站"><a href="#电影和视频网站" class="headerlink" title="电影和视频网站"></a>电影和视频网站</h1><h2 id="Netflix"><a href="#Netflix" class="headerlink" title="Netflix"></a>Netflix</h2><p>Netflix在2006年举办了著名的Netflix Prize推荐系统比赛。希望参赛人员能将推荐算法的预测准确度提升10%。</p>
+<p>Netflix宣称，有60%的用户是通过其推荐系统找到自己感兴趣的电影和视频的。</p>
+<h2 id="YouTube"><a href="#YouTube" class="headerlink" title="YouTube"></a>YouTube</h2><p>WHY？</p>
+<p>YouTube拥有大量用户上传的视频内容，由于视频库非常大，用户在YouTube中面临严重的信息过载问题。</p>
+<h2 id="Hulu"><a href="#Hulu" class="headerlink" title="Hulu"></a>Hulu</h2><p>Hulu也是一家美国著名的视频网站，也有自己的个性化推荐页面。</p>
+<p>上述的3家企业都是外国的，放眼国内，我自己常用的视频网站，腾讯视频、B站，都也是在用推荐策略。</p>
+<p>对于，视频类推荐，我了解还是蛮少的，不过还是有一点比较好奇，视频内容都是靠人工标签来做定义吗？会存在失真吗？</p>
+<h1 id="个性化音乐网络电台"><a href="#个性化音乐网络电台" class="headerlink" title="个性化音乐网络电台"></a>个性化音乐网络电台</h1><blockquote>
+<p>个性化推荐的成功应用需要两个条件。第一是存在信息过载，因为如果用户可以很容易在所有物品中找到喜欢的物品，就不需要个性化推荐了。第二是用户大部分时间没有特别明确的需求，因为如果用户有很明确的需求，可以直接通过搜索引擎找到感兴趣的物品。</p>
+</blockquote>
+<p>我用过的做个性化音乐网络推荐的：</p>
+<ul>
+<li>网易云音乐</li>
+<li>QQ音乐</li>
+<li>豆瓣FM</li>
+</ul>
+<h1 id="社交网络"><a href="#社交网络" class="headerlink" title="社交网络"></a>社交网络</h1><p>社交网络中的个性化推荐技术主要应用在3个方面：</p>
+<ul>
+<li>利用用户的社交网络信息对用户进行个性化的物品推荐</li>
+<li>信息流的会话推荐</li>
+<li>给用户推荐好友</li>
+</ul>
+<p>提起社交网络推荐，就不得不提微博，微博的推荐做得还是蛮好的。</p>
+<h1 id="基于位置的服务"><a href="#基于位置的服务" class="headerlink" title="基于位置的服务"></a>基于位置的服务</h1><p>基于位置的服务，可以叫出名字的APP，大众点评、美团外卖，了解具体细节可以参考文章：美团DSP广告策略实践。</p>
+<h1 id="个性化邮件"><a href="#个性化邮件" class="headerlink" title="个性化邮件"></a>个性化邮件</h1><p>其实个性化邮件的本质，也是一个分类问题，将邮件的类别做分类。</p>
+<p>之前给某公司做的项目，就是给他们收到的投诉邮件做分类，是基于NLP做的。</p>
+<h1 id="个性化广告"><a href="#个性化广告" class="headerlink" title="个性化广告"></a>个性化广告</h1><p>广告是互联网公司生存的根本。很多公司都致力于广告定向投放（Ad Targeting）的研究，即如何将广告投放给它的潜在客户群。</p>
+<p>推荐和广告的区别，个性化推荐着重于帮助用户找到可能令他们感兴趣的物品，而广告推荐着重于帮助广告找到对它们感兴趣的用户，即一个是以用户为核心，而另一个以广告为核心。目前的个性化广告投放技术主要分为3种：</p>
+<ul>
+<li>上下文广告 通过分析用户正在浏览的网页内容，投放和网页内容相关的广告。代表系统是谷歌的Adsense</li>
+</ul>
+<p>什么是上下文广告？</p>
+<p>参考文章</p>
+<p><a href="https://patents.google.com/patent/CN101079043A/zh" target="_blank" rel="noopener">https://patents.google.com/patent/CN101079043A/zh</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/1138732" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1138732</a></p>
+<ul>
+<li>搜索广告 通过分析用户在当前会话中的搜索记录，判断用户的搜索目的，投放和用户目的相关的广告</li>
+</ul>
+<p>这个代表的公司，就是百度。今天和朋友聊百度提升其整体流量价值，说到了精准投放，以及优化广告创意，但是没有谈到说准确理解用户意图，其实理解用户意图也是非常重要的一个模块。</p>
+<ul>
+<li>对于搜索引擎来说，最重要的是两件事，第一是智能程度，指的是理解用户意图和文档，然后快速找出答案，这是智能部分；第二是自然程度（Naturalness），指的是根据用户输入的搜索请求，把搜索结果很自然地展现给用户，整体表现就是搜索非常流畅。自然语言从搜索引擎出现开始一直到今天为止，都对搜索引擎的智能和自然这两个方面起到了极为重要的作用。《微软亚洲研究院周明：NLP的进步将如何改变搜索体验？》</li>
+</ul>
+<p>估计在如何理解用户意图这里，也是有专门的人在做。关于理解用户意图，可以参考上述文章。</p>
+<ul>
+<li>个性化展示广告 个性化定向投放是很多互联网公司的核心技术，雅虎公司发表了大量个性化广告方面的论文。</li>
+</ul>
+<p>雅虎有很多相关的论文吗？我还挺好奇的，如何搜索，他们都是什么内容？</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/22/Q3_Week8_工作总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1725,6 +1970,209 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/08/关于思维模型，以及元认知的思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/08/08/关于思维模型，以及元认知的思考/" class="post-title-link" itemprop="url">关于思维模型，以及元认知的思考</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-08-08 00:00:00 / Modified: 20:47:15" itemprop="dateCreated datePublished" datetime="2020-08-08T00:00:00+08:00">2020-08-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/思考/" itemprop="url" rel="index"><span itemprop="name">思考</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一、思维模型和元认知"><a href="#一、思维模型和元认知" class="headerlink" title="一、思维模型和元认知"></a>一、思维模型和元认知</h1><h2 id="1-1-思维模型"><a href="#1-1-思维模型" class="headerlink" title="1.1 思维模型"></a>1.1 思维模型</h2><p><strong>什么是思维模型？</strong></p>
+<p>我理解的思维模型，是我们思考问题的方式。系统思维是一种思维模型，批判思维是一种思维模型，创新思维也是一种思维模型……</p>
+<p>掌握不同的思维模型，帮助我们处理工作生活中遇到的各种问题。</p>
+<p><strong>什么是多元思维模型？</strong></p>
+<p>第一次看到“多元思维模型”在别人推荐《穷查理宝典》一书。</p>
+<blockquote>
+<p>要想成为一个有智慧的人，你必须拥有多个模型。而且，你必须讲你的经验，无论是间接的，还是直接的，都放在构成这种模型的风格上。——查理.芒格</p>
+</blockquote>
+<p>我们能通过这些思维模型，提高对事物的认识。</p>
+<h2 id="1-2-元认知"><a href="#1-2-元认知" class="headerlink" title="1.2 元认知"></a>1.2 元认知</h2><p>元认知一词最早出现自美国儿童心理学家弗拉威尔（J.H.Flavell )在1976年出版的《认知发展》一书。所谓元认知就是对认知的认知，具体地说，是关于个人自己认知过程的知识和调节这些过程的能力，对思维和学习活动的知识和控制。</p>
+<p>简单来说，元认知就是对自己思考过程的认知和理解。</p>
+<h2 id="1-3-思维模型和元认知"><a href="#1-3-思维模型和元认知" class="headerlink" title="1.3 思维模型和元认知"></a>1.3 思维模型和元认知</h2><p>要成为一位准备工作做得比较充分的思考者，能够使用各种思维模式来进行思考，这是认知，而且还要能够意识到自己当前使用的是哪一种思维模型，以及为什么要使用这种思维模型，这是元认知。</p>
+<h1 id="二、为什么谈思维模型和元认知"><a href="#二、为什么谈思维模型和元认知" class="headerlink" title="二、为什么谈思维模型和元认知"></a>二、为什么谈思维模型和元认知</h1><h2 id="2-1-为什么我们需要思维模型"><a href="#2-1-为什么我们需要思维模型" class="headerlink" title="2.1 为什么我们需要思维模型"></a>2.1 为什么我们需要思维模型</h2><blockquote>
+<p>一个不依靠理论指引而盲目热衷实践的人就向远航的船员失去船舵和罗盘一样，永远都不回知道他到底身在何处。莱昂纳多.达芬奇</p>
+</blockquote>
+<p>思维模型对于我们而言，就是指导我们远航需要的船舵和罗盘。</p>
+<p>《模型思维》一书介绍的模型分为三类：对世界进行简化的模型、用数学概率来类比的模型以及人工构造的探索性模型。</p>
+<p>这些模型听起来都比较抽象，举一个我认为，不那么抽象，但是也可以称之为模型的思维结晶。比如，算法竞赛所用的模型。从数据处理、特征工程、到算法选择。高手们，都积累和沉淀了自己的方法论。这样的方法论，我认为也是一种模型。</p>
+<p>再举一个例子，比如5W1H，也是一种模型。当有一个新的项目在谈时，我们需要了解：是谁（WHO）出于什么样的目标（WHY）想要解决什么样（WHAT）的问题，他们期望何时（WHEN）何地（WHERE），通过什么样的形式（HOW）来解决这个问题。这个模型是可以指导我们分析项目，更好地了解项目背景以及目标。</p>
+<h2 id="2-2-为什么我们需要元认知"><a href="#2-2-为什么我们需要元认知" class="headerlink" title="2.2 为什么我们需要元认知"></a>2.2 为什么我们需要元认知</h2><p>元认知可以帮助我们更好地调节在何种场景下，选择何种模型。</p>
+<h1 id="三、如何获得思维模型以及如何使用元认知"><a href="#三、如何获得思维模型以及如何使用元认知" class="headerlink" title="三、如何获得思维模型以及如何使用元认知"></a>三、如何获得思维模型以及如何使用元认知</h1><h2 id="3-1-如何获得思维模型"><a href="#3-1-如何获得思维模型" class="headerlink" title="3.1 如何获得思维模型"></a>3.1 如何获得思维模型</h2><p>总结经验如下：</p>
+<ol>
+<li>阅读</li>
+<li>总结自己的经验</li>
+</ol>
+<h3 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h3><p>阅读和总结，是我理解的获得思维模型的两大途径。通过阅读，我们可以学习别人的思维模型，比如通过阅读《穷查理宝典》，我们可以向芒格学习，通过学习《模型思维》我们学习学习其中的一些有趣的思维模型。</p>
+<p>摘录几个思维模型：</p>
+<ul>
+<li>耐心</li>
+</ul>
+<blockquote>
+<p>富有耐心，不耐烦地等待。</p>
+</blockquote>
+<ul>
+<li>渴望证实和承认自己的错误</li>
+</ul>
+<blockquote>
+<p>查理养成了一种异常罕见的性格——愿意甚至渴望去证实和承认他自己的错误，并从中吸取教训。他曾经说：“如果说伯克希尔取得了不错的发展，那主要是因为沃伦和我非常善于破坏我们自己最爱的观念。哪年你没有破坏一个你最爱的观念，那么你这年就白过了。”</p>
+<p>查理喜欢把人们的观念和方法比喻为“工具”。“如果有了更好的工具，哪还有什么比用它来替代较为没用的旧工具更好的呢？</p>
+</blockquote>
+<p>上述两个模型是我摘录穷查理宝典中的模型。</p>
+<h3 id="总结自己的经验"><a href="#总结自己的经验" class="headerlink" title="总结自己的经验"></a>总结自己的经验</h3><p>不断总结，不断复盘。这也是我一直都在践行的原则。</p>
+<h1 id="四、最后"><a href="#四、最后" class="headerlink" title="四、最后"></a>四、最后</h1><p>阅读、思考、总结，并从中获得无限乐趣。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/08/云服务模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1949,408 +2397,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/08/关于思维模型，以及元认知的思考/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/08/08/关于思维模型，以及元认知的思考/" class="post-title-link" itemprop="url">关于思维模型，以及元认知的思考</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-08-08 00:00:00 / Modified: 20:47:15" itemprop="dateCreated datePublished" datetime="2020-08-08T00:00:00+08:00">2020-08-08</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/思考/" itemprop="url" rel="index"><span itemprop="name">思考</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="一、思维模型和元认知"><a href="#一、思维模型和元认知" class="headerlink" title="一、思维模型和元认知"></a>一、思维模型和元认知</h1><h2 id="1-1-思维模型"><a href="#1-1-思维模型" class="headerlink" title="1.1 思维模型"></a>1.1 思维模型</h2><p><strong>什么是思维模型？</strong></p>
-<p>我理解的思维模型，是我们思考问题的方式。系统思维是一种思维模型，批判思维是一种思维模型，创新思维也是一种思维模型……</p>
-<p>掌握不同的思维模型，帮助我们处理工作生活中遇到的各种问题。</p>
-<p><strong>什么是多元思维模型？</strong></p>
-<p>第一次看到“多元思维模型”在别人推荐《穷查理宝典》一书。</p>
-<blockquote>
-<p>要想成为一个有智慧的人，你必须拥有多个模型。而且，你必须讲你的经验，无论是间接的，还是直接的，都放在构成这种模型的风格上。——查理.芒格</p>
-</blockquote>
-<p>我们能通过这些思维模型，提高对事物的认识。</p>
-<h2 id="1-2-元认知"><a href="#1-2-元认知" class="headerlink" title="1.2 元认知"></a>1.2 元认知</h2><p>元认知一词最早出现自美国儿童心理学家弗拉威尔（J.H.Flavell )在1976年出版的《认知发展》一书。所谓元认知就是对认知的认知，具体地说，是关于个人自己认知过程的知识和调节这些过程的能力，对思维和学习活动的知识和控制。</p>
-<p>简单来说，元认知就是对自己思考过程的认知和理解。</p>
-<h2 id="1-3-思维模型和元认知"><a href="#1-3-思维模型和元认知" class="headerlink" title="1.3 思维模型和元认知"></a>1.3 思维模型和元认知</h2><p>要成为一位准备工作做得比较充分的思考者，能够使用各种思维模式来进行思考，这是认知，而且还要能够意识到自己当前使用的是哪一种思维模型，以及为什么要使用这种思维模型，这是元认知。</p>
-<h1 id="二、为什么谈思维模型和元认知"><a href="#二、为什么谈思维模型和元认知" class="headerlink" title="二、为什么谈思维模型和元认知"></a>二、为什么谈思维模型和元认知</h1><h2 id="2-1-为什么我们需要思维模型"><a href="#2-1-为什么我们需要思维模型" class="headerlink" title="2.1 为什么我们需要思维模型"></a>2.1 为什么我们需要思维模型</h2><blockquote>
-<p>一个不依靠理论指引而盲目热衷实践的人就向远航的船员失去船舵和罗盘一样，永远都不回知道他到底身在何处。莱昂纳多.达芬奇</p>
-</blockquote>
-<p>思维模型对于我们而言，就是指导我们远航需要的船舵和罗盘。</p>
-<p>《模型思维》一书介绍的模型分为三类：对世界进行简化的模型、用数学概率来类比的模型以及人工构造的探索性模型。</p>
-<p>这些模型听起来都比较抽象，举一个我认为，不那么抽象，但是也可以称之为模型的思维结晶。比如，算法竞赛所用的模型。从数据处理、特征工程、到算法选择。高手们，都积累和沉淀了自己的方法论。这样的方法论，我认为也是一种模型。</p>
-<p>再举一个例子，比如5W1H，也是一种模型。当有一个新的项目在谈时，我们需要了解：是谁（WHO）出于什么样的目标（WHY）想要解决什么样（WHAT）的问题，他们期望何时（WHEN）何地（WHERE），通过什么样的形式（HOW）来解决这个问题。这个模型是可以指导我们分析项目，更好地了解项目背景以及目标。</p>
-<h2 id="2-2-为什么我们需要元认知"><a href="#2-2-为什么我们需要元认知" class="headerlink" title="2.2 为什么我们需要元认知"></a>2.2 为什么我们需要元认知</h2><p>元认知可以帮助我们更好地调节在何种场景下，选择何种模型。</p>
-<h1 id="三、如何获得思维模型以及如何使用元认知"><a href="#三、如何获得思维模型以及如何使用元认知" class="headerlink" title="三、如何获得思维模型以及如何使用元认知"></a>三、如何获得思维模型以及如何使用元认知</h1><h2 id="3-1-如何获得思维模型"><a href="#3-1-如何获得思维模型" class="headerlink" title="3.1 如何获得思维模型"></a>3.1 如何获得思维模型</h2><p>总结经验如下：</p>
-<ol>
-<li>阅读</li>
-<li>总结自己的经验</li>
-</ol>
-<h3 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h3><p>阅读和总结，是我理解的获得思维模型的两大途径。通过阅读，我们可以学习别人的思维模型，比如通过阅读《穷查理宝典》，我们可以向芒格学习，通过学习《模型思维》我们学习学习其中的一些有趣的思维模型。</p>
-<p>摘录几个思维模型：</p>
-<ul>
-<li>耐心</li>
-</ul>
-<blockquote>
-<p>富有耐心，不耐烦地等待。</p>
-</blockquote>
-<ul>
-<li>渴望证实和承认自己的错误</li>
-</ul>
-<blockquote>
-<p>查理养成了一种异常罕见的性格——愿意甚至渴望去证实和承认他自己的错误，并从中吸取教训。他曾经说：“如果说伯克希尔取得了不错的发展，那主要是因为沃伦和我非常善于破坏我们自己最爱的观念。哪年你没有破坏一个你最爱的观念，那么你这年就白过了。”</p>
-<p>查理喜欢把人们的观念和方法比喻为“工具”。“如果有了更好的工具，哪还有什么比用它来替代较为没用的旧工具更好的呢？</p>
-</blockquote>
-<p>上述两个模型是我摘录穷查理宝典中的模型。</p>
-<h3 id="总结自己的经验"><a href="#总结自己的经验" class="headerlink" title="总结自己的经验"></a>总结自己的经验</h3><p>不断总结，不断复盘。这也是我一直都在践行的原则。</p>
-<h1 id="四、最后"><a href="#四、最后" class="headerlink" title="四、最后"></a>四、最后</h1><p>阅读、思考、总结，并从中获得无限乐趣。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/06/Docker、K8S入门（小白篇）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/08/06/Docker、K8S入门（小白篇）/" class="post-title-link" itemprop="url">Docker、K8S入门（小白篇）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-08-06 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-06T00:00:00+08:00">2020-08-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-08-02 21:10:21" itemprop="dateModified" datetime="2020-08-02T21:10:21+08:00">2020-08-02</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>背景：作为人工智能行业的弄潮儿，工作中基本上每天都能听到K8S系统、Docker交付等名词，虽然在技术上，我不是专业的，但是作为一名勤奋努力的人工智能交付先锋，我决定，还是把我对Docker、K8S的理解，整理出来。也希望看到这篇文章，同样也为小白的朋友，能从中学得一二。</p>
-<blockquote>
-<p>怕什么真理无穷，进一寸有一寸的欢喜。<br>《进一寸有一寸的欢喜：胡适谈读书》</p>
-</blockquote>
-<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="从虚拟机到容器"><a href="#从虚拟机到容器" class="headerlink" title="从虚拟机到容器"></a>从虚拟机到容器</h2><h4 id="虚拟机是什么？虚拟机背后的原理是什么？"><a href="#虚拟机是什么？虚拟机背后的原理是什么？" class="headerlink" title="虚拟机是什么？虚拟机背后的原理是什么？"></a>虚拟机是什么？虚拟机背后的原理是什么？</h4><p>虚拟机是运行操作系统和应用程序的软件计算机。<br>注意：虚拟机是软件计算机，这是虚拟机和硬件计算机，也就是你和我都在使用的电脑的本质区别。<br>操作系统是Windows、Ubantu，应用程序就是我们日常用的，比如说QQ、Wechat。</p>
-<p>要了解虚拟机，就需要了解虚拟机背后的技术 &gt;&gt; 虚拟化。</p>
-<p>虚拟化是使用<em>虚拟机管理程序</em>软件从一台物理设备中创建出若干个虚拟机（VM）的过程。虚拟机的行为和运转方式与物理机一样，但是虚拟机会使用物理机的计算资源，比如CPU、内存和存储。虚拟管理程序会根据需要将这些计算资源分配给每个虚拟机。</p>
-<h4 id="虚拟机与物理机的对比"><a href="#虚拟机与物理机的对比" class="headerlink" title="虚拟机与物理机的对比"></a>虚拟机与物理机的对比</h4><p><img src="https://kerryli1007.github.io/images/Docker、K8S入门/1.png" alt></p>
-<p>物理机：左边，原来如果我们需要3个操作系统，那么我们也需要 3 个硬件，比如说，我们需要3台电脑，来分别安装3个操作系统<br>虚拟机：右边，现在我们需要3个操作系统，但是我们需要一个硬件就够了。</p>
-<h3 id="从容器到Docker"><a href="#从容器到Docker" class="headerlink" title="从容器到Docker"></a>从容器到Docker</h3><p>容器与管理里的机器程序虚拟化（hypervisor virtualization, HV）有所不同，管理程序虚拟化通过中间层将一台或多台独立的机器虚拟运行于物理硬件之上，而容器则是直接运行在操作系统内核之上的用户空间。因此，容易虚拟化也被称为“操作系统级虚拟化”，容器技术可以让多个独立的用户空间运行在同一台宿主机上。<br>容易并没有得到广泛的认可，一个很重要的原因就是容器技术的复杂性：容器本身就比较复杂，不容易安装，管理和自动化也很困难。而Docker就是为这一切而诞生。</p>
-<h2 id="从虚拟机到Docker"><a href="#从虚拟机到Docker" class="headerlink" title="从虚拟机到Docker"></a>从虚拟机到Docker</h2><p>Docker在虚拟化的容器执行环境中增加了一个应用程序部署引擎。该引擎的目标就是提供一个轻量、快速的环境，能够运行开发者的程序，并方便高效地将程序从开发者的笔记本部署到测试环境，然后再部署到生产环境。Docker极其简洁，它所需要的全部环境只是一台安装了兼容版本的Linux内核和二进制文件最小限的宿主机。Docker的目标是提供以下这些东西</p>
-<ul>
-<li>提供一个简单、轻量的建模方式</li>
-<li>职责的逻辑分离：使用Docker，开发人员只需要关心容器中运行的应用程序，而运维人员只需要关心如何管理容器。</li>
-<li>快速、高效的开发生命周期：Docker的目标之一就是缩短代码从开发、测试到部署、上线运行的周期，让你的应用程序具备可移植性、易于构建、并易于协作。</li>
-<li>鼓励使用面向服务的架构<br>贴几个Docker和虚拟机的对比<br><img src="https://kerryli1007.github.io/images/Docker、K8S入门/2.png" alt><br><img src="https://kerryli1007.github.io/images/Docker、K8S入门/3.png" alt></li>
-</ul>
-<h3 id="Docker的核心组件"><a href="#Docker的核心组件" class="headerlink" title="Docker的核心组件"></a>Docker的核心组件</h3><p>Docker的核心组件</p>
-<ul>
-<li>Docker客户端和服务器，也称为Docker引擎</li>
-<li>Docker镜像</li>
-<li>Registry</li>
-<li>Docker镜像</li>
-</ul>
-<h1 id="K8S"><a href="#K8S" class="headerlink" title="K8S"></a>K8S</h1><h2 id="什么是Kubernetes"><a href="#什么是Kubernetes" class="headerlink" title="什么是Kubernetes"></a>什么是Kubernetes</h2><p>Kubernetes，从官方网站上看到，它是一个工业级的容器编排平台。</p>
-<p>K8S为什么用舵手来命名呢？参考下图<br><img src="https://kerryli1007.github.io/images/Docker、K8S入门/4.png" alt><br>这是一艘满载一堆集装箱的轮船，轮船在大海上运着集装箱奔波，把集装箱送到他们该去的地方。K8S的寓意就是称为运送集装箱的一个轮船，来帮助我们管理这些集装箱，也就是管理这些容器。</p>
-<p>具体一点来说，K8S是一个自动化容器编排平台，它负责应用的部署、应用的弹性以及应用的管理，这些都是基于容器的。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2399,7 +2445,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2430,7 +2476,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>

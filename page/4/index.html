@@ -323,6 +323,202 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/08/时间序列项目经验积累/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/07/08/时间序列项目经验积累/" class="post-title-link" itemprop="url">时间序列项目经验积累</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-07-08 00:00:00 / Modified: 08:27:45" itemprop="dateCreated datePublished" datetime="2020-07-08T00:00:00+08:00">2020-07-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近做广告预估CTR优化，说起来，广告预估CTR优化，就是一句话的事，为客户通过优化CTR，提高其竞价时候的ROI，降低平均获客成本。但是，在实际操作中，会发现“坑”很多，事后的反思，这些所谓的“坑”是由于经验的缺乏，导致忽视了一些重点要素，现将其逐一记录下来。</p>
+<h1 id="API对接"><a href="#API对接" class="headerlink" title="API对接"></a>API对接</h1><p>模型优化，从整个项目来看，分为两个阶段：</p>
+<pre><code>- 阶段一：训练模型
+- 阶段二：上线预估
+</code></pre><p><strong>训练模型</strong><br>模型训练阶段，用的数据集是线下数据集，这些数据一般是放在Hive里面，数据分析的同事，将这些数据从数据库中提取出来，拿给我们做训练。</p>
+<p>当我们接到数据，需要做一些检查，主要检查如下部分：</p>
+<pre><code>- 数据集大小（行、列）
+- 数据集字段（字段、字段类型）
+</code></pre><p>数据集大小，在广告CTR里面，数据量级起码是需要上千万，如果拿到的数据行数之有几十万条，那我们需要确认一下，为什么只有这么多条。</p>
+<p>在我们项目中，需要确认，客户的曝光原始数据一共有多少条？</p>
+<p>确认好数据集大小，我们需要确认数据集字段，字段类型是已经约定好了，需要注意的是在字段类型，因为我们拿到的数据，是从数据库中提取出来的，但是接着，我们训练出来的模型，是会被做成服务上线作为API被使用，在使用API时候，里面的字段以及字段类型就非常重要，当调用API时候，必须字段以及字段类型完全一致，才会调用成功。因此，这个时候，我们需要再次确认字段类型是否OK。</p>
+<p>这里有一个小的坑，一般来说，公司里面，负责离线数据和负责线上数据的，是两个部分。当我们的数据，是从离线这个地方来的，我们会默认，这个字段类型和线上call api的字段类型是一致的，但是现实中由于这样或那样的原因，是会有出入的（具体原因我尚不清楚，但是在我做项目过程中，客户方确实存在这个问题）因此，最后字段类型的确认需要和在线流量负责部分做确认。</p>
+<p><strong>最后总结一下</strong><br>做需要上线服务的模型，最后要提供API接口服务，一定要和最后要使用这个接口的负责人，确认</p>
+<ol>
+<li>字段</li>
+<li>字段类型</li>
+</ol>
+<h1 id="时间序列字段"><a href="#时间序列字段" class="headerlink" title="时间序列字段"></a>时间序列字段</h1><p>在做项目之前，我一直都知道CTR预估是强烈的有时间序列规律的项目。</p>
+<p>但是在项目中，还是发现，从了解到实际运用，差一点。</p>
+<p>在确认字段时候，有一个字段叫做“eventtime”，含义是该事件的发生时间，在确认字段时候，这个字段为BigInt。这里是有问题的，但是当我第一眼看到这个的时候，并没有引起警惕。</p>
+<p>那我是如何发现这个问题？又是如何处理这个问题的呢？下一次，遇到类似的问题，该如何，才能提前预警呢？</p>
+<h2 id="如何发现这个问题"><a href="#如何发现这个问题" class="headerlink" title="如何发现这个问题"></a>如何发现这个问题</h2><p>将数据用来训练模型之前，我打算将数据进行一下拆分，比例为8:2。由于，知道，这个数据是有时间先后顺序的，为了避免穿越，所以，要按照时间维度做拆分。接着，我发现，时间维度字段，eventtime是BigInt。这下，我知道问题了。接着，我明白，需要将BitInt转为timestamp，然后按照时间维度进行拆分。</p>
+<h3 id="SQL如何将BigInt转为timestamp"><a href="#SQL如何将BigInt转为timestamp" class="headerlink" title="SQL如何将BigInt转为timestamp"></a>SQL如何将BigInt转为timestamp</h3><p>首先，了解一下我们eventtime字段的特征，首先，他是BigInt，接着，他是十位数。这是Unix编码的10位数。下一个问题，10位编码和13位编码的区别是什么？</p>
+<ul>
+<li>13位是毫秒级别</li>
+<li>10位是秒级别</li>
+</ul>
+<p>如何用SQL将10位UNIX时间戳，转为timestamp?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select from_unixtime(eventtime) as eventtime from t1</span><br></pre></td></tr></table></figure></p>
+<h3 id="按照时间维度拆分"><a href="#按照时间维度拆分" class="headerlink" title="按照时间维度拆分"></a>按照时间维度拆分</h3><p>如果我们要按照时间维度拆分的话，需要首先知道，我们当前数据集的时间维度。</p>
+<p>我用了一个比较“笨”的办法知道当前数据集的时间维度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from t1 order by eventide asc</span><br></pre></td></tr></table></figure></p>
+<p>接着，看top10和bottom10。但是这样的操作，一共要写3行代码，有没有简单一点的方法呢？</p>
+<p>最后，发现我们的数据，时间跨度是2020-04-01至2020-06-30，接着我们按照时间维度拆分就好。</p>
+<h2 id="如何处理这个问题"><a href="#如何处理这个问题" class="headerlink" title="如何处理这个问题"></a>如何处理这个问题</h2><p>毫无疑问，eventtime是非常重要的时序特征，所以，尽管客户确认这个字段是BigInt，但是我们还是将该字段作为timestamp进行模型建设。</p>
+<h2 id="下次如何才能提前预警"><a href="#下次如何才能提前预警" class="headerlink" title="下次如何才能提前预警"></a>下次如何才能提前预警</h2><p>时间序列模型优化项目，一定要注意，找到时间序列字段。</p>
+<p>最后，总结，思考。</p>
+<p>我有大概2个月没有写SQL了，很多都忘了，但是翻了之前的笔记，就很快也上手了。所以，一定要及时复盘、认真思考。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/# 幕后产品（4）产品经理的基本功 | PART ONE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1075,6 +1271,268 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/幕后产品（5）在激烈的竞争中寻找产品定位 | PART TWO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/07/04/幕后产品（5）在激烈的竞争中寻找产品定位 | PART TWO/" class="post-title-link" itemprop="url">幕后产品（5）在激烈的竞争中寻找产品定位 | PART TWO</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-07-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-04T00:00:00+08:00">2020-07-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-07-05 09:56:57" itemprop="dateModified" datetime="2020-07-05T09:56:57+08:00">2020-07-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>接着PART ONE继续写。</p>
+<h1 id="第二节-分析市场的竞争局面"><a href="#第二节-分析市场的竞争局面" class="headerlink" title="第二节 分析市场的竞争局面"></a>第二节 分析市场的竞争局面</h1><blockquote>
+<p>分析市场时，我会从如下三个方面考虑</p>
+<ul>
+<li>这个市场的相关市场是什么？它的上下游游哪些？谁是平台，谁是应用？</li>
+<li>这是一个零和市场吗？有没有办法做非零和市场？<ul>
+<li>这个市场未来的变化是怎样的？应该如何抓住机会？</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>在2008年前后，互联网上最出名的电影网站是时光网。当时的时光网汇聚了大量的影迷，因为在中文互联网世界中，它将电影资料库做到了极致：丰富的电影信息、导演/演员数据库、IMDB（互联网电影资料库）的评分、影迷的论坛。</p>
+</blockquote>
+<blockquote>
+<p>但是几年之后豆瓣电影在用户量和知名度上就超过了时光网，其中的原因是什么？而如今电影购票App的用户量和知名度不断扩大和提升，原因又是什么？</p>
+</blockquote>
+<blockquote>
+<p>先从电影市场上下游的分析开始</p>
+<ul>
+<li>电影的上游：制片商、发行商、拍摄团队、营销团队…</li>
+<li>电影的中游：看片、字幕、电影院、电影票、爆米花…</li>
+<li>电影的下游：电影资料库、下载网站、讨论社区、推荐引擎…</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Web 1.0 时代，时光网Mtime是做电影资料库的。如果仅在电影资料库这个市场上与时光网竞争，那进行的就是零和市场竞争。</p>
+</blockquote>
+<p>所以豆瓣在切入电影市场时候，并没有直接和Mtime竞争。</p>
+<blockquote>
+<p>Web 2.0 时代，电影市场上引人瞩目的网站是豆瓣电影、BT下载、字幕下载，这些产品主打的市场是电影资料库的相关市场，从而避免了最直接的竞争。而其中豆瓣电影以推荐引擎和影评社区为主，这两点吸引了大量的电影爱好者，从而反过来吃逐渐“吃掉”了原本时光网的市场份额。这里值得思考的是，推荐引擎和影评社区都是比电影资料库覆盖更广的市场，满足了更多用户的需求。</p>
+</blockquote>
+<blockquote>
+<p>而在移动互联网时代，引人瞩目的产品变成了爱奇艺、腾讯视频、格瓦拉、淘票票、猫眼电影……过去的电影爱好者更多地在互联网上搜索并下载电影看，而现在中国电影市场成功地撬动了更广泛的大众用户——那些懒得搜索、下载的人，这些人呢可以直接在视频产品上看电影。</p>
+</blockquote>
+<p>从移动互联网搜索和下载电影，再到在视频网站（PC或者APP）上在线看电影，我是身处其中的用户。我还记得高中时候，我迷上了看美剧电影，当时最常找种子的网站叫做电影天堂。整个观看电影的流程，在电影天堂找到种子，然后使用迅雷下载将种子资源下载到本地，最后使用暴风影音观看。</p>
+<p>后来，不知道从什么时候开始，好像习惯就慢慢变化了，电影天堂这个网站我已经很多年都没有打开过了，如今看电影都是在腾讯视频，但是很多视频都是需要开通会员或者单独付费购买才可以观看，一开始，也很不习惯，会在网络上四处搜索资源，这个时间段的资源，也不是从电影天堂搜索，而绝大部份都来自百度网盘分享，但是基本上能够找到的资源，都被取消下载了，浪费了搜索查找的时间，后来，我也就索性开通了腾讯视频。</p>
+<p>产品的变迁、市场的变迁，相互作用，最后我行为的变迁，这就是市场的变化规律。</p>
+<blockquote>
+<p>互联网对行业的很多影响和渗透都是从下游开始逐渐往上走，从应用开始逐渐发展成为平台。这是因为越依赖互联网的部分，越容易在前期就受到互联网的影响——只需要一部手机和一个App就能连接千万用户。但这并不意味着这个市场就没机会了，这时需要分析市场的上下游、以及平台和垂直应用的关系。</p>
+<ul>
+<li>分析市场的上下游。</li>
+<li>分析平台和垂直应用。</li>
+<li>探索非零和市场。</li>
+<li>分析市场中的变化机会</li>
+</ul>
+</blockquote>
+<h1 id="第三节-比竞争对手还了解竞争对手"><a href="#第三节-比竞争对手还了解竞争对手" class="headerlink" title="第三节 比竞争对手还了解竞争对手"></a>第三节 比竞争对手还了解竞争对手</h1><p>要了解竞争对手，就要做竞品分析。基本上每个产品经理都会做竞品分析，但是很多产品经理做出来的都是“垃圾”。当然，诗沐老师在书中并没有这样称呼，只是我将某类符合某一特征的分析报告，称之为“垃圾”，因为，对于写的人来说，这类分析报告没有经过他的思考，对于读的人来讲，也无法有所收获。</p>
+<p>那什么样的特征是“垃圾”分析报告所有的呢？</p>
+<blockquote>
+<p>通过脑图将一个产品的导航、功能画出来并加上自己的点评。</p>
+</blockquote>
+<p>这件事是去年的我常做的，在App Store下载产品，然后画出其功能，最后加上自己的点评，就算是一份分析报告了，但其实不是的。</p>
+<blockquote>
+<p>我们需要更多的客观的信息，其中最重要的就是数据和用户反馈。竞品做了很多功能，这些功能的数据表现如何？用户评价如何？通过足够多的客观信息，我们才能真正地了解竞争对手，甚至比他们自己更了解——因为不是每个团队对数据和用户反馈都有最高的重视程度。</p>
+</blockquote>
+<p>作者和我们分享了他的分析方法，从产品、用户、数据三个角度来分析。<br>（1）数据方面</p>
+<ul>
+<li>竞品整体数据，了解竞品在市场中的体量和位置</li>
+<li>竞品数据趋势，了解竞品整体数据的变化趋势</li>
+</ul>
+<p>（2）用户方面</p>
+<ul>
+<li>竞品核心用户，熟悉竞品最忠诚的用户群</li>
+<li>竞品主流用户，熟悉竞品占比最大的主流用户群</li>
+<li>用户构成，熟悉竞品各类用户群的构成比例</li>
+</ul>
+<p>（3）产品方面</p>
+<ul>
+<li>竞品核心竞争力，分析核心功能的特点、详细数据情况、用户评价。</li>
+<li>竞品主要功能，分析竞品的主要功能特点、详细数据情况、用户评价。</li>
+<li>竞品发展趋势，了解竞品过去、现在、未来的功能发展走向。</li>
+</ul>
+<p>上述三个方面是一起的，并不是割裂的。</p>
+<h2 id="数据方面"><a href="#数据方面" class="headerlink" title="数据方面"></a>数据方面</h2><p>在获得数据方面，作为非行业内/非app相关用户，我们如何获得可信数据？</p>
+<p>看行业报告？不推荐，因为行业报告一般来说都是公关软文，这些公关软文写给谁看？写给投资人，写给竞争对手看，一般都是宣传数据多漂亮。<br>实际注册用户数3万，对外PR稿能吹上10万。（人有多大胆，地有多大产）</p>
+<p>除了注册用户数，我们还要关注日活、周活、月活，以及使用时长和使用频次。</p>
+<blockquote>
+<p>如果行业报告的数据不可信，那么我们可以通过一些更加公正、客观的第三方统计机构获得这些数据，如QuestMobile、联通沃指数。</p>
+</blockquote>
+<p>我一直对市场上的数据，呈怀疑态度，产品数据这么隐私的数据，这些第三方机构如何获得，他们又能如何保证自己提供的数据的准确性，对于这两点的质疑，让我一直都不相信这些第三方数据。也导致，我做竞品分析时，都不看数据 TAT，有点因噎废食。这些第三方数据可以作为参考，帮助我们认识市场。</p>
+<blockquote>
+<p>除了这些数据，我们还可以查看百度指数、微指数，从用户对一个产品的搜索频次、社交讨论频次来侧面揣摩产品的用户体量。另外，苹果应用商店和各大Android市场的应用排名和下载量也是可以参考的数据。总体上来说，整体数据能帮助我们在初期判断一个产品在市场中的体量和位置。</p>
+</blockquote>
+<blockquote>
+<p>在分析整体数据时候，我们还应该看产品的变化趋势，如产品在过去一年中活跃用户的增长情况、使用时长的变化情况、各个重要产品迭代时间点前后的数据变化、重要的市场营销行为对产品知名度的影响等。只要结合数据和趋势一起看，就能挤掉大部分水分。</p>
+</blockquote>
+<h2 id="用户方面-amp-产品"><a href="#用户方面-amp-产品" class="headerlink" title="用户方面&amp;产品"></a>用户方面&amp;产品</h2><p>（1）了解产品的核心用户群，也就是最忠实的用户、粘性最高的用户。一个产品有很多功能，但大部分用户只用到其中20%左右的功能，而核心用户可能会用到一个产品80%的功能。</p>
+<p>（2）了解产品的主流用户群，大部分用户是沉默的大多数，只使用产品20%左右的功能，似乎也无法获得他们对于功能的评价，但分析主流用户也同样重要。</p>
+<p>（3）了解产品的不同用户群构成</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/幕后产品（5）在激烈的竞争中寻找产品定位 | PART THREE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1303,268 +1761,6 @@
 </ol>
 </blockquote>
 <p>哇塞，原来微信公众号、服务号是IM功能的高级形式，我之前对私信的了解，就是带管理属性，以前在赛事平台，也有私信功能，我们用这个私信接口，来答疑，或者，向平台注册用户推送赛事信息</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/幕后产品（5）在激烈的竞争中寻找产品定位 | PART TWO/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/07/04/幕后产品（5）在激烈的竞争中寻找产品定位 | PART TWO/" class="post-title-link" itemprop="url">幕后产品（5）在激烈的竞争中寻找产品定位 | PART TWO</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-07-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-04T00:00:00+08:00">2020-07-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-07-05 09:56:57" itemprop="dateModified" datetime="2020-07-05T09:56:57+08:00">2020-07-05</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>接着PART ONE继续写。</p>
-<h1 id="第二节-分析市场的竞争局面"><a href="#第二节-分析市场的竞争局面" class="headerlink" title="第二节 分析市场的竞争局面"></a>第二节 分析市场的竞争局面</h1><blockquote>
-<p>分析市场时，我会从如下三个方面考虑</p>
-<ul>
-<li>这个市场的相关市场是什么？它的上下游游哪些？谁是平台，谁是应用？</li>
-<li>这是一个零和市场吗？有没有办法做非零和市场？<ul>
-<li>这个市场未来的变化是怎样的？应该如何抓住机会？</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<blockquote>
-<p>在2008年前后，互联网上最出名的电影网站是时光网。当时的时光网汇聚了大量的影迷，因为在中文互联网世界中，它将电影资料库做到了极致：丰富的电影信息、导演/演员数据库、IMDB（互联网电影资料库）的评分、影迷的论坛。</p>
-</blockquote>
-<blockquote>
-<p>但是几年之后豆瓣电影在用户量和知名度上就超过了时光网，其中的原因是什么？而如今电影购票App的用户量和知名度不断扩大和提升，原因又是什么？</p>
-</blockquote>
-<blockquote>
-<p>先从电影市场上下游的分析开始</p>
-<ul>
-<li>电影的上游：制片商、发行商、拍摄团队、营销团队…</li>
-<li>电影的中游：看片、字幕、电影院、电影票、爆米花…</li>
-<li>电影的下游：电影资料库、下载网站、讨论社区、推荐引擎…</li>
-</ul>
-</blockquote>
-<blockquote>
-<p>Web 1.0 时代，时光网Mtime是做电影资料库的。如果仅在电影资料库这个市场上与时光网竞争，那进行的就是零和市场竞争。</p>
-</blockquote>
-<p>所以豆瓣在切入电影市场时候，并没有直接和Mtime竞争。</p>
-<blockquote>
-<p>Web 2.0 时代，电影市场上引人瞩目的网站是豆瓣电影、BT下载、字幕下载，这些产品主打的市场是电影资料库的相关市场，从而避免了最直接的竞争。而其中豆瓣电影以推荐引擎和影评社区为主，这两点吸引了大量的电影爱好者，从而反过来吃逐渐“吃掉”了原本时光网的市场份额。这里值得思考的是，推荐引擎和影评社区都是比电影资料库覆盖更广的市场，满足了更多用户的需求。</p>
-</blockquote>
-<blockquote>
-<p>而在移动互联网时代，引人瞩目的产品变成了爱奇艺、腾讯视频、格瓦拉、淘票票、猫眼电影……过去的电影爱好者更多地在互联网上搜索并下载电影看，而现在中国电影市场成功地撬动了更广泛的大众用户——那些懒得搜索、下载的人，这些人呢可以直接在视频产品上看电影。</p>
-</blockquote>
-<p>从移动互联网搜索和下载电影，再到在视频网站（PC或者APP）上在线看电影，我是身处其中的用户。我还记得高中时候，我迷上了看美剧电影，当时最常找种子的网站叫做电影天堂。整个观看电影的流程，在电影天堂找到种子，然后使用迅雷下载将种子资源下载到本地，最后使用暴风影音观看。</p>
-<p>后来，不知道从什么时候开始，好像习惯就慢慢变化了，电影天堂这个网站我已经很多年都没有打开过了，如今看电影都是在腾讯视频，但是很多视频都是需要开通会员或者单独付费购买才可以观看，一开始，也很不习惯，会在网络上四处搜索资源，这个时间段的资源，也不是从电影天堂搜索，而绝大部份都来自百度网盘分享，但是基本上能够找到的资源，都被取消下载了，浪费了搜索查找的时间，后来，我也就索性开通了腾讯视频。</p>
-<p>产品的变迁、市场的变迁，相互作用，最后我行为的变迁，这就是市场的变化规律。</p>
-<blockquote>
-<p>互联网对行业的很多影响和渗透都是从下游开始逐渐往上走，从应用开始逐渐发展成为平台。这是因为越依赖互联网的部分，越容易在前期就受到互联网的影响——只需要一部手机和一个App就能连接千万用户。但这并不意味着这个市场就没机会了，这时需要分析市场的上下游、以及平台和垂直应用的关系。</p>
-<ul>
-<li>分析市场的上下游。</li>
-<li>分析平台和垂直应用。</li>
-<li>探索非零和市场。</li>
-<li>分析市场中的变化机会</li>
-</ul>
-</blockquote>
-<h1 id="第三节-比竞争对手还了解竞争对手"><a href="#第三节-比竞争对手还了解竞争对手" class="headerlink" title="第三节 比竞争对手还了解竞争对手"></a>第三节 比竞争对手还了解竞争对手</h1><p>要了解竞争对手，就要做竞品分析。基本上每个产品经理都会做竞品分析，但是很多产品经理做出来的都是“垃圾”。当然，诗沐老师在书中并没有这样称呼，只是我将某类符合某一特征的分析报告，称之为“垃圾”，因为，对于写的人来说，这类分析报告没有经过他的思考，对于读的人来讲，也无法有所收获。</p>
-<p>那什么样的特征是“垃圾”分析报告所有的呢？</p>
-<blockquote>
-<p>通过脑图将一个产品的导航、功能画出来并加上自己的点评。</p>
-</blockquote>
-<p>这件事是去年的我常做的，在App Store下载产品，然后画出其功能，最后加上自己的点评，就算是一份分析报告了，但其实不是的。</p>
-<blockquote>
-<p>我们需要更多的客观的信息，其中最重要的就是数据和用户反馈。竞品做了很多功能，这些功能的数据表现如何？用户评价如何？通过足够多的客观信息，我们才能真正地了解竞争对手，甚至比他们自己更了解——因为不是每个团队对数据和用户反馈都有最高的重视程度。</p>
-</blockquote>
-<p>作者和我们分享了他的分析方法，从产品、用户、数据三个角度来分析。<br>（1）数据方面</p>
-<ul>
-<li>竞品整体数据，了解竞品在市场中的体量和位置</li>
-<li>竞品数据趋势，了解竞品整体数据的变化趋势</li>
-</ul>
-<p>（2）用户方面</p>
-<ul>
-<li>竞品核心用户，熟悉竞品最忠诚的用户群</li>
-<li>竞品主流用户，熟悉竞品占比最大的主流用户群</li>
-<li>用户构成，熟悉竞品各类用户群的构成比例</li>
-</ul>
-<p>（3）产品方面</p>
-<ul>
-<li>竞品核心竞争力，分析核心功能的特点、详细数据情况、用户评价。</li>
-<li>竞品主要功能，分析竞品的主要功能特点、详细数据情况、用户评价。</li>
-<li>竞品发展趋势，了解竞品过去、现在、未来的功能发展走向。</li>
-</ul>
-<p>上述三个方面是一起的，并不是割裂的。</p>
-<h2 id="数据方面"><a href="#数据方面" class="headerlink" title="数据方面"></a>数据方面</h2><p>在获得数据方面，作为非行业内/非app相关用户，我们如何获得可信数据？</p>
-<p>看行业报告？不推荐，因为行业报告一般来说都是公关软文，这些公关软文写给谁看？写给投资人，写给竞争对手看，一般都是宣传数据多漂亮。<br>实际注册用户数3万，对外PR稿能吹上10万。（人有多大胆，地有多大产）</p>
-<p>除了注册用户数，我们还要关注日活、周活、月活，以及使用时长和使用频次。</p>
-<blockquote>
-<p>如果行业报告的数据不可信，那么我们可以通过一些更加公正、客观的第三方统计机构获得这些数据，如QuestMobile、联通沃指数。</p>
-</blockquote>
-<p>我一直对市场上的数据，呈怀疑态度，产品数据这么隐私的数据，这些第三方机构如何获得，他们又能如何保证自己提供的数据的准确性，对于这两点的质疑，让我一直都不相信这些第三方数据。也导致，我做竞品分析时，都不看数据 TAT，有点因噎废食。这些第三方数据可以作为参考，帮助我们认识市场。</p>
-<blockquote>
-<p>除了这些数据，我们还可以查看百度指数、微指数，从用户对一个产品的搜索频次、社交讨论频次来侧面揣摩产品的用户体量。另外，苹果应用商店和各大Android市场的应用排名和下载量也是可以参考的数据。总体上来说，整体数据能帮助我们在初期判断一个产品在市场中的体量和位置。</p>
-</blockquote>
-<blockquote>
-<p>在分析整体数据时候，我们还应该看产品的变化趋势，如产品在过去一年中活跃用户的增长情况、使用时长的变化情况、各个重要产品迭代时间点前后的数据变化、重要的市场营销行为对产品知名度的影响等。只要结合数据和趋势一起看，就能挤掉大部分水分。</p>
-</blockquote>
-<h2 id="用户方面-amp-产品"><a href="#用户方面-amp-产品" class="headerlink" title="用户方面&amp;产品"></a>用户方面&amp;产品</h2><p>（1）了解产品的核心用户群，也就是最忠实的用户、粘性最高的用户。一个产品有很多功能，但大部分用户只用到其中20%左右的功能，而核心用户可能会用到一个产品80%的功能。</p>
-<p>（2）了解产品的主流用户群，大部分用户是沉默的大多数，只使用产品20%左右的功能，似乎也无法获得他们对于功能的评价，但分析主流用户也同样重要。</p>
-<p>（3）了解产品的不同用户群构成</p>
 
           
         
@@ -2489,193 +2685,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/Q2_Week8_工作总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/06/26/Q2_Week8_工作总结/" class="post-title-link" itemprop="url">Q2_Week8_工作总结</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-06-26 00:00:00 / Modified: 11:56:24" itemprop="dateCreated datePublished" datetime="2020-06-26T00:00:00+08:00">2020-06-26</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论。</p>
-<p>本周关键词：复杂系统设计、进程1&amp;2、tools-for-thought</p>
-<h1 id="复杂系统设计"><a href="#复杂系统设计" class="headerlink" title="复杂系统设计"></a>复杂系统设计</h1><p>最近在研究云系统，调研了市场上的其他云产品商家：阿里云、腾讯云、百度云、京东云。<br>调研报告，正在撰写中，等完成之后整理出来。</p>
-<h1 id="进程1-amp-2"><a href="#进程1-amp-2" class="headerlink" title="进程1&amp;2"></a>进程1&amp;2</h1><p>关于进程1&amp;2，在另一篇文章，谈谈“不动脑子”这回事，做了复盘。</p>
-<h1 id="tools-for-thought"><a href="#tools-for-thought" class="headerlink" title="tools-for-thought"></a>tools-for-thought</h1><p>tools-for-thought是我本周发现的最让人激动的概念，</p>
-<p>tools-for-thought是Howard Raheingold在1995年发表的论文，该篇论文的全称叫做《Tools For Thought: The History and Future of Mind-Expanding Technology》<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/1.png" alt></p>
-<p>从全称可以看出，作者在关注能够扩展我们大脑的技术，也就是Doug说的augmenting human intelligence。</p>
-<h2 id="关于工具"><a href="#关于工具" class="headerlink" title="关于工具"></a>关于工具</h2><p>我自身对于工具是有一种热爱。我热爱使用各类个人工具来帮我更高效的学习、生活，并且，喜欢研究各类协同办公产品，在线文档、敏捷开发、范OA、视频会议。</p>
-<p>我对工具的热爱，起源于熊掌记Bear。Bear是一款Markdown写作笔记软件，从我第一次下载他，我就喜欢上了这款软件。我喜欢上他的原因也非常简单，因为这款笔记很美。支持多种主题切换，每种主题的配色，都深得我心。感受一下截图<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/2.png" alt><br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/3.png" alt><br>除了主题配色，在类目管理，还支持icon<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/4.png" alt><br>刚下载Bear研究图标时候，设置的小黄鸭icon，因为那个时候，关于程序员用小黄鸭debug的段子非常火。</p>
-<p>所以，我就先是这样“肤浅”地因为“美”喜欢上了这款笔记。<br>同时，因为这款笔记非常的轻量级<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/5.png" alt><br>可以随意新开一个编辑文档，将其调节成合适的大小，就可以开始创作，因此，我爱上了这款软件，与此同时，我也爱上了写作。很难说，这两者之间的关系，如果没有一款这么好的写作软件，我也不知道，我是否会爱上写作，毕竟，一开始，写作确实是一件很枯燥的事。<br>发现了Bear之后，我开始在写作软件的世界里探索，接着我发现了</p>
-<ul>
-<li>MWeb、惊奇于其强大的标签管理体系，遂开始用MWeb来对我的输出文章，做管理<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/6.png" alt></li>
-</ul>
-<ul>
-<li><p>Ulysses，Ulysses支持的可以宽幅度输入，解决了强迫症的我，希望将页面占满的诉求<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/7.png" alt></p>
-</li>
-<li><p>Typora，Typora的TOC功能，让我在写大篇大论时候，总会诉诸于他。<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/8.png" alt></p>
-</li>
-</ul>
-<ul>
-<li>Notion，Notion的创始人Ivan Zhao重新定义了信息的组织形式<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/9.png" alt><br>我第一次知道，原来信息还可以被这样组织起来。在研究Notion的旅程，我发现了tools-for-thougt这个思想，当时的感受，就是一下子被击中了，原来，这就是我一直在寻找的思想。</li>
-</ul>
-<p>对于每一款写作工具，我都了解他们的属性，并且知道，哪一款产品，适合哪个场景下的需求。<br>在大量的使用中，我甚至感觉，和这些软件之间已经建立了某种合作关系。这一年多，我的输出量猛增，并且形成了坚持写作的习惯，很难说，是因为我形成了坚持写作的习惯，所以我不断地去探索和研究这些有趣的工具，还是因为有这些工具，我也乐得写作。不过，有一点是肯定的，这些工具在某种程度上，也塑造了我加工信息的方式。对于文章呢整理这件事，我向来的原则是，1周或者1个月整理一次，那么没有整理的时候，不可避免，这些文章会散落在各个地方。有了Mweb之后，我是会有意识地利用MWeb作为第二个大脑，协助我分类、归纳这些内容。</p>
-<p>关于个人使用工具，暂且聊到这里。除了个人使用工具，我也关注协同办公，使用协同办公的时间都是上班时间，每个人肯定都希望提升上班时间的效率，增加ROI，但是工作中难免有一些流程上的事务工作需要解决，比如报销、比如审批，每次当我使用相关软件时候，都会觉得不可思议。</p>
-<p>关于对报销产品的分析，参考《人月神话（3）》</p>
-<h2 id="关于职业发展"><a href="#关于职业发展" class="headerlink" title="关于职业发展"></a>关于职业发展</h2><p>我对工具是有执着和热爱，同时，我也想创造出好的工具，是Doug说的augmenting human intelligence，也是乔布斯说的 bicycle for our mind。</p>
-<p>写在最后，我每次周总结，都是用MWeb写，今天发现可以直接生成Html，效果如下<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/10.png" alt><br>我在想，是不是可以直接将html文件部署上hexo，这样就方便很多，起码不需要，单个插图。不过暂时，还没有找到具体操作方式，慢慢研究一下<br>～</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2724,7 +2733,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-count">89</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

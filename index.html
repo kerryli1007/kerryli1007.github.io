@@ -368,7 +368,7 @@
                 
               
 
-              <time title="Created: 2021-02-14 00:00:00 / Modified: 15:12:34" itemprop="dateCreated datePublished" datetime="2021-02-14T00:00:00+08:00">2021-02-14</time>
+              <time title="Created: 2021-02-14 00:00:00 / Modified: 17:54:08" itemprop="dateCreated datePublished" datetime="2021-02-14T00:00:00+08:00">2021-02-14</time>
             
 
             
@@ -456,7 +456,7 @@
 <li>自动求和，基础函数，比如sum</li>
 </ul>
 <p>了解更多内容，观看视频<a href="https://www.youtube.com/watch?v=Ii3PDjJCCQ4" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Ii3PDjJCCQ4</a></p>
-<p>看到这里的你，有没有想过一个问题？为什么VisiCalc长这样？WHY？WHY？WHY？</p>
+<p>==看到这里的你，有没有想过一个问题？为什么VisiCalc长这样？WHY？WHY？WHY？==</p>
 <p>VisiCalc 的设计逻辑是VisiCalc模块分享的重点。</p>
 <p>预习一下为什么我们要学习当时VisiCalc的设计逻辑。下面这段话，是去年2月我发布在知识星球的一段读书笔记。总结一下，学习产品，是学习产品背后的设计逻辑。KNOW WHY。</p>
 <blockquote>
@@ -473,13 +473,32 @@
 <li>自动加减</li>
 <li>Grid设计</li>
 </ul>
-<h3 id="自动加减"><a href="#自动加减" class="headerlink" title="自动加减"></a>自动加减</h3><p>这个功能是什么样的？（为什么Typora不支持视频媒介的插入</p>
-<p>场景是什么</p>
-<p>问题是什么</p>
-<p>解决思路是什么</p>
-<h3 id="Grid设计"><a href="#Grid设计" class="headerlink" title="Grid设计"></a>Grid设计</h3><p>场景是什么</p>
-<p>问题是什么</p>
-<p>解决思路是什么</p>
+<h3 id="自动加减"><a href="#自动加减" class="headerlink" title="自动加减"></a>自动加减</h3><p>工作中的一个典型，我们需要求和十个数值。我们将十个数值输入Excel，然后使用公式sum求和。这个时候，我们发现，有一个数值输入错了，接着，我们将这个数值做了修改。非常自动的，我们的sum后面的值，也会非常自动地更新了。</p>
+<p>这个功能在今天看来，非常自然，自然到我们理所应当地认为这个功能就是这样。但是为什么是这样的呢？</p>
+<p>VisiCalc的creator这样分享到</p>
+<blockquote>
+<p>I imagined a magic blackboard that if you erased one number and wrote a new thing in, all of the other numbers would automatically change, like word processing with numbers.</p>
+<p>I imagined that my calculator had mouse hardware on the bottom of it and a head-up display, like in a fighter plane. And I could type some numbers in, and circle in, and press the sum button. And right in the middle of a negotiation I’d be able to get the answer.</p>
+<p>Now I just had to take my fantasy and turn it into reality.</p>
+</blockquote>
+<h3 id="Grid设计"><a href="#Grid设计" class="headerlink" title="Grid设计"></a>Grid设计</h3><blockquote>
+<p>How do you represent values in formulas?</p>
+<p>It had to be something the computer knew what to put in. You need to know where on the screen it referred to.</p>
+<p>The first thing I thought was the programmer way of doing it.</p>
+<p>The first time you pointed to somewhere, the computer would ask you to type in a unique name.</p>
+<p>It became pretty clear that was going to be too tedious. The computer had to automatically make up the name and put it inside. So I thought, why not make it be the order in which you creat them?</p>
+<p>I tried that. Value 1, Value2. Pretty quickly I saw that if you had more than a few values you never remeber on the screen where things were. Then I said, why not instead of allowing you to put values anywhere, I’ll restrict you to a grid.</p>
+</blockquote>
+<p><img src="https://kerryli1007.github.io/images/电子表格二三事/7.jpg" alt></p>
+<blockquote>
+<p>Then when you pointed to a cell, the computer could put the row and column in as a name. And if I did it like a map and put ABC across the top and numbers along the side.</p>
+</blockquote>
+<p><img src="https://kerryli1007.github.io/images/电子表格二三事/8.jpg" alt></p>
+<blockquote>
+<p>Restricted a map solve all problems and opened up new capabilities, like the ability to have ranges of cells.</p>
+</blockquote>
+<p><img src="https://kerryli1007.github.io/images/电子表格二三事/9.jpg" alt></p>
+<p>更多细节，参考<a href="https://www.youtube.com/watch?v=YDvbDiJZpy0" target="_blank" rel="noopener">https://www.youtube.com/watch?v=YDvbDiJZpy0</a></p>
 <p>说完了产品设计，回过头来再看看VisiCalc的商业成就：</p>
 <ul>
 <li>在6年内，VisiCalc被售卖了700,000</li>
@@ -488,13 +507,15 @@
 </ul>
 <p>但是在数据处理上，VisiCalc当时能计算和处理的数据只有254行，以及63列。</p>
 <p>在VisiCalc出现之前，那个时候，人们是如何记录计算的呢</p>
-<p><img src="https://kerryli1007.github.io/images/电子表格二三事/6.jpg" alt></p>
-<p>这是Dan的父亲当时做帐的帐稿。</p>
+<p><img src="https://kerryli1007.github.io/images/电子表格二三事/10.jpg" alt></p>
+<p>这是Dan的父亲当时做帐的帐稿。密密麻麻的线条，非常复杂。</p>
 <h2 id="02-02-Lotus123"><a href="#02-02-Lotus123" class="headerlink" title="#02-02 Lotus123"></a>#02-02 Lotus123</h2><p>1982年，Mitch Kapor，他曾经负责VisiCalc营销和销售，离开了公司，并且有着信念，希望创造出比VisiCalc更好的产品。他建立了Lotus Development并且于1983年发布了Lotus 123，Lotus123后来成为了VisiCalc最大的对手。Lotus123有更好的新功能，UI界面也有了改善。</p>
+<p><img src="https://kerryli1007.github.io/images/电子表格二三事/11.jpg" alt></p>
+<blockquote>
 <p>….In January 1983, Lotus introduced Lotus 1-2-3 at a price of $495. It was immediately acknowledged to be a better product than VisiCalc. In December 1982 Gregg Williams wrote in Byte that 1-2-3 had ‘many more functions and commands than VisiCalc’ and that 1-2-3 was ‘revolutionary instead of evolutionary.’ PC World called it ‘state of the art.’</p>
-<p><img src="/2021/02/14/电子表格二三事/Users/qiaoyili/Library/Application Support/typora-user-images/image-20210214130909318.png" alt="image-20210214130909318"></p>
+</blockquote>
 <p>了解更多Lotus123，链接<a href="https://www.youtube.com/watch?v=zi6l-5j_Ifw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=zi6l-5j_Ifw</a></p>
-<p>Lotus123发布两年后，Excel面世了。</p>
+<p>Lotus123发布两年后，Excel面世了。 接下来，是电子表格发展的一些关键历程。</p>
 <h1 id="03-电子表格发展的关键历程"><a href="#03-电子表格发展的关键历程" class="headerlink" title="#03 电子表格发展的关键历程"></a>#03 电子表格发展的关键历程</h1><p>[图片5]</p>
 <p>1985年：Excel1.0面世</p>
 <p>1988年：求伯君花14个月写出来的国产办公软件WPS。</p>

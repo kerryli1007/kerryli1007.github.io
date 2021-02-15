@@ -323,6 +323,209 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/20/记一次推荐项目POC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/04/20/记一次推荐项目POC/" class="post-title-link" itemprop="url">记一次推荐项目POC</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-04-20 19:05:40" itemprop="dateCreated datePublished" datetime="2020-04-20T19:05:40+08:00">2020-04-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-05-05 13:00:55" itemprop="dateModified" datetime="2020-05-05T13:00:55+08:00">2020-05-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="思考一个问题"><a href="#思考一个问题" class="headerlink" title="思考一个问题"></a>思考一个问题</h1><p>思考一个问题：<br>作为AI行业的技术服务商，我们在为客户提供电商场景个性化营销的解决方案。如何向客户解释，我们的解决方案，效果好。</p>
+<p>这是一个很有趣的问题。<br>为什么有趣？因为，我们常用来判断一个模型好坏的衡量标准，在这个场景下，会失效。</p>
+<p>回想一下，我们建模时候，用来衡量模型标准的指标是什么？我们用的是AUC。什么是AUC。我们来复习一下。<br>AUC这个话题太大了，涉及到Confusion Matrix和ROC，在另外一篇文章有详细解释。</p>
+<p>回到刚才说的，我们说在和客户解释我们模型有效的时候，将AUC会失效。为什么会失效？（其实也不是100%，但是这个概率，基本上就等于，肯定会失效）</p>
+<p>有很多原因：</p>
+<ol>
+<li>客户不懂AUC</li>
+<li>就算客户懂AUC，但是现在是要花钱买解决方案了，所以，最好能将模型的效益置换成业务收益，简单粗暴</li>
+</ol>
+<p>客户诉求合情合理。那么作为乙方，我们是要靠着服务好甲方存活的。那么，在这种场景下，我们如何告诉客户我们的模型效果更好呢？不同的手段，其差异是什么？在手段的探索上，走了哪些弯路，有哪些经验，可以总结为可复用的方法论呢？带着这些思考，我们来梳理一下自己的思路。</p>
+<h1 id="思路一：预测的Item与BestSeller进行比较"><a href="#思路一：预测的Item与BestSeller进行比较" class="headerlink" title="思路一：预测的Item与BestSeller进行比较"></a>思路一：预测的Item与BestSeller进行比较</h1><p>这是一种很直观的对比方式。这个证明方式，也不是我想出来。这种方式是在一个项目中，我们客户提出来的。在这个项目中，我们的角色是丙方，乙方为了更好地向甲方解释模型的效果，用了这样的一个方式。</p>
+<p>抽象一点解释，就是给定一个日期，随机选择10W顾客，预测这个时间段内，这10W顾客购买可能性最高的Topo 10 Item。然后用这段时间，这10W顾客中真实发生了购买的用户商品对比上我们给出的预测。</p>
+<blockquote>
+<p>{用户1,真实购买item} / {用户1, 预测item1}，{用户1, 预测item2}……{用户1, 预测item10}</p>
+</blockquote>
+<p>回到很早之前聊的两个观点</p>
+<ul>
+<li>这个世界上，没有什么是他原本的样子？在他出现之前，我们一定要问一问，为什么要这样设置。</li>
+<li>人的思维都有局限性，当我们选择了A之后，一定要全面地分析与之关联的利弊。</li>
+</ul>
+<p>为什么说到这两个观点，因为，思路1的这种solution，有其特定的背景，同时也有其带来的弊端。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>该背景则是，无法和业务客户解释AUC。因此，乙方提出了这个solution。</p>
+<h2 id="弊端"><a href="#弊端" class="headerlink" title="弊端"></a>弊端</h2><p>弊端是什么？<br>不同的建模目标，建模思路是不一样的。<br>思路一展示的是，自然购买和推荐购买。<br>而，如果要实际投产，其实对比的是，传统营销和个性化营销。</p>
+<h1 id="思路二：POC"><a href="#思路二：POC" class="headerlink" title="思路二：POC"></a>思路二：POC</h1><p>在思路一的指导下，走了无数弯路，浪费了诸多资源的现状下。我才意识到，给客户做推荐，最有效的方式，就是POC，就推POC～</p>
+<p>我觉得就POC吧～POC最简单，最直接，最有效，最方便。</p>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><p>按照POC的目标进行建模。</p>
+<p>产品经理在把控项目进展时候，应该对项目有整体把控。</p>
+<p>参考资料：</p>
+<ol>
+<li>Classification: ROC Curve and AUC | <a href="https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc" target="_blank" rel="noopener">https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/20/虚拟机、容器、K8S/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3536,158 +3739,11 @@ LGBMClassifier(boosting_type=&apos;gbdt&apos;, class_weight=None, colsample_bytr
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/26/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-26 07:56:23" itemprop="dateCreated datePublished" datetime="2019-04-26T07:56:23+08:00">2019-04-26</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -3731,7 +3787,7 @@ LGBMClassifier(boosting_type=&apos;gbdt&apos;, class_weight=None, colsample_bytr
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">90</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

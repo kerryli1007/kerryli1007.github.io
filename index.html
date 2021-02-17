@@ -323,6 +323,253 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/17/20210217-产品经理相关思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/02/17/20210217-产品经理相关思考/" class="post-title-link" itemprop="url">产品经理相关思考</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-02-17 00:00:00 / Modified: 16:51:50" itemprop="dateCreated datePublished" datetime="2021-02-17T00:00:00+08:00">2021-02-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/效率工具/" itemprop="url" rel="index"><span itemprop="name">效率工具</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近一直在被拷问几个问题，主要集中在三个问题：</p>
+<ul>
+<li>产品经理是做什么的？</li>
+<li>你为什么说你对产品有热情？</li>
+<li>对于做产品这件事，你的价值是什么？</li>
+</ul>
+<p>这些问题有的是我自己对自己发起的，有的是朋友向我发起的。</p>
+<p>对问题的思考，让我像拿着手术刀一样，毫不留情地剖析我自己。</p>
+<h1 id="01-产品经理是做什么的？"><a href="#01-产品经理是做什么的？" class="headerlink" title="#01 产品经理是做什么的？"></a>#01 产品经理是做什么的？</h1><p>这个问题已经烂大街了。</p>
+<p>随便Google一下，都有成千上万的标准答案。但是，那是别人的答案，我的回答是什么？为什么我会给出这样的回答？</p>
+<p><strong>初探产品经理</strong></p>
+<p>当时的我尚在少儿编程公司时候，公司的主要商业模式是为8 - 12岁的孩子提供编程录播课，孩子们看了课程之后，做课后作业。在做课后作业的时候，会遇到一些问题，他们在前台的chatbox提问。后台会有老师解答。这是公司业务流程中，很普通的一个环节，但是这个环节存在一个问题，所有孩子都上同一门课，理所当然他们提的问题是一样的。后台老师需要重复地回答相同的问题，老师也是人，烦躁是第一感受，第二感受是没有成就感。</p>
+<p>当时，我在想，既然这些问题都是重复的，为什么不能自动回答？对用户来说，自动回答可以缩短让用户等待的时间；对后台老师来说，自动回答可以增加工作的automation。</p>
+<p>接着和当时的后端负责人（目前的产品负责人）聊了这个问题。他说，好啊，你需要哪些数据，列一个需求清单给我，我导出来给你。</p>
+<p>当时列出来的数据清单的schema如下</p>
+<ul>
+<li>课程等级（L1 - L6）</li>
+<li>课程ID（1 - 12）</li>
+<li>学生和老师的对话流</li>
+</ul>
+<p>对老师和学生的对话流进行分析，发现大概有</p>
+<ul>
+<li>20的问题，都是老师课上有讲，但是学生没有认真听讲，所有存疑</li>
+<li>30的问题，都是重难点，存在大量重复提问</li>
+<li>40的问题，都是一些“长尾”的问题</li>
+<li>10的问题，个性化</li>
+</ul>
+<p>具体数值可能有出入，但是大概是上面这样。通过上述分析，我将其中能概括出来的回答做了总结。做了一个后台自动回复功能。回复的模版可以根据课程内容配置。</p>
+<p>大大地提高了效率，也缩短了孩子们的等待时间。这是我初探产品经理。</p>
+<p><strong>AI产品经理</strong></p>
+<p>后来加入了4PD的云团队。团队的主要目标是将产品放在云上进行售卖。团队人数少，我的工作职能一边负责着解决方案，一边负责着官网前后端的设计。</p>
+<p>回顾反思一下，当时做这套系统，思考得更多得是支持团队业务的开展。这里说的业务开展，就是获客、已经管理这些customer的生命周期。</p>
+<p>前后端的产品设计之外，还兼任了“云OCR PM”负责OCR上云的工作。在OCR上云的过程中，让我更加加深了对产品经理职业的理解。</p>
+<p>如果说，前后端官网的设计是让我了解了产品作为一个什么样的tool来支持业务的开展，ocr上云的产品工作，让我了解了产品如何从市场竞争格局的角度，来帮助产品GTM。</p>
+<p>在这个阶段，对用户场景的思考、对市场竞争的思考，对自己产品优势劣势的思考，都得到了磨练。</p>
+<p>而上述各个阶段的转变，从能做一个单一的feature、到能做一个系统的产品，再到帮助一个产品GTM，其实背后对应的知识技能要求也有差异。</p>
+<p>对一个优秀PM的评估，有如下几个维度：</p>
+<ul>
+<li>通用能力</li>
+<li>专业能力</li>
+<li>产出</li>
+<li>组织影响力</li>
+</ul>
+<h1 id="02-为什么讲我对做产品有热情"><a href="#02-为什么讲我对做产品有热情" class="headerlink" title="#02 为什么讲我对做产品有热情"></a>#02 为什么讲我对做产品有热情</h1><p>经过一段时间的思考，我对“做产品有热情”的理解，可以分为3个阶段：</p>
+<ul>
+<li>“无知”的热情</li>
+<li>“朦胧”的热情</li>
+<li>“明白“的热情</li>
+</ul>
+<p>我先解释一下我对这3个阶段的理解，接着说一下这三个阶段变化的背后底层逻辑。</p>
+<p><strong>“无知”的热情</strong></p>
+<p>问：你为什么想做产品？</p>
+<p>答：因为我喜欢。</p>
+<p>问：你喜欢的产品有哪些？</p>
+<p>答：Emmm，Nomo。</p>
+<p>问：为什么？</p>
+<p>答：感觉很惊艳。</p>
+<p>问：为什么惊艳？</p>
+<p>答：有很多滤镜。</p>
+<p>问：……</p>
+<p><strong>“朦胧”的热情</strong></p>
+<p>问：你为什么想做产品？</p>
+<p>答：因为我喜欢创造工具。</p>
+<p>问：哪一款是你最喜欢的工具？为什么喜欢这款工具？</p>
+<p>答：Notion。</p>
+<p>问：继续说说，为什么喜欢这款工具。</p>
+<p>答：因为这款工具1、2、3吧啦吧啦很好（基本说出了这款工具的亮点</p>
+<p><strong>“明白”的热情</strong></p>
+<p>在“朦胧“的热情上，多了对这个行业的洞察。包括对这个行业历史、以及当前市场玩家的洞察。而且亲自动手做了大量的研究工作。</p>
+<p>参考一份模版一样的“明白“的产品热情</p>
+<blockquote>
+<p>最近看了俞军老师当年学习搜索引擎的方法。他的学习方法如下： - 每天至少200次搜索，持续一年以上 - 阅读可收集到的任何搜索相关文章，至少5000篇，至少一半是英文 - 把任何可利用时间用于思考搜索，把眼前看到以及脑中的任何事物以及文字都用搜索来描述和验证 - 任何别人搜索过的案例，一定仿照一遍，并做10倍以上的变化搜索，至少半年 - 对最感兴趣的一门领域，深入了解它，彻底跟踪该领域内任何信息，包括你极尽所能收集到的任何角度、任何位置、任何媒体、任何人、任何形式的信息，直到你弄清楚信息是怎样出生、生长、生病、死亡，维持这种状态绝不可短于一年。 - 阅读任何人文学科著作至少1000本，其中至少100本哲学和心理学作品，不要放过任何所谓经典著作。 - 以感情入搜索。我的力量来源于愤怒！内心深处的愤怒，改变世界的信念支持我在每次搜索时尽全力并得到足够的回报。</p>
+</blockquote>
+<p>链接： <a href="http://www.sowang.com/sousuo/2002-11-11.htm" target="_blank" rel="noopener">我告诉你怎么学搜索-搜索技巧-中文搜索引擎指南网</a></p>
+<p>说回来这3阶段变化的背后：</p>
+<ol>
+<li>意愿层。从“无知”到“明白”，意味着，愿意投入大量的时间、精力。这是第一层，意愿层。</li>
+<li>动手能力。在意愿层的基础上，是动手能力，包括搜索信息的能力，归纳信息的能力，以及最后提取信息的能力。动手能力打在字上是很轻松，但是在执行层面，是非常难的。这种前期的投入，非常枯燥，若非真的热爱，有热情，是很难坚持的。</li>
+<li>只有在意愿✅，动手能力✅的基础上，才有资格讲，对产品的热情。</li>
+</ol>
+<p>反躬自省一下，我目前处在什么阶段呢？</p>
+<p>阶段二到阶段三过渡。</p>
+<p>我用Notion搭建出来的“产品沉思录”就是我在努力向第三阶段迈近的证据，但是目前烛光尚弱，尚不足以照亮阶段三。</p>
+<h1 id="03-对于做产品这件事，我的价值是什么"><a href="#03-对于做产品这件事，我的价值是什么" class="headerlink" title="#03 对于做产品这件事，我的价值是什么"></a>#03 对于做产品这件事，我的价值是什么</h1><p>对于这个问题的回答，我试图将命题缩小一点，在创造工具产品这件事上，我的价值是什么？</p>
+<p>我的价值这个话题还是太难回答，再具体一点。我希望通过怎么样的方式来创造价值？</p>
+<p>对当前工作流的观察，进行抽象，借助一些思想先锋/好的理念，创造出好的产品。</p>
+<p>参考高效会议一章。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/15/传统软件到现代化网络服务的变革/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2145,196 +2392,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/31/Q4_W3_工作总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/10/31/Q4_W3_工作总结/" class="post-title-link" itemprop="url">Q4_Week3_工作总结</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-10-31 17:53:00 / Modified: 17:56:11" itemprop="dateCreated datePublished" datetime="2020-10-31T17:53:00+08:00">2020-10-31</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本周关键词：自信、细节和BigPicture、项目推进</p>
-<h1 id="谈一谈我对项目管理在这个阶段的认识"><a href="#谈一谈我对项目管理在这个阶段的认识" class="headerlink" title="谈一谈我对项目管理在这个阶段的认识"></a>谈一谈我对项目管理在这个阶段的认识</h1><p>最近和老板聊了一下自己前一个阶段的工作表现，老板给了很积极的反馈，说在项目管理上，我有很大的进步。</p>
-<p>她给了几个她的观察：<br>首先，我更自信了。<br>第二，现在做项目，并没有像以前那样，过度关注细节。<br>最后，在协调push项目进展方面，我的表现非常好。</p>
-<h1 id="一、关于自信"><a href="#一、关于自信" class="headerlink" title="一、关于自信"></a>一、关于自信</h1><p>这个感觉比较虚。自我感觉自信得增加是伴随着自己对公司业务的了解，一点点增加的。</p>
-<h1 id="二、关于细节和BigPicture"><a href="#二、关于细节和BigPicture" class="headerlink" title="二、关于细节和BigPicture"></a>二、关于细节和BigPicture</h1><p>细节和BigPicture的说法，还是比较抽象。我觉得更具体，并且有指导意义，就是优先级。</p>
-<p>优先级的应用场景非常多。</p>
-<p>场景1:客户提了3个需求。<br>分析：是否3个需求都要满足？如果是，是否3个需求都要同时满足？项目的实际开展中，往往这两个问题都是否定回答。我们需要在这些需求中，找出客户最关注的，以及为这些客户关注的需求排列优先级。</p>
-<p>场景2:同时跟进3个项目。<br>分析：这3个项目，当前的阶段，以及其所处阶段的优先级判断。哪个阶段的最紧急，需要最多的支持。</p>
-<p>……</p>
-<h1 id="三、推进项目"><a href="#三、推进项目" class="headerlink" title="三、推进项目"></a>三、推进项目</h1><h2 id="为什么说自己项目推进能力进步了不少？"><a href="#为什么说自己项目推进能力进步了不少？" class="headerlink" title="为什么说自己项目推进能力进步了不少？"></a>为什么说自己项目推进能力进步了不少？</h2><p>什么是项目？影响项目成功的因素有哪些？在哪些维度，我的能力有提升？</p>
-<p>影响项目成功的因素有哪些？从时间纵向来看，一个项目分为不同的阶段，在不同的阶段，有不同的目标，以及产出；在每一个阶段，从横切面看，这个阶段任务的完成，需要不同角色之间相互配合。</p>
-<p>作为项目负责人。在这个过程中，面临的挑战有两个：<br>一是大量的沟通，推进项目进展。<br>二是在项目推进过程中，需要不断决策，因为项目的进展永远不可能一帆风顺，当团队遇到了棘手的问题，需要决策时候，这个时候，项目负责人应该是那个决策人。（因为其他人，没有人像你一样了解项目的整体，并且，其他人负责的是单独某个模块，也没有足够的ownership，在这个时间点向前迈一步）</p>
-<h3 id="为什么说大量的沟通是挑战呢？"><a href="#为什么说大量的沟通是挑战呢？" class="headerlink" title="为什么说大量的沟通是挑战呢？"></a>为什么说大量的沟通是挑战呢？</h3><p>项目做多了，发现一个有意思的现象，大家会有一个看法：”你的这部分工作，不就是协调员的角色吗？“我理解大家的这种看法，确实，表面上看来，这份工作就是为大家分配工作，制定milestone，一不小心就成了协调员。我以前也会被这种想法困住，觉得项目经理就是协调员，但是近来一段时间，其实有额外的感受。</p>
-<p>比如最近上线OCR云服务，从底层硬件，机房，物理服务器的准备，到模型，再到云服务。整个项目，涉及到多个部门，不同角色。底层硬件，涉及IT部门，IT部门中，又有不同的角色，负责物理机运维，负责虚拟化。模型层面，又分为模型效果以及模型性能。云服务阶段，又涉及到网关服务的开发，以及服务性能的测试。这些不同的模块，需要和不同的同事配合。从服务上线倒排时间，然后将每一个小模块的工作分配到具体的同事，和其沟通输入，以及期望输出，输出结果以及时间节点。确保其产出能被顺利使用，本身就是一件技术工作。</p>
-<p>沟通能力差，或者，不注意细节的项目经理，在这个过程中，沟通成本会巨大。</p>
-<p>那么我是如何提升沟通效率的呢？（干货阶段！！！！！！！！！！一到写干货的时候，就好困，想睡觉，呜呜呜）</p>
-<p>第一，梳理清楚，合作部门的职能。该部门每个同事的分工，以及其汇报线<br>了解每个同事的分工，便于我们找到对的人，支持我们的工作，了解其汇报线，方便我们在项目推不动的时候，找领导们push进展<br>第二，清晰定义输出和输出<br>发现很多项目经理，在协作时候，都只说希望对方做什么，但是不说为什么希望对方做？以及做这件事的意义是什么？这是两个维度。<br>做这件事的意义，可以带给支持方成就感。（虽然说很多人都说，成就感这种很bullshit，但是我觉得，成就感，参与感是调用一个人积极性的重要因素）。这个在事前和事后，都可以阐述。</p>
-<pre><code>- 事前：我们和客户约定了本周五要交付这个环境，所以希望得到您关于……的支持
-- 事后：感谢您的支持和配合，我们顺利向客户交付了……
-</code></pre><p>为什么希望对方做？</p>
-<pre><code>- 第一，这是对方的工作职能范围（这种是很好沟通的
-- 第二，这不属于对方的工作职能范围，这个时候要怎么办（说实话，好像我还没有遇到这种情况？Emmmm
-</code></pre><p>接下来就是清晰定义输出和输出，注意输出的制定一定要包括输出物料，以及输出的时间节点。（没有时间节点的项目管理就是垃圾）</p>
-<h3 id="为什么说大量的决策也是对项目经理的极大考验呢？"><a href="#为什么说大量的决策也是对项目经理的极大考验呢？" class="headerlink" title="为什么说大量的决策也是对项目经理的极大考验呢？"></a>为什么说大量的决策也是对项目经理的极大考验呢？</h3><p>因为项目的推进过程中，就不可能一帆风顺，当项目遇到困难了，下一步的抓手在哪里。比如在一个我们做的一个广告场景的营销推荐中，遇到了两次问题：</p>
-<ol>
-<li>一次是线上测试时候响应时间无法达到要求</li>
-<li>一次是客户的数据维度少，无法做出理想效果</li>
-</ol>
-<p>碍于这两个问题，项目陷入了搁浅阶段。项目经理这个时候的角色，不是说，找别人去问要怎么办？这个时候，项目经理的作用是，分析现状，思考下一步的抓手。比如第一个问题的解决方案是，将服务器从自己的机房放到腾讯云上；第二个问题的解决方案是，引入第三方数据供应商。</p>
-<p>总结一下，遇到问题，做出果断决策，找到下一步的抓手，这也是项目经理的工作范畴。而不是协调员！</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2383,7 +2440,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">92</span>
+                    <span class="site-state-item-count">93</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

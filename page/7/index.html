@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/30/幕后产品（2）全面深入地了解用户/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/31/幕后产品（3）需求分析方法论/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="一颗西蓝花🥦">
@@ -343,7 +343,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/05/30/幕后产品（2）全面深入地了解用户/" class="post-title-link" itemprop="url">幕后产品（2）全面深入地了解用户</a>
+                <a href="/2020/05/31/幕后产品（3）需求分析方法论/" class="post-title-link" itemprop="url">幕后产品（3）|需求分析方法论</a>
               
             
           </h1>
@@ -368,7 +368,7 @@
                 
               
 
-              <time title="Created: 2020-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-30T00:00:00+08:00">2020-05-30</time>
+              <time title="Created: 2020-05-31 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-31T00:00:00+08:00">2020-05-31</time>
             
 
             
@@ -385,7 +385,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-07-05 09:53:45" itemprop="dateModified" datetime="2020-07-05T09:53:45+08:00">2020-07-05</time>
+                <time title="Modified: 2020-07-05 10:08:27" itemprop="dateModified" datetime="2020-07-05T10:08:27+08:00">2020-07-05</time>
               
             
           </span>
@@ -439,53 +439,27 @@
       
         
           
-            <p>最近负责的推荐项目，要做生产环境的POC。一方面有些紧张，因为项目后期，基本上前端后端都是我，担心自己表现不好；一方面又比较兴奋，从昨晚的结果来看，模型的表现比客户当前的解决策略效果更佳。</p>
-<p>总体上，本周工作节奏紧张，都在调模型，对比效果。晚上，抽睡前半个小时看书，最近在看《幕后产品》。每读一章节，都会给我相当大的触动，阅读诗沐老师的文字时，感受到他的谦逊，用轻描淡写的笔触展现过去的辉煌成就，在这些文字里，更能感受到诗沐老师作为一位优秀的产品经理，一些值得我学习借鉴的地方，因此，每每读及，感受到自己与其思维方式的差异，都羞愧万分，遂将其悉数记录，一方面警示自己，一方面也做记录之用。</p>
+            <p>幕后产品（三）需求分析方法论</p>
+<p>写在前面，今天看到一篇《幕后产品》整本书的读后感，脑子一热，也想，趁着下午几个小时，将剩下的几章节都阅读了，然后整理一下，发在公众号，心理记挂着这个目标，阅读时候，也浮光掠影，读了几篇，感觉脑子里一片空白，一无所获，赶紧停下来。</p>
+<p>如果读一本书，读一篇文章，一无所获，那么就没有阅读的必要，这就是浪费时间，还不如将这个时间用在其他地方，比如看电影，逛街。</p>
+<p>调整目标和状态后，重新开始阅读，将今天的阅读心得整理如下。最后，再强调一句，做任何事，都不要舍本逐末，不要为了发公众号而匆匆阅读，要为了思考而阅读，思考本身是一件有趣的事，通过阅读别人的文章，与别人对话，交流心得体验，发公众号也好，发布在hexo也好，都是思考的结果。</p>
+<p>开始今天的阅读吧～Enjoy</p>
+<p>今天阅读的是《幕后产品》第三章。本章开篇，便解答了最近几个月困扰我的问题，那便是需求太多怎么办，当然这些需求里面，包含老板提的需求。因开篇实在是经典，故将其摘录如下，希望任何读到这段文字的产品经理，都能有所感悟，收获一二。</p>
 <blockquote>
-<p>做了多年产品经理，我每天仍在做的一件事是什么？</p>
-<p>那就是日复一日、年复一年地了解用户。</p>
+<p>产品经理面对的需求千千万万，应该做哪一个呢？</p>
+<p>这恐怕是实际工作中最恼人的问题之一，原因大致有两个：提出需求的门槛非常低，每个用户一口唾沫星子就能淹死产品经理；需求分析并不像写代码那样有很强的逻辑性，其中存在相当感性的部分，每个人对需求都有自己的理解，因此搞定团队中的所有人是很难的。</p>
+<p>多数产品经理在工作中会遇到进退两难的境地，感觉像是夹心面包，而不是在主导产品。这背后的原因是，搞不定老板、上司提出的需求，说服不了团队做自己想做的需求。这样的情景在每家公司、每天的办公室反复上演，但这不是其他人的责任，反而是产品经理自身的问题。原因如上所述，需求的本质就是这样的——人人都可以参与讨论，人人都觉得自己理解需求。</p>
+<p>绝大部分能成长起来的产品经理都顺利通过了进退两难的这一关。这是一个狭窄的关卡，通过之后的产品经理能形成自己的需求分析方法论，也知道如何赢得上司以及团队的信任，从而更好滴展现执行力。而没有通过的是大多数，在方法论和沟通上或多或少存在问题。</p>
 </blockquote>
-<p>读到这里，不由脸颊发烫。作为一名AI 产品经理，我足够了解我的客户吗？他们是谁？他们在哪里？他们的痛点到底是什么？当整个人陷入项目的细节之中，就容易看不清大的趋势，因此，不断地反思、复盘、总结，就显得尤为重要。</p>
-<p>不过，在我写出上一段话之前，内心另一个声音告诉我。你做的是To B，和To C不一样，To C用户体量大，To B都是客户，客户体量小。这个思考的逻辑是说，客户体量小，就不用了解了吗？其实这个逻辑不过是为自己不足够了解，而找的借口。</p>
-<p>所以，我真的了解客户是谁吗？</p>
-<p>在AI行业，我也是混迹了2年。站在今天这个时间节点，回顾这两年，我做的所有工作，都是围绕两件事在做</p>
-<ul>
-<li>AI 算法竞赛</li>
-<li>AI 技术服务提供</li>
-</ul>
-<p>两件事针对不同的客户，其需求自然千差万别。着重看一下，AI技术服务提供（要回答这个问题，说实话，是需要数据支撑的）数据涉及到公司业务层面隐私，就不写出来。一个大概的画像：</p>
-<p>中小企业，希望短时间、低成本，搭建起一个生产环境可用的算法系统</p>
-<blockquote>
-<p>这个时代变化速度飞快，不断有新的文化、新的群体出现，如果我们不学习、不接触它们，仅仅一两年就有可能落伍。我在校园招聘时与应届毕业生进行交流，常感觉自己与它们之间存在代沟。他们中间流行什么？他们怎么理解互联网？这些疑问萦绕心头，迫使我想要深入理解他们的想法。虽然很残酷，但这个行业永远都是年轻人的世界，而且优秀创业者的年龄越来越小，所以作为产品经理除了每天持续地了解用户，别无他法。</p>
-</blockquote>
-<p>读到这里的感受，只有两字：深刻。</p>
-<p>背后的感慨原因，千千万万，以后再分析了。</p>
-<blockquote>
-<p>在研究电子音乐粉丝之前，我和很多人一样，把电子音乐与DJ、“土嗨”联系在一起，本能地对迪厅里播放的旋律和歌词一般的音乐无感。这是人的天性，对不了解的事情有自我防御机制。</p>
-</blockquote>
-<p>心理防御机制（Defence mechanism）</p>
-<blockquote>
-<p>Defense mechanisms are psychological strategies that are unconsciously used to protect a person from anxiety arising from unacceptable thoughts or feelings.</p>
-</blockquote>
-<p>心理防御机制是一种会被无意识使用的心理策略，人类使用这种策略来使自己远离不可以接受的思想和感受带来的焦虑。</p>
-<p>下图是一些常见的防御机制<img src="https://www.simplypsychology.org/defense-mechanisms.jpg?ezimgfmt=rs:611x451/rscb18/ng:webp/ngcb18" alt="defense mechanisms"></p>
-<p>否认是防御机制的一种。其实这种否认，我也常用。</p>
-<p>我diss一些产品设计无聊，但是我都没有认真去了解这些产品到底为什么会被设计出来。</p>
-<p>我否认自己做技术产品没有天赋，但是我压根都没有真地全力以赴地去学习，如何独立地写一段完整的代码。</p>
-<p>否认是一件非常简单的是，但是真实面对自己，不对自己说谎，更难，但是能产生不一样的结果。</p>
-<p>比如，我现在也开始撇弃对社交产品的偏见，从之前单一地将其归为约炮软件，或者寂寞人来使用的软件，到认识到，约炮也好，寂寞想找人倾诉，这都是人的需求，正视用户的需求，是成为优秀产品经理的第一步。选择看见而不是视而不见。同时，我开始认真严肃地对待Python、SQL，自己也能独立写代码，完成项目交付。</p>
-<p>最后说一下预见趋势。</p>
-<blockquote>
-<p>2014年，虽然当时在各个音乐排行榜上，前十里看不见电子音乐，但我们仍根据研究结果判断电子音乐是未来发展的趋势。我们不遗余力地鼓励电子音乐达人们做歌单、做电台，并在网易云音乐商业上帮助他们推广，与国内的电子音乐推广团队合作，并将电子音乐派在仅次于流行、摇滚、民谣音乐的位置。</p>
-</blockquote>
-<p>诗沐老师能够在2014年时候，就预见电子音乐是未来发展的趋势。其洞察力，不由让人大呼惊叹。仔细思考，对于诗沐老师来说，这也应该是水到渠成的事，因为他长时间对用户的研究，分析。</p>
-<p>只有深入理解了用户，才能做出准确而迅速的判断。</p>
-<p>阅读完这个，我也给我自己布置一个任务吧。</p>
-<ul>
-<li>本周和下周，完成市场上AutoML的使用，产出分析报告</li>
-<li>找10个AutoML的深度用户，做interview</li>
-</ul>
-
+<p>读完这段话，一拍大腿，诗沐老师娓娓道来的讲解实在是让人醍醐灌顶。作为大神级别的产品经理，诗沐老师洞察多数产品经理的真实遭遇，进退两难，所有人都来提需求，每个人都认为自己的需求是最重要的。这件事确实是会让产品经理崩溃。我在工作中，也经历不少。不过，诗沐老师的分享并未止步于此，他也严肃地指出，这实际上是产品经理成长生涯重要的一个关卡，过得了这一关的产品经理，能成长起来，他们沉淀出了自己的方法论，懂得如何赢得上司以及团队的信任，这样的人，在我看来，也才更有可能成为领导人；而没有通过这一关卡的产品经理，即没有感觉到是自己在主导产品，也只有在整日的抱怨中丧失了思考。</p>
+<p>关于需求分析方法论，作者主要分享了3个模块</p>
+<ol>
+<li>收集需求</li>
+<li>评估</li>
+<li>进阶</li>
+</ol>
+<p>关于需求分析方法论，建议结合苏杰老师《人人都是产品经理》，以及李立《腾讯产品法》中关于需求分析的模块，一同学习思考，观察不同产品经理对待需求的视角。</p>
+<h1 id="尽可能多地收集需求"><a href="#尽可能多地收集需求" class="headerlink" title="尽可能多地收集需求"></a>尽可能多地收集需求</h1><h1 id="需求背后的动机"><a href="#需求背后的动机" class="headerlink" title="需求背后的动机"></a>需求背后的动机</h1><h1 id="评估实现需求的影响"><a href="#评估实现需求的影响" class="headerlink" title="评估实现需求的影响"></a>评估实现需求的影响</h1><h1 id="角色、场景、流程"><a href="#角色、场景、流程" class="headerlink" title="角色、场景、流程"></a>角色、场景、流程</h1><h1 id="符合产品目标"><a href="#符合产品目标" class="headerlink" title="符合产品目标"></a>符合产品目标</h1>
           
         
       
@@ -717,6 +691,224 @@
 </ul>
 <p>这几款工具都是优秀的书写工具。像简书这样克制的设计，比如，连书写背景的颜色都不支持修改，真的是非常罕见。这么克制，也还奇了怪了，却让我喜欢上了，嘿嘿。我也不是只爱简单的，我也爱Bear，12个主题，任意切换。（关于写作工具，以后再展开</p>
 <p>还有最后两个主题，实验设计/AB Test，广告推荐系统，都是比较大的话题，就不在周总结中展开了，单独另开文章总结。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/30/幕后产品（2）全面深入地了解用户/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/30/幕后产品（2）全面深入地了解用户/" class="post-title-link" itemprop="url">幕后产品（2）全面深入地了解用户</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-30T00:00:00+08:00">2020-05-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-07-05 09:53:45" itemprop="dateModified" datetime="2020-07-05T09:53:45+08:00">2020-07-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近负责的推荐项目，要做生产环境的POC。一方面有些紧张，因为项目后期，基本上前端后端都是我，担心自己表现不好；一方面又比较兴奋，从昨晚的结果来看，模型的表现比客户当前的解决策略效果更佳。</p>
+<p>总体上，本周工作节奏紧张，都在调模型，对比效果。晚上，抽睡前半个小时看书，最近在看《幕后产品》。每读一章节，都会给我相当大的触动，阅读诗沐老师的文字时，感受到他的谦逊，用轻描淡写的笔触展现过去的辉煌成就，在这些文字里，更能感受到诗沐老师作为一位优秀的产品经理，一些值得我学习借鉴的地方，因此，每每读及，感受到自己与其思维方式的差异，都羞愧万分，遂将其悉数记录，一方面警示自己，一方面也做记录之用。</p>
+<blockquote>
+<p>做了多年产品经理，我每天仍在做的一件事是什么？</p>
+<p>那就是日复一日、年复一年地了解用户。</p>
+</blockquote>
+<p>读到这里，不由脸颊发烫。作为一名AI 产品经理，我足够了解我的客户吗？他们是谁？他们在哪里？他们的痛点到底是什么？当整个人陷入项目的细节之中，就容易看不清大的趋势，因此，不断地反思、复盘、总结，就显得尤为重要。</p>
+<p>不过，在我写出上一段话之前，内心另一个声音告诉我。你做的是To B，和To C不一样，To C用户体量大，To B都是客户，客户体量小。这个思考的逻辑是说，客户体量小，就不用了解了吗？其实这个逻辑不过是为自己不足够了解，而找的借口。</p>
+<p>所以，我真的了解客户是谁吗？</p>
+<p>在AI行业，我也是混迹了2年。站在今天这个时间节点，回顾这两年，我做的所有工作，都是围绕两件事在做</p>
+<ul>
+<li>AI 算法竞赛</li>
+<li>AI 技术服务提供</li>
+</ul>
+<p>两件事针对不同的客户，其需求自然千差万别。着重看一下，AI技术服务提供（要回答这个问题，说实话，是需要数据支撑的）数据涉及到公司业务层面隐私，就不写出来。一个大概的画像：</p>
+<p>中小企业，希望短时间、低成本，搭建起一个生产环境可用的算法系统</p>
+<blockquote>
+<p>这个时代变化速度飞快，不断有新的文化、新的群体出现，如果我们不学习、不接触它们，仅仅一两年就有可能落伍。我在校园招聘时与应届毕业生进行交流，常感觉自己与它们之间存在代沟。他们中间流行什么？他们怎么理解互联网？这些疑问萦绕心头，迫使我想要深入理解他们的想法。虽然很残酷，但这个行业永远都是年轻人的世界，而且优秀创业者的年龄越来越小，所以作为产品经理除了每天持续地了解用户，别无他法。</p>
+</blockquote>
+<p>读到这里的感受，只有两字：深刻。</p>
+<p>背后的感慨原因，千千万万，以后再分析了。</p>
+<blockquote>
+<p>在研究电子音乐粉丝之前，我和很多人一样，把电子音乐与DJ、“土嗨”联系在一起，本能地对迪厅里播放的旋律和歌词一般的音乐无感。这是人的天性，对不了解的事情有自我防御机制。</p>
+</blockquote>
+<p>心理防御机制（Defence mechanism）</p>
+<blockquote>
+<p>Defense mechanisms are psychological strategies that are unconsciously used to protect a person from anxiety arising from unacceptable thoughts or feelings.</p>
+</blockquote>
+<p>心理防御机制是一种会被无意识使用的心理策略，人类使用这种策略来使自己远离不可以接受的思想和感受带来的焦虑。</p>
+<p>下图是一些常见的防御机制<img src="https://www.simplypsychology.org/defense-mechanisms.jpg?ezimgfmt=rs:611x451/rscb18/ng:webp/ngcb18" alt="defense mechanisms"></p>
+<p>否认是防御机制的一种。其实这种否认，我也常用。</p>
+<p>我diss一些产品设计无聊，但是我都没有认真去了解这些产品到底为什么会被设计出来。</p>
+<p>我否认自己做技术产品没有天赋，但是我压根都没有真地全力以赴地去学习，如何独立地写一段完整的代码。</p>
+<p>否认是一件非常简单的是，但是真实面对自己，不对自己说谎，更难，但是能产生不一样的结果。</p>
+<p>比如，我现在也开始撇弃对社交产品的偏见，从之前单一地将其归为约炮软件，或者寂寞人来使用的软件，到认识到，约炮也好，寂寞想找人倾诉，这都是人的需求，正视用户的需求，是成为优秀产品经理的第一步。选择看见而不是视而不见。同时，我开始认真严肃地对待Python、SQL，自己也能独立写代码，完成项目交付。</p>
+<p>最后说一下预见趋势。</p>
+<blockquote>
+<p>2014年，虽然当时在各个音乐排行榜上，前十里看不见电子音乐，但我们仍根据研究结果判断电子音乐是未来发展的趋势。我们不遗余力地鼓励电子音乐达人们做歌单、做电台，并在网易云音乐商业上帮助他们推广，与国内的电子音乐推广团队合作，并将电子音乐派在仅次于流行、摇滚、民谣音乐的位置。</p>
+</blockquote>
+<p>诗沐老师能够在2014年时候，就预见电子音乐是未来发展的趋势。其洞察力，不由让人大呼惊叹。仔细思考，对于诗沐老师来说，这也应该是水到渠成的事，因为他长时间对用户的研究，分析。</p>
+<p>只有深入理解了用户，才能做出准确而迅速的判断。</p>
+<p>阅读完这个，我也给我自己布置一个任务吧。</p>
+<ul>
+<li>本周和下周，完成市场上AutoML的使用，产出分析报告</li>
+<li>找10个AutoML的深度用户，做interview</li>
+</ul>
 
           
         
@@ -2192,227 +2384,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/23/Q2_Week2_工作总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/23/Q2_Week2_工作总结/" class="post-title-link" itemprop="url">Q2_Week2_工作总结</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-05-23 00:00:00 / Modified: 16:06:03" itemprop="dateCreated datePublished" datetime="2020-05-23T00:00:00+08:00">2020-05-23</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>原则：将自己的成长，拆分成为以周为粒度的迭代。高频输出，持续迭代。</p>
-<p>老规矩，回顾一下过去一周，成长与不足。</p>
-<h1 id="成长-对推荐系统有了更深的理解"><a href="#成长-对推荐系统有了更深的理解" class="headerlink" title="成长 | 对推荐系统有了更深的理解"></a>成长 | 对推荐系统有了更深的理解</h1><p>本周加深了自己对推荐系统的2个认知：推荐流程，推荐场景可使用的高标准产品</p>
-<h2 id="推荐流程"><a href="#推荐流程" class="headerlink" title="推荐流程"></a>推荐流程</h2><p>一点感慨，说实话，我大概从2019年6月就开始看推荐系统相关的书籍，如《推荐系统实战》。最近做项目，要在工业可用概念上，交付一个可使用的模型，我才感受到，一切都是有那么一点不一样。这个不一样的感受，我尝试用一句话来表达：别人写成文字的内容，就是一两句话，对没有接触实际业务的我来说，无法深刻体会，其意义。比如，作者对召回，一句轻描淡写的带过</p>
-<blockquote>
-<p>对于在线部分来说，一般要经历几个阶段。首先通过召回环节，将给用户推荐的物品降到千以下规模；如果召回阶段返回的物品还是太多，可以加入粗排阶段，这个阶段是可选的，粗排可以通过一些简单排序模型进一步减少往后续环节传递的物品；再往后是精排阶段，这里可以使用复杂的模型来对少量物品精准排序。<a href="https://zhuanlan.zhihu.com/p/58160982" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/58160982</a></p>
-</blockquote>
-<p>默认，上面引用的文章作者，会更加关注技术，所以对业务层面的分析会比较少。</p>
-<p>对于，我这类非常关注业务的同学，会关注以下这些问题：<br>对于为什么要用召回，不用召回行不行，不用是否会有严重的后果？如果必须要用，那么到底要怎么用？谁来用？算法来用？还是业务来设置？涉及到一个推荐系统，要和业务紧密结合时候，是需要考虑非常多的问题，推荐系统不单单是算法的事。</p>
-<p>发表完上述感慨，切入正题。推荐流程。<br>推荐系统的本质，是将人和内容连接起来，这个过程中，有2个主体，一个是人，一个是内容。<br>根据这两个主题，参考流程图<br><img src="https://kerryli1007.github.io/images/Q2_Week2_工作总结/1.jpng" alt></p>
-<p>从左下角的手机icon开始，理解整个流程图，用户在手机端操作，产生了一系列行为，系统将这些行为收集上来，这些数据都是用户的实时用户行为</p>
-<ul>
-<li>如果是要实时推荐，就进入实时模型，进行实时模型时候，阶段一般分为两个阶段，分别为召回和精排序。召回也好，精排序也好，其主体都是内容。我们也将这里的内容称为物料库。<ul>
-<li>召回阶段：算法模型从物料库中召回一些商品。</li>
-<li>精排阶段：算法模型将这些召回回来的item进行精排序<br>完成上述两个阶段之后，这些被召回的内容，需要再通过业务策略，最后才会展示给用户。</li>
-</ul>
-</li>
-<li>如果不是实时推荐，就写入历史用户行为log，将这些数据进行离线模型训练<br>了解了上述流程之后，来回答之前的所有问题</li>
-</ul>
-<blockquote>
-<p>对于为什么要用召回，不用召回行不行，不用是否会有严重的后果？如果必须要用，那么到底要怎么用？谁来用？算法来用？还是业务来设置？涉及到一个推荐系统，要和业务紧密结合时候，是需要考虑非常多的问题，推荐系统不单单是算法的事。</p>
-</blockquote>
-<p>举例珠宝电商场景，他们销售的商品数量一共有6W。如果说没有召回阶段的话，那么算法模型需要将消费者和这6W商品依次进行打分。这样的直接影响需要大量时间，速度低。<br>试想这样一个场景，你正在兴致勃勃地刷着抖音，刷完一个短视频之后，你期望立刻刷到下一个，如果这个时候，算法模型要对物料库中的上亿个短视频都进行打分，最后计算出你最喜欢的商品，然后推送给你，这个过程，可能都需要1个小时。正在手机端前的你能等吗？不能是吧。因为用户是期望无感知，刷完这个视频，就立刻有下一个视频。珠宝场景同理。<br>为了实时性，就需要在原来的物料库中进行一次筛选，这就是召回。这都说的是召回的优点，那召回有缺点吗？有的。召回会在一定程度上牺牲精准度。</p>
-<p>继续回答上述的问题。这个召回是怎么用？算法来用？还是业务来用。<br>我的理解是算法和业务要配合。如何理解。<br>算法要做模型做召回，但是需要和业务配合。比如，有一些商品，过期了，不能被销售，那么这种变化，是需要实时更新的，因为不能推送不能被购买的商品给消费者。如果要做到业务逻辑实时更新，那么久需要一个可视化交互界面。谈到这里，我也想说一下，推荐在一个业务场景中的使用，真的不是算法代码的事，这里面，需要大量业务的配合。而业务的配合，是需要有一个可视化交互界面，让业务同学完成一些运营动作的操作。</p>
-<p>这里顺便说一下业界企业的做法，一般来说，大的企业，比如腾讯、百度，他们的推荐系统都是有可视化交互界面；小的企业，一般都是通过redis或者API来操作。</p>
-<h2 id="推荐场景可使用的高标准产品"><a href="#推荐场景可使用的高标准产品" class="headerlink" title="推荐场景可使用的高标准产品"></a>推荐场景可使用的高标准产品</h2><p>思考一个场景，企业A，主营业务是珠宝销售，期望使用AI模型来进行精准化推荐。<br>但是，当前由于种种原因，作为技术服务提供商，我们提供的产品，只能解决算法层面的问题。<br>提问，这是一个推荐场景的高可用标准产品吗？<br>答案：不是。</p>
-<p>那推荐场景可使用的高可用标准产品是什么呢？<br>市场上有没有这样的产品呢？有的，比如达观、神策。</p>
-<p>对神策的推荐产品进行分析，神策提供两个场景的推荐</p>
-<ul>
-<li>文娱Demo</li>
-<li>电商Demo</li>
-</ul>
-<p>文娱适用于资讯项目。<br>点击【创建信息】，展示<img src="https://kerryli1007.github.io/images/Q2_Week2_工作总结/2.jpng" alt></p>
-<p>基础信息：创建人、创建信息<br>可推物品筛选条件：</p>
-<ul>
-<li>文章</li>
-<li>视频</li>
-</ul>
-<p>点击【物品规则】<br><img src="https://kerryli1007.github.io/images/Q2_Week2_工作总结/3.jpng" alt></p>
-<p>物品规则字段：</p>
-<ul>
-<li>ID</li>
-<li>物品名称</li>
-<li>权重</li>
-<li>必推（设为必推后，将在必推截止时间前，为每个用户推荐该物品一次。同一栏位下，最多支持同时设置10条必推）</li>
-<li>类目</li>
-<li>标签</li>
-<li>类别</li>
-</ul>
-<p>点击【推荐规则】<br><img src="https://kerryli1007.github.io/images/Q2_Week2_工作总结/4.jpng" alt></p>
-<p>去重规则</p>
-<ul>
-<li>展示数量去重</li>
-<li>展示时间去重</li>
-<li>点击数量去重</li>
-<li>点击时间去重</li>
-</ul>
-<p>比例规则<br>文章 <em>% + 视频 </em>% = 100%</p>
-<p>最后，神策还提供【统计分析】功能，用过神策产品的同学，已经对这个设计不陌生，神策在做统计分析方面是非常在行了！</p>
-<h1 id="成长-总结一下对竞赛领域的版图理解"><a href="#成长-总结一下对竞赛领域的版图理解" class="headerlink" title="成长 | 总结一下对竞赛领域的版图理解"></a>成长 | 总结一下对竞赛领域的版图理解</h1><p>关于竞赛行业的理解，我想更深入的写，仔细分析竞赛领域到底有没有想象空间？所以，会专门写一篇文章来梳理。</p>
-<p>这是Q2_Week2的工作总结！</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2461,7 +2432,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">93</span>
+                    <span class="site-state-item-count">94</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

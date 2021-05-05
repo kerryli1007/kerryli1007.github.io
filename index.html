@@ -596,6 +596,204 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/23/2021_Q2_Week3_工作总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/04/23/2021_Q2_Week3_工作总结/" class="post-title-link" itemprop="url">2021_Q2_Week3_工作总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-04-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-23T00:00:00+08:00">2021-04-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-05-05 15:28:30" itemprop="dateModified" datetime="2021-05-05T15:28:30+08:00">2021-05-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本周关键词：客户管理、负载均衡、策略产品</p>
+<p>recap一下去年和百度一位MT的沟通，沟通内容是他给了我一些我博客内容的反馈，总结一下就是：方法论偏多，干货偏少。不是说，方法论不好，而是在我当前阶段，应该了解更多的干货，比如ocr的算法原理。（因为去年的时候，我还在搞ocr。这是上述recap的大背景。今年调整了赛道，开始重新搞推荐，上述建议同样适用。所以，在我今年的每周总结，我都会有意识的增加干货部分。并且可能会采取将工作总结分为方法论和干货两个模块的形式。</p>
+<p>同样，在方法论和干货篇中，也会有单独的WHY模块。做一件事是执行力，这是0，知道并且能判断为什么做一件事，是0前面的1。（今年的思维比去年成熟太多了，惊喜！）</p>
+<h1 id="一-方法论篇"><a href="#一-方法论篇" class="headerlink" title="一 方法论篇"></a>一 方法论篇</h1><h2 id="1-1-客户管理"><a href="#1-1-客户管理" class="headerlink" title="1.1 客户管理"></a>1.1 客户管理</h2><p>思前想后，觉得客户管理的方法论，不适合公开发布，就省略了吧。</p>
+<h1 id="二-干货篇"><a href="#二-干货篇" class="headerlink" title="二 干货篇"></a>二 干货篇</h1><h2 id="2-1-负载均衡"><a href="#2-1-负载均衡" class="headerlink" title="2.1 负载均衡"></a>2.1 负载均衡</h2><p>为啥要了解负载均衡？一寸光阴一寸金。负载均衡和我有啥关系？在工作中，我经常听到这个名词，感觉不懂，就不配继续拿工资了。</p>
+<h3 id="2-1-1-负载均衡是什么"><a href="#2-1-1-负载均衡是什么" class="headerlink" title="2.1.1 负载均衡是什么"></a>2.1.1 负载均衡是什么</h3><p>负载均衡是一种电子计算机技术，用来在多个计算机（计算机集群）、网络连接、CPU、磁盘驱动或其他资源中分配负载，以达到优化资源使用、最大华吞吐率、最小化响应时间、同时避免过载的目的。</p>
+<blockquote>
+<p>负载均衡是高可用网络基础架构的关键组件，通常用于将工作负载分布到多个服务器来提高网站、应用、数据库或者其他服务的性能和可靠性。</p>
+</blockquote>
+<p>太抽象了，能不能具体一点，我不喜欢抽象的描述。</p>
+<blockquote>
+<p>在业务初期，我们一般会先使用单台服务器对外提供服务。随着业务流量越来越大，单台服务器无论如何优化，无论采用多好的硬件，总会有性能天花板，当单服务器的性能无法满足业务需求时，就需要把多台服务器组成集群系统提高整体的处理性能。</p>
+<p>基于上述需求，我们要使用统一的流量入口来对外提供服务，本质上就是需要一个流量调度器，通过均衡的算法，将用户大量的请求流量均衡地分发到集群中不同的服务器上。这其实就是我们今天要说的<strong>负载均衡</strong>。</p>
+<p>使用负载均衡可以给我们带来的几个好处：</p>
+<ul>
+<li>提高了系统的整体性能；</li>
+<li>提高了系统的扩展性；</li>
+<li>提高了系统的可用性；</li>
+</ul>
+</blockquote>
+<h3 id="2-1-2-常见的负载均衡类型"><a href="#2-1-2-常见的负载均衡类型" class="headerlink" title="2.1.2 常见的负载均衡类型"></a>2.1.2 常见的负载均衡类型</h3><h4 id="1）DNS实现负载均衡"><a href="#1）DNS实现负载均衡" class="headerlink" title="1）DNS实现负载均衡"></a>1）DNS实现负载均衡</h4><p>一个域名通过 DNS 解析到多个 IP，每个 IP 对应不同的服务器实例，这样就完成了流量的调度，虽然没有使用常规的负载均衡器，但实现了简单的负载均衡功能。</p>
+<p><img src="https://kerryli1007.github.io/images/2021_Q2_Week3_工作总结/1.png" alt></p>
+<h4 id="2）硬件负载均衡"><a href="#2）硬件负载均衡" class="headerlink" title="2）硬件负载均衡"></a>2）硬件负载均衡</h4><p>这种方式，我工作中基本上没有遇到过，暂时不考虑。</p>
+<h4 id="3）软件负载均衡"><a href="#3）软件负载均衡" class="headerlink" title="3）软件负载均衡"></a>3）软件负载均衡</h4><p>软件负载均衡，可以在普通的服务器上运行负载均衡软件，实现负载均衡功能。目前常见的有Ngix、HAproxy、LVS。</p>
+<p>工作中最经常接触的是Ngix。</p>
+<p>PS：本周总结有限，因为实际写这篇总结的时候已经是5月5日了～写每周总结，不能拖，一拖就出问题！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/10/item-to-item collaborative filtering/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2218,226 +2416,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/11/Notion如何提升个人生产力/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2021/02/11/Notion如何提升个人生产力/" class="post-title-link" itemprop="url">Notion如何提升个人生产力</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-02-11 00:00:00" itemprop="dateCreated datePublished" datetime="2021-02-11T00:00:00+08:00">2021-02-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2021-02-12 13:57:21" itemprop="dateModified" datetime="2021-02-12T13:57:21+08:00">2021-02-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/效率工具/" itemprop="url" rel="index"><span itemprop="name">效率工具</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>作为一个工具主义者，tool for thought，我一直认为notion是一款非常棒的效率工具。</p>
-<p>最近被问到：“你认为notion到底棒在哪里？”</p>
-<p>因为被临时问到，当时的回答，言语措辞都略显生硬。借着春节有大把时间思考，做如下思考总结。</p>
-<h1 id="好的写作工具"><a href="#好的写作工具" class="headerlink" title="好的写作工具"></a>好的写作工具</h1><p>围绕工具这个词，最近一年，我进行了大量的思考。</p>
-<p>为什么开始关注工具？</p>
-<p>接触到Bear（熊掌记）是2018年夏天。彼时的我，尚且没有定期写作的习惯。虽然在石墨文档上，也留下了一些思考，但是，那些思考沉淀仿佛没有灵魂，他们没有带给我成就感，满足感。初探Bear，惊叹于她的颜值。随着对Bear的使用场景扩充，从大段的思考总结，到平时的思维碎片，再到日常工作安排，Bear成为了工作生活中不可或缺的一部分。也是在这个过程中，我意识到我也爱上了思考、写作沉淀这回事。这件事，也成为了我的习惯。</p>
-<p>在Bear之外，我还接触了诸多其他的写作工具，比如Craft、Ulyssess、MWeb等。但是，Notion是最让我惊叹的。</p>
-<p>为什么呢？为什么工具那么多，我认为notion是最棒的那一款。换句话说，为什么notion是一款非常棒的效率工具？</p>
-<h1 id="灵活"><a href="#灵活" class="headerlink" title="灵活"></a>灵活</h1><p>如果要用三个词，描绘我对notion的看法，灵活是第一个词。</p>
-<p>也有人将此称为自由，打趣一点，他们是这样说的：“notion真的非常自由，自由到我不知如何下手。“</p>
-<p>灵活到底是什么呢？</p>
-<p>在notion中，用户可以插入任何内容。</p>
-<p>这些内容，可以是一段文本，一个新的嵌套的页面，一个todo task，一个一级目录，等等。notion将文本中可以输入的内容进行了拆解，拆解成了诸多小的元素，这些元素在notion中统一被称之为Basic Block。除了Basic Block，还有Inline，Database、Media等等。</p>
-<p>将这些Block组合在一起，就是Ivan Zhao描述的</p>
-<blockquote>
-<p>Notion 作为一款生产力软件，它就像的乐高拼块一样，它能做各种各样的事。从根本上来说，Notion 是关于我们如何将软件开发的能力带到大家手中。</p>
-</blockquote>
-<p>这些block，就像乐高，用户可以使用这些block搭建他们想象中的任何事物。</p>
-<p>任何事物，到底有哪些事物呢？能举例看看吗？</p>
-<p>太多了，比如Task Management、Timeline等等。</p>
-<h1 id="颜值"><a href="#颜值" class="headerlink" title="颜值"></a>颜值</h1><p>颜值是我对notion印象的第二个词。</p>
-<p>notion的颜值到底高在哪里？</p>
-<p>比如新建page。配图和图标，都是非常精妙的设计，让原本单调的纯文本，变成了像精心设计过的网页一样精美。</p>
-<p>notion的颜值为什么这么高？站在notion背后的产品经理为什么会这样设计？</p>
-<blockquote>
-<p>Notion 的想法是从我大学时候开始的，大学的时候我专业是认知科学，就是学习人的大脑怎么运作，带上一点计算机，一点哲学。但是我爱上了视觉艺术和摄影。 我真正开始的时候是快毕业的时候，我身边的朋友都是艺术家，而我是朋友圈里唯一一个知道怎么编程的人。所以我开始为我朋友写网站，然后他们可能请我吃个饭什么的，我不记得了细节了。做了大概4，5个网站后，我想我的朋友都很有创意，如果没有编程这个门槛的话，他们完全可以自己做网站。就像 Spotify，每个人可以在上面放音乐。Notion 作为工具，我希望大家能够做自己网站。那个时候，我在思考如何让大家能够制作属于自己的网站，而不需要通过编程。</p>
-</blockquote>
-<p>我的理解，这个设计风格应该是来自于早期Ivan为他的朋友们写网页，创造出来的产物。不过以前，Ivan通过coding创造出这样精美的页面，现在Ivan将软件开发的能力，通过notion，交给了不会写代码的用户。</p>
-<h1 id="协作"><a href="#协作" class="headerlink" title="协作"></a>协作</h1><p>协作是我对notion印象的第三个关键词。只需要点击右上角的分享，我目前正在敲打的每一个字，就可以被放在网络上，任何人通过我的url链接，都可以阅读，然后获得反馈。</p>
-<p>综上，是我对notion的3个关键词。</p>
-<p>给世界一个更好的表达思考和想法的方法。</p>
-<p>《Computer Lib / Dream Machines》By Ted Nelson</p>
-<p>写于2021年除夕。</p>
-<p><img src="https://kerryli1007.github.io/images/Notion如何提升个人生产力/1.jpg" alt></p>
-<hr>
-<p>一点题外话</p>
-<p>我觉得这个产品好，这个工具好，这本书好。</p>
-<p>你为什么觉得这个产品好，这个工具好，这本书好？是否能说出个所以然。</p>
-<p>能描述出一款产品好，好在哪里，说出个所以然，这是做产品的一个重要的思维模型。（咦，似乎在大年三十晚上，我收获了一个思维模型！</p>
-<p>所以这个问题，可以被复用到</p>
-<ol>
-<li>为什么我觉得craft好？</li>
-<li>为什么我觉得metion好？</li>
-<li>为什么我觉得tool for thought好？</li>
-</ol>
-<p>等等</p>
-<p>#思维模型</p>
-<p>#好在哪</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2486,7 +2464,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">95</span>
+                    <span class="site-state-item-count">96</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

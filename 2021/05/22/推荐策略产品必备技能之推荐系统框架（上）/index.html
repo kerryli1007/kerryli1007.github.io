@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本模块的目标：  梳理推荐系统框架 梳理推荐系统框架中的各个模块的实现 理解推荐系统的数据流  一个推荐系统，大致分为4层，分别是离线层、存储层、近线层和在线层。离线、近线和在线的区分在于响应用户行为的速度差异。 一个经典的Web推荐系统的架构，主要包括如下四部分：  推荐服务：该服务从Web服务器获取推荐请求，然后返回推荐结果。 存储系统：这些系统存储用户特征、物品特征和模型参数，为了方便检索，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐策略产品必备技能之推荐系统框架（上）">
+<meta property="og:url" content="http://yoursite.com/2021/05/22/推荐策略产品必备技能之推荐系统框架（上）/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="本模块的目标：  梳理推荐系统框架 梳理推荐系统框架中的各个模块的实现 理解推荐系统的数据流  一个推荐系统，大致分为4层，分别是离线层、存储层、近线层和在线层。离线、近线和在线的区分在于响应用户行为的速度差异。 一个经典的Web推荐系统的架构，主要包括如下四部分：  推荐服务：该服务从Web服务器获取推荐请求，然后返回推荐结果。 存储系统：这些系统存储用户特征、物品特征和模型参数，为了方便检索，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐系统框架（上）/1.jpg">
+<meta property="og:updated_time" content="2021-05-22T10:06:01.432Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="推荐策略产品必备技能之推荐系统框架（上）">
+<meta name="twitter:description" content="本模块的目标：  梳理推荐系统框架 梳理推荐系统框架中的各个模块的实现 理解推荐系统的数据流  一个推荐系统，大致分为4层，分别是离线层、存储层、近线层和在线层。离线、近线和在线的区分在于响应用户行为的速度差异。 一个经典的Web推荐系统的架构，主要包括如下四部分：  推荐服务：该服务从Web服务器获取推荐请求，然后返回推荐结果。 存储系统：这些系统存储用户特征、物品特征和模型参数，为了方便检索，">
+<meta name="twitter:image" content="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐系统框架（上）/1.jpg">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2021/05/22/推荐策略产品必备技能之推荐系统框架（上）/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>推荐策略产品必备技能之推荐系统框架（上） | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一颗西蓝花🥦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/22/推荐策略产品必备技能之推荐系统框架（上）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">推荐策略产品必备技能之推荐系统框架（上）
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-05-22 00:00:00 / Modified: 18:06:01" itemprop="dateCreated datePublished" datetime="2021-05-22T00:00:00+08:00">2021-05-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/推荐策略产品/" itemprop="url" rel="index"><span itemprop="name">推荐策略产品</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本模块的目标：</p>
+<ol>
+<li>梳理推荐系统框架</li>
+<li>梳理推荐系统框架中的各个模块的实现</li>
+<li>理解推荐系统的数据流</li>
+</ol>
+<p>一个推荐系统，大致分为4层，分别是离线层、存储层、近线层和在线层。<br>离线、近线和在线的区分在于响应用户行为的速度差异。</p>
+<p>一个经典的Web推荐系统的架构，主要包括如下四部分：</p>
+<ol>
+<li>推荐服务：该服务从Web服务器获取推荐请求，然后返回推荐结果。</li>
+<li>存储系统：这些系统存储用户特征、物品特征和模型参数，为了方便检索，也存储了物品索引。</li>
+<li>离线学习：<ol>
+<li>该组建从用户行为数据中学习模型参数，然后按照一定的周期将参数推送到在线存储系统中。</li>
+<li>物品特征学习</li>
+<li>用户特征学习</li>
+</ol>
+</li>
+<li>在线学习：</li>
+</ol>
+<p><strong>推荐服务模块</strong>的功能是对来自业务的request进行预测。比如，我这会打开抖音，抖音后台会发送一个request给服务器，服务器接收到这个request之后，会根据过去我在抖音上的行为偏好，为我推荐向我可能感兴趣的短视频。</p>
+<p><strong>存储系统</strong>的功能是存储用户特征、物品特征、以及物品索引。</p>
+<p><strong>离线学习</strong>的功能包括：模型训练、物品特征、用户特征计算。</p>
+<ul>
+<li>模型训练是指给定用户和物品，以及用户对该物品的响应数据，来训练模型参数，这个过程一般需要耗费好几个小时的时间。</li>
+<li>物品特征是比如对于非结构化数据，经常需要对这些数据进行TF_IDF计算，这个也是在离线层进行。</li>
+<li>用户特征也是。</li>
+</ul>
+<p><strong>在线学习</strong> 的功能是利用用户的即时数据进行预估。<br>来看一个经典的推荐系统架构的设计</p>
+<p><img src="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐系统框架（上）/1.jpg" alt></p>
+<p>这是Netflix的推荐系统架构，这个架构的设计目标是：<br>1）支持好的用户体验，且能支持快速的迭代；<br>2）针对用户的行为，作出快速的响应。</p>
+<p>在这个设计中，计算被分为了离线、近线和在线。</p>
+<p>计算可以离线进行、近线进行、也可以在线进行。对于用户产生的最新行为，在线计算能更好地进行反馈，但是在线必须实时进行反馈。这样的话，就对算法的计算复杂性有很大的限制，同时，也会限制能处理的数据量。</p>
+<p>离线训练能处理较大的数据量，且不要求必须是实时的。模型的更新一般是离线进行的，在模型的前后两次更新这个时间窗口中，由于没有进入新的数据，所以这个模型一直使用的是旧的数据。对于推荐系统架构最关键的因素是如何将在线和离线计算无缝结合。</p>
+<p>近线计算是在上述两者之间，在近线计算，我们可以执行类似在线的计算，但不要求实时响应。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/05/09/2021_Q2_Week5_工作总结/" rel="next" title="2021_Q2_Week5_工作总结">
+                <i class="fa fa-chevron-left"></i> 2021_Q2_Week5_工作总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/05/22/我理解的推荐策略产品的必备技能/" rel="prev" title="我理解的推荐策略产品之必备技能">
+                我理解的推荐策略产品之必备技能 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="一颗西蓝花🥦">
+            
+              <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+              <div class="site-description motion-element" itemprop="description">AI/思考/学习</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/li-qiao-yi-10" title="Zhihu &rarr; https://www.zhihu.com/people/li-qiao-yi-10" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

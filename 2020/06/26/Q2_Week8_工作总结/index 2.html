@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kerryli1007.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论。 本周关键词：复杂系统设计、进程1&amp;amp;2、tools-for-thought 复杂系统设计最近在研究云系统，调研了市场上的其他云产品商家：阿里云、腾讯云、百度云、京东云。调研报告，正在撰写中，等完成之后整理出来。 进程1&amp;amp;2关于进程1&amp;amp;2，在另一篇文章，谈谈“不动脑子”这回事，做了复盘。 tools-for-th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Q2_Week8_工作总结">
+<meta property="og:url" content="http://kerryli1007.github.io/2020/06/26/Q2_Week8_工作总结/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论。 本周关键词：复杂系统设计、进程1&amp;amp;2、tools-for-thought 复杂系统设计最近在研究云系统，调研了市场上的其他云产品商家：阿里云、腾讯云、百度云、京东云。调研报告，正在撰写中，等完成之后整理出来。 进程1&amp;amp;2关于进程1&amp;amp;2，在另一篇文章，谈谈“不动脑子”这回事，做了复盘。 tools-for-th">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://kerryli1007.github.io/images/Q2_Week8_工作总结/1.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/Q2_Week8_工作总结/2.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/Q2_Week8_工作总结/3.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/Q2_Week8_工作总结/4.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/Q2_Week8_工作总结/5.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/Q2_Week8_工作总结/6.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/Q2_Week8_工作总结/7.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/Q2_Week8_工作总结/8.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/Q2_Week8_工作总结/9.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/Q2_Week8_工作总结/10.png">
+<meta property="og:updated_time" content="2020-06-26T03:56:24.474Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Q2_Week8_工作总结">
+<meta name="twitter:description" content="原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论。 本周关键词：复杂系统设计、进程1&amp;amp;2、tools-for-thought 复杂系统设计最近在研究云系统，调研了市场上的其他云产品商家：阿里云、腾讯云、百度云、京东云。调研报告，正在撰写中，等完成之后整理出来。 进程1&amp;amp;2关于进程1&amp;amp;2，在另一篇文章，谈谈“不动脑子”这回事，做了复盘。 tools-for-th">
+<meta name="twitter:image" content="https://kerryli1007.github.io/images/Q2_Week8_工作总结/1.png">
+
+<link rel="canonical" href="http://kerryli1007.github.io/2020/06/26/Q2_Week8_工作总结/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Q2_Week8_工作总结 | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一颗西蓝花🥦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2020/06/26/Q2_Week8_工作总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Q2_Week8_工作总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-26 00:00:00 / 修改时间：11:56:24" itemprop="dateCreated datePublished" datetime="2020-06-26T00:00:00+08:00">2020-06-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论。</p>
+<p>本周关键词：复杂系统设计、进程1&amp;2、tools-for-thought</p>
+<h1 id="复杂系统设计"><a href="#复杂系统设计" class="headerlink" title="复杂系统设计"></a>复杂系统设计</h1><p>最近在研究云系统，调研了市场上的其他云产品商家：阿里云、腾讯云、百度云、京东云。<br>调研报告，正在撰写中，等完成之后整理出来。</p>
+<h1 id="进程1-amp-2"><a href="#进程1-amp-2" class="headerlink" title="进程1&amp;2"></a>进程1&amp;2</h1><p>关于进程1&amp;2，在另一篇文章，谈谈“不动脑子”这回事，做了复盘。</p>
+<h1 id="tools-for-thought"><a href="#tools-for-thought" class="headerlink" title="tools-for-thought"></a>tools-for-thought</h1><p>tools-for-thought是我本周发现的最让人激动的概念，</p>
+<p>tools-for-thought是Howard Raheingold在1995年发表的论文，该篇论文的全称叫做《Tools For Thought: The History and Future of Mind-Expanding Technology》<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/1.png" alt></p>
+<p>从全称可以看出，作者在关注能够扩展我们大脑的技术，也就是Doug说的augmenting human intelligence。</p>
+<h2 id="关于工具"><a href="#关于工具" class="headerlink" title="关于工具"></a>关于工具</h2><p>我自身对于工具是有一种热爱。我热爱使用各类个人工具来帮我更高效的学习、生活，并且，喜欢研究各类协同办公产品，在线文档、敏捷开发、范OA、视频会议。</p>
+<p>我对工具的热爱，起源于熊掌记Bear。Bear是一款Markdown写作笔记软件，从我第一次下载他，我就喜欢上了这款软件。我喜欢上他的原因也非常简单，因为这款笔记很美。支持多种主题切换，每种主题的配色，都深得我心。感受一下截图<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/2.png" alt><br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/3.png" alt><br>除了主题配色，在类目管理，还支持icon<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/4.png" alt><br>刚下载Bear研究图标时候，设置的小黄鸭icon，因为那个时候，关于程序员用小黄鸭debug的段子非常火。</p>
+<p>所以，我就先是这样“肤浅”地因为“美”喜欢上了这款笔记。<br>同时，因为这款笔记非常的轻量级<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/5.png" alt><br>可以随意新开一个编辑文档，将其调节成合适的大小，就可以开始创作，因此，我爱上了这款软件，与此同时，我也爱上了写作。很难说，这两者之间的关系，如果没有一款这么好的写作软件，我也不知道，我是否会爱上写作，毕竟，一开始，写作确实是一件很枯燥的事。<br>发现了Bear之后，我开始在写作软件的世界里探索，接着我发现了</p>
+<ul>
+<li>MWeb、惊奇于其强大的标签管理体系，遂开始用MWeb来对我的输出文章，做管理<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/6.png" alt></li>
+</ul>
+<ul>
+<li><p>Ulysses，Ulysses支持的可以宽幅度输入，解决了强迫症的我，希望将页面占满的诉求<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/7.png" alt></p>
+</li>
+<li><p>Typora，Typora的TOC功能，让我在写大篇大论时候，总会诉诸于他。<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/8.png" alt></p>
+</li>
+</ul>
+<ul>
+<li>Notion，Notion的创始人Ivan Zhao重新定义了信息的组织形式<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/9.png" alt><br>我第一次知道，原来信息还可以被这样组织起来。在研究Notion的旅程，我发现了tools-for-thougt这个思想，当时的感受，就是一下子被击中了，原来，这就是我一直在寻找的思想。</li>
+</ul>
+<p>对于每一款写作工具，我都了解他们的属性，并且知道，哪一款产品，适合哪个场景下的需求。<br>在大量的使用中，我甚至感觉，和这些软件之间已经建立了某种合作关系。这一年多，我的输出量猛增，并且形成了坚持写作的习惯，很难说，是因为我形成了坚持写作的习惯，所以我不断地去探索和研究这些有趣的工具，还是因为有这些工具，我也乐得写作。不过，有一点是肯定的，这些工具在某种程度上，也塑造了我加工信息的方式。对于文章呢整理这件事，我向来的原则是，1周或者1个月整理一次，那么没有整理的时候，不可避免，这些文章会散落在各个地方。有了Mweb之后，我是会有意识地利用MWeb作为第二个大脑，协助我分类、归纳这些内容。</p>
+<p>关于个人使用工具，暂且聊到这里。除了个人使用工具，我也关注协同办公，使用协同办公的时间都是上班时间，每个人肯定都希望提升上班时间的效率，增加ROI，但是工作中难免有一些流程上的事务工作需要解决，比如报销、比如审批，每次当我使用相关软件时候，都会觉得不可思议。</p>
+<p>关于对报销产品的分析，参考《人月神话（3）》</p>
+<h2 id="关于职业发展"><a href="#关于职业发展" class="headerlink" title="关于职业发展"></a>关于职业发展</h2><p>我对工具是有执着和热爱，同时，我也想创造出好的工具，是Doug说的augmenting human intelligence，也是乔布斯说的 bicycle for our mind。</p>
+<p>写在最后，我每次周总结，都是用MWeb写，今天发现可以直接生成Html，效果如下<br><img src="https://kerryli1007.github.io/images/Q2_Week8_工作总结/10.png" alt><br>我在想，是不是可以直接将html文件部署上hexo，这样就方便很多，起码不需要，单个插图。不过暂时，还没有找到具体操作方式，慢慢研究一下<br>～</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/25/Tool Builder/" rel="prev" title="Tool Builder">
+      <i class="fa fa-chevron-left"></i> Tool Builder
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/26/How Complex Systems Fail/" rel="next" title="How Complex Systems Fail">
+      How Complex Systems Fail <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#复杂系统设计"><span class="nav-number">1.</span> <span class="nav-text">复杂系统设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程1-amp-2"><span class="nav-number">2.</span> <span class="nav-text">进程1&amp;2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tools-for-thought"><span class="nav-number">3.</span> <span class="nav-text">tools-for-thought</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于工具"><span class="nav-number">3.1.</span> <span class="nav-text">关于工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于职业发展"><span class="nav-number">3.2.</span> <span class="nav-text">关于职业发展</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+  <div class="site-description" itemprop="description">AI/思考/学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

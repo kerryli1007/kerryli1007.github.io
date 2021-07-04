@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kerryli1007.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="脑海里突然冒出来这个想法，起因是最近自己在做一些长尾的ai需求交付工作。毫无疑问，做这样的需求，当下是无法赚钱的，那么是不是说长尾需求就是没有意义和价值的？AI行业的长尾需求到底是什么？ 长尾效应是什么？二八定律和长尾效应二八定律 二八定律又名80/20定律、 帕累托法则 （Pareto‘s principle）也叫巴莱特定律、朱伦法则（Juran’s Principle）、关键少数法则（Vita">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI行业与长尾效应">
+<meta property="og:url" content="http://kerryli1007.github.io/2020/09/04/AI行业与长尾效应/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="脑海里突然冒出来这个想法，起因是最近自己在做一些长尾的ai需求交付工作。毫无疑问，做这样的需求，当下是无法赚钱的，那么是不是说长尾需求就是没有意义和价值的？AI行业的长尾需求到底是什么？ 长尾效应是什么？二八定律和长尾效应二八定律 二八定律又名80/20定律、 帕累托法则 （Pareto‘s principle）也叫巴莱特定律、朱伦法则（Juran’s Principle）、关键少数法则（Vita">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-09-03T13:04:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI行业与长尾效应">
+<meta name="twitter:description" content="脑海里突然冒出来这个想法，起因是最近自己在做一些长尾的ai需求交付工作。毫无疑问，做这样的需求，当下是无法赚钱的，那么是不是说长尾需求就是没有意义和价值的？AI行业的长尾需求到底是什么？ 长尾效应是什么？二八定律和长尾效应二八定律 二八定律又名80/20定律、 帕累托法则 （Pareto‘s principle）也叫巴莱特定律、朱伦法则（Juran’s Principle）、关键少数法则（Vita">
+
+<link rel="canonical" href="http://kerryli1007.github.io/2020/09/04/AI行业与长尾效应/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>AI行业与长尾效应 | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一颗西蓝花🥦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2020/09/04/AI行业与长尾效应/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AI行业与长尾效应
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-04T00:00:00+08:00">2020-09-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-03 21:04:24" itemprop="dateModified" datetime="2020-09-03T21:04:24+08:00">2020-09-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>脑海里突然冒出来这个想法，起因是最近自己在做一些长尾的ai需求交付工作。毫无疑问，做这样的需求，当下是无法赚钱的，那么是不是说长尾需求就是没有意义和价值的？AI行业的长尾需求到底是什么？</p>
+<h1 id="长尾效应是什么？"><a href="#长尾效应是什么？" class="headerlink" title="长尾效应是什么？"></a>长尾效应是什么？</h1><h2 id="二八定律和长尾效应"><a href="#二八定律和长尾效应" class="headerlink" title="二八定律和长尾效应"></a>二八定律和长尾效应</h2><h3 id="二八定律"><a href="#二八定律" class="headerlink" title="二八定律"></a>二八定律</h3><blockquote>
+<p>二八定律又名80/20定律、 <a href="https://baike.baidu.com/item/%E5%B8%95%E7%B4%AF%E6%89%98%E6%B3%95%E5%88%99/7224763" target="_blank" rel="noopener">帕累托法则</a> （Pareto‘s principle）也叫巴莱特定律、朱伦法则（Juran’s Principle）、关键少数法则（Vital Few Rule）、不重要多数法则（Trivial Many Rule）最省力的法则、不平衡原则等，被广泛应用于 <a href="https://baike.baidu.com/item/%E7%A4%BE%E4%BC%9A/73320" target="_blank" rel="noopener">社会</a> 学及 <a href="https://baike.baidu.com/item/%E4%BC%81%E4%B8%9A%E7%AE%A1%E7%90%86%E5%AD%A6/4580" target="_blank" rel="noopener">企业管理学</a> 等。</p>
+<p>二八定律是19世纪末20世纪初意大利经济学家帕累托发现的。他认为，在任何一组东西中，最重要的只占其中一小部分，约20%，其余80%尽管是多数，却是次要的，因此又称二八定律。</p>
+</blockquote>
+<p>工作中的二八，比如公司，赚的钱，还是来自于20%的大客户，而这些大客户其实是贡献了公司80%的营收。</p>
+<p>了解一下理论来源：</p>
+<blockquote>
+<p>1897年，意大利经济学者巴莱多偶然注意到19世纪英国人的财富和收益模式。在调查取样中，发现大部分的财富流向了少数人手里。同时，他还从早期的资料中发现，在其他的国家，都发现有这种微妙关系一再出现，而且在数学上呈现出一种稳定的关系。于是，帕累托从大量具体的事实中发现：社会上20%的人占有80%的 <a href="https://baike.baidu.com/item/%E7%A4%BE%E4%BC%9A%E8%B4%A2%E5%AF%8C" target="_blank" rel="noopener">社会财富</a> ，即：财富在人口中的分配是不平衡的。</p>
+</blockquote>
+<p>结论理解：大部分的财富流向了小部分的人手里。再具体一点，社会上20%的人占有社会80%的财富。</p>
+<h3 id="长尾效应"><a href="#长尾效应" class="headerlink" title="长尾效应"></a>长尾效应</h3><p>在网络上看到一种非常有意思的观点：长尾理论是对二八定律的颠覆。</p>
+<p>是这样吗？我认为并不是。最开始，我认为好像是这样。从表象上来说，二八定律是说80%的需求其实只能创造20%的价值，这80%的价值本质上来说，其实是挺小的；而，长尾效应说的是，尾巴上的那一段需求，实质上是能创造非常大的需求。</p>
+<p>但是这只是从表象上来说。长尾效应其实是有其自身成立的前提条件的。这个在后面来细聊。</p>
+<p>长尾效应定义：</p>
+<blockquote>
+<p>效应，英文名称Long Tail Effect。“头”（head）和“尾”（tail）是两个统计学名词。正态曲线中间的突起部分叫“头”；两边相对平缓的部分叫“尾”。从人们需求的角度来看，大多数的需求会集中在头部，而这部分我们可以称之为流行，而分布在尾部的需求是个性化的，零散的小量的需求。</p>
+<p>而这部分差异化的、少量的需求会在<a href="https://baike.baidu.com/item/需求曲线/3351682" target="_blank" rel="noopener">需求曲线</a>上面形成一条长长的“尾巴”，而所谓长尾效应就在于它的数量上，将所有非流行的市场累加起来就会形成一个比流行市场还大的市场</p>
+</blockquote>
+<h2 id="为什么要聊长尾效应？"><a href="#为什么要聊长尾效应？" class="headerlink" title="为什么要聊长尾效应？"></a>为什么要聊长尾效应？</h2><p>因为长尾效应存在于客观世界，并且，创造着巨大的价值。</p>
+<blockquote>
+<p> 比起销售额，“长尾理论”的效应更能体现在产品利润上。</p>
+</blockquote>
+<h2 id="为什么会有长尾效应？"><a href="#为什么会有长尾效应？" class="headerlink" title="为什么会有长尾效应？"></a>为什么会有长尾效应？</h2><p>长尾效应是有其存在的前提条件的。</p>
+<blockquote>
+<p>大热门是提供匮乏的产物——如果只有那么几个货架、几个波段，唯一明智的做法就是把这点空间留给那些最热门的东西。但如果我们有无限多的货架呢？在这种情况下，只盯着大热门也许是错误的经商之道。毕竟，非热门远比热门要多，而且非热门与热门现在同样轻松可得。从真正的小市场产品到那些十足的“失败者”，如果所有这些非热门聚合成一个同样热门市场一样大的市场会怎么样呢？答案是显而易见的：这会彻底改变世界上某些最庞大的市场。</p>
+</blockquote>
+<p>当物理空间不是市场的阻碍，收益可以被增加，成本可以被降低，那么长尾效应就来啦。</p>
+<h1 id="长尾效应的商业逻辑"><a href="#长尾效应的商业逻辑" class="headerlink" title="长尾效应的商业逻辑"></a>长尾效应的商业逻辑</h1><h2 id="商业是什么？"><a href="#商业是什么？" class="headerlink" title="商业是什么？"></a>商业是什么？</h2><blockquote>
+<p>商业术语的历史大致可以分为以下三个时期：<br>第一时期，从远古到1990年前后。这个时期虽然也存在着商业模式的概念以及相关术语，且这些概念和术语对日后诸多方面的变革都起到了决定性的作用，但当时使用他们的人却寥寥无几。<br>第二时期，1991 - 2001年，为了解释互联网经济，商业术语在这一时期迅速发展至顶峰。<br>商业模式作用之一是回答了“竞争优势的持续性”问题，作用之二是它回答了“革新方法”的问题。</p>
+</blockquote>
+<p>归根结底，商业就是：</p>
+<blockquote>
+<p>把采购来或生产出的价值提供给他人，以换取同等的价值。<br>这些要素的组合就是商业模式。凡是有实力的企业无不拥有自己的商业模式。</p>
+</blockquote>
+<h2 id="长尾效应的商业逻辑是什么？"><a href="#长尾效应的商业逻辑是什么？" class="headerlink" title="长尾效应的商业逻辑是什么？"></a>长尾效应的商业逻辑是什么？</h2><p>我理解的商业，是有能力可持续地赚钱。</p>
+<p>利润 = 销售额 - 成本。其中，成本可以分为fixed cost 和variable cost。 这两种成本分别是什么，作何理解。</p>
+<blockquote>
+<p>Variable costs vary with the amount of output produced, and fixed costs remain the same no matter how much a company produces.<br>固定成本，是固定投入，不管商家生产多少商品，固定成本都是保持不变的。<br>可变成本，是会变动的，商家生产的商品越多，成本越高。两者呈正相关。</p>
+</blockquote>
+<p>看一下专业的讲解：</p>
+<blockquote>
+<p> 商家的成本由固定成本和变动成本两部分组成。固定成本是相对于变动成本来说的，指总额在一定时期和一定的业务量范围内，不受业务量增减变动的影响，并能保持不变的成本，例如厂房建筑、机械装备、卖场租金等都是属于固定成本范围。变动成本则与固定成本相反。</p>
+</blockquote>
+<p>《长尾效应》一书写到：</p>
+<blockquote>
+<p>处于“长尾部分的冷门商品，如果放在实体店内就成了占地方的赔钱商品，但放在网店上，哪怕全美只有一件，再怎么无人问津都不回增加成本。</p>
+</blockquote>
+<p>这里其实提到了重要的一点，处于长尾部分的商品，增加这些商品，是不会增加成本的。</p>
+<p>虽然，我对是否有成本的增加，有一些疑虑，但是我想结合当前2020年，我对市场的一些观察来聊聊这个观点。卖东西，在哪卖，卖什么，其实背后都是做生意，做生意就要考虑两方面：收益、成本。从长远来看，当收益能cover掉成本之后，这个生意就是值得做的生意。所以，对于网店这个生意，仔细分析一下</p>
+<p><strong>收益侧</strong>：</p>
+<ul>
+<li>当有物理空间束缚时候，一件物品，只能卖给方圆5公里的人群，方圆5公里的消费人群，有如下特点：基数小、需求分散，对于实体商家来说，能做的最划算的策略，就是挑选出能够卖的最多的商品。假设售卖每件商品，都是净利润都是10块，那肯定是卖的越多，赚越多。</li>
+<li>任何一件商品都可以辐射到全国，乃至全世界，看看现在的全球购。也就是说，尽管有一些小众需求，但是叠加在一起，也就成了大的需求。</li>
+</ul>
+<p><strong>成本侧</strong></p>
+<ul>
+<li>当有物理空间时候，商店要多卖一件商品，多半是需要将这个商品放在店内，这样，占地面积和物品数量呈线性相关。商品多，成本越高。同时，这种店一般都是需要开在商业区，商业区的房价有什么特点吗？就一个贵。</li>
+<li>当没有物理空间时候，商家可以把店开在任何地方，比如一个小县城，甚至可以就在自己家开一个淘宝店，自己家就可以是仓库。如果有很多商品，那么租赁一个偏远库房，有订单直接发货，这样也是可以直接将成本降低。</li>
+</ul>
+<p>综上，从收益侧和成本侧两方面综合考虑，我们可以对长尾效应有更进一步的理解。</p>
+<p>结合最近工作一些思考总结：</p>
+<p>思考1：如何切入一个市场</p>
+<p>提供AI SaaS，如果单纯是卖API，当下确实是无法赚钱的，但是不能只看当下，要看长远未来的发展，如果想切入一个行业的话，如何找一个口子切入？但是，如何来判断这个口子是否切对了？</p>
+<p>思考2 ：为什么百度、腾讯云卖API？他们赚钱吗？</p>
+<p>首先，百度他们只是将为内部提供的一些AI能力，进行了一层封装，提供给市场，从这一层来说，这就是一个顺手的工作；其次，百度这样的大厂，比如他们有1000台服务器在对外提供服务，如果某个服务（OCR）负载高了，但是机器总体资源空闲率还可以，那就可以通过动态调度，用空余资源来服务这些请求，比如使用k8s这种服务编排能力（这就是云的真谛）；最后对百度来说吧，其实百度云对外提供这种OCR能力，也不打算靠这种小B赚钱，所以，人家给用户提供多少次数以下调用免费的quota，但是别人背后肯定还是有考虑的，比如通过这种方式收集数据，fine tune 模型表现，然后将这个好的模型卖给大B，一单几千万上亿。</p>
+<p>接下来思考方向：</p>
+<ol>
+<li><p>为什么亚马逊、淘宝能通过长尾效应赚钱？</p>
+</li>
+<li><p>AI行业的长尾效应，其实还没写，所以这篇文章有点名不副实 = = </p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/03/AI项目落地Pipeline/" rel="prev" title="AI项目落地Pipeline">
+      <i class="fa fa-chevron-left"></i> AI项目落地Pipeline
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/06/Q3_W10_工作总结/" rel="next" title="Q3_W10_工作总结">
+      Q3_W10_工作总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#长尾效应是什么？"><span class="nav-number">1.</span> <span class="nav-text">长尾效应是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二八定律和长尾效应"><span class="nav-number">1.1.</span> <span class="nav-text">二八定律和长尾效应</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二八定律"><span class="nav-number">1.1.1.</span> <span class="nav-text">二八定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长尾效应"><span class="nav-number">1.1.2.</span> <span class="nav-text">长尾效应</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要聊长尾效应？"><span class="nav-number">1.2.</span> <span class="nav-text">为什么要聊长尾效应？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会有长尾效应？"><span class="nav-number">1.3.</span> <span class="nav-text">为什么会有长尾效应？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#长尾效应的商业逻辑"><span class="nav-number">2.</span> <span class="nav-text">长尾效应的商业逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#商业是什么？"><span class="nav-number">2.1.</span> <span class="nav-text">商业是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#长尾效应的商业逻辑是什么？"><span class="nav-number">2.2.</span> <span class="nav-text">长尾效应的商业逻辑是什么？</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+  <div class="site-description" itemprop="description">AI/思考/学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

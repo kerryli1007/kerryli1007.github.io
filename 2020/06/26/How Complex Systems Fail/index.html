@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kerryli1007.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="James Hamilton谁是James Hamilton？James Hamilton负责亚马逊云计算技术的副总裁和杰出工程师，他曾经还是兰博基尼和法拉利的专业汽修工。 他的博客地址[https://perspectives.mvdirona.com/] 今天在他的博客上看到一篇论文：How Complex Systems Fail，因为现在我也在设计复杂系统，同时工作中也会接触一些复杂系统的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Complex Systems Fail">
+<meta property="og:url" content="http://kerryli1007.github.io/2020/06/26/How Complex Systems Fail/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="James Hamilton谁是James Hamilton？James Hamilton负责亚马逊云计算技术的副总裁和杰出工程师，他曾经还是兰博基尼和法拉利的专业汽修工。 他的博客地址[https://perspectives.mvdirona.com/] 今天在他的博客上看到一篇论文：How Complex Systems Fail，因为现在我也在设计复杂系统，同时工作中也会接触一些复杂系统的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://kerryli1007.github.io/images/HowComplexSystemsFail/1.png">
+<meta property="og:updated_time" content="2020-06-26T03:37:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How Complex Systems Fail">
+<meta name="twitter:description" content="James Hamilton谁是James Hamilton？James Hamilton负责亚马逊云计算技术的副总裁和杰出工程师，他曾经还是兰博基尼和法拉利的专业汽修工。 他的博客地址[https://perspectives.mvdirona.com/] 今天在他的博客上看到一篇论文：How Complex Systems Fail，因为现在我也在设计复杂系统，同时工作中也会接触一些复杂系统的">
+<meta name="twitter:image" content="https://kerryli1007.github.io/images/HowComplexSystemsFail/1.png">
+
+<link rel="canonical" href="http://kerryli1007.github.io/2020/06/26/How Complex Systems Fail/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>How Complex Systems Fail | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一颗西蓝花🥦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2020/06/26/How Complex Systems Fail/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          How Complex Systems Fail
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-26 00:00:00 / 修改时间：11:37:50" itemprop="dateCreated datePublished" datetime="2020-06-26T00:00:00+08:00">2020-06-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/思考/" itemprop="url" rel="index"><span itemprop="name">思考</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>James Hamilton<br><img src="https://kerryli1007.github.io/images/HowComplexSystemsFail/1.png" alt><br>谁是James Hamilton？<br>James Hamilton负责亚马逊云计算技术的副总裁和杰出工程师，他曾经还是兰博基尼和法拉利的专业汽修工。</p>
+<p>他的博客地址[<a href="https://perspectives.mvdirona.com/]" target="_blank" rel="noopener">https://perspectives.mvdirona.com/]</a></p>
+<p>今天在他的博客上看到一篇论文：How Complex Systems Fail，因为现在我也在设计复杂系统，同时工作中也会接触一些复杂系统的产品，因此，阅读研究一下，并做一些笔记记录。</p>
+<p>这篇论文一共讲了18个有可能让复杂系统崩溃的原因：</p>
+<ol>
+<li>Complex systems are intrinsically hazardous systems.复杂系统本身就是很危险的系统<br>复杂系统本身就很复杂。云官网和FS大学用的是同一个登录系统。FS有一次对登录系统数据库进行了修改，直接导致我们整个官网所有用户无法登录，无法修改密码。复杂系统彼此之间相互影响，很可能有时候，不知道修改了什么，就会对其他的部分造成影响。</li>
+<li>Complex systems are heavily and successfully defended against failure.复杂系统在很大程度上成功地防御了故障。<br>为了规避复杂系统崩溃带来的严重后果，对于复杂系统会创造一些防御机制</li>
+</ol>
+<ul>
+<li>技术层面，备份</li>
+<li>人员操作层面，知识经验培训</li>
+<li>组织层面，政策，操作流程<br>这些措施在一定层度上可以规避失败。</li>
+</ul>
+<ol start="3">
+<li>Catastrophe requires multiple failures – single point failures are not enough.多重故障导致了灾难，不仅仅是单点故障。</li>
+<li>Complex systems contain changing mixtures of failures latent within them.复杂系统包含潜在的多重故障。</li>
+<li>Complex systems run in degraded mode.复杂系统以降级模式进行。</li>
+<li>Catastrophe is always just around the corner. 灾难无处不在。</li>
+<li>Post-accident attribution accident to a ‘root cause’ is fundamentally wrong.灾难事后归因分析错误。</li>
+<li>Hindsight biases post-accident assessments of human performance.事后分析逻辑带有偏差。</li>
+<li>Human operators have dual roles: as producers &amp; as defenders against failure.系统操作者有双重角色：他创造了系统也要防止系统的崩溃</li>
+<li>All practitioner actions are gambles. 所有的实践操作者都是赌徒（hhhh，这一条好有意思，说白了，就是实践操作者在凭运气，感觉关于系统的失败，本篇论文的一些观点和《失败的逻辑》里面的部分逻辑一致，不过很久没看失败的逻辑了，也回忆不清楚了）</li>
+<li>Actions at the sharp end resolve all ambiguity.果断的行动结束所有的不确定性。</li>
+<li>Human practitioners are the adaptable element of complex systems.人类是复杂系统的可适应元素。</li>
+<li>Human expertise in complex systems is constantly changing.人类关于复杂系统的认知在不断变化。</li>
+<li>Change introduces new forms of failure.改动会带来新的失败。</li>
+<li>Views of “cause” limit the effectiveness of defenses against future events.看待原因的方式会局限我们设计防御失败事件的措施的有效性</li>
+<li>Safety is a characteristic of systems and not of their components.安全是系统的特征，而并非系统的一部分。</li>
+<li>People continuously create safety. 人类持续创造安全。</li>
+<li>Failure free operations require experience with failure.要想无误的操作机器需要有丰富经验的操作者，而这个操作者肯定是有失败经历的。</li>
+</ol>
+<p>最后，James Hamilton是一个非常有意思的Hacker，Wired写过一篇过于他的文章，称他为文艺复兴式黑客，黑掉生活、黑掉一切，然后寻求焕然一新。</p>
+<p>对他有兴趣的同学，可以看Wired的报道：<a href="https://www.wired.com/2013/02/james-hamilton-amazon/" target="_blank" rel="noopener">https://www.wired.com/2013/02/james-hamilton-amazon/</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/26/Q2_Week8_工作总结/" rel="prev" title="Q2_Week8_工作总结">
+      <i class="fa fa-chevron-left"></i> Q2_Week8_工作总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/27/程序化广告交易/" rel="next" title="程序化广告交易">
+      程序化广告交易 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+  <div class="site-description" itemprop="description">AI/思考/学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

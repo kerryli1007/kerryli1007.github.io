@@ -148,7 +148,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/05/23/推荐策略产品必备技能之推荐系统框架/">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/05/30/推荐策略产品必备技能之推荐算法原理（上）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -162,7 +162,252 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/05/23/推荐策略产品必备技能之推荐系统框架/" class="post-title-link" itemprop="url">推荐策略产品必备技能之推荐系统框架（上）</a>
+            <a href="/2021/05/30/推荐策略产品必备技能之推荐算法原理（上）/" class="post-title-link" itemprop="url">推荐策略产品必备技能之推荐算法原理（上）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-30 00:00:00 / 修改时间：19:39:15" itemprop="dateCreated datePublished" datetime="2021-05-30T00:00:00+08:00">2021-05-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/推荐策略产品必备技能/" itemprop="url" rel="index"><span itemprop="name">推荐策略产品必备技能</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>工业界的推荐算法链路，通常是召回、粗排、精排。</p>
+<h1 id="一、召回"><a href="#一、召回" class="headerlink" title="一、召回"></a>一、召回</h1><p>在召回章节，我的构思书写思路为</p>
+<ol>
+<li>多路召回</li>
+<li>每路召回的具体实现</li>
+<li>召回与过滤</li>
+</ol>
+<p>推荐系统的召回阶段是根据用户的数据（静态数据，历史行为数据），为用户在海量的候选集中粗选一批待推荐的内容。<br>在实际应用中，召回模块一般都是多路召回的架构。这样设计主要出于如下几点的考虑</p>
+<ol>
+<li>考虑用户层面。</li>
+<li>考虑系统层面。增强系统的鲁棒性，部分召回实效，其余召回队列正常工作，不会导致整个召回层失效。</li>
+<li>考虑多样性内容分发。图文、视频、小视频，精准、试探、时效各占一定比例。召回目标的多元化。</li>
+<li>可解释性，某一部分是有明确的推荐理由的。</li>
+</ol>
+<p>比如京东电商推荐的召回</p>
+<p><img src="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐算法原理（上）/1.png" alt></p>
+<p>这些召回规则对于特定的场景都是通用的，但是问题来了，有的用户是有一些反馈记录的，比如截图一个抖音主页推荐，我对一些推荐的视频是有明确的负反馈的，如果这类视频再推荐给我，是非常伤害用户体验的，所以这个阶段，会进行一个过滤。</p>
+<p>过滤之后，会对召回出来的物料进行模型排序。</p>
+<p>在上篇，主要讲一下召回。每一路召回的目标是不一样的。</p>
+<p>比如在电商场景，常见的召回有</p>
+<ul>
+<li>基于内容的召回</li>
+<li>协同过滤召回</li>
+<li>基于模型的召回</li>
+<li>DSSM召回</li>
+</ul>
+<h2 id="1-1-基于内容的召回"><a href="#1-1-基于内容的召回" class="headerlink" title="1.1 基于内容的召回"></a>1.1 基于内容的召回</h2><p>基于内容推荐的基本思想是为用户推荐与他感兴趣的项目内容相似的项目，即发掘用户曾经喜欢过项目的特征，并推荐类似的项目。</p>
+<p>基于内容的推荐系统主要包括：项目建模、用户建模、产生推荐。</p>
+<p>一般来说，物品都有一些关于内容的分类，电影有战争、科幻、爱情等。基于内容的推荐，就是根据这些物品的内容属性和用户历史评分或操作记录，计算出用户对不同内容的爱好程度，再根据这些爱好推荐其他相同属性的物品。</p>
+<p>内容推荐的基本方法有如下4个步骤：<br>1）内容表征（item representation）：为每个item都抽取出一些特征来表示此item；<br>2）用户偏好计算：利用过去一个用户的显式评分或隐式操作，计算用户不同特征上的偏好分数。<br>3）内容召回：将待推荐物品的特征与用户偏好得分相匹配，取出用户最有可能喜欢的物品池<br>4）物品排序：按用户偏好召回物品池</p>
+<p><strong>步骤一：内容表征</strong><br>从文章内容中抽取出一些代表他们的属性，最常用的方法就是利用出现在一篇文章中的词来代表这篇文章。item会有一些属性对它进行描述，这些属性通常分为两种：结构化与非结构化信息。</p>
+<p>比如电影类别特征，例如可选的电影类别有：爱情、剧情、科幻、战争、中国、日本、韩国、美国，合计8个类别。《银河护卫队》同时具有科幻和美国2个内容特征，那么它的结构话特征可用一个8位的二进制数表示如下：</p>
+<p>对于一些非结构化的内容，需要进行处理，提取出相对应的特征。</p>
+<p>比如对电影，具有如下字段：电影ID（id）、标题（title）、上映时间（year）、电影类型/标签（genre，基因）、指示（indicators）、indicators数组的数量（numFields）：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="string">"id"</span>: <span class="string">"65006"</span>,</span><br><span class="line"> <span class="string">"title"</span>: <span class="string">"Impulse"</span>,</span><br><span class="line"> <span class="string">"year"</span>: <span class="string">"2008"</span>,</span><br><span class="line"> <span class="string">"genre"</span>: [<span class="string">"Mystery"</span>,<span class="string">"Thriller"</span>],</span><br><span class="line"> <span class="string">"indicators"</span>: [<span class="string">"154"</span>,<span class="string">"272"</span>,”<span class="number">154</span><span class="string">","</span><span class="number">308</span><span class="string">", "</span><span class="number">535</span><span class="string">", "</span><span class="number">583</span><span class="string">", "</span><span class="number">593</span><span class="string">", "</span><span class="number">668</span><span class="string">", "</span><span class="number">670</span><span class="string">", "</span><span class="number">680</span><span class="string">", "</span><span class="number">702</span><span class="string">", "</span><span class="number">745</span><span class="string">"],</span></span><br><span class="line"><span class="string"> "</span>numFields<span class="string">": 12</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>一般这些数据都是放在es中，便于索引。关于这些数据在es中，如何做索引的，暂时还没有进一步做研究，后续补充。</p>
+<p><strong>步骤二：用户偏好计算</strong>，比如在电影场景，我们可以分析用户西蓝花在过去一周的行为。来计算user_behavior_profile。<br><strong>步骤三：内容召回</strong>，根据用户偏好召回对应内容。<br><strong>步骤四：物品排序</strong>，最后进行排序，</p>
+<p>基于内容的推荐方法，优点</p>
+<ol>
+<li>物品没有冷启动问题，因为物品的内容特征不依赖用户数据</li>
+<li>原理简单，易于定位问题.</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>依赖于物品的meta信息，如果物品的信息较少，则无法做出推荐</li>
+</ol>
+<h2 id="3-2-协同过滤"><a href="#3-2-协同过滤" class="headerlink" title="3.2 协同过滤"></a>3.2 协同过滤</h2><p>协同过滤做的是一件什么事？协同过滤根据用户的历史数据，计算用户之间的相似度，计算item之间的相似度，然后基于这些相似度给用户做推荐。协同过滤强依赖用户行为！协同过滤强依赖用户行为！协同过滤强依赖用户行为！</p>
+<p>协同过滤分为基于用户的协同过滤和基于物品的协同过滤。</p>
+<p>协同过滤的思想：<br>1）抽象一点，物以类聚，人以群分。<br>2）具体一点，西蓝花和短短都很喜欢健身，也都很喜欢好看的legging和运动背心，短短买了一件新款legging，西蓝花也有很大可能喜欢。</p>
+<h3 id="3-2-1-用户协同过滤（user-to-user-collaborative-filtering）"><a href="#3-2-1-用户协同过滤（user-to-user-collaborative-filtering）" class="headerlink" title="3.2.1 用户协同过滤（user-to-user collaborative filtering）"></a>3.2.1 用户协同过滤（user-to-user collaborative filtering）</h3><p><img src="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐算法原理（上）/2.png" alt><br>上述截图页面，就是一个典型的用户协同过滤页面，购买过《深度学习推荐系统》的人还购买过什么。<br>一点题外话，仔细分析一下这个推荐页面，可以发现这个推荐是没有经过业务逻辑处理的。</p>
+<p>原因有2:<br>1）《深度学习推荐系统》是我目前已经加购到购物车的商品；<br>2）《智能搜索和推荐系统：原理、算法与应用》《推荐系统与深度学习：新时代技术新未来》是我过去两周才购买了的商品。</p>
+<p>不过，或许京东推荐团队有其他考虑～</p>
+<p>用户协同过滤更详细流程：<br>1）找到和目标推荐用户相似的用户群A；<br>2）找到用户群A购买的商品集合B；<br>3）从商品集合B中减目标用户已经购买过的商品，得到C；<br>4）计算商品合计C中商品，目标用户的点击率；<br>5）最后添加一些业务逻辑规则</p>
+<p>比如豆瓣电影的“喜欢这部电影的人也喜欢”</p>
+<p><img src="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐算法原理（上）/3.png" alt></p>
+<h3 id="3-2-2-物品协同过滤（item-to-item-collaborative-filtering）"><a href="#3-2-2-物品协同过滤（item-to-item-collaborative-filtering）" class="headerlink" title="3.2.2 物品协同过滤（item-to-item collaborative filtering）"></a>3.2.2 物品协同过滤（item-to-item collaborative filtering）</h3><p>物品协同过滤的核心是给用户推荐那些和他们喜欢的物品相似的物品。</p>
+<p><img src="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐算法原理（上）/4.png" alt></p>
+<p>比如当当网的经常一起购买的商品。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/05/26/推荐策略产品必备技能之推荐系统框架（下）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/26/推荐策略产品必备技能之推荐系统框架（下）/" class="post-title-link" itemprop="url">推荐策略产品必备技能之推荐系统框架（下）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-26T00:00:00+08:00">2021-05-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-06 00:30:56" itemprop="dateModified" datetime="2021-07-06T00:30:56+08:00">2021-07-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/推荐策略产品必备技能/" itemprop="url" rel="index"><span itemprop="name">推荐策略产品必备技能</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在上一篇，我们聊了推荐系统框架是怎么样一回事，在本篇，我们来学习一下数据流。</p>
+<h2 id="一、概括"><a href="#一、概括" class="headerlink" title="一、概括"></a>一、概括</h2><p>为什么要了解数据流？</p>
+<p>对于一款非常复杂的产品，比如像推荐系统这块由多个模块组成的产品，只有了解了其数据流，才能知道这个系统是如何运作的。</p>
+<p>对于产品经理自身而言，只有了解了整体数据流，才能增强自己对复杂产品设计的把控能力。</p>
+<h2 id="二、推荐系统数据流"><a href="#二、推荐系统数据流" class="headerlink" title="二、推荐系统数据流"></a>二、推荐系统数据流</h2><h3 id="1-背景Brief"><a href="#1-背景Brief" class="headerlink" title="1. 背景Brief"></a>1. 背景Brief</h3><p>要了解推荐系统的数据流，首先需要知道，对于一个推荐系统，主要的数据模块。可以将其抽象成3个模块：用户数据、物料数据、用户行为。</p>
+<h3 id="2-推荐系统目标"><a href="#2-推荐系统目标" class="headerlink" title="2. 推荐系统目标"></a>2. 推荐系统目标</h3><p>对于一个推荐系统，它的目标是什么？通过两个case来了解。</p>
+<p><strong>1）Case 1：资讯场景</strong></p>
+<p>比如资讯场景业务目标是点击率。点击率的计算逻辑 = click / show。</p>
+<p>那为了提升点击率，我们需要哪些数据实现目标？</p>
+<ul>
+<li>静态数据：用户表、物料表。</li>
+<li>用户行为数据：用户行为数据。</li>
+</ul>
+<p>聚焦到用户行为数据，如何定义哪些是正样本、哪些是负样本。</p>
+<p><img src="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐系统框架（下）/1.jpg" alt></p>
+<p>需要注意的是，在行为数据定义时候（样本定义时候），经常出现的几个show虚报的问题：</p>
+<ol>
+<li>推荐结果即show。推荐结果即show的意思是，比如一个相关推荐场景，后台服务器一次给出的预测结果是10条数据，客户端只展现了4条。为了图方便，客户的上报show的逻辑是将所有的返回推荐结果都上报为show。</li>
+<li>加载即show。在信息流场景，往往需要预加载。但是很多预加载的item，实际上尚未被展示。客户的埋点逻辑是加载即上报show，因此会导致show虚高。</li>
+<li>信息流上下滑动。在信息流场景，还经常出现的一个问题是，用户经常上下刷动，所以同一物料会有多次曝光，建议上报时候做去重设置。</li>
+</ol>
+<p><strong>2）Case 2：小视频场景</strong></p>
+<p>比如小视频场景，建模目标是完播率，即视频的播放时长/视频的总时长。</p>
+<h3 id="3-推荐系统如何实现业务目标"><a href="#3-推荐系统如何实现业务目标" class="headerlink" title="3. 推荐系统如何实现业务目标"></a>3. 推荐系统如何实现业务目标</h3><p>将推荐系统实现业务目标拆分成两条数据流来理解，在线数据流和离线数据流。</p>
+<p><strong>1）在线数据流</strong></p>
+<p>在线数据流是指一个请求进入到推荐系统到给出预估结果的流程，参考下述示例图。</p>
+<p>接着进一步了解在线数据流。</p>
+<p>用户来到APP，打开APP，这个时候前端会像服务器后端发送请求，接着服务器后端会像推荐系统（SaaS服务）发送请求。</p>
+<p>推荐服务接受到这个请求，会先进行load balance，接着后端处理，在后端处理分为算法和规则，算法即召回和排序，规则即rerank。</p>
+<p>根据2.2的描述，我们知道，对于一个推荐系统来说，都有其特定的目标，当我们完成目标确认后，比如提升点击率或者完播率。</p>
+<p>接着就可以开始建模了。假设模型已经ready。来看一下推荐系统的在线流程～</p>
+<p><img src="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐系统框架（下）/2.jpg" alt></p>
+<ul>
+<li>召回（Recall）：召回的作用是从整个物料库中，通过某一种/多种策略，快速召回一小批物料，供后续模型打分使用。</li>
+<li>排序（Rank）：排序是将前一个阶段召回的物料进行模型排序。</li>
+<li>重排（Rerank）</li>
+</ul>
+<p>重排是什么？</p>
+<p>重排是基于排序环节的打分结果，对上述结果再次进行排序。</p>
+<p>为什么需要重排？</p>
+<p>在上一个环节，排序做的事本质上是预测用户对物品该兴趣的概率，考虑的只是物品与用户之间的关系，但是忽略掉了物品之间的相关性。</p>
+<p>如何理解呢？分享一个极端的case，小红最近酷爱刷电影剪辑类小视频，模型学习的话，很可能学出来最后给用户推荐的都是同一个publisher的10条item。</p>
+<p>这样肯定是不行的，试想，如果你正在刷抖音，连续10条都给你推荐同一个博主的内容，这个体验能好吗？所以需要rerank。</p>
+<p>重排环节一般会做什么？</p>
+<p>重排阶段是个策略出没之地，就是集中了各种业务和技术策略。比如为了更好的推荐体验，这里会加入去除重复、结果打散增加推荐结果的多样性、强插某种类型的推荐结果等等不同类型的策略。</p>
+<p><strong>2）离线</strong></p>
+<p>什么是离线数据流呢？模型训练以及模型的更新都是离线数据流完成的事。</p>
+<p>离线模型的训练以及模型的更新，涉及到多个数据模块的配合，包括用户画像、物料画像、行为日志，离线数据流，我们下章节见～</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/05/23/推荐策略产品必备技能之推荐系统框架（上）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/23/推荐策略产品必备技能之推荐系统框架（上）/" class="post-title-link" itemprop="url">推荐策略产品必备技能之推荐系统框架（上）</a>
         </h2>
 
         <div class="post-meta">
@@ -179,7 +424,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-06 00:14:16" itemprop="dateModified" datetime="2021-07-06T00:14:16+08:00">2021-07-06</time>
+                <time title="修改时间：2021-07-06 00:17:20" itemprop="dateModified" datetime="2021-07-06T00:17:20+08:00">2021-07-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -230,6 +475,7 @@
 <li>用户特征也是。</li>
 </ul>
 <p><strong>在线学习</strong> 的功能是利用用户的即时数据进行预估。<br>来看一个经典的推荐系统架构的设计</p>
+<p><img src="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐系统框架（上）/1.jpg" alt></p>
 <p>这是Netflix的推荐系统架构，这个架构的设计目标是：<br>1）支持好的用户体验，且能支持快速的迭代；<br>2）针对用户的行为，作出快速的响应。</p>
 <p>在这个设计中，计算被分为了离线、近线和在线。</p>
 <p>计算可以离线进行、近线进行、也可以在线进行。对于用户产生的最新行为，在线计算能更好地进行反馈，但是在线必须实时进行反馈。这样的话，就对算法的计算复杂性有很大的限制，同时，也会限制能处理的数据量。</p>
@@ -1089,163 +1335,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/02/17/20210217-复盘写博客这一年/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/17/20210217-复盘写博客这一年/" class="post-title-link" itemprop="url">复盘写博客这一年</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-02-17 00:00:00 / 修改时间：23:01:06" itemprop="dateCreated datePublished" datetime="2021-02-17T00:00:00+08:00">2021-02-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/思考/" itemprop="url" rel="index"><span itemprop="name">思考</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>规律性地写博客有一年了。关于博客的内容，也得到了一些反馈，反馈陆陆续续来自不同的人，他们有着不同的角度。就这些反馈做一下总结，也梳理一下来年的重点。</p>
-<p>反馈1:都是HOW，缺少WHY。</p>
-<p>反馈2:经验比重大，干货比重小。</p>
-<p>调整：</p>
-<ol>
-<li>更加关注WHY。不是说HOW，也就是如何做一件事不重要。WHY和HOW都很重要，但是应该有倾向地提升对WHY的刻意思考。</li>
-<li>更加关注干货。比如在OCR这个模块，干货更多的是指对各家底层技术的了解。</li>
-</ol>
-<p>一个疑问：</p>
-<ol>
-<li>如何提升自己对自己不了解的行业的认知</li>
-</ol>
-<p>大概这样，未来1年再动态调整。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/02/15/传统软件到现代化网络服务的变革/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/15/传统软件到现代化网络服务的变革/" class="post-title-link" itemprop="url">传统软件到现代化网络服务的变革</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-02-15 00:00:00 / 修改时间：19:45:54" itemprop="dateCreated datePublished" datetime="2021-02-15T00:00:00+08:00">2021-02-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/效率工具/" itemprop="url" rel="index"><span itemprop="name">效率工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一款现代化的网络服务，应该具备哪些特质？</p>
-<p>跨设备、云端存储、交互友好、多人协同。但是你有没有想过，我们今天看到的这些特征，这些开发者的设计理念，为什么是这样的？他们背后又发生了什么变化，才催生了这些特质。</p>
-<p>从传统软件到现代化的网路服务，背后的变革实质，其实是这3点：</p>
-<p>数据是流动的</p>
-<p>面向使用场景设计</p>
-<p>交互高于功能</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1311,7 +1404,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

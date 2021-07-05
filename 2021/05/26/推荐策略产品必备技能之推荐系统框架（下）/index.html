@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kerryli1007.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="在上一篇，我们聊了推荐系统框架是怎么样一回事，在本篇，我们来学习一下数据流。 一、概括为什么要了解数据流？ 对于一款非常复杂的产品，比如像推荐系统这块由多个模块组成的产品，只有了解了其数据流，才能知道这个系统是如何运作的。 对于产品经理自身而言，只有了解了整体数据流，才能增强自己对复杂产品设计的把控能力。 二、推荐系统数据流1. 背景Brief要了解推荐系统的数据流，首先需要知道，对于一个推荐系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐策略产品必备技能之推荐系统框架（下）">
+<meta property="og:url" content="http://kerryli1007.github.io/2021/05/26/推荐策略产品必备技能之推荐系统框架（下）/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="在上一篇，我们聊了推荐系统框架是怎么样一回事，在本篇，我们来学习一下数据流。 一、概括为什么要了解数据流？ 对于一款非常复杂的产品，比如像推荐系统这块由多个模块组成的产品，只有了解了其数据流，才能知道这个系统是如何运作的。 对于产品经理自身而言，只有了解了整体数据流，才能增强自己对复杂产品设计的把控能力。 二、推荐系统数据流1. 背景Brief要了解推荐系统的数据流，首先需要知道，对于一个推荐系统">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐系统框架（下）/1.jpg">
+<meta property="og:image" content="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐系统框架（下）/2.jpg">
+<meta property="og:updated_time" content="2021-07-05T16:30:56.072Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="推荐策略产品必备技能之推荐系统框架（下）">
+<meta name="twitter:description" content="在上一篇，我们聊了推荐系统框架是怎么样一回事，在本篇，我们来学习一下数据流。 一、概括为什么要了解数据流？ 对于一款非常复杂的产品，比如像推荐系统这块由多个模块组成的产品，只有了解了其数据流，才能知道这个系统是如何运作的。 对于产品经理自身而言，只有了解了整体数据流，才能增强自己对复杂产品设计的把控能力。 二、推荐系统数据流1. 背景Brief要了解推荐系统的数据流，首先需要知道，对于一个推荐系统">
+<meta name="twitter:image" content="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐系统框架（下）/1.jpg">
+
+<link rel="canonical" href="http://kerryli1007.github.io/2021/05/26/推荐策略产品必备技能之推荐系统框架（下）/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>推荐策略产品必备技能之推荐系统框架（下） | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一颗西蓝花🥦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/05/26/推荐策略产品必备技能之推荐系统框架（下）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          推荐策略产品必备技能之推荐系统框架（下）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-26T00:00:00+08:00">2021-05-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-06 00:30:56" itemprop="dateModified" datetime="2021-07-06T00:30:56+08:00">2021-07-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/推荐策略产品必备技能/" itemprop="url" rel="index"><span itemprop="name">推荐策略产品必备技能</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在上一篇，我们聊了推荐系统框架是怎么样一回事，在本篇，我们来学习一下数据流。</p>
+<h2 id="一、概括"><a href="#一、概括" class="headerlink" title="一、概括"></a>一、概括</h2><p>为什么要了解数据流？</p>
+<p>对于一款非常复杂的产品，比如像推荐系统这块由多个模块组成的产品，只有了解了其数据流，才能知道这个系统是如何运作的。</p>
+<p>对于产品经理自身而言，只有了解了整体数据流，才能增强自己对复杂产品设计的把控能力。</p>
+<h2 id="二、推荐系统数据流"><a href="#二、推荐系统数据流" class="headerlink" title="二、推荐系统数据流"></a>二、推荐系统数据流</h2><h3 id="1-背景Brief"><a href="#1-背景Brief" class="headerlink" title="1. 背景Brief"></a>1. 背景Brief</h3><p>要了解推荐系统的数据流，首先需要知道，对于一个推荐系统，主要的数据模块。可以将其抽象成3个模块：用户数据、物料数据、用户行为。</p>
+<h3 id="2-推荐系统目标"><a href="#2-推荐系统目标" class="headerlink" title="2. 推荐系统目标"></a>2. 推荐系统目标</h3><p>对于一个推荐系统，它的目标是什么？通过两个case来了解。</p>
+<p><strong>1）Case 1：资讯场景</strong></p>
+<p>比如资讯场景业务目标是点击率。点击率的计算逻辑 = click / show。</p>
+<p>那为了提升点击率，我们需要哪些数据实现目标？</p>
+<ul>
+<li>静态数据：用户表、物料表。</li>
+<li>用户行为数据：用户行为数据。</li>
+</ul>
+<p>聚焦到用户行为数据，如何定义哪些是正样本、哪些是负样本。</p>
+<p><img src="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐系统框架（下）/1.jpg" alt></p>
+<p>需要注意的是，在行为数据定义时候（样本定义时候），经常出现的几个show虚报的问题：</p>
+<ol>
+<li>推荐结果即show。推荐结果即show的意思是，比如一个相关推荐场景，后台服务器一次给出的预测结果是10条数据，客户端只展现了4条。为了图方便，客户的上报show的逻辑是将所有的返回推荐结果都上报为show。</li>
+<li>加载即show。在信息流场景，往往需要预加载。但是很多预加载的item，实际上尚未被展示。客户的埋点逻辑是加载即上报show，因此会导致show虚高。</li>
+<li>信息流上下滑动。在信息流场景，还经常出现的一个问题是，用户经常上下刷动，所以同一物料会有多次曝光，建议上报时候做去重设置。</li>
+</ol>
+<p><strong>2）Case 2：小视频场景</strong></p>
+<p>比如小视频场景，建模目标是完播率，即视频的播放时长/视频的总时长。</p>
+<h3 id="3-推荐系统如何实现业务目标"><a href="#3-推荐系统如何实现业务目标" class="headerlink" title="3. 推荐系统如何实现业务目标"></a>3. 推荐系统如何实现业务目标</h3><p>将推荐系统实现业务目标拆分成两条数据流来理解，在线数据流和离线数据流。</p>
+<p><strong>1）在线数据流</strong></p>
+<p>在线数据流是指一个请求进入到推荐系统到给出预估结果的流程，参考下述示例图。</p>
+<p>接着进一步了解在线数据流。</p>
+<p>用户来到APP，打开APP，这个时候前端会像服务器后端发送请求，接着服务器后端会像推荐系统（SaaS服务）发送请求。</p>
+<p>推荐服务接受到这个请求，会先进行load balance，接着后端处理，在后端处理分为算法和规则，算法即召回和排序，规则即rerank。</p>
+<p>根据2.2的描述，我们知道，对于一个推荐系统来说，都有其特定的目标，当我们完成目标确认后，比如提升点击率或者完播率。</p>
+<p>接着就可以开始建模了。假设模型已经ready。来看一下推荐系统的在线流程～</p>
+<p><img src="https://kerryli1007.github.io/images/推荐策略产品必备技能之推荐系统框架（下）/2.jpg" alt></p>
+<ul>
+<li>召回（Recall）：召回的作用是从整个物料库中，通过某一种/多种策略，快速召回一小批物料，供后续模型打分使用。</li>
+<li>排序（Rank）：排序是将前一个阶段召回的物料进行模型排序。</li>
+<li>重排（Rerank）</li>
+</ul>
+<p>重排是什么？</p>
+<p>重排是基于排序环节的打分结果，对上述结果再次进行排序。</p>
+<p>为什么需要重排？</p>
+<p>在上一个环节，排序做的事本质上是预测用户对物品该兴趣的概率，考虑的只是物品与用户之间的关系，但是忽略掉了物品之间的相关性。</p>
+<p>如何理解呢？分享一个极端的case，小红最近酷爱刷电影剪辑类小视频，模型学习的话，很可能学出来最后给用户推荐的都是同一个publisher的10条item。</p>
+<p>这样肯定是不行的，试想，如果你正在刷抖音，连续10条都给你推荐同一个博主的内容，这个体验能好吗？所以需要rerank。</p>
+<p>重排环节一般会做什么？</p>
+<p>重排阶段是个策略出没之地，就是集中了各种业务和技术策略。比如为了更好的推荐体验，这里会加入去除重复、结果打散增加推荐结果的多样性、强插某种类型的推荐结果等等不同类型的策略。</p>
+<p><strong>2）离线</strong></p>
+<p>什么是离线数据流呢？模型训练以及模型的更新都是离线数据流完成的事。</p>
+<p>离线模型的训练以及模型的更新，涉及到多个数据模块的配合，包括用户画像、物料画像、行为日志，离线数据流，我们下章节见～</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/23/推荐策略产品必备技能之推荐系统框架（上）/" rel="prev" title="推荐策略产品必备技能之推荐系统框架（上）">
+      <i class="fa fa-chevron-left"></i> 推荐策略产品必备技能之推荐系统框架（上）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/30/推荐策略产品必备技能之推荐算法原理（上）/" rel="next" title="推荐策略产品必备技能之推荐算法原理（上）">
+      推荐策略产品必备技能之推荐算法原理（上） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、概括"><span class="nav-number">1.</span> <span class="nav-text">一、概括</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、推荐系统数据流"><span class="nav-number">2.</span> <span class="nav-text">二、推荐系统数据流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-背景Brief"><span class="nav-number">2.1.</span> <span class="nav-text">1. 背景Brief</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-推荐系统目标"><span class="nav-number">2.2.</span> <span class="nav-text">2. 推荐系统目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-推荐系统如何实现业务目标"><span class="nav-number">2.3.</span> <span class="nav-text">3. 推荐系统如何实现业务目标</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+  <div class="site-description" itemprop="description">AI/思考/学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

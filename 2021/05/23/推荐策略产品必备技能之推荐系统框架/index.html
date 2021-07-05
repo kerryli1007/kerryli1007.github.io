@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"kerryli1007.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="昨晚看了几章买的新书《幕后产品》。作者王诗沐，是网红音乐播放器“网易云音乐”的负责人，在书里，他如数家珍地为读者讲述了他是如何洞察需求，打造产品。 网易云音乐陪伴了我整个大学以及毕业后的两年。在去年，我彻底舍弃了这款产品，因为想听的音乐都无版权。不过音乐版权少，不影响网易云音乐是一款好的产品，相反，在版权缺乏的紧箍咒下，还能做出这样的产品，其背后站着的设计者，即王诗沐，不可谓不是天才。 回到《幕后">
+  <meta name="description" content="本模块的目标：  梳理推荐系统框架 梳理推荐系统框架中的各个模块的实现 理解推荐系统的数据流  一个推荐系统，大致分为4层，分别是离线层、存储层、近线层和在线层。离线、近线和在线的区分在于响应用户行为的速度差异。 一个经典的Web推荐系统的架构，主要包括如下四部分：  推荐服务：该服务从Web服务器获取推荐请求，然后返回推荐结果。 存储系统：这些系统存储用户特征、物品特征和模型参数，为了方便检索，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="幕后产品（1）第一章">
-<meta property="og:url" content="http://kerryli1007.github.io/2020/05/27/幕后产品（1）第一章/index.html">
+<meta property="og:title" content="推荐策略产品必备技能之推荐系统框架（上）">
+<meta property="og:url" content="http://kerryli1007.github.io/2021/05/23/推荐策略产品必备技能之推荐系统框架/index.html">
 <meta property="og:site_name" content="一颗西蓝花🥦">
-<meta property="og:description" content="昨晚看了几章买的新书《幕后产品》。作者王诗沐，是网红音乐播放器“网易云音乐”的负责人，在书里，他如数家珍地为读者讲述了他是如何洞察需求，打造产品。 网易云音乐陪伴了我整个大学以及毕业后的两年。在去年，我彻底舍弃了这款产品，因为想听的音乐都无版权。不过音乐版权少，不影响网易云音乐是一款好的产品，相反，在版权缺乏的紧箍咒下，还能做出这样的产品，其背后站着的设计者，即王诗沐，不可谓不是天才。 回到《幕后">
+<meta property="og:description" content="本模块的目标：  梳理推荐系统框架 梳理推荐系统框架中的各个模块的实现 理解推荐系统的数据流  一个推荐系统，大致分为4层，分别是离线层、存储层、近线层和在线层。离线、近线和在线的区分在于响应用户行为的速度差异。 一个经典的Web推荐系统的架构，主要包括如下四部分：  推荐服务：该服务从Web服务器获取推荐请求，然后返回推荐结果。 存储系统：这些系统存储用户特征、物品特征和模型参数，为了方便检索，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-05T01:54:58.304Z">
+<meta property="og:updated_time" content="2021-07-05T16:14:16.718Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="幕后产品（1）第一章">
-<meta name="twitter:description" content="昨晚看了几章买的新书《幕后产品》。作者王诗沐，是网红音乐播放器“网易云音乐”的负责人，在书里，他如数家珍地为读者讲述了他是如何洞察需求，打造产品。 网易云音乐陪伴了我整个大学以及毕业后的两年。在去年，我彻底舍弃了这款产品，因为想听的音乐都无版权。不过音乐版权少，不影响网易云音乐是一款好的产品，相反，在版权缺乏的紧箍咒下，还能做出这样的产品，其背后站着的设计者，即王诗沐，不可谓不是天才。 回到《幕后">
+<meta name="twitter:title" content="推荐策略产品必备技能之推荐系统框架（上）">
+<meta name="twitter:description" content="本模块的目标：  梳理推荐系统框架 梳理推荐系统框架中的各个模块的实现 理解推荐系统的数据流  一个推荐系统，大致分为4层，分别是离线层、存储层、近线层和在线层。离线、近线和在线的区分在于响应用户行为的速度差异。 一个经典的Web推荐系统的架构，主要包括如下四部分：  推荐服务：该服务从Web服务器获取推荐请求，然后返回推荐结果。 存储系统：这些系统存储用户特征、物品特征和模型参数，为了方便检索，">
 
-<link rel="canonical" href="http://kerryli1007.github.io/2020/05/27/幕后产品（1）第一章/">
+<link rel="canonical" href="http://kerryli1007.github.io/2021/05/23/推荐策略产品必备技能之推荐系统框架/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>幕后产品（1）第一章 | 一颗西蓝花🥦</title>
+  <title>推荐策略产品必备技能之推荐系统框架（上） | 一颗西蓝花🥦</title>
   
 
 
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2020/05/27/幕后产品（1）第一章/">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/05/23/推荐策略产品必备技能之推荐系统框架/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          幕后产品（1）第一章
+          推荐策略产品必备技能之推荐系统框架（上）
         </h1>
 
         <div class="post-meta">
@@ -173,14 +173,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-05-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-27T00:00:00+08:00">2020-05-27</time>
+              <time title="创建时间：2021-05-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-23T00:00:00+08:00">2021-05-23</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-05 09:54:58" itemprop="dateModified" datetime="2020-07-05T09:54:58+08:00">2020-07-05</time>
+                <time title="修改时间：2021-07-06 00:14:16" itemprop="dateModified" datetime="2021-07-06T00:14:16+08:00">2021-07-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -188,7 +188,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/阅读/" itemprop="url" rel="index"><span itemprop="name">阅读</span></a>
+                  <a href="/categories/推荐策略产品必备技能/" itemprop="url" rel="index"><span itemprop="name">推荐策略产品必备技能</span></a>
                 </span>
             </span>
 
@@ -203,30 +203,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>昨晚看了几章买的新书《幕后产品》。作者王诗沐，是网红音乐播放器“网易云音乐”的负责人，在书里，他如数家珍地为读者讲述了他是如何洞察需求，打造产品。</p>
-<p>网易云音乐陪伴了我整个大学以及毕业后的两年。在去年，我彻底舍弃了这款产品，因为想听的音乐都无版权。不过音乐版权少，不影响网易云音乐是一款好的产品，相反，在版权缺乏的紧箍咒下，还能做出这样的产品，其背后站着的设计者，即王诗沐，不可谓不是天才。</p>
-<p>回到《幕后产品》这本书里，在第一章，一些阅读得来的感受，对我触动非常大。</p>
-<p>关键词：虚荣心、归纳、杀伐果断</p>
-<h1 id="人的虚荣心"><a href="#人的虚荣心" class="headerlink" title="人的虚荣心"></a>人的虚荣心</h1><blockquote>
-<p>早年我在网易摄影时观察到用户为了作品上首页争吵，从知乎上看到用户花数天心血认真作答而成就满满，又体会到自己在朋友圈晒照片获得点赞的心理感受，这些都让我不断加深了自己对用户虚荣心的理解，形成了自己对运用虚荣心尺度的判断标准。</p>
-</blockquote>
-<p>俗话说“外行看热闹，内行看门道”。作者能从不同处观察到的现象，进行归纳总结，这自身就是一件不容易的事；同时，作者能清晰地认识到人性的弱点（抱歉，我将虚荣心归纳为了人性的弱点，其实虚荣心也有可能是优点，这个可以参考《社会心理学》一书，其中有讲到）。</p>
-<p>人渴望获得认可，人与人之间相互攀比，这些都是人性。我有时候会回避人性。去年6月份，为了完成三节课的数据分析作业，下载了探探进行使用、分析，上传了几张我的健身照片，短短数天，我主页上的【喜欢】人数就超过了1w。当时，在社群里，我们还有激烈地讨论过这事，群里的其他朋友都在抱怨说自己的【喜欢】人数少，同时，右滑的对象从来不会喜欢自己。我当时，听着，表面波澜不惊，其实内心是暗喜。甚至，在那之后的一周，我都有刻意关注我主页上被喜欢的人数。</p>
-<p>用户对探探上【喜欢】数的认可远超过了我的想象。今年年初，我好友X截图给我看了她的探探，其中有一页，就是喜欢人数，看到她的喜欢人数，我甚至也还对比了一下我的，且，仍旧暗喜，我的喜欢人数比她多。虚荣、对比，这都是人性。这让我想起最近在看的另一本书《Facebook效应》，扎克伯克写了一个程序，叫做“Facemash”，这个程序旨在标记出校园内最炙手可热的人物。扎克伯克邀请用户比较两位同性同学的相片，指出谁的人气更高。假如一位同学的评分等级更高些，那么此人的相片就会用来与其他更受欢迎的学生相比较。Facemash这个项目，在哈佛异常火爆，不过最终因为涉及到一些隐私上的问题，被强制制止。</p>
-<p>总结：虚荣、攀比，这些心理，都是人性。正视人性，是做产品的第一步</p>
-<h1 id="归纳"><a href="#归纳" class="headerlink" title="归纳"></a>归纳</h1><blockquote>
-<p>归纳与演绎是逻辑思维的两种方法。学习其他产品，将感悟归纳起来，体会其中想通的地方，从接触个体事物到推及一般，形成自己的理解，认识。</p>
-</blockquote>
-<p>另一位产品大神纯银也分享过归纳能力的重要性。大神都推崇的能力，看来确实是值得刻意练习。</p>
-<h1 id="产品经理的杀伐决断"><a href="#产品经理的杀伐决断" class="headerlink" title="产品经理的杀伐决断"></a>产品经理的杀伐决断</h1><blockquote>
-<p>作者从导入博客文章、导入相册、导入邮件等功能中找到灵感，认为网易云音乐可以做一个导入歌单功能，让用户一键可以将自己原来产品中收藏的歌曲迁移到网易云音乐。后来，产品设计、技术研究等都已完成，但是作者仍有一个顾虑，这封办法虽然对用户和网易云音乐都很好，但是会得罪竞争对手，如此激烈的手段会不会影响网易云音乐的品牌形象？</p>
-<p>犹豫了一段时间后，作者终于在一个周六的早上下定了决心。</p>
-</blockquote>
-<p>说实话，看到这里的时候，我在思考，如果我是作者，我会这样做吗？这样的做法，无疑是会招致竞争对手的憎恨。但是，做了，对用户及自身产品，百利而无一害。</p>
-<p>在互联网历史上，有一位招千人恨，万人骂的产品经理，他叫周鸿祎。梁宁老师在产品经理思维36讲分享过周鸿祎的故事。周鸿祎在推出免费杀毒软件时候，招到了诸多传统杀毒软件厂家的咒骂，但是，免费杀毒，对用户好，因此周鸿祎还是坚持了下来。</p>
-<p>产品经理做判断时候的唯一标准：是否对用户好？如果不是，那就算了，如果是，那么尽管会得罪竞争对手，也应该推行。</p>
-<p>我想起字节一位产品经理的分享，产品经理的面子就是产品的表现，产品表现不好，就没面子。引用这句话，是想说明，产品好坏，是否对用户有好处，是产品经理思考产品改动的最底层的原则。</p>
-<p>最后：多阅读、多思考、多总结。</p>
+        <p>本模块的目标：</p>
+<ol>
+<li>梳理推荐系统框架</li>
+<li>梳理推荐系统框架中的各个模块的实现</li>
+<li>理解推荐系统的数据流</li>
+</ol>
+<p>一个推荐系统，大致分为4层，分别是离线层、存储层、近线层和在线层。<br>离线、近线和在线的区分在于响应用户行为的速度差异。</p>
+<p>一个经典的Web推荐系统的架构，主要包括如下四部分：</p>
+<ol>
+<li>推荐服务：该服务从Web服务器获取推荐请求，然后返回推荐结果。</li>
+<li>存储系统：这些系统存储用户特征、物品特征和模型参数，为了方便检索，也存储了物品索引。</li>
+<li>离线学习：<ol>
+<li>该组建从用户行为数据中学习模型参数，然后按照一定的周期将参数推送到在线存储系统中。</li>
+<li>物品特征学习</li>
+<li>用户特征学习</li>
+</ol>
+</li>
+<li>在线学习：</li>
+</ol>
+<p><strong>推荐服务模块</strong>的功能是对来自业务的request进行预测。比如，我这会打开抖音，抖音后台会发送一个request给服务器，服务器接收到这个request之后，会根据过去我在抖音上的行为偏好，为我推荐向我可能感兴趣的短视频。</p>
+<p><strong>存储系统</strong>的功能是存储用户特征、物品特征、以及物品索引。</p>
+<p><strong>离线学习</strong>的功能包括：模型训练、物品特征、用户特征计算。</p>
+<ul>
+<li>模型训练是指给定用户和物品，以及用户对该物品的响应数据，来训练模型参数，这个过程一般需要耗费好几个小时的时间。</li>
+<li>物品特征是比如对于非结构化数据，经常需要对这些数据进行TF_IDF计算，这个也是在离线层进行。</li>
+<li>用户特征也是。</li>
+</ul>
+<p><strong>在线学习</strong> 的功能是利用用户的即时数据进行预估。<br>来看一个经典的推荐系统架构的设计</p>
+<p>这是Netflix的推荐系统架构，这个架构的设计目标是：<br>1）支持好的用户体验，且能支持快速的迭代；<br>2）针对用户的行为，作出快速的响应。</p>
+<p>在这个设计中，计算被分为了离线、近线和在线。</p>
+<p>计算可以离线进行、近线进行、也可以在线进行。对于用户产生的最新行为，在线计算能更好地进行反馈，但是在线必须实时进行反馈。这样的话，就对算法的计算复杂性有很大的限制，同时，也会限制能处理的数据量。</p>
+<p>离线训练能处理较大的数据量，且不要求必须是实时的。模型的更新一般是离线进行的，在模型的前后两次更新这个时间窗口中，由于没有进入新的数据，所以这个模型一直使用的是旧的数据。对于推荐系统架构最关键的因素是如何将在线和离线计算无缝结合。</p>
+<p>近线计算是在上述两者之间，在近线计算，我们可以执行类似在线的计算，但不要求实时响应。</p>
 
     </div>
 
@@ -242,13 +251,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/05/24/CAIO总结复盘/" rel="prev" title="CAIO总结复盘">
-      <i class="fa fa-chevron-left"></i> CAIO总结复盘
+    <a href="/2021/05/22/我理解的推荐策略产品的必备技能/" rel="prev" title="我理解的推荐策略产品之必备技能">
+      <i class="fa fa-chevron-left"></i> 我理解的推荐策略产品之必备技能
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/05/30/幕后产品（2）全面深入地了解用户/" rel="next" title="幕后产品（2）全面深入地了解用户">
-      幕后产品（2）全面深入地了解用户 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -307,7 +313,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#人的虚荣心"><span class="nav-number">1.</span> <span class="nav-text">人的虚荣心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#归纳"><span class="nav-number">2.</span> <span class="nav-text">归纳</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#产品经理的杀伐决断"><span class="nav-number">3.</span> <span class="nav-text">产品经理的杀伐决断</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

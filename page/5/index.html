@@ -148,6 +148,111 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2020/08/04/Q3_Week4_工作总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/04/Q3_Week4_工作总结/" class="post-title-link" itemprop="url">Q3_Week4_工作总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-04T00:00:00+08:00">2020-08-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-02 21:10:05" itemprop="dateModified" datetime="2020-08-02T21:10:05+08:00">2020-08-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论。</p>
+<p>本周关键词：API上线测试、模型指标</p>
+<h1 id="API上线测试"><a href="#API上线测试" class="headerlink" title="API上线测试"></a>API上线测试</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近在做CTR预估项目，模型已经ready，并且也将模型部署成为了API服务，接着，就是将模型放在生产环境中进行测试。</p>
+<h2 id="实验Set-Up"><a href="#实验Set-Up" class="headerlink" title="实验Set Up"></a>实验Set Up</h2><p>上线一个新的模型，需要进行A /B Test。目的是验证，模型在真实生产环境中的有效性。</p>
+<h3 id="流量切分"><a href="#流量切分" class="headerlink" title="流量切分"></a>流量切分</h3><p>实验设置实验组和对照组。</p>
+<p>实验组，是接受实验变量处理的对象组；</p>
+<p>对照组，也称为控制组，对实验假设而言，是不接受实验变量处理的对象组。</p>
+<p>本次实验假设是：通过使用CTR预估模型，是否能够降低客户的平均获客成本？</p>
+<p>实验组：线上流量的1%，接受模型打分的流量。</p>
+<p>控制组：线上流量的1%，不接受模型打分的流量。</p>
+<h3 id="效果追踪"><a href="#效果追踪" class="headerlink" title="效果追踪"></a>效果追踪</h3><p>在制定指标时候，一定要和业务结合，因为我们的业务是广告投放，因此就涉及到一些诸如处理流量数量、竞价成功数量、点击数、注册用户数、以及CPA的指标。其中，最重要的指标是CPA。</p>
+<h3 id="数据回流"><a href="#数据回流" class="headerlink" title="数据回流"></a>数据回流</h3><p>影响模型效果三要素：数据、算力、模型。</p>
+<p>当API上线生产环境后，会有新的生产数据产生。模型是有时序效应的，不断新的数据添加进去之后，模型效果会变好。因此，我们需要将生产环境中新产生的数据用来继续训练模型。</p>
+<p>因为我们的模型参数在之前已经探索出来，所以，我们现在有三种选择：</p>
+<p>选择1：直接将新的数据放进原来模型，重新训练</p>
+<p>选择2：利用新的数据，重新训练探索脚本</p>
+<p>选择3：将新的数据和旧的数据一起，重新训练探索脚本</p>
+<p>具体上述三种情况，需要根据实际业务数据的情况来做决定。</p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>模型上线后，遇到了性能相关的问题。</p>
+<h3 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h3><p>从SSP发出广告位提示，到DSP给出竞价，整个流程的时间在100ms以内。因为客户处，有很多处理逻辑，需要花费时间，因此留给我们的时间，只有30ms，所以，从客户发起api打分请求，到他们收到打分结果，需要限制在30ms以内。因为客户是从他们机房请求我们机房的服务，所以中间还有公网传输时间。</p>
+<p>当客户前期，将流量控制地很小时候，因为每次请求，基本上就是一个api请求，这种情况下，请求直接超时。</p>
+<p>原因分析，建立tcp连接时候超时，因为放量少，所以导致每隔比较长的时间才会去请求接口，这样就导致client每次请求接口都是新建立一次tcp连接，所以每次都出现超时。</p>
+<h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>整个用时由两部分组成：公网传输时间、后台服务器打分处理时间。</p>
+<p>公网传输时间的影响因素有：网络质量，是否是同一家运营商</p>
+<p>后台服务器打分处理时间的影响因素有：模型复杂度、服务器的稳定</p>
+<h3 id="总结-amp-复盘"><a href="#总结-amp-复盘" class="headerlink" title="总结&amp;复盘"></a>总结&amp;复盘</h3><p>这周的工作内容，涉及到了我的大量知识盲区，所以疯狂地在补基础。</p>
+<h1 id="模型指标"><a href="#模型指标" class="headerlink" title="模型指标"></a>模型指标</h1><p>如何评估一个模型表现的好坏？PR、ROC。</p>
+<p>参考论文：</p>
+<ol>
+<li>The Relationship Between Precision-Recall and ROC Curves</li>
+<li>Understanding receiver operating characteristic curves</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2020/08/03/Q3_Week3_工作总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1426,130 +1531,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2020/07/03/Q3_Week1_工作总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/03/Q3_Week1_工作总结/" class="post-title-link" itemprop="url">Q3_Week1_工作总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-03 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-03T00:00:00+08:00">2020-07-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-02 20:58:47" itemprop="dateModified" datetime="2020-08-02T20:58:47+08:00">2020-08-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>原则：以周为粒度，总结工作，从中提炼规律，沉淀属于自己的方法论。</p>
-<p>本周关键词：ToB官网设计、未来发展、好的创业公司是什么样子</p>
-<h1 id="ToB官网设计"><a href="#ToB官网设计" class="headerlink" title="ToB官网设计"></a>ToB官网设计</h1><p>最近排到了公司的设计资源，开始启动新一轮的产品设计，主题是“官网优化”。</p>
-<p>本周有3个关键词，毫无疑问，ToB官网设计是本周的重点关键词。一是因为我投入的时间多，二是因为在整个过程中，我收获了很多，在整个过程中，我都收获了什么呢？我们一起来看一看吧～</p>
-<h2 id="沉淀官网设计方法论"><a href="#沉淀官网设计方法论" class="headerlink" title="沉淀官网设计方法论"></a>沉淀官网设计方法论</h2><p>最近研究了B端官网的设计，我才发现，之前自己设计官网，做的工作，都是“依样画葫芦”，颇有点知其然，而不知其所以然的意味。</p>
-<p>学习了一下B端官网设计的思路，有一种醍醐灌顶的感觉。其实，所有的工作内容，都有逻辑可循，只是需要我们去了解背后分析问题的思路。</p>
-<p>推荐理由</p>
-<ol>
-<li>第一篇文章是网易UEDC出品，将官网设计，当做讲故事。那如何讲好一个故事呢？作者给出了参考的行文思路：言之有物、言之有序、言之有情。接着，作者，从上述3个维度展开，完美阐述了如何将思路与实践操作结合。每个正在为B端官网设计而头疼的PM，都可以从这篇文章有所收获。</li>
-<li>第二篇文章是一篇复盘文章，其中有的思路与文章一相通。推荐第二篇的理由，第一篇是从0到1的通用方法论，第二篇则是从0到1，单个案例。第一篇是面，第二篇是点。面看整体思路，点看细节执行。</li>
-</ol>
-<p>提炼总结第一篇文章方法论</p>
-<ol>
-<li>言之有物</li>
-<li>言之有序</li>
-<li>言之有情</li>
-</ol>
-<h3 id="言之有物"><a href="#言之有物" class="headerlink" title="言之有物"></a>言之有物</h3><p>言之有物的意思就是说，在官网上，我们呈现给用户的所有内容，都是经过精心挑选的，我们知道为什么需要将这些内容展示在这里。这里就涉及到，我们需要挑选我们需要展示哪些内容在官网上。给出两个思考的角度</p>
-<ul>
-<li>产品介绍</li>
-<li>客户关心点</li>
-</ul>
-<p>在实际思考过程中，我们会发现，其实这两者之间有重叠，所以，建议的一个思路是，总结产品介绍，在总结的时候，思考这些产品介绍点，是不是客户关心的。</p>
-<p>（对于我自己对官网的设计思考，因为涉及一些产品细节，就不在博客中写了）</p>
-<h3 id="言之有序"><a href="#言之有序" class="headerlink" title="言之有序"></a>言之有序</h3><p>当我们总结出来了产品特征之后，我们需要有先后次序地展示这些内容，在梳理产品特征优先级时候，推荐一个“象限分析法”，这个名字是我自己取的，从上述推荐的第二篇文章中获得的灵感，我们可以将我们提供的产品从两个维度进行一下划分，一个是产品功能维度，一个是服务维度，同时，加入客户关注程度。最后的成品，如下图</p>
-<h3 id="言之有情"><a href="#言之有情" class="headerlink" title="言之有情"></a>言之有情</h3><p>我们上述总结了内容，并且为这些内容做了优先级排序，最后，我们要展现这些内容啦。</p>
-<p>内容的展现，需要借助某种载体，载体有以下几类：文字、图片、视频。</p>
-<p>选择何种形式传达内容，需要PM思考。</p>
-<h2 id="学习资深产品经理设计产品介绍页的思路"><a href="#学习资深产品经理设计产品介绍页的思路" class="headerlink" title="学习资深产品经理设计产品介绍页的思路"></a>学习资深产品经理设计产品介绍页的思路</h2><p>“三人行，必有我师焉。”</p>
-<p>最近设计官网时候，需要和同事B合作，B是资深产品经理啦，在和他工作过程中，收获颇丰，我也都整理下来。</p>
-<p>在设计官网时候，因为我将注意力都放在了首页，所以做了很多关于首页设计的调研，包括经验分享贴，并且调研了市场上优秀To B产品的官网，比如钉钉、Teambition、Salesforce、Slack等等。因为，我们产品介绍页其实是有模版的，所以，我也没有花费太多心思在产品介绍页。</p>
-<p>和B开会时候，我介绍了我的思路，希望大家补充对产品的文字介绍。接着，B向我们展示了memsql这款产品的官网设计，通过借鉴学习这个官网，得出的一个可执行的结论是，对于我们这款数据库产品的一些功能点，我们可以通过可视化的方式传达他的功能，可视化的方式包括，作图表达系统之间的关系，绘制表格将不同的数据库产品进行对比。（听到这里，我顿时，一拍大腿，对啊，我怎么没有想到呢？我被原来的模版限制住了思路，同时，我也没有找类似产品介绍页）</p>
-<p>最后，这场讨论给我的启示：</p>
-<ol>
-<li>耐心、谦虚听别人的建议（Again and Agian的提醒自己）</li>
-<li>做好竞品调研，学习借鉴别人优秀的思路！！！</li>
-</ol>
-<h1 id="未来发展"><a href="#未来发展" class="headerlink" title="未来发展"></a>未来发展</h1><p>这一部分是在谈职业发展啦～</p>
-<h2 id="项目经理技能栈：客户全生命周期管理"><a href="#项目经理技能栈：客户全生命周期管理" class="headerlink" title="项目经理技能栈：客户全生命周期管理"></a>项目经理技能栈：客户全生命周期管理</h2><p>上周周会时候，老板说到，目前我都是在项目后端，希望未来介入到项目全生命周期管理，包括明白什么样的客户是我们能服务的，即我们能为其创造价值，以及，明白了我们能为其创造价值之后，我们要如何引导对方。<br>这两者需要什么样的能力呢？</p>
-<ul>
-<li>沟通能力</li>
-<li>对产品的理解能力</li>
-</ul>
-<p>沟通能力，这是毫无疑问的，这两部分都涉及到项目非常前端，在前端需要不断和客户沟通，磨合需求。<br>对产品的理解能力，只有了解自己产品，明确产品的边界和能力，我们方才能知道，我们产品能创造的价值是什么。以及，为何能为对方创造价值。</p>
-<h2 id="Focus行业"><a href="#Focus行业" class="headerlink" title="Focus行业"></a>Focus行业</h2><p>这个涉及到业务情况，手动马赛克。</p>
-<h1 id="好的创业公司是什么样子"><a href="#好的创业公司是什么样子" class="headerlink" title="好的创业公司是什么样子"></a>好的创业公司是什么样子</h1><p>今天读到一篇深度好文《好的创业公司是什么样子？》</p>
-<p>这篇文章是GGV纪源资本执行董事于红的经验分享，于红加入GGV 7年时间，一共投了17家公司，这17家公司里，诞生了4家独角兽：作业帮、满帮集团、酷家乐、Musical.ly。GGV的文章，质量挺不错的，上一篇我强烈推荐的文章是《走访了十几家美国企业服务公司，我们写下了这篇万字文章》</p>
-<p>先用一个思维导图总结一下这篇文章的主要内容，详细的思考，明天写文章总结。</p>
-<p>🥦写在最后：<br>每周写周总结的时候，这算是一周当中，我最开心的时候，翻阅上一周的工作笔记，梳理着自己又有哪些成长。工作内容基本上每周都会接触新的事物，一半觉得吃力，一半感到开心，吃力是因为，这些内容完全都是新的事物，我需要重新学习；开心是因为，自己又可以有所成长，技能又可以得到增长。</p>
-<p>对自己的成长速度，我总是希望，快一点，再快一点，通过快速的成长，来弥补自己曾经走过的职业弯路，也可以让自己更接近自己的梦想。</p>
-<p>我一直很排斥2017年下半年到2019年上半年，因为在这2年，我成长有限。2017年-2018年，从实习到毕业，我干过咨询，做过用户运营；2018年-2019年，我是算法赛事项目经理。回过头来看，我责备自己，在这2年，没有做好职业规划，浪费了时间，成长有限。最近开始接纳自己的不完美，我犯了错，很大的错误，而很多人在相同的阶段，没有犯错，所以他们成长地更快，我佩服这些从一开始就选择了正确道路的朋友，同时，也开始接纳过去我自己的不完美，不成熟。好在，不管在多么糟糕的环境，我都没有放弃过自己，不断努力，才有了最近1年，突飞猛进的成长。感谢团队、感谢一直帮助我的朋友，最后，也感谢一直努力，不放弃的我自己。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1619,7 +1600,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-count">103</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

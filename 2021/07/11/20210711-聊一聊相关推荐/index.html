@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kerryli1007.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="界定一下本文讨论的topic：  什么是相关推荐 市面上产品的相关推荐 为什么需要相关推荐 从产品设计视角看相关 如何衡量相关推荐效果好坏 相关推荐的数据流 从物料视角看相关推荐   过去埋藏在地下，挖出来时是煤炭，是你今天的炉火。  一、什么是相关推荐如果两个item的相似度高，可将其理解为相关推荐。具体一点：  资讯场景：两篇讲离婚类的合同。 电商场景：intoyou的唇泥和维姿的唇泥。上述场">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊一聊相关推荐">
+<meta property="og:url" content="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="界定一下本文讨论的topic：  什么是相关推荐 市面上产品的相关推荐 为什么需要相关推荐 从产品设计视角看相关 如何衡量相关推荐效果好坏 相关推荐的数据流 从物料视角看相关推荐   过去埋藏在地下，挖出来时是煤炭，是你今天的炉火。  一、什么是相关推荐如果两个item的相似度高，可将其理解为相关推荐。具体一点：  资讯场景：两篇讲离婚类的合同。 电商场景：intoyou的唇泥和维姿的唇泥。上述场">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/1.jpg">
+<meta property="og:image" content="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/2.jpg">
+<meta property="og:image" content="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/3.jpg">
+<meta property="og:image" content="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/4.jpg">
+<meta property="og:image" content="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/5.jpg">
+<meta property="og:updated_time" content="2021-07-11T04:56:50.001Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="聊一聊相关推荐">
+<meta name="twitter:description" content="界定一下本文讨论的topic：  什么是相关推荐 市面上产品的相关推荐 为什么需要相关推荐 从产品设计视角看相关 如何衡量相关推荐效果好坏 相关推荐的数据流 从物料视角看相关推荐   过去埋藏在地下，挖出来时是煤炭，是你今天的炉火。  一、什么是相关推荐如果两个item的相似度高，可将其理解为相关推荐。具体一点：  资讯场景：两篇讲离婚类的合同。 电商场景：intoyou的唇泥和维姿的唇泥。上述场">
+<meta name="twitter:image" content="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/1.jpg">
+
+<link rel="canonical" href="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>聊一聊相关推荐 | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一颗西蓝花🥦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          聊一聊相关推荐
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-11 00:00:00 / 修改时间：12:56:50" itemprop="dateCreated datePublished" datetime="2021-07-11T00:00:00+08:00">2021-07-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>界定一下本文讨论的topic：</p>
+<ol>
+<li>什么是相关推荐</li>
+<li>市面上产品的相关推荐</li>
+<li>为什么需要相关推荐</li>
+<li>从产品设计视角看相关</li>
+<li>如何衡量相关推荐效果好坏</li>
+<li>相关推荐的数据流</li>
+<li>从物料视角看相关推荐</li>
+</ol>
+<blockquote>
+<p>过去埋藏在地下，挖出来时是煤炭，是你今天的炉火。</p>
+</blockquote>
+<h1 id="一、什么是相关推荐"><a href="#一、什么是相关推荐" class="headerlink" title="一、什么是相关推荐"></a>一、什么是相关推荐</h1><p>如果两个item的相似度高，可将其理解为相关推荐。<br>具体一点：</p>
+<ul>
+<li>资讯场景：两篇讲离婚类的合同。</li>
+<li>电商场景：intoyou的唇泥和维姿的唇泥。<br>上述场景的相似度判断标准均从item本身的特质进行判断，技术上为content based相关计算。</li>
+</ul>
+<p>但是如果上述item本身的特征少，那我们可使用cf的技术实现手段。</p>
+<p>备注：了解content based算法以及cf算法的适用场景，以及优缺点是必备的。</p>
+<h1 id="二、市面上产品的相关推荐"><a href="#二、市面上产品的相关推荐" class="headerlink" title="二、市面上产品的相关推荐"></a>二、市面上产品的相关推荐</h1><h2 id="2-1-资讯"><a href="#2-1-资讯" class="headerlink" title="2.1 资讯"></a>2.1 资讯</h2><p>调研今日头条和腾讯新闻的相关推荐模块<br><img src="/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/1.jpg" alt="img"></p>
+<ul>
+<li><p>相似之处</p>
+<ul>
+<li>ner<br>命名实体识别（Named Entity Recognition，简称 NER），又称作“专名识别”，是指识别文本中具有特定意义的实体，主要包括人名、地名、机构名、专有名词等。在推荐场景下，NER是深度查询理解（Deep Query Understanding，简称 DQU）的底层基础信号，主要应用于item召回、用户意图识别</li>
+</ul>
+</li>
+<li><p>差异之处</p>
+<ul>
+<li>今日头条的相关推荐栏位包括i2i、u2i，并且会实时更新用户基于搜索框呈现出的短期兴趣（相隔1-2刷）</li>
+<li>腾讯视频的相关推荐栏位暂且只覆盖i2i，且不会实时更新用户基于搜索框呈现的短期兴趣（相隔1-2刷）</li>
+</ul>
+</li>
+</ul>
+<p>总结一下：相关推荐出来的内容不一定必须是有相似度的，主要看产品如何定义，相关推荐场景也可以被叫做持续消费场景。</p>
+<p>（善于总结，让读者或者听众快速get到自己表达的点，对别人友好，对自己也友好）</p>
+<h2 id="2-2-视频（B站）"><a href="#2-2-视频（B站）" class="headerlink" title="2.2 视频（B站）"></a>2.2 视频（B站）</h2><p>视频内容详情页的推荐栏位<br><img src="/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/2.jpg" alt="img"><br>总结：视频推荐场景有做很明显的基于视频内容的推荐。</p>
+<h1 id="三、为什么需要相关推荐"><a href="#三、为什么需要相关推荐" class="headerlink" title="三、为什么需要相关推荐"></a>三、为什么需要相关推荐</h1><p>我们思考一下，如果没有相关推荐，用户的使用操作链路。</p>
+<p>资讯场景<br>用户小西进入主站，通过推荐或者搜索发现自己喜欢的文章，点击进入浏览。浏览完毕，退出。继续通过主站推荐或者搜索的方式发现自己喜欢的文章。</p>
+<p>这样操作的影响：</p>
+<ol>
+<li>用户操作成本高，难以找到感兴趣的文章</li>
+<li>体验不流程。<br>综上，都不利于用户在平台停留时间长。</li>
+</ol>
+<p>短视频场景：短视频场景的用户链路同上。</p>
+<p>总结，相关推荐场景的用途是延长用户在平台的停留时长。所以这个场景也可以叫做持续消费场景。</p>
+<h1 id="四、从产品设计视角看相关"><a href="#四、从产品设计视角看相关" class="headerlink" title="四、从产品设计视角看相关"></a>四、从产品设计视角看相关</h1><p>所有产品设计都是围绕业务目标开展，我们的业务目标是延长用户在平台的停留时长。所以我们希望在用户消费完一个物料时候，立马给对方推她可能感兴趣的第二个、第三个item。所以有了如下的设计版式：</p>
+<ul>
+<li><p>底部推荐栏位<br><img src="/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/3.jpg" alt="img"></p>
+</li>
+<li><p>侧边推荐栏位</p>
+</li>
+</ul>
+<p>!<img src="/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/4.jpg" alt="img"></p>
+<p>我是抖音、小红书的深度用户，最近刷视频有一个很火的概念，叫做沉浸式护肤/化妆，同理在推荐场景中，借用这个概念，这样的推荐产品形态设计，带给用户的体验式沉浸式阅读，不要被打扰。</p>
+<h1 id="五、如何衡量相关推荐效果的好坏"><a href="#五、如何衡量相关推荐效果的好坏" class="headerlink" title="五、如何衡量相关推荐效果的好坏"></a>五、如何衡量相关推荐效果的好坏</h1><p>当相关推荐的效果很差时，比如用户明明在浏览健身类文章，但是给用户推荐了离婚类文章，用户还是单身狗呢。这样的场景，可以直观通过肉眼分析bad case来判断推荐效果的好坏。当然，也要关注线上指标，包括ctr、uctr（有多少占比的用户有点击行为），人均文章停留时长。</p>
+<p>注意哦，在做优化的时候，千万不能只关注ctr，因为ctr高和推荐结果质量没有不是正相关，很极端的场景，都推标题党，点击率就上去了，但是用户体验其实很差。分析一下，如果用户点击了标题党文章，下一个直接动作是什么，肯定是回退出当前文章，所以用户在当前文章的浏览时间是很短的，因此可以有辅助指标，用户浏览单篇文章的时长，浏览时长也是衡量浏览深度的一个指标。</p>
+<p>当效果已经很好，要做的是fine tune的时候，肉眼不太能再辨别效果是否更好，就需要进行线上分流实验，关注线上指标，包括ctr、uctr、人均文章停留时长。</p>
+<h1 id="六、推荐策略的数据流"><a href="#六、推荐策略的数据流" class="headerlink" title="六、推荐策略的数据流"></a>六、推荐策略的数据流</h1><p>召回、排序、业务规则。</p>
+<p>排序一般怎么做？<br>模型是一个比较抽象的词，是指对一种映射的抽象描述，即 f（context，user，item）—&gt; score。衡量一个模型的好坏，就是假设出来的这个映射关系和真实内在关系的距离。</p>
+<p>但是上述方式的表达能力弱，参考下述排序模型发展史<br><img src="/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/5.jpg" alt="img"><br>总结一下：特征工程以及特征工程的自动化，一直是推动实用化推荐系统演技的主要方向。</p>
+<p>这个topic，新开文章单独写。</p>
+<h1 id="七、从物料视角看相关推荐"><a href="#七、从物料视角看相关推荐" class="headerlink" title="七、从物料视角看相关推荐"></a>七、从物料视角看相关推荐</h1><p>这个topic，参考我的另一篇文章，聊一聊新品物料相关。</p>
+<p>参考链接：</p>
+<ol>
+<li><a href="https://segmentfault.com/a/1190000039404377" target="_blank" rel="noopener">https://segmentfault.com/a/1190000039404377</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/08/20210708-于黑暗中作光明/" rel="prev" title="于黑暗中作光明">
+      <i class="fa fa-chevron-left"></i> 于黑暗中作光明
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、什么是相关推荐"><span class="nav-number">1.</span> <span class="nav-text">一、什么是相关推荐</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、市面上产品的相关推荐"><span class="nav-number">2.</span> <span class="nav-text">二、市面上产品的相关推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-资讯"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 资讯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-视频（B站）"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 视频（B站）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、为什么需要相关推荐"><span class="nav-number">3.</span> <span class="nav-text">三、为什么需要相关推荐</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、从产品设计视角看相关"><span class="nav-number">4.</span> <span class="nav-text">四、从产品设计视角看相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、如何衡量相关推荐效果的好坏"><span class="nav-number">5.</span> <span class="nav-text">五、如何衡量相关推荐效果的好坏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、推荐策略的数据流"><span class="nav-number">6.</span> <span class="nav-text">六、推荐策略的数据流</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七、从物料视角看相关推荐"><span class="nav-number">7.</span> <span class="nav-text">七、从物料视角看相关推荐</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+  <div class="site-description" itemprop="description">AI/思考/学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">104</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

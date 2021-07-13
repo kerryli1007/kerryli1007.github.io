@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kerryli1007.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="新品物料，就说不开一个问题，冷启动。 在推荐领域，关于冷启动，一共有三个大的话题：  用户冷启动 物料冷启动 系统冷启动  物料冷启动的策略包括基于物料meta信息、以及ee探索性质的。 但之前一直没有就物料冷启动与推荐系统、还有生态（UGC、PGC）进行详细阐述。 界定本文要讨论的topic：  冷启动的目标 兼顾冷启动的系统设计  一、目标物料冷启动的目标是什么？ 对系统来说，流量价值最大化。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊一聊新品物料相关">
+<meta property="og:url" content="http://kerryli1007.github.io/2021/07/13/20210713-聊一聊新品物料相关/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="新品物料，就说不开一个问题，冷启动。 在推荐领域，关于冷启动，一共有三个大的话题：  用户冷启动 物料冷启动 系统冷启动  物料冷启动的策略包括基于物料meta信息、以及ee探索性质的。 但之前一直没有就物料冷启动与推荐系统、还有生态（UGC、PGC）进行详细阐述。 界定本文要讨论的topic：  冷启动的目标 兼顾冷启动的系统设计  一、目标物料冷启动的目标是什么？ 对系统来说，流量价值最大化。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-07-13T01:07:06.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="聊一聊新品物料相关">
+<meta name="twitter:description" content="新品物料，就说不开一个问题，冷启动。 在推荐领域，关于冷启动，一共有三个大的话题：  用户冷启动 物料冷启动 系统冷启动  物料冷启动的策略包括基于物料meta信息、以及ee探索性质的。 但之前一直没有就物料冷启动与推荐系统、还有生态（UGC、PGC）进行详细阐述。 界定本文要讨论的topic：  冷启动的目标 兼顾冷启动的系统设计  一、目标物料冷启动的目标是什么？ 对系统来说，流量价值最大化。">
+
+<link rel="canonical" href="http://kerryli1007.github.io/2021/07/13/20210713-聊一聊新品物料相关/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>聊一聊新品物料相关 | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一颗西蓝花🥦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/07/13/20210713-聊一聊新品物料相关/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          聊一聊新品物料相关
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-13 00:00:00 / 修改时间：09:07:06" itemprop="dateCreated datePublished" datetime="2021-07-13T00:00:00+08:00">2021-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>新品物料，就说不开一个问题，冷启动。</p>
+<p>在推荐领域，关于冷启动，一共有三个大的话题：</p>
+<ul>
+<li>用户冷启动</li>
+<li>物料冷启动</li>
+<li>系统冷启动</li>
+</ul>
+<p>物料冷启动的策略包括基于物料meta信息、以及ee探索性质的。</p>
+<p>但之前一直没有就物料冷启动与推荐系统、还有生态（UGC、PGC）进行详细阐述。</p>
+<p>界定本文要讨论的topic：</p>
+<ol>
+<li>冷启动的目标</li>
+<li>兼顾冷启动的系统设计</li>
+</ol>
+<h1 id="一、目标"><a href="#一、目标" class="headerlink" title="一、目标"></a>一、目标</h1><p>物料冷启动的目标是什么？</p>
+<p>对系统来说，流量价值最大化。流量价值最大化是什么意思？比如我们一共就100个upv。现在进来了一批新物料，我们需要给这些物料曝光。因此我们需要将物料推送给特定的用户。</p>
+<p>最简单的解法，直接将新品物料随机分发给用户。这样的直接影响是，由于这样的随机分发，和用户兴趣无关，也同用户当前浏览的资讯内容无关，导致，用户体验差，虽然给这些物料了曝光，但是伤害了用户体验，也造成了流量的浪费。</p>
+<p>更好的解法是什么？<br>1）构造物料的静态画像，基于内容，即上文说到的基于物料meta信息<br>2）基于物料本身的信息评估物料的质量，比如小红书场景，图片是否高清、文本语言是否通顺，是评估笔记质量的重要标准。<br>3）召回时候不要完全随机召回，也需要by一定语意召回。什么意思呢？就是说，比如最简单的做法，当用户西蓝花发了一篇健身类的笔记，完全随机的召回，就是将这篇文章随机推荐给500个用户，给500个pv，但是很可能这500个人都没有健身的兴趣，所以对于这篇物料来说，show 500，click 0。这样的流量分发就是效率低下的，浪费了500个pv，一来没有给物料积累正确的反馈数据数据，二来带给了用户不好的体验。所以更好的做法是在召回时候，by一定语义召回。基于内容做一定语义召回。</p>
+<p>总结一下：在新物料曝光这个过程中，将物料分发给可能对该物料感兴趣的用户；对内容侧的画像丰富是按照其内容质量进行等级划分，决定给这个物料多少pv。（比如我在抖音的一些视频，自然流量，差不多是500；另一些like、comment多的，自然流量会有5w）</p>
+<p>上述讲的所有，最终评估的指标包括：</p>
+<ul>
+<li>by 用户维度的 ctr（click/show）、人均停留时长（内容消费深度）等</li>
+</ul>
+<p>更好解法的好处：</p>
+<ol>
+<li>带给用户更好的体验</li>
+<li>为物料积累准确的数据 </li>
+</ol>
+<p>思考，因为我经常用小红书、抖音，根据我自己也做推荐系统的经验，这两个平台是怎么做物料冷启动的？</p>
+<p>基础流量：基础流量的意思就是，给定一条新物料，一定次数的曝光（PV数），这个流量的pv数，抖音给的大概在500，小红书给的大概在100.<br>什么意思呢？如果一条抖音视频数据如下，show 500，like 20，comment 1-2，基本上这个数据表现，平台不会再给流量了，即抖音不会继续将这条视频分发给更多的人了。<br>所以，基本上show 500就是判断这个视频是否需要继续被分发的关键，那么如何精准地分发这给这500个pv就非常重要。</p>
+<p>如果在500pv数据的基础上，这个视频的表现非常好，like高、comment多，且comment中有很多艾特，说明这条视频质量高、传播性强，那么这个时候，平台会不断给这个视频流量。</p>
+<p>多说一点，我两个月前发过一条视频，抖音给了6w show，比较神奇的是，当时这条动态没有任何关键词描述，就随便配了几个与视频内容也不符合的字，说明抖音在构造物料画像时候，是可以基于视频内容做理解的啊。</p>
+<h1 id="二、系统设计"><a href="#二、系统设计" class="headerlink" title="二、系统设计"></a>二、系统设计</h1><p>如果是我，我要怎么设计？</p>
+<p>从物料的视角，先了解推荐系统的数据流。</p>
+<p>大家好，我是创作者西蓝花创作出来发布在小红书的笔记，系统给我的编号是A00001。</p>
+<p>系统将我推荐给了100个用户，这100个用户在推荐主站看到了我，但是没有人点击过我。接着，我就再也没有出现再过推荐首页了。</p>
+<p>大家好，我是创作者西蓝花创作出来的物料，系统给我的编号是A00002.<br>系统将我推荐给了100个用户，这100个用户在推荐主站看到了我，50个人点击了我，30个人收藏了我，20个人like了我。10个人comment了我。接着，我在推荐首页被推荐给了更多的人，我第一次被这么多人看到。很多人看到了我，然后关注了西蓝花，她可开心了。暗自下定决心，要创作更多的更好的内容发布在小红书平台。</p>
+<p>对于小红书这个推荐系统而言，从物料质量划分维度，A00001的质量低，A00002的质量高。A00002质量高的表现有哪些？如何量化A00002的质量高？</p>
+<ul>
+<li>点击率高，点击率 = 50 /100 = 50%</li>
+<li>收藏率高</li>
+<li>like率高</li>
+<li>comment高</li>
+</ul>
+<p>所有这些指标带给平台最直接的收益是：用户在平台的停留时长更长，因为用户在单篇物料上停留时间长。</p>
+<p>我们再来看一个推荐系统不太准的系统</p>
+<p>我是一个健身物料，但是系统将我推荐给了100个，不爱健身的人。他们对我也没有什么兴趣，因此我只获得了500个show。<br>我是一个制作很精美的化妆视频，系统将我推荐给了100个对化妆没有兴趣的人，他们对我也没有什么兴趣，因此我只获得了500个show。</p>
+<p>这样的结果是什么，西蓝花作为创作者的创作兴致直接被打压 = = </p>
+<p>话说回来，从我一开始玩短视频，本来是快手和抖音一起玩，发生1件事，让我直接放弃掉了快手。</p>
+<p>2021.5.15在快手和抖音分别发了同一条内容，抖音给了6w pv，快手给了500pv。抖音涨粉了1000，但是快手涨粉0。这件事直接让作为创作者的我不再使用快手的直接原因。</p>
+<p>说回来那条动态，都是一条视频，配图都是“随便拍一下”，但是抖音似乎直接将这条动态推送给了感兴趣的人，快手就弱一点，没有做好冷启动。所以，冷启动阶段的精准匹配实在是太重要了。（个人陋见，也有可能我发的内容，快手不喜欢，而不是快手的精准化匹配不好。</p>
+<p>不过，新物料的精准分发确实是非常重要。</p>
+<p>那么系统要如何更好地支持物料冷启动？</p>
+<p>目标是什么？指标是什么？（If you can not measure it, you can’t improve it)</p>
+<ul>
+<li>被分发出去新物料的用户的点击率、人均浏览时长。</li>
+<li>点击率（ctr），衡量的是，比如我分发了100个item，其中有多少个被点击了，但是考虑到标题党可能存在，所以不能只看ctr</li>
+<li>还需要看人均物料浏览时长。</li>
+<li>3、7日留存。</li>
+</ul>
+<p>要让ctr好、人均物料浏览时，就需要做到推荐得准。在文本领域，和朋友沟通，了解到知乎的新品召回也是by语意topic。</p>
+<p>最后总结一下：</p>
+<ol>
+<li>通过提升新item分发精准度提高新物品分发的效率。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/11/20210711-聊一聊相关推荐/" rel="prev" title="聊一聊相关推荐">
+      <i class="fa fa-chevron-left"></i> 聊一聊相关推荐
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、目标"><span class="nav-number">1.</span> <span class="nav-text">一、目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、系统设计"><span class="nav-number">2.</span> <span class="nav-text">二、系统设计</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+  <div class="site-description" itemprop="description">AI/思考/学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -148,6 +148,138 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/07/13/20210713-聊一聊新品物料相关/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/13/20210713-聊一聊新品物料相关/" class="post-title-link" itemprop="url">聊一聊新品物料相关</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-13 00:00:00 / 修改时间：09:07:06" itemprop="dateCreated datePublished" datetime="2021-07-13T00:00:00+08:00">2021-07-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>新品物料，就说不开一个问题，冷启动。</p>
+<p>在推荐领域，关于冷启动，一共有三个大的话题：</p>
+<ul>
+<li>用户冷启动</li>
+<li>物料冷启动</li>
+<li>系统冷启动</li>
+</ul>
+<p>物料冷启动的策略包括基于物料meta信息、以及ee探索性质的。</p>
+<p>但之前一直没有就物料冷启动与推荐系统、还有生态（UGC、PGC）进行详细阐述。</p>
+<p>界定本文要讨论的topic：</p>
+<ol>
+<li>冷启动的目标</li>
+<li>兼顾冷启动的系统设计</li>
+</ol>
+<h1 id="一、目标"><a href="#一、目标" class="headerlink" title="一、目标"></a>一、目标</h1><p>物料冷启动的目标是什么？</p>
+<p>对系统来说，流量价值最大化。流量价值最大化是什么意思？比如我们一共就100个upv。现在进来了一批新物料，我们需要给这些物料曝光。因此我们需要将物料推送给特定的用户。</p>
+<p>最简单的解法，直接将新品物料随机分发给用户。这样的直接影响是，由于这样的随机分发，和用户兴趣无关，也同用户当前浏览的资讯内容无关，导致，用户体验差，虽然给这些物料了曝光，但是伤害了用户体验，也造成了流量的浪费。</p>
+<p>更好的解法是什么？<br>1）构造物料的静态画像，基于内容，即上文说到的基于物料meta信息<br>2）基于物料本身的信息评估物料的质量，比如小红书场景，图片是否高清、文本语言是否通顺，是评估笔记质量的重要标准。<br>3）召回时候不要完全随机召回，也需要by一定语意召回。什么意思呢？就是说，比如最简单的做法，当用户西蓝花发了一篇健身类的笔记，完全随机的召回，就是将这篇文章随机推荐给500个用户，给500个pv，但是很可能这500个人都没有健身的兴趣，所以对于这篇物料来说，show 500，click 0。这样的流量分发就是效率低下的，浪费了500个pv，一来没有给物料积累正确的反馈数据数据，二来带给了用户不好的体验。所以更好的做法是在召回时候，by一定语义召回。基于内容做一定语义召回。</p>
+<p>总结一下：在新物料曝光这个过程中，将物料分发给可能对该物料感兴趣的用户；对内容侧的画像丰富是按照其内容质量进行等级划分，决定给这个物料多少pv。（比如我在抖音的一些视频，自然流量，差不多是500；另一些like、comment多的，自然流量会有5w）</p>
+<p>上述讲的所有，最终评估的指标包括：</p>
+<ul>
+<li>by 用户维度的 ctr（click/show）、人均停留时长（内容消费深度）等</li>
+</ul>
+<p>更好解法的好处：</p>
+<ol>
+<li>带给用户更好的体验</li>
+<li>为物料积累准确的数据 </li>
+</ol>
+<p>思考，因为我经常用小红书、抖音，根据我自己也做推荐系统的经验，这两个平台是怎么做物料冷启动的？</p>
+<p>基础流量：基础流量的意思就是，给定一条新物料，一定次数的曝光（PV数），这个流量的pv数，抖音给的大概在500，小红书给的大概在100.<br>什么意思呢？如果一条抖音视频数据如下，show 500，like 20，comment 1-2，基本上这个数据表现，平台不会再给流量了，即抖音不会继续将这条视频分发给更多的人了。<br>所以，基本上show 500就是判断这个视频是否需要继续被分发的关键，那么如何精准地分发这给这500个pv就非常重要。</p>
+<p>如果在500pv数据的基础上，这个视频的表现非常好，like高、comment多，且comment中有很多艾特，说明这条视频质量高、传播性强，那么这个时候，平台会不断给这个视频流量。</p>
+<p>多说一点，我两个月前发过一条视频，抖音给了6w show，比较神奇的是，当时这条动态没有任何关键词描述，就随便配了几个与视频内容也不符合的字，说明抖音在构造物料画像时候，是可以基于视频内容做理解的啊。</p>
+<h1 id="二、系统设计"><a href="#二、系统设计" class="headerlink" title="二、系统设计"></a>二、系统设计</h1><p>如果是我，我要怎么设计？</p>
+<p>从物料的视角，先了解推荐系统的数据流。</p>
+<p>大家好，我是创作者西蓝花创作出来发布在小红书的笔记，系统给我的编号是A00001。</p>
+<p>系统将我推荐给了100个用户，这100个用户在推荐主站看到了我，但是没有人点击过我。接着，我就再也没有出现再过推荐首页了。</p>
+<p>大家好，我是创作者西蓝花创作出来的物料，系统给我的编号是A00002.<br>系统将我推荐给了100个用户，这100个用户在推荐主站看到了我，50个人点击了我，30个人收藏了我，20个人like了我。10个人comment了我。接着，我在推荐首页被推荐给了更多的人，我第一次被这么多人看到。很多人看到了我，然后关注了西蓝花，她可开心了。暗自下定决心，要创作更多的更好的内容发布在小红书平台。</p>
+<p>对于小红书这个推荐系统而言，从物料质量划分维度，A00001的质量低，A00002的质量高。A00002质量高的表现有哪些？如何量化A00002的质量高？</p>
+<ul>
+<li>点击率高，点击率 = 50 /100 = 50%</li>
+<li>收藏率高</li>
+<li>like率高</li>
+<li>comment高</li>
+</ul>
+<p>所有这些指标带给平台最直接的收益是：用户在平台的停留时长更长，因为用户在单篇物料上停留时间长。</p>
+<p>我们再来看一个推荐系统不太准的系统</p>
+<p>我是一个健身物料，但是系统将我推荐给了100个，不爱健身的人。他们对我也没有什么兴趣，因此我只获得了500个show。<br>我是一个制作很精美的化妆视频，系统将我推荐给了100个对化妆没有兴趣的人，他们对我也没有什么兴趣，因此我只获得了500个show。</p>
+<p>这样的结果是什么，西蓝花作为创作者的创作兴致直接被打压 = = </p>
+<p>话说回来，从我一开始玩短视频，本来是快手和抖音一起玩，发生1件事，让我直接放弃掉了快手。</p>
+<p>2021.5.15在快手和抖音分别发了同一条内容，抖音给了6w pv，快手给了500pv。抖音涨粉了1000，但是快手涨粉0。这件事直接让作为创作者的我不再使用快手的直接原因。</p>
+<p>说回来那条动态，都是一条视频，配图都是“随便拍一下”，但是抖音似乎直接将这条动态推送给了感兴趣的人，快手就弱一点，没有做好冷启动。所以，冷启动阶段的精准匹配实在是太重要了。（个人陋见，也有可能我发的内容，快手不喜欢，而不是快手的精准化匹配不好。</p>
+<p>不过，新物料的精准分发确实是非常重要。</p>
+<p>那么系统要如何更好地支持物料冷启动？</p>
+<p>目标是什么？指标是什么？（If you can not measure it, you can’t improve it)</p>
+<ul>
+<li>被分发出去新物料的用户的点击率、人均浏览时长。</li>
+<li>点击率（ctr），衡量的是，比如我分发了100个item，其中有多少个被点击了，但是考虑到标题党可能存在，所以不能只看ctr</li>
+<li>还需要看人均物料浏览时长。</li>
+<li>3、7日留存。</li>
+</ul>
+<p>要让ctr好、人均物料浏览时，就需要做到推荐得准。在文本领域，和朋友沟通，了解到知乎的新品召回也是by语意topic。</p>
+<p>最后总结一下：</p>
+<ol>
+<li>通过提升新item分发精准度提高新物品分发的效率。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1149,105 +1281,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/04/23/2021_Q2_Week3_工作总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/23/2021_Q2_Week3_工作总结/" class="post-title-link" itemprop="url">2021_Q2_Week3_工作总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-23T00:00:00+08:00">2021-04-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-05 15:30:27" itemprop="dateModified" datetime="2021-05-05T15:30:27+08:00">2021-05-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本周关键词：客户管理、负载均衡、策略产品</p>
-<p>recap一下去年和百度一位MT的沟通，沟通内容是他给了我一些我博客内容的反馈，总结一下就是：方法论偏多，干货偏少。不是说，方法论不好，而是在我当前阶段，应该了解更多的干货，比如ocr的算法原理。（因为去年的时候，我还在搞ocr。这是上述recap的大背景。今年调整了赛道，开始重新搞推荐，上述建议同样适用。所以，在我今年的每周总结，我都会有意识的增加干货部分。并且可能会采取将工作总结分为方法论和干货两个模块的形式。</p>
-<p>同样，在方法论和干货篇中，也会有单独的WHY模块。做一件事是执行力，这是0，知道并且能判断为什么做一件事，是0前面的1。（今年的思维比去年成熟太多了，惊喜！）</p>
-<h1 id="一-方法论篇"><a href="#一-方法论篇" class="headerlink" title="一 方法论篇"></a>一 方法论篇</h1><h2 id="1-1-客户管理"><a href="#1-1-客户管理" class="headerlink" title="1.1 客户管理"></a>1.1 客户管理</h2><p>思前想后，觉得客户管理的方法论，不适合公开发布，就省略了吧。</p>
-<h1 id="二-干货篇"><a href="#二-干货篇" class="headerlink" title="二 干货篇"></a>二 干货篇</h1><h2 id="2-1-负载均衡"><a href="#2-1-负载均衡" class="headerlink" title="2.1 负载均衡"></a>2.1 负载均衡</h2><p>为啥要了解负载均衡？一寸光阴一寸金。负载均衡和我有啥关系？在工作中，我经常听到这个名词，感觉不懂，就不配继续拿工资了。</p>
-<h3 id="2-1-1-负载均衡是什么"><a href="#2-1-1-负载均衡是什么" class="headerlink" title="2.1.1 负载均衡是什么"></a>2.1.1 负载均衡是什么</h3><p>负载均衡是一种电子计算机技术，用来在多个计算机（计算机集群）、网络连接、CPU、磁盘驱动或其他资源中分配负载，以达到优化资源使用、最大华吞吐率、最小化响应时间、同时避免过载的目的。</p>
-<blockquote>
-<p>负载均衡是高可用网络基础架构的关键组件，通常用于将工作负载分布到多个服务器来提高网站、应用、数据库或者其他服务的性能和可靠性。</p>
-</blockquote>
-<p>太抽象了，能不能具体一点，我不喜欢抽象的描述。</p>
-<blockquote>
-<p>在业务初期，我们一般会先使用单台服务器对外提供服务。随着业务流量越来越大，单台服务器无论如何优化，无论采用多好的硬件，总会有性能天花板，当单服务器的性能无法满足业务需求时，就需要把多台服务器组成集群系统提高整体的处理性能。</p>
-<p>基于上述需求，我们要使用统一的流量入口来对外提供服务，本质上就是需要一个流量调度器，通过均衡的算法，将用户大量的请求流量均衡地分发到集群中不同的服务器上。这其实就是我们今天要说的<strong>负载均衡</strong>。</p>
-<p>使用负载均衡可以给我们带来的几个好处：</p>
-<ul>
-<li>提高了系统的整体性能；</li>
-<li>提高了系统的扩展性；</li>
-<li>提高了系统的可用性；</li>
-</ul>
-</blockquote>
-<h3 id="2-1-2-常见的负载均衡类型"><a href="#2-1-2-常见的负载均衡类型" class="headerlink" title="2.1.2 常见的负载均衡类型"></a>2.1.2 常见的负载均衡类型</h3><h4 id="1）DNS实现负载均衡"><a href="#1）DNS实现负载均衡" class="headerlink" title="1）DNS实现负载均衡"></a>1）DNS实现负载均衡</h4><p>一个域名通过 DNS 解析到多个 IP，每个 IP 对应不同的服务器实例，这样就完成了流量的调度，虽然没有使用常规的负载均衡器，但实现了简单的负载均衡功能。</p>
-<p><img src="https://kerryli1007.github.io/images/2021_Q2_Week3_工作总结/1.png" alt></p>
-<h4 id="2）硬件负载均衡"><a href="#2）硬件负载均衡" class="headerlink" title="2）硬件负载均衡"></a>2）硬件负载均衡</h4><p>这种方式，我工作中基本上没有遇到过，暂时不考虑。</p>
-<h4 id="3）软件负载均衡"><a href="#3）软件负载均衡" class="headerlink" title="3）软件负载均衡"></a>3）软件负载均衡</h4><p>软件负载均衡，可以在普通的服务器上运行负载均衡软件，实现负载均衡功能。目前常见的有Ngix、HAproxy、LVS。</p>
-<p>工作中最经常接触的是Ngix。</p>
-<p>PS：本周总结有限，因为实际写这篇总结的时候已经是5月5日了～写每周总结，不能拖，一拖就出问题！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1317,7 +1350,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">104</span>
+          <span class="site-state-item-count">105</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -27,16 +27,16 @@
 <meta property="og:site_name" content="一颗西蓝花🥦">
 <meta property="og:description" content="界定一下本文讨论的topic：  什么是相关推荐 市面上产品的相关推荐 为什么需要相关推荐 从产品设计视角看相关 如何衡量相关推荐效果好坏 相关推荐的数据流 从物料视角看相关推荐   过去埋藏在地下，挖出来时是煤炭，是你今天的炉火。  一、什么是相关推荐如果两个item的相似度高，可将其理解为相关推荐。具体一点：  资讯场景：两篇讲离婚类的合同。 电商场景：intoyou的唇泥和维姿的唇泥。上述场">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/1.jpg">
-<meta property="og:image" content="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/2.jpg">
-<meta property="og:image" content="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/3.jpg">
-<meta property="og:image" content="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/4.jpg">
-<meta property="og:image" content="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/5.jpg">
-<meta property="og:updated_time" content="2021-07-11T04:56:50.001Z">
+<meta property="og:image" content="https://kerryli1007.github.io/images/聊一聊相关推荐/1.jpg">
+<meta property="og:image" content="https://kerryli1007.github.io/images/聊一聊相关推荐/2.jpg">
+<meta property="og:image" content="https://kerryli1007.github.io/images/聊一聊相关推荐/3.jpg">
+<meta property="og:image" content="https://kerryli1007.github.io/images/聊一聊相关推荐/4.jpg">
+<meta property="og:image" content="https://kerryli1007.github.io/images/聊一聊相关推荐/5.jpg">
+<meta property="og:updated_time" content="2021-07-26T15:27:00.136Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊一聊相关推荐">
 <meta name="twitter:description" content="界定一下本文讨论的topic：  什么是相关推荐 市面上产品的相关推荐 为什么需要相关推荐 从产品设计视角看相关 如何衡量相关推荐效果好坏 相关推荐的数据流 从物料视角看相关推荐   过去埋藏在地下，挖出来时是煤炭，是你今天的炉火。  一、什么是相关推荐如果两个item的相似度高，可将其理解为相关推荐。具体一点：  资讯场景：两篇讲离婚类的合同。 电商场景：intoyou的唇泥和维姿的唇泥。上述场">
-<meta name="twitter:image" content="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/1.jpg">
+<meta name="twitter:image" content="https://kerryli1007.github.io/images/聊一聊相关推荐/1.jpg">
 
 <link rel="canonical" href="http://kerryli1007.github.io/2021/07/11/20210711-聊一聊相关推荐/">
 
@@ -178,10 +178,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-07-11 00:00:00 / 修改时间：12:56:50" itemprop="dateCreated datePublished" datetime="2021-07-11T00:00:00+08:00">2021-07-11</time>
+              <time title="创建时间：2021-07-11 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-11T00:00:00+08:00">2021-07-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-26 23:27:00" itemprop="dateModified" datetime="2021-07-26T23:27:00+08:00">2021-07-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -223,7 +229,7 @@
 </ul>
 <p>但是如果上述item本身的特征少，那我们可使用cf的技术实现手段。</p>
 <p>备注：了解content based算法以及cf算法的适用场景，以及优缺点是必备的。</p>
-<h1 id="二、市面上产品的相关推荐"><a href="#二、市面上产品的相关推荐" class="headerlink" title="二、市面上产品的相关推荐"></a>二、市面上产品的相关推荐</h1><h2 id="2-1-资讯"><a href="#2-1-资讯" class="headerlink" title="2.1 资讯"></a>2.1 资讯</h2><p>调研今日头条和腾讯新闻的相关推荐模块<br><img src="/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/1.jpg" alt="img"></p>
+<h1 id="二、市面上产品的相关推荐"><a href="#二、市面上产品的相关推荐" class="headerlink" title="二、市面上产品的相关推荐"></a>二、市面上产品的相关推荐</h1><h2 id="2-1-资讯"><a href="#2-1-资讯" class="headerlink" title="2.1 资讯"></a>2.1 资讯</h2><p>调研今日头条和腾讯新闻的相关推荐模块<br><img src="https://kerryli1007.github.io/images/聊一聊相关推荐/1.jpg" alt></p>
 <ul>
 <li><p>相似之处</p>
 <ul>
@@ -239,7 +245,7 @@
 </ul>
 <p>总结一下：相关推荐出来的内容不一定必须是有相似度的，主要看产品如何定义，相关推荐场景也可以被叫做持续消费场景。</p>
 <p>（善于总结，让读者或者听众快速get到自己表达的点，对别人友好，对自己也友好）</p>
-<h2 id="2-2-视频（B站）"><a href="#2-2-视频（B站）" class="headerlink" title="2.2 视频（B站）"></a>2.2 视频（B站）</h2><p>视频内容详情页的推荐栏位<br><img src="/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/2.jpg" alt="img"><br>总结：视频推荐场景有做很明显的基于视频内容的推荐。</p>
+<h2 id="2-2-视频（B站）"><a href="#2-2-视频（B站）" class="headerlink" title="2.2 视频（B站）"></a>2.2 视频（B站）</h2><p>视频内容详情页的推荐栏位<br><img src="https://kerryli1007.github.io/images/聊一聊相关推荐/2.jpg" alt><br>总结：视频推荐场景有做很明显的基于视频内容的推荐。</p>
 <h1 id="三、为什么需要相关推荐"><a href="#三、为什么需要相关推荐" class="headerlink" title="三、为什么需要相关推荐"></a>三、为什么需要相关推荐</h1><p>我们思考一下，如果没有相关推荐，用户的使用操作链路。</p>
 <p>资讯场景<br>用户小西进入主站，通过推荐或者搜索发现自己喜欢的文章，点击进入浏览。浏览完毕，退出。继续通过主站推荐或者搜索的方式发现自己喜欢的文章。</p>
 <p>这样操作的影响：</p>
@@ -251,19 +257,19 @@
 <p>总结，相关推荐场景的用途是延长用户在平台的停留时长。所以这个场景也可以叫做持续消费场景。</p>
 <h1 id="四、从产品设计视角看相关"><a href="#四、从产品设计视角看相关" class="headerlink" title="四、从产品设计视角看相关"></a>四、从产品设计视角看相关</h1><p>所有产品设计都是围绕业务目标开展，我们的业务目标是延长用户在平台的停留时长。所以我们希望在用户消费完一个物料时候，立马给对方推她可能感兴趣的第二个、第三个item。所以有了如下的设计版式：</p>
 <ul>
-<li><p>底部推荐栏位<br><img src="/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/3.jpg" alt="img"></p>
+<li><p>底部推荐栏位<br><img src="https://kerryli1007.github.io/images/聊一聊相关推荐/3.jpg" alt></p>
 </li>
 <li><p>侧边推荐栏位</p>
 </li>
 </ul>
-<p>!<img src="/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/4.jpg" alt="img"></p>
+<p><img src="https://kerryli1007.github.io/images/聊一聊相关推荐/4.jpg" alt></p>
 <p>我是抖音、小红书的深度用户，最近刷视频有一个很火的概念，叫做沉浸式护肤/化妆，同理在推荐场景中，借用这个概念，这样的推荐产品形态设计，带给用户的体验式沉浸式阅读，不要被打扰。</p>
 <h1 id="五、如何衡量相关推荐效果的好坏"><a href="#五、如何衡量相关推荐效果的好坏" class="headerlink" title="五、如何衡量相关推荐效果的好坏"></a>五、如何衡量相关推荐效果的好坏</h1><p>当相关推荐的效果很差时，比如用户明明在浏览健身类文章，但是给用户推荐了离婚类文章，用户还是单身狗呢。这样的场景，可以直观通过肉眼分析bad case来判断推荐效果的好坏。当然，也要关注线上指标，包括ctr、uctr（有多少占比的用户有点击行为），人均文章停留时长。</p>
 <p>注意哦，在做优化的时候，千万不能只关注ctr，因为ctr高和推荐结果质量没有不是正相关，很极端的场景，都推标题党，点击率就上去了，但是用户体验其实很差。分析一下，如果用户点击了标题党文章，下一个直接动作是什么，肯定是回退出当前文章，所以用户在当前文章的浏览时间是很短的，因此可以有辅助指标，用户浏览单篇文章的时长，浏览时长也是衡量浏览深度的一个指标。</p>
 <p>当效果已经很好，要做的是fine tune的时候，肉眼不太能再辨别效果是否更好，就需要进行线上分流实验，关注线上指标，包括ctr、uctr、人均文章停留时长。</p>
 <h1 id="六、推荐策略的数据流"><a href="#六、推荐策略的数据流" class="headerlink" title="六、推荐策略的数据流"></a>六、推荐策略的数据流</h1><p>召回、排序、业务规则。</p>
 <p>排序一般怎么做？<br>模型是一个比较抽象的词，是指对一种映射的抽象描述，即 f（context，user，item）—&gt; score。衡量一个模型的好坏，就是假设出来的这个映射关系和真实内在关系的距离。</p>
-<p>但是上述方式的表达能力弱，参考下述排序模型发展史<br><img src="/2021/07/11/20210711-聊一聊相关推荐/Users/qiaoyili/Documents/Blog/source/images/聊一聊相关推荐/5.jpg" alt="img"><br>总结一下：特征工程以及特征工程的自动化，一直是推动实用化推荐系统演技的主要方向。</p>
+<p>但是上述方式的表达能力弱，参考下述排序模型发展史<br><img src="https://kerryli1007.github.io/images/聊一聊相关推荐/5.jpg" alt><br>总结一下：特征工程以及特征工程的自动化，一直是推动实用化推荐系统演技的主要方向。</p>
 <p>这个topic，新开文章单独写。</p>
 <h1 id="七、从物料视角看相关推荐"><a href="#七、从物料视角看相关推荐" class="headerlink" title="七、从物料视角看相关推荐"></a>七、从物料视角看相关推荐</h1><p>这个topic，参考我的另一篇文章，聊一聊新品物料相关。</p>
 <p>参考链接：</p>

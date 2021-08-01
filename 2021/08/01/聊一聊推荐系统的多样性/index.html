@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kerryli1007.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、从业务说起讲一个bad case，前段时间客户投诉了我们的服务，因为视频流场景中，我们的推荐服务连续推荐同一个创作者的视频。 我们的解决方案：portprocess处理，规则是同一发布者的内容不超过1条。 思考用业务语言来描述这个规则应该是怎么样的？ 对于用一个用户，userid，给他推荐的内容，在N刷之内，不能出现同一个创作者的内容多次（≥2）。 这里面重点有： 1、同一个userid 2、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊一聊推荐系统的多样性">
+<meta property="og:url" content="http://kerryli1007.github.io/2021/08/01/聊一聊推荐系统的多样性/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="一、从业务说起讲一个bad case，前段时间客户投诉了我们的服务，因为视频流场景中，我们的推荐服务连续推荐同一个创作者的视频。 我们的解决方案：portprocess处理，规则是同一发布者的内容不超过1条。 思考用业务语言来描述这个规则应该是怎么样的？ 对于用一个用户，userid，给他推荐的内容，在N刷之内，不能出现同一个创作者的内容多次（≥2）。 这里面重点有： 1、同一个userid 2、">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://kerryli1007.github.io/images/聊一聊推荐系统的多样性/1.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/聊一聊推荐系统的多样性/2.png">
+<meta property="og:updated_time" content="2021-08-01T04:40:48.025Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="聊一聊推荐系统的多样性">
+<meta name="twitter:description" content="一、从业务说起讲一个bad case，前段时间客户投诉了我们的服务，因为视频流场景中，我们的推荐服务连续推荐同一个创作者的视频。 我们的解决方案：portprocess处理，规则是同一发布者的内容不超过1条。 思考用业务语言来描述这个规则应该是怎么样的？ 对于用一个用户，userid，给他推荐的内容，在N刷之内，不能出现同一个创作者的内容多次（≥2）。 这里面重点有： 1、同一个userid 2、">
+<meta name="twitter:image" content="https://kerryli1007.github.io/images/聊一聊推荐系统的多样性/1.png">
+
+<link rel="canonical" href="http://kerryli1007.github.io/2021/08/01/聊一聊推荐系统的多样性/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>聊一聊推荐系统的多样性 | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一颗西蓝花🥦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/08/01/聊一聊推荐系统的多样性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          聊一聊推荐系统的多样性
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-01 00:00:00 / 修改时间：12:40:48" itemprop="dateCreated datePublished" datetime="2021-08-01T00:00:00+08:00">2021-08-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="一、从业务说起"><a href="#一、从业务说起" class="headerlink" title="一、从业务说起"></a>一、从业务说起</h1><p>讲一个bad case，前段时间客户投诉了我们的服务，因为视频流场景中，我们的推荐服务连续推荐同一个创作者的视频。</p>
+<p>我们的解决方案：portprocess处理，规则是同一发布者的内容不超过1条。</p>
+<p>思考用业务语言来描述这个规则应该是怎么样的？</p>
+<p>对于用一个用户，userid，给他推荐的内容，在N刷之内，不能出现同一个创作者的内容多次（≥2）。</p>
+<p>这里面重点有：</p>
+<p>1、同一个userid</p>
+<p>2、N刷之内</p>
+<p>3、不能将同一个创作者的内容多次推荐</p>
+<p>放在整个推荐链路中，如何实现？首先思考一下，整个推荐链路一共有几步：recall、rank、rerank、业务规则。</p>
+<p>总结：这类实现一般放在业务规则层实现。</p>
+<p>多样性一个维度是创作者的多样性，还有一个维度是内容的多样性。看一个bad case</p>
+<p><img src="https://kerryli1007.github.io/images/聊一聊推荐系统的多样性/1.png" alt></p>
+<p>背景是：我前段时间研究卧室布置，然后第二天打开我的小红书，好家伙，第一屏，4个都给我推卧室布置。</p>
+<p>这是我看到的一个bad case。想一下，为什么这是一个bad case，这为什么不是一个好的case。用户的审美是会疲劳的，如果一直都是同样的内容，用户会审美疲劳。</p>
+<p>因此如何在生产生保障推荐结果的多样性呢？</p>
+<p>再总结一下推荐结果同质带来的影响。</p>
+<ul>
+<li>从用户体验来看，容易造成审美疲劳和新鲜感下降，进而造成消费下降和流失</li>
+<li>从数据收集来看，用户的兴趣被局限，进而无法获得用户对于更多内容的样本，得不到用户级别更广泛兴趣的训练数据</li>
+<li>从模型拟合来看，整个大盘的数据分布bias会更加严重，导致模型泛化性变差</li>
+<li>从作者角度来看，多样性不足+bias严重导致A品类的作者天生就比B品类更容易分发消费，打击部分作者积极性</li>
+<li>从内容生态来看，内容同质化+作者流失最终导致内容品类匮乏</li>
+</ul>
+<h1 id="二、多样性是什么？"><a href="#二、多样性是什么？" class="headerlink" title="二、多样性是什么？"></a>二、多样性是什么？</h1><p>多样性到底是什么呢？</p>
+<p>比如对于我来说，我既喜欢漫威的电影，又喜欢甄嬛传，还喜欢惊悚片。那么为了满足我广泛的兴趣，推荐系统推荐给我的列表，是需要覆盖用户的不同兴趣领域，即推荐结果要有多样性。</p>
+<p>多样性是手段，不是目标！</p>
+<p>多样性是手段，不是目标！</p>
+<p>多样性是手段，不是目标！</p>
+<p>重要的事说三遍。为什么多样性不是目标呢？</p>
+<ul>
+<li><ol>
+<li>多样性很难量化。3个体育新闻+7个小姐姐和7个小姐姐+3个体育新闻，哪个更加多样呢？</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>多样性不是越多越好，一次推荐 list 10 篇文章，各是不同的话题的，显然比较多样，但是你确定是更好的推荐结果吗？你肯定会说，多样性要“合适”就好，问题就在这里，合适的点在哪里呢？那一定是通过其他真正的结果指标来告诉你的。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>多样性对于每个人，每个场景来说，是不一样的，好坏的点不同。比如说我最近刚有了宝宝，那么我恨不得淘宝给我推荐的商品全都是母婴用品，多样性并不是一个特别重要的事情。</li>
+</ol>
+</li>
+</ul>
+<p>那么哪些指标是合理的呢？</p>
+<p>用户的点击率、阅读时长、留存、分享、互动数据。这是推荐系统的 ground truth，如果可以建立这些 ground truth 和多样性之间的关系，那显然可以去做一些工作</p>
+<p>除了上述指标之外，关于多样性，还有哪些可以参考的标准呢？</p>
+<p>以产品信息流为例：</p>
+<p>个人侧强调的是用户体感，包括但不限于：</p>
+<ul>
+<li>单个用户一刷内多样性（比如小红书的例子，就是一刷内，均是同质内容）</li>
+<li>单个用户跨刷多样性</li>
+<li>两个用户彼此的差异性</li>
+<li>单个用户N天内消费的密集型/覆盖度</li>
+<li>用户兴趣的迁移程度</li>
+</ul>
+<p>系统强调生态，包括但不限于</p>
+<ul>
+<li>人均消费的品类数（用户消费了的物料有多少类别）</li>
+<li>品类渗透情况</li>
+<li>小众作者的发文情况</li>
+</ul>
+<h1 id="三、如何保证推荐结果的多样性"><a href="#三、如何保证推荐结果的多样性" class="headerlink" title="三、如何保证推荐结果的多样性"></a>三、如何保证推荐结果的多样性</h1><p>那么问题来了，工业界我们要如何保证多样性？</p>
+<h3 id="重排。"><a href="#重排。" class="headerlink" title="重排。"></a>重排。</h3><p>资讯推荐场景，所有物料都是存储在es中。召回阶段从es中，多路召回大概3000篇文章，然后在rank阶段对这些文章进行点击率打分。但是可能会出现一个问题，单纯靠ctr打分，可能会导致得分高，排在前面的，都是娱乐类的新闻。导致用户没有办法看到时政类新闻。那么解法是什么呢？</p>
+<p>将这些文章按照其category类别进行分类，然后通过合适的配比，返回推荐业务需要的内容，合计20篇，比如美食类 <em> 2，彩妆类 </em> 1，健身类 * 2，等。广告和运营位可以插在20篇的任意位置。</p>
+<p>重排是在recall、rank之后进行的操作，如果我们想优化整个链路，如何实现呢？</p>
+<h3 id="召回层"><a href="#召回层" class="headerlink" title="召回层"></a>召回层</h3><ul>
+<li>多路召回。不同的召回策略在多样性等指标上差异较大。</li>
+<li>热度降权。常见的基于协同过滤的召回算法(ItemCF、DSSM等)容易导致”热门”推荐”热门”，使得长尾的”利基”Item被淹没。</li>
+<li>用户兴趣多样性探索</li>
+</ul>
+<h3 id="Rank层"><a href="#Rank层" class="headerlink" title="Rank层"></a>Rank层</h3><ul>
+<li>point-wise过渡到list-wise</li>
+<li>多目标融合。如果只考虑ctr那么天然适合标题封面党，只考虑finish会利于短且内容密集的视频，staytime利于中长影视，以上还只是用户层面的；如果在融合公式加上作者侧、内容测、长期的指标，也会利于生态建设</li>
+</ul>
+<p>总结一下</p>
+<p><img src="https://kerryli1007.github.io/images/聊一聊推荐系统的多样性/2.png" alt></p>
+<p>参考：</p>
+<p>1、推荐系统应该如何保障推荐的多样性？</p>
+<p>2、推荐系统-多样性</p>
+<p>3、打散算法的三种解决方案及其选型场景</p>
+<p>4、推荐中的多样性与生态建设</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/27/20210727-只需3步快速梳理新的推荐业务场景/" rel="prev" title="只需3步，快速梳理新的推荐业务场景">
+      <i class="fa fa-chevron-left"></i> 只需3步，快速梳理新的推荐业务场景
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、从业务说起"><span class="nav-number">1.</span> <span class="nav-text">一、从业务说起</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、多样性是什么？"><span class="nav-number">2.</span> <span class="nav-text">二、多样性是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、如何保证推荐结果的多样性"><span class="nav-number">3.</span> <span class="nav-text">三、如何保证推荐结果的多样性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重排。"><span class="nav-number">3.0.1.</span> <span class="nav-text">重排。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#召回层"><span class="nav-number">3.0.2.</span> <span class="nav-text">召回层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rank层"><span class="nav-number">3.0.3.</span> <span class="nav-text">Rank层</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+  <div class="site-description" itemprop="description">AI/思考/学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">107</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

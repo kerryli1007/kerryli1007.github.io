@@ -148,6 +148,154 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/08/01/聊一聊推荐系统的多样性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/01/聊一聊推荐系统的多样性/" class="post-title-link" itemprop="url">聊一聊推荐系统的多样性</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-01 00:00:00 / 修改时间：12:40:48" itemprop="dateCreated datePublished" datetime="2021-08-01T00:00:00+08:00">2021-08-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一、从业务说起"><a href="#一、从业务说起" class="headerlink" title="一、从业务说起"></a>一、从业务说起</h1><p>讲一个bad case，前段时间客户投诉了我们的服务，因为视频流场景中，我们的推荐服务连续推荐同一个创作者的视频。</p>
+<p>我们的解决方案：portprocess处理，规则是同一发布者的内容不超过1条。</p>
+<p>思考用业务语言来描述这个规则应该是怎么样的？</p>
+<p>对于用一个用户，userid，给他推荐的内容，在N刷之内，不能出现同一个创作者的内容多次（≥2）。</p>
+<p>这里面重点有：</p>
+<p>1、同一个userid</p>
+<p>2、N刷之内</p>
+<p>3、不能将同一个创作者的内容多次推荐</p>
+<p>放在整个推荐链路中，如何实现？首先思考一下，整个推荐链路一共有几步：recall、rank、rerank、业务规则。</p>
+<p>总结：这类实现一般放在业务规则层实现。</p>
+<p>多样性一个维度是创作者的多样性，还有一个维度是内容的多样性。看一个bad case</p>
+<p><img src="https://kerryli1007.github.io/images/聊一聊推荐系统的多样性/1.png" alt></p>
+<p>背景是：我前段时间研究卧室布置，然后第二天打开我的小红书，好家伙，第一屏，4个都给我推卧室布置。</p>
+<p>这是我看到的一个bad case。想一下，为什么这是一个bad case，这为什么不是一个好的case。用户的审美是会疲劳的，如果一直都是同样的内容，用户会审美疲劳。</p>
+<p>因此如何在生产生保障推荐结果的多样性呢？</p>
+<p>再总结一下推荐结果同质带来的影响。</p>
+<ul>
+<li>从用户体验来看，容易造成审美疲劳和新鲜感下降，进而造成消费下降和流失</li>
+<li>从数据收集来看，用户的兴趣被局限，进而无法获得用户对于更多内容的样本，得不到用户级别更广泛兴趣的训练数据</li>
+<li>从模型拟合来看，整个大盘的数据分布bias会更加严重，导致模型泛化性变差</li>
+<li>从作者角度来看，多样性不足+bias严重导致A品类的作者天生就比B品类更容易分发消费，打击部分作者积极性</li>
+<li>从内容生态来看，内容同质化+作者流失最终导致内容品类匮乏</li>
+</ul>
+<h1 id="二、多样性是什么？"><a href="#二、多样性是什么？" class="headerlink" title="二、多样性是什么？"></a>二、多样性是什么？</h1><p>多样性到底是什么呢？</p>
+<p>比如对于我来说，我既喜欢漫威的电影，又喜欢甄嬛传，还喜欢惊悚片。那么为了满足我广泛的兴趣，推荐系统推荐给我的列表，是需要覆盖用户的不同兴趣领域，即推荐结果要有多样性。</p>
+<p>多样性是手段，不是目标！</p>
+<p>多样性是手段，不是目标！</p>
+<p>多样性是手段，不是目标！</p>
+<p>重要的事说三遍。为什么多样性不是目标呢？</p>
+<ul>
+<li><ol>
+<li>多样性很难量化。3个体育新闻+7个小姐姐和7个小姐姐+3个体育新闻，哪个更加多样呢？</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>多样性不是越多越好，一次推荐 list 10 篇文章，各是不同的话题的，显然比较多样，但是你确定是更好的推荐结果吗？你肯定会说，多样性要“合适”就好，问题就在这里，合适的点在哪里呢？那一定是通过其他真正的结果指标来告诉你的。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>多样性对于每个人，每个场景来说，是不一样的，好坏的点不同。比如说我最近刚有了宝宝，那么我恨不得淘宝给我推荐的商品全都是母婴用品，多样性并不是一个特别重要的事情。</li>
+</ol>
+</li>
+</ul>
+<p>那么哪些指标是合理的呢？</p>
+<p>用户的点击率、阅读时长、留存、分享、互动数据。这是推荐系统的 ground truth，如果可以建立这些 ground truth 和多样性之间的关系，那显然可以去做一些工作</p>
+<p>除了上述指标之外，关于多样性，还有哪些可以参考的标准呢？</p>
+<p>以产品信息流为例：</p>
+<p>个人侧强调的是用户体感，包括但不限于：</p>
+<ul>
+<li>单个用户一刷内多样性（比如小红书的例子，就是一刷内，均是同质内容）</li>
+<li>单个用户跨刷多样性</li>
+<li>两个用户彼此的差异性</li>
+<li>单个用户N天内消费的密集型/覆盖度</li>
+<li>用户兴趣的迁移程度</li>
+</ul>
+<p>系统强调生态，包括但不限于</p>
+<ul>
+<li>人均消费的品类数（用户消费了的物料有多少类别）</li>
+<li>品类渗透情况</li>
+<li>小众作者的发文情况</li>
+</ul>
+<h1 id="三、如何保证推荐结果的多样性"><a href="#三、如何保证推荐结果的多样性" class="headerlink" title="三、如何保证推荐结果的多样性"></a>三、如何保证推荐结果的多样性</h1><p>那么问题来了，工业界我们要如何保证多样性？</p>
+<h3 id="重排。"><a href="#重排。" class="headerlink" title="重排。"></a>重排。</h3><p>资讯推荐场景，所有物料都是存储在es中。召回阶段从es中，多路召回大概3000篇文章，然后在rank阶段对这些文章进行点击率打分。但是可能会出现一个问题，单纯靠ctr打分，可能会导致得分高，排在前面的，都是娱乐类的新闻。导致用户没有办法看到时政类新闻。那么解法是什么呢？</p>
+<p>将这些文章按照其category类别进行分类，然后通过合适的配比，返回推荐业务需要的内容，合计20篇，比如美食类 <em> 2，彩妆类 </em> 1，健身类 * 2，等。广告和运营位可以插在20篇的任意位置。</p>
+<p>重排是在recall、rank之后进行的操作，如果我们想优化整个链路，如何实现呢？</p>
+<h3 id="召回层"><a href="#召回层" class="headerlink" title="召回层"></a>召回层</h3><ul>
+<li>多路召回。不同的召回策略在多样性等指标上差异较大。</li>
+<li>热度降权。常见的基于协同过滤的召回算法(ItemCF、DSSM等)容易导致”热门”推荐”热门”，使得长尾的”利基”Item被淹没。</li>
+<li>用户兴趣多样性探索</li>
+</ul>
+<h3 id="Rank层"><a href="#Rank层" class="headerlink" title="Rank层"></a>Rank层</h3><ul>
+<li>point-wise过渡到list-wise</li>
+<li>多目标融合。如果只考虑ctr那么天然适合标题封面党，只考虑finish会利于短且内容密集的视频，staytime利于中长影视，以上还只是用户层面的；如果在融合公式加上作者侧、内容测、长期的指标，也会利于生态建设</li>
+</ul>
+<p>总结一下</p>
+<p><img src="https://kerryli1007.github.io/images/聊一聊推荐系统的多样性/2.png" alt></p>
+<p>参考：</p>
+<p>1、推荐系统应该如何保障推荐的多样性？</p>
+<p>2、推荐系统-多样性</p>
+<p>3、打散算法的三种解决方案及其选型场景</p>
+<p>4、推荐中的多样性与生态建设</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/07/27/20210727-只需3步快速梳理新的推荐业务场景/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1093,94 +1241,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/05/09/工作就是去解决问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-      <meta itemprop="description" content="AI/思考/学习">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一颗西蓝花🥦">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/09/工作就是去解决问题/" class="post-title-link" itemprop="url">价值就是去解决问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-09 00:00:00 / 修改时间：15:49:12" itemprop="dateCreated datePublished" datetime="2021-05-09T00:00:00+08:00">2021-05-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一、为什么想到写这个话题"><a href="#一、为什么想到写这个话题" class="headerlink" title="一、为什么想到写这个话题"></a>一、为什么想到写这个话题</h1><p>最近看玉伯的文章《价值就是去解决问题》，摘录了其中和我价值观高度一致的两段话。</p>
-<blockquote>
-<p><strong>一个岗位的价值，就看能帮助公司解决多少问题</strong>。蚂蚁的产品体验，特别是商家侧的用户体验，很痛，设计师是否能推动各方去解决这些痛点？很难，但本就没有容易的事。一年推动不起来，就推动两年，两年不行就再花五年去推动，不断找人去聊，去一点一点解决，<strong>帮助公司解决的问题越大，价值就越大</strong>。价值做出来，加薪晋升等等就是自然而然的事。不用去抱怨什么，去比较什么，多想想怎么解决更多问题，去为公司为客户产生更大价值。</p>
-</blockquote>
-<blockquote>
-<p><strong>解决问题能获得巨大的满足感和成就感</strong>，比其他事情有意思多了。这种满足感，会让人着迷，会活着活着发现解决问题就是人生的意义所在。获得满足感不一定能获得幸福感，幸福感是一个更高级的词汇，<strong>成就感是由己及他的满足，幸福感是由他及己的福报</strong>。去帮助到的人越多，流动的情感就会越多。</p>
-</blockquote>
-<p>因为觉得这两段话非常符合我的价值观，所以也想展开并结合我自己的工作聊一聊。</p>
-<h1 id="二、“挺好的呀，你就是来帮他解决问题的，这就是你的价值。”"><a href="#二、“挺好的呀，你就是来帮他解决问题的，这就是你的价值。”" class="headerlink" title="二、“挺好的呀，你就是来帮他解决问题的，这就是你的价值。”"></a>二、“挺好的呀，你就是来帮他解决问题的，这就是你的价值。”</h1><p>我于4月1日加入了公司另一个部门。</p>
-<p>4月中旬，我在电梯口遇到了公司交付负责人。她笑着和我说：“我看你在新部门表现挺好的，在某某项目上，很不错”。我笑着摇摇头说：“不算好，这个项目还是有很多问题。”她接着说：“你的价值就是来帮某某（部门老大）解决问题的呀。等你能把所有项目上的问题都解决了，不事事都去麻烦某某（部门老大），你就成长了，你也能创造更大的价值。“</p>
-<p>是。我的价值完全取决于我能解决多大的问题。</p>
-<p>恍惚间，觉得这一两年的成长太大了。以前总是害怕遇到问题，问题还没有发生，我自己都把自己吓死了。现在面对问题，已经完全没了恐惧。</p>
-<p>我有一名好友，推荐领域的算法工程师，前不久被B站以高薪挖走，需要离开北京去上海。在他临走前，一起吃了顿饭。</p>
-<p>饭桌上，我问他，你对什么负责？<br>他说，业务指标啊，比如人均浏览时长啥的。<br>我手，你觉得有什么样的能力，让你能对这些指标负责。（其实我本来想问一些干货<br>他的回答说，要是不能对这些负责，我要不直接和老板说我不干了。（哈哈哈</p>
-<p>言归正传。有问题，才有机会。能解决多大的问题，就能创造多大的价值。</p>
-<h1 id="三、如何才能解决问题"><a href="#三、如何才能解决问题" class="headerlink" title="三、如何才能解决问题"></a>三、如何才能解决问题</h1><p>这是一个很大的话题，我只能凭借自己的经验，尝试寻找其中的规律，做一些总结。</p>
-<h2 id="心态"><a href="#心态" class="headerlink" title="心态"></a>心态</h2><p>我觉得能做到解决问题的第一步，一定是心态上的调整。从害怕遇到问题，到遇到问题，沉稳淡定。</p>
-<p>周五晚上，坐在研发leader旁边（最近我都把工位搬去了研发身边，哈哈哈），他问我，我看你朋友圈发了最近都很开心，你为啥都那么开心？我想了想说，每天解决问题，也是快乐的来源呀。他说，那不错，你的底层操作系统很好。</p>
-<p>其实就是心态，每天工作中有很多问题，遇到问题的时候，我是将其视为，解决了这个问题，我职场技能又提升了，还是将其视为我不顺职场路的来源，这两种心态，有本质的区别。我觉得这是最关键的影响。</p>
-<h2 id="硬技能"><a href="#硬技能" class="headerlink" title="硬技能"></a>硬技能</h2><p>在这里的硬技能，我着重想分享的是，思路。</p>
-<p>解决问题的过程中，会发现，问题和问题之间，相互关联。所以，在解决问题的过程中，需要<br>1）明确我要解决的问题是什么，或者说我的假设是什么<br>2）和这个问题相关的，我收集到的信息有哪些<br>3）为了验证我的假设，我需要做什么，每一步的假设是什么，每一步的产出是什么？</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1250,7 +1310,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

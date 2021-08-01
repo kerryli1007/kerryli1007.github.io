@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kerryli1007.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="LearningToRank排序学习的模型通常分为单点法（Pointwise Approach）、配对法（Pairwise Approach）和列表法（Listwise Approach）三大类，三种方法并不是特定的算法，而是排序学习模型的设计思路，主要区别体现在损失函数（Loss Function）、以及相应的标签标注方式和优化方法的不同。 总结一下Pointwise、Pairwise和List">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一颗西蓝花🥦">
+<meta property="og:url" content="http://kerryli1007.github.io/2021/08/01/LearningToRank/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="LearningToRank排序学习的模型通常分为单点法（Pointwise Approach）、配对法（Pairwise Approach）和列表法（Listwise Approach）三大类，三种方法并不是特定的算法，而是排序学习模型的设计思路，主要区别体现在损失函数（Loss Function）、以及相应的标签标注方式和优化方法的不同。 总结一下Pointwise、Pairwise和List">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://kerryli1007.github.io/images/LearningToRank/1.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/LearningToRank/2.png">
+<meta property="og:updated_time" content="2021-08-01T12:01:43.998Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一颗西蓝花🥦">
+<meta name="twitter:description" content="LearningToRank排序学习的模型通常分为单点法（Pointwise Approach）、配对法（Pairwise Approach）和列表法（Listwise Approach）三大类，三种方法并不是特定的算法，而是排序学习模型的设计思路，主要区别体现在损失函数（Loss Function）、以及相应的标签标注方式和优化方法的不同。 总结一下Pointwise、Pairwise和List">
+<meta name="twitter:image" content="https://kerryli1007.github.io/images/LearningToRank/1.png">
+
+<link rel="canonical" href="http://kerryli1007.github.io/2021/08/01/LearningToRank/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">一颗西蓝花🥦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kerryli1007.github.io/2021/08/01/LearningToRank/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-01 11:57:10 / 修改时间：20:01:43" itemprop="dateCreated datePublished" datetime="2021-08-01T11:57:10+08:00">2021-08-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="LearningToRank"><a href="#LearningToRank" class="headerlink" title="LearningToRank"></a>LearningToRank</h1><p>排序学习的模型通常分为单点法（Pointwise Approach）、配对法（Pairwise Approach）和列表法（Listwise Approach）三大类，三种方法并不是特定的算法，而是排序学习模型的设计思路，主要区别体现在损失函数（Loss Function）、以及相应的标签标注方式和优化方法的不同。</p>
+<p>总结一下Pointwise、Pairwise和Listwise，三者主要的区别是在训练模型，考察损失函数时候，单次考虑多少篇文章。</p>
+<h1 id="一、从搜索引擎说起"><a href="#一、从搜索引擎说起" class="headerlink" title="一、从搜索引擎说起"></a>一、从搜索引擎说起</h1><p>一般来说搜索引擎包含六大部分: crawler, parser,indexer, link analyzer, query processor, and ranker.</p>
+<p><img src="https://kerryli1007.github.io/images/LearningToRank/1.png" alt></p>
+<ul>
+<li>crawler从web上抓取网页和文档；parser分析文档和超链接图；indexer对索引和数据进行建库；link analyzer跟据超链接图来分析网页的权重；query processor对query进行处理（类似NLP的工作，切词、改写、term重要性之类的）；ranker是central component，它将处理后的query和检索出的网页进行排序处理。</li>
+<li>ranking在信息检索应用中是一个很核心的问题。像是协同过过滤，问答系统，多媒体检索，文本摘要以及在线广告等均有涉及ranking。利用machine learning的方式处理ranking问题即为learning to rank，即LTR.</li>
+</ul>
+<h2 id="Ranking-in-Information-Retrieval"><a href="#Ranking-in-Information-Retrieval" class="headerlink" title="Ranking in Information Retrieval"></a>Ranking in Information Retrieval</h2><ul>
+<li>传统的ranking模型可以分为relevance ranking models和importance ranking models.</li>
+<li>relevance ranking就是从相关性角度计算出每一个doc和query之间的分值。早期的ranking model就是基于query-terms在doc中的出现次数来计算的。例如Boolean model就是预测doc相关与否，但它不能给出具体的度量值。</li>
+</ul>
+<h1 id="二、LTR框架"><a href="#二、LTR框架" class="headerlink" title="二、LTR框架"></a>二、LTR框架</h1><p><img src="https://kerryli1007.github.io/images/LearningToRank/2.png" alt></p>
+<p>LTR是有监督学习，因此需要有标注的training set。</p>
+<p>在学习系统中，先通过训练集对模型进行训练。</p>
+<h1 id="三、Pointwise-Approach（单文档方法）"><a href="#三、Pointwise-Approach（单文档方法）" class="headerlink" title="三、Pointwise Approach（单文档方法）"></a>三、Pointwise Approach（单文档方法）</h1><h2 id="1-1-Pointwise是啥"><a href="#1-1-Pointwise是啥" class="headerlink" title="1.1 Pointwise是啥"></a>1.1 Pointwise是啥</h2><p>在损失函数中，pointwise单次只考虑一篇文章。</p>
+<p>在pointwise方法中，每篇文章的得分，独立于这篇文章在整个文档合集中的顺序。</p>
+<p>所有的分类、回归场景都可以使用pointwise。</p>
+<p>Pointwise的处理对象是单一文档。将单一查询文档对转化为特征向量，相关度作为Label，构成训练样本，然后采用分类或者回归方法进行训练。得到训练模型后，再通过模型对新的查询和文档进行预测，得到相关度得分，最终将该得分作为文档排序的依据。</p>
+<h2 id="1-2-Pointwise的缺点"><a href="#1-2-Pointwise的缺点" class="headerlink" title="1.2 Pointwise的缺点"></a>1.2 Pointwise的缺点</h2><p>Pointwise存在一定的局限性，它仅仅考虑单个文档的绝对相关度，没有考虑给定查询下的文档集合的排序关系。</p>
+<h1 id="四、Pairwise-Approach（文档对方法）"><a href="#四、Pairwise-Approach（文档对方法）" class="headerlink" title="四、Pairwise Approach（文档对方法）"></a>四、Pairwise Approach（文档对方法）</h1><h2 id="2-1-Pairwise是啥"><a href="#2-1-Pairwise是啥" class="headerlink" title="2.1 Pairwise是啥"></a>2.1 Pairwise是啥</h2><p>Pointwise只考虑单个文档与查询的绝对相关度，没有考虑给定查询下的文档集合的排序关系。</p>
+<p>Pairwise在损失函数中看的是两篇文章的损失函数。Pairwise将重点转向了文档之间的排序关系，它将排序问题转化为文档对&lt;di,dj&gt;排序关系的分类和回归问题。</p>
+<p>对于给定查询下的文档集合，其中任何两个相关度不同的文档都可以组成一个训练实例&lt;di, dj&gt;。若di比dj更相关，则该实例的label为1，否则为01，这样就得到一个二分类的训练集。</p>
+<h2 id="2-2-Pairwise的特点"><a href="#2-2-Pairwise的特点" class="headerlink" title="2.2 Pairwise的特点"></a>2.2 Pairwise的特点</h2><ul>
+<li>Pairwise approaches work better in practice than pointwise approaches because predicting relative order is closer to the nature of ranking than predicting class label or relevance score. Some of the most popular Learning to Rank algorithms like RankNet</li>
+</ul>
+<p>翻译总结一下：</p>
+<p>1、Pairwise比pointwise表现更好，因为pairwise预测的是文章的顺序，而并不像pointwise，只预测一个得分。</p>
+<p>Pairwise方法虽然考虑了文档之间的相对排序关系，但仍然没有考虑文档出现在结果列表中的位置。排在前面的文档更重要。</p>
+<h1 id="五、Listwise-Approach（文档列表方法）"><a href="#五、Listwise-Approach（文档列表方法）" class="headerlink" title="五、Listwise Approach（文档列表方法）"></a>五、Listwise Approach（文档列表方法）</h1><h2 id="3-1-Listwise是啥"><a href="#3-1-Listwise是啥" class="headerlink" title="3.1 Listwise是啥"></a>3.1 Listwise是啥</h2><p>Listwise观察整个文档合集的顺序，并且为该文档合集找到其顺序。</p>
+<p>参考：</p>
+<p>1、深入理解XGBoost：高效机器学习算法与进阶</p>
+<p>2、这就是搜索引擎：核心技术详解</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/01/聊一聊推荐系统的多样性/" rel="prev" title="聊一聊推荐系统的多样性">
+      <i class="fa fa-chevron-left"></i> 聊一聊推荐系统的多样性
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LearningToRank"><span class="nav-number">1.</span> <span class="nav-text">LearningToRank</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、从搜索引擎说起"><span class="nav-number">2.</span> <span class="nav-text">一、从搜索引擎说起</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ranking-in-Information-Retrieval"><span class="nav-number">2.1.</span> <span class="nav-text">Ranking in Information Retrieval</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、LTR框架"><span class="nav-number">3.</span> <span class="nav-text">二、LTR框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、Pointwise-Approach（单文档方法）"><span class="nav-number">4.</span> <span class="nav-text">三、Pointwise Approach（单文档方法）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Pointwise是啥"><span class="nav-number">4.1.</span> <span class="nav-text">1.1 Pointwise是啥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Pointwise的缺点"><span class="nav-number">4.2.</span> <span class="nav-text">1.2 Pointwise的缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、Pairwise-Approach（文档对方法）"><span class="nav-number">5.</span> <span class="nav-text">四、Pairwise Approach（文档对方法）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Pairwise是啥"><span class="nav-number">5.1.</span> <span class="nav-text">2.1 Pairwise是啥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Pairwise的特点"><span class="nav-number">5.2.</span> <span class="nav-text">2.2 Pairwise的特点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、Listwise-Approach（文档列表方法）"><span class="nav-number">6.</span> <span class="nav-text">五、Listwise Approach（文档列表方法）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Listwise是啥"><span class="nav-number">6.1.</span> <span class="nav-text">3.1 Listwise是啥</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+  <div class="site-description" itemprop="description">AI/思考/学习</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

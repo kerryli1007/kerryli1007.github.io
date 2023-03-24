@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kerryli1007.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="今天整理以前的笔记，发现了自己在一年前写的关于AI落地项目Pipeline。觉得还蛮有意思，因为，毕竟一年又过去了，这一年中，自己精进了不少，所以，将这些经验一并总结出来。希望看到这篇文章的人，也能从中有所收获。 本篇总结的目标：在未来的AI落地项目中，参考本Pipeline，提升效率，降低沟通成本。 Pipeline一共有 5 部分:  项目启动 数据采集、标注、管理 模型训练与调试 模型部署与">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI项目落地Pipeline">
+<meta property="og:url" content="https://kerryli1007.github.io/2020/09/02/AI%E9%A1%B9%E7%9B%AE%E8%90%BD%E5%9C%B0Pipeline/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="今天整理以前的笔记，发现了自己在一年前写的关于AI落地项目Pipeline。觉得还蛮有意思，因为，毕竟一年又过去了，这一年中，自己精进了不少，所以，将这些经验一并总结出来。希望看到这篇文章的人，也能从中有所收获。 本篇总结的目标：在未来的AI落地项目中，参考本Pipeline，提升效率，降低沟通成本。 Pipeline一共有 5 部分:  项目启动 数据采集、标注、管理 模型训练与调试 模型部署与">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-24T10:41:37.525Z">
+<meta property="article:author" content="一颗西蓝花🥦">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://kerryli1007.github.io/2020/09/02/AI%E9%A1%B9%E7%9B%AE%E8%90%BD%E5%9C%B0Pipeline/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://kerryli1007.github.io/2020/09/02/AI%E9%A1%B9%E7%9B%AE%E8%90%BD%E5%9C%B0Pipeline/","path":"2020/09/02/AI项目落地Pipeline/","title":"AI项目落地Pipeline"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>AI项目落地Pipeline | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="一颗西蓝花🥦" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">一颗西蓝花🥦</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8"><span class="nav-number">1.</span> <span class="nav-text">一、项目启动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E5%AE%9A%E4%B9%89%E9%A1%B9%E7%9B%AE%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 定义项目目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E8%AF%84%E4%BC%B0%E5%9F%BA%E7%BA%BF"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 评估基线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E5%AE%9A%E4%B9%89%E6%8C%87%E6%A0%87-%E8%B4%9F%E8%B4%A3%E4%BA%BA-%E9%94%80%E5%94%AE-%E9%A1%B9%E7%9B%AE%E7%BB%8F%E7%90%86-%E7%AE%97%E6%B3%95-%E6%9E%B6%E6%9E%84"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 定义指标 负责人@销售 @项目经理 @ 算法@架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-%E6%A8%A1%E5%9E%8B%E6%8C%87%E6%A0%87"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1 模型指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2 模型性能</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+  <div class="site-description" itemprop="description">AI/思考/学习</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kerryli1007.github.io/2020/09/02/AI%E9%A1%B9%E7%9B%AE%E8%90%BD%E5%9C%B0Pipeline/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="AI项目落地Pipeline | 一颗西蓝花🥦">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AI项目落地Pipeline
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-03T00:00:00+08:00">2020-09-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-24 18:41:37" itemprop="dateModified" datetime="2023-03-24T18:41:37+08:00">2023-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>今天整理以前的笔记，发现了自己在一年前写的关于AI落地项目Pipeline。觉得还蛮有意思，因为，毕竟一年又过去了，这一年中，自己精进了不少，所以，将这些经验一并总结出来。希望看到这篇文章的人，也能从中有所收获。</p>
+<p>本篇总结的目标：在未来的AI落地项目中，参考本Pipeline，提升效率，降低沟通成本。</p>
+<p>Pipeline一共有 5 部分:</p>
+<ul>
+<li>项目启动</li>
+<li>数据采集、标注、管理</li>
+<li>模型训练与调试</li>
+<li>模型部署与测试</li>
+<li>项目交付</li>
+</ul>
+<h1 id="一、项目启动"><a href="#一、项目启动" class="headerlink" title="一、项目启动"></a>一、项目启动</h1><h2 id="1-1-定义项目目标"><a href="#1-1-定义项目目标" class="headerlink" title="1.1 定义项目目标"></a>1.1 定义项目目标</h2><p>“项目”是指有合同&#x2F;任务支撑(特殊情况下会没有合同，先做项目，比如一些需要走政府招标的项目)，明确了<strong>交付目标</strong>与<strong>交付时间</strong>的交付型项目。@2019年版本</p>
+<p>项目目标如何定，做AI项目，定项目目标时候，技术方，只能定出来技术指标，但是技术实现这个指标，能带给业务方多少收益，但是如何将技术指标和业务收益映射起来，这就是一件很难的事，需要业务方和技术方的相互配合。@2020年版本</p>
+<h2 id="1-2-评估基线"><a href="#1-2-评估基线" class="headerlink" title="1.2 评估基线"></a>1.2 评估基线</h2><p>在明确了机器学习任务后，首要需要考虑的就是“baseline”的问题。Baseline是客户可以接受，同时我们也能做出的成绩。在双方达成Baseline的时候，需要和技术专家一起确定。@2019年版本</p>
+<p>同时，是需要进行一个换算，就是Baseline到多少时候，带给客户的收益是能够cover掉我们的成本支出。这个指标是很难定的，在项目前期评估阶段，我们一定要知道客户业务流转，每个环节是什么，这些环节的业务逻辑是什么。同时，再大一点看，我们需要知道这个市场是怎么回事。最近和朋友沟通，他在一家百年造车企业，和我分享了他做市场研究的一些心得。@2020年版本</p>
+<p>市场规模、发展趋势、市场特征、竞争者调研。主要是这4部分，其中，让我印象最深刻的是，在市场特征这块，是需要了解这个行业的value chain，从上游到下游，这个行业到底是如何转动。这个链条里面，客户所在的环节，扮演什么样的角色，他的上下游分别是什么。这些都是需要了解的，可以帮助我们作出更好的判断。@2020年版本</p>
+<h2 id="1-3-定义指标-负责人-销售-项目经理-算法-架构"><a href="#1-3-定义指标-负责人-销售-项目经理-算法-架构" class="headerlink" title="1.3 定义指标 负责人@销售 @项目经理 @ 算法@架构"></a>1.3 定义指标 负责人@销售 @项目经理 @ 算法@架构</h2><p>我们和客户的指标制定，除了模型的效果，还包括模型的性能。</p>
+<h3 id="1-3-1-模型指标"><a href="#1-3-1-模型指标" class="headerlink" title="1.3.1 模型指标"></a>1.3.1 模型指标</h3><ul>
+<li>分类指标。用recall和precision，并且，一般会用“F1 score”评价算法整体表现。但在制定标准时候，需要结合实际业务场景，明白“查准优先”还是“查全优先”。关于查准和查全的详细分析，可以参考另一篇文章NLP相关文章，尚未发布，日后更新。</li>
+<li>目标检测。CV项目，会用到 IOU(交并比)、或者ROI</li>
+</ul>
+<p>			 			 			 			 			 			 			 			 			 		</p>
+<h3 id="1-3-2-模型性能"><a href="#1-3-2-模型性能" class="headerlink" title="1.3.2 模型性能"></a>1.3.2 模型性能</h3><ul>
+<li>每秒查询率QPS：<ul>
+<li>每秒查询率是对一个特定的查询服务器在规定时间内所处理流量多少的 衡量标准，在因特网上，作为域名系统服务器的机器的性能经常用每秒查询率来衡量。@2019年版本</li>
+<li>我目前其实是将QPS理解为，我们的算法能力，每秒能处理几个请求。这个其实是很根据场景来定的。比如，ML项目，客户是DSP，对QPS的要求，测试阶段就要上100。CV项目，OCR识别，测试阶段，可能客户对QPS没啥要求，能在一个时间段内跑完一个数据集即可。需要注意的是，如果是以SaaS的形式，提供OCR服务，QPS和卡数量的关系，是需要严格计算。但是这个问题对于大厂看比如百度、阿里，是没有问题的。这个问题，还是在另一篇文章中详细介绍。@2020年版本</li>
+</ul>
+</li>
+<li>响应时间(RT )：<ul>
+<li>响应时间是指系统对请求作出响应的时间。这个指标对人与软件性能的主管感受是非常一致的。@2019年版本</li>
+<li>说白了，就是反应时间快慢。比如DSP项目，整个实时竞价的全流程只有100ms，那给我们算法模型的，能有多少毫秒，再加宽带传输时间加上。这些都是时间，上次和AWS的谈合作。他们和我们说，他们的价格和腾讯云相比，也是非常有竞争力的，但是机器是在宁夏。那这行吗？这就不行，我们给北京的广告客户做项目。服务器在宁夏，传来传去，那宽带传输耗时就很久了。比如，OCR识别，现在有一个很典型场景，很多商场，五彩城这种，是可以用吃饭发票换积分，流程就是这个图片传输给小程序后台，小程序后台给出结果。这种to c的，直接面向消费者的，一般也是需要不说实时，但是也是需要在短时间内能出结果的。</li>
+</ul>
+</li>
+<li>API调用成功率：<ul>
+<li>这个成功率 &#x3D; 分子(分子是调用成功的次数) &#x2F; 分母(分母是客户调用 API的次数)⚠影响是否调用成功的因素是服务器是否在线。@2019年版本</li>
+<li>什么是API调用成功。一个API调用的全流程是什么样子的。客户端发起一个请求，服务器后端接到这个请求，后台完成处理并发出，这个时候会返回200。这是一个标准协议。一般我们是用这个来界定什么是API调用成功。@2020年版本</li>
+</ul>
+</li>
+<li>并发：并发是一个处理器同时处理多个任务。</li>
+</ul>
+<p>模型性能指标的制定，一定是要和算法工程师、后端一起确认。</p>
+<blockquote>
+<p>另外，对于生产部署，一定会有相关的技术指标，比如并发、速度，如果是实时视频的推理，还会有FPS的要求等。如果合同内明确了部署环境的说明，那么这些指标的可实现性就有明确的测算依据。如果，对于部署、推理环境没有明确说明，那么一定要提前沟通， 不一定一次沟通就能定下来，但是大方向要清晰。GPU还是CPU还是FPGA，具体型号，配 置。</p>
+<p>如果是实时视频的推理，还要明确是1080还是720或者更高，结合并发要求，测算一下网 络环境的上行带宽够不够。不要等到交付部署了，前期测试也一切正常，正式使用了，发 现网络给你一个小水管，还要你大并发。</p>
+</blockquote>
+<p>未完待续～（ &#x3D; &#x3D; </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/02/%E5%85%B3%E4%BA%8E%E4%B8%AD%E5%8F%B0%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/" rel="prev" title="关于中台的一点思考">
+                  <i class="fa fa-chevron-left"></i> 关于中台的一点思考
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/09/03/AI%E8%A1%8C%E4%B8%9A%E4%B8%8E%E9%95%BF%E5%B0%BE%E6%95%88%E5%BA%94/" rel="next" title="AI行业与长尾效应">
+                  AI行业与长尾效应 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

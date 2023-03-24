@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kerryli1007.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="目标：  了解推荐领域的经典算法i2i，产生背景、自身特点、运作原理 了解不同算法之间的特点，u2i、cluster model、search based、i2i  以下是论文，Enjoy～ 对于电商场景而言，推荐算法通常面临如下挑战：  大型零售商拥有海量数据，数以千万计的用户与不计其数的商品。 推荐应用需要推荐系统实时返回数据，同时要求这些返回结果是有效的。 新的用户由于只有很少的购买行为和评">
+<meta property="og:type" content="article">
+<meta property="og:title" content="item-to-item collaborative filtering">
+<meta property="og:url" content="https://kerryli1007.github.io/2021/04/09/item-to-item-collaborative-filtering/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="目标：  了解推荐领域的经典算法i2i，产生背景、自身特点、运作原理 了解不同算法之间的特点，u2i、cluster model、search based、i2i  以下是论文，Enjoy～ 对于电商场景而言，推荐算法通常面临如下挑战：  大型零售商拥有海量数据，数以千万计的用户与不计其数的商品。 推荐应用需要推荐系统实时返回数据，同时要求这些返回结果是有效的。 新的用户由于只有很少的购买行为和评">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-24T10:41:37.525Z">
+<meta property="article:author" content="一颗西蓝花🥦">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://kerryli1007.github.io/2021/04/09/item-to-item-collaborative-filtering/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://kerryli1007.github.io/2021/04/09/item-to-item-collaborative-filtering/","path":"2021/04/09/item-to-item-collaborative-filtering/","title":"item-to-item collaborative filtering"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>item-to-item collaborative filtering | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="一颗西蓝花🥦" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">一颗西蓝花🥦</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E4%BC%A0%E7%BB%9F%E7%9A%84%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">1. 传统的推荐算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E7%94%A8%E6%88%B7%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88user-to-user-collaborative-filtering%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 用户协同过滤（user-to-user collaborative filtering）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E8%81%9A%E7%B1%BB%E6%A8%A1%E5%9E%8B%EF%BC%88Cluster-Models%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 聚类模型（Cluster Models）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E5%9F%BA%E4%BA%8E%E6%90%9C%E7%B4%A2%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%88Search-Based-Methods%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 基于搜索的方法（Search-Based Methods）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-item-to-item%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">2. item-to-item的协同过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-item-to-item%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 item-to-item的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 算法对比</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%94%9F%E4%BA%A7%E5%9C%BA%E6%99%AF%E5%BA%94%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">3. 生产场景应用</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+  <div class="site-description" itemprop="description">AI/思考/学习</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kerryli1007.github.io/2021/04/09/item-to-item-collaborative-filtering/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="item-to-item collaborative filtering | 一颗西蓝花🥦">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          item-to-item collaborative filtering
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-10T00:00:00+08:00">2021-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-24 18:41:37" itemprop="dateModified" datetime="2023-03-24T18:41:37+08:00">2023-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">推荐系统</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>目标：</p>
+<ol>
+<li>了解推荐领域的经典算法i2i，产生背景、自身特点、运作原理</li>
+<li>了解不同算法之间的特点，u2i、cluster model、search based、i2i</li>
+</ol>
+<p>以下是论文，Enjoy～</p>
+<p>对于电商场景而言，推荐算法通常面临如下挑战：</p>
+<ol>
+<li>大型零售商拥有海量数据，数以千万计的用户与不计其数的商品。</li>
+<li>推荐应用需要推荐系统实时返回数据，同时要求这些返回结果是有效的。</li>
+<li>新的用户由于只有很少的购买行为和评论行为，系统往往没有这类用户的数据。</li>
+<li>老用户的数据过多。</li>
+<li>用户数据处于动态变化中。用户和网站的每一次交互都产生了非常珍贵的数据，推荐系统需要立即针对这些新的信息给出重新计算后的反馈。</li>
+</ol>
+<p>针对上述问题，通常有3种解决思路：</p>
+<ul>
+<li>传统的协同过滤</li>
+<li>聚类模型</li>
+<li>基于搜索的方法</li>
+</ul>
+<p>在这篇论文中，作者将上述3种方法同Amazon提出的item-to-item算法进行了分析对比。</p>
+<p>和传统的算法相比，item-to-item(i2i)的优势：</p>
+<ul>
+<li>该算法的线上扩展性与用户以及商品的数量无关。</li>
+<li>该算法可实时计算出用户偏好，可扩展至海量数据，并且这些预测的质量非常高。</li>
+</ul>
+<h1 id="1-传统的推荐算法"><a href="#1-传统的推荐算法" class="headerlink" title="1. 传统的推荐算法"></a>1. 传统的推荐算法</h1><p>传统推荐算法包括用户协同过滤（user-to-user collaborative filtering），聚类模型（Cluster Models）、基于搜索的方法（Search-Based Methods）。</p>
+<p>绝大多数的推荐算法，其逻辑均为，针对用户A，首先找到和用户A有着相似消费行为的用户群B；然后算法将用户群B消费过的商品计算出来，得到一个商品集C；接着，将A已经购买过的商品从商品集C中减去，得到待推荐商品集D；最后，将D中的商品推荐给用户A。这类算法的核心是找到有相似消费行为的用户。具体的算法有user-to-user collaborative filtering和cluster models。除此之外，还有核心是找到相似商品的算法。这类算法的具体代表有search-based methods和item-to-item collaborative filtering。</p>
+<p>总结一下，推荐算法的基础逻辑，分为两类：类别1，找到有相似的消费者；类别2，找到有相似的商品。</p>
+<h2 id="1-1-用户协同过滤（user-to-user-collaborative-filtering）"><a href="#1-1-用户协同过滤（user-to-user-collaborative-filtering）" class="headerlink" title="1.1 用户协同过滤（user-to-user collaborative filtering）"></a>1.1 用户协同过滤（user-to-user collaborative filtering）</h2><p>传统的基于用户的协同过滤算法将用户表征为关于物品的N维向量，N在这里表示的是不同物品的类别数量。这个向量的组成部分有正的，也有负的（The components of the vector are positive, for purchased or positively rated items and negative for negatively rated items.）。对于Best-selling 商品，算法将这些向量的组成部分相乘，让不那么出名的商品更相关。对于绝大多数消费者而言，这些向量都是很稀疏的。</p>
+<ul>
+<li>要回答什么是sparse feature，可能首先要理解什么是feature。</li>
+<li>一般在machine learning意义上，我们常说的feature，是一种对数据的表达。当然，要衡量一种feature是否是合适的表达，要根据数据，应用，ML的模型，方法….很多方面来看。一般来说，Feature应该是informative（富有信息量），discriminative（有区分性）和independent（独立）的。</li>
+<li>那么具体怎么选择feature，其实一直是一个开放的问题。在机器学习里面，feature的选择是至关重要的：对于同一种学习的模型，同样的学习方法，同样的数据，选择不同的feature来表达，可能会产生完全不同的效果。</li>
+<li>Feature有很多种特性和分类：Feature可以是Linear（线性），也可以是Non-linear（非线性）的；Feature可以是Fixed（固顶的），也可以是Adaptive（适应性的)….甚至feature都可以不是numerical的，但因为题主问的是sparse feature，所以我就在这里特指numerical的feature。</li>
+<li>如果把我们的每一个数据点，想象成一个vector（向量），记作y，对应的feature则可以用另外一个vector来表示，记作x。</li>
+</ul>
+<p>更多关于稀疏向量的解释，参考 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/31951092">https://www.zhihu.com/question/31951092</a></p>
+<p>该算法通过一些相似的用户来生成推荐。通过计算两个消费者的相似度，通常用来计算两个消费者相似度的方式是计算这两个向量之间的cosine。</p>
+<p>也有一些其他的方法来计算不同用户之间的相似度，但是这些方法各有利弊。详细参考<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=VZKMyTaLI00">https://www.youtube.com/watch?v=VZKMyTaLI00</a></p>
+<p>使用协同过滤算法来做推荐是非常消耗计算资源的。最差的情况下，是O(MN)，M是用户的数量，N是商品的数量，因为这类算法需要遍历每个消费者来评估N个商品。然而，由于通常用户的向量都是非常稀疏的，这个算法的表现更倾向于是O（M+N）。扫描所有的消费者大概是O（M）。但是这里有一些消费者，他们买了或者购买了大量的商品，就需要O（N）的处理时间。因此，最后这个算法的性能是O（M+N）。对于大的数据集，比如有大于100万的用户，和大于10万的商品，该算法会遇到非常大的性能和可扩展性的问题。</p>
+<p>通过减少数据量可以部分地解决这个可扩展性的问题。我们可以减少M通过随机取样或者删除只有少量购买行为的的消费者。我们可以减少N通过移除不受欢迎或者非常受欢迎的商品。</p>
+<p>但是不幸的是，这些方法都或多或少会降低推荐的质量。首先，如果算法只筛选了一小部分消费者，这一小部分消费者的相似度会降低。其次，最后，如果算法将不那么受欢迎或者受欢呼的商品移除了，那么这些商品永远不会在推荐系统中出现，消费者也不会收到这些推荐。</p>
+<h2 id="1-2-聚类模型（Cluster-Models）"><a href="#1-2-聚类模型（Cluster-Models）" class="headerlink" title="1.2 聚类模型（Cluster Models）"></a>1.2 聚类模型（Cluster Models）</h2><p>通过一个case，来看聚类模型的整个pipeline。</p>
+<p>西蓝花来到网页上，这个网页要做的是找到和西蓝花画像最相似的用户群。算法首先将所有用户分为N个Group，接着将西蓝花放进其中的一个Group，比如说Group A，最后算法通过Group A中消费者的购买行为和评分来为西蓝花推荐商品。</p>
+<p>这些Group通常是通过聚类或者无监督学习来获得，虽然在有的应用是手动来划分。基于相似度指标，聚类算法将最相似的用户放在同一个群组。因为在大数据集上聚类的表现不好，所以大多数应用使用贪心聚类算法。这些算法通过先开始一个小的部分，这个小部分只包含几个随机选择的用户。接着这个算法重复地向该群组添加用户。对于大的数据集，以及有高维度的数据集，抽样以及降维是必须的。</p>
+<p>一旦算法创建了群组，他会计算用户和各个群组之间的相似度，接着选择相似度最高的群组，并将该用户划分进该群组。</p>
+<p>因为聚类算法在计算相似度时候，计算的是特定用户与N个群组之间的相似度，而非与所有用户之间的相似度，因此聚类算法的线上可扩展性是更好的，且性能更佳。但是，聚类算法的质量是很差的。</p>
+<h2 id="1-3-基于搜索的方法（Search-Based-Methods）"><a href="#1-3-基于搜索的方法（Search-Based-Methods）" class="headerlink" title="1.3 基于搜索的方法（Search-Based Methods）"></a>1.3 基于搜索的方法（Search-Based Methods）</h2><p>搜索或者基于内容的方法将推荐作为对于相关物品的搜索。考虑到用户的购买和对商品的评分，整个算法会建构一个query，去寻找同一个作者、艺术家、导演的受欢迎的物品。如果用户西蓝花购买了教父的DVD合集，这个系统会推荐其他的犯罪剧，或者其他Marlon Brando主演的电影，或者其他Francis Ford Coppola导演的电影。</p>
+<p>对于用户只有很少的购买或者评分行为，基于搜索的方法也能扩展，并且表现良好。相反，对于有着成千上问购买行为的用户，基于所有物品的query构建反而是不切实际的。这样的情况下，算法必须使用的是数据的子集，这样就会降低数据质量。在所有case中，基于搜索的方法表现是糟糕的。推荐结果太普遍，或者太窄了。（比如推荐的都是热门、或者推荐的都是一个作者的所有书籍）推荐系统应该帮助消费者发现新的商品、相关的商品、或者消费者感兴趣的商品。但是同一个作者受欢迎的商品或者同一个类别的商品，是不能达成推荐系统的目标的。</p>
+<h1 id="2-item-to-item的协同过滤"><a href="#2-item-to-item的协同过滤" class="headerlink" title="2. item-to-item的协同过滤"></a>2. item-to-item的协同过滤</h1><p>在邮件营销和网站首页，亚马逊均使用推荐系统作为营销工具。</p>
+<p>但是由于现存的推荐算法无法处理亚马逊上数以亿万计的商品和用户，因此亚马逊创建了自己的推荐算法，基于物品的（i2i）协同过滤，该算法的特点可以处理大数据并且实时给出高质量的推荐。</p>
+<h2 id="2-1-item-to-item的原理"><a href="#2-1-item-to-item的原理" class="headerlink" title="2.1 item-to-item的原理"></a>2.1 item-to-item的原理</h2><p>i2i将消费者购买的商品的相似度进行打分，然后将相似的商品放进一个推荐列表。</p>
+<p>对于一个给定的商品，为了找到与该商品最相似的商品，算法会创建一个相似item表来找到消费者最有可能一起购买的商品。我们可以创建一个product-to-product的矩阵，通过迭代所有的商品，并计算每一对的相似度。然而，很多商品的没有共同的消费者，因此这种方式就是非常无效的并且也很占用内存。接下来的迭代算法提供一个一个更好的方式，通过计算一个商品与所有相关商品之间的相似度。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">For each item in product catalog, I1</span><br><span class="line">For each customer C who purchased I1</span><br><span class="line">For each item I2 purchased by</span><br><span class="line">customer C</span><br><span class="line">Record that a customer purchased I1</span><br><span class="line">and I2</span><br><span class="line">For each item I2</span><br><span class="line">Compute the similarity between I1 and I2</span><br></pre></td></tr></table></figure>
+
+<p>在两个item中来计算相似度，但是一个通用的方法是使用我们之前提到的计算的cosine，在这里一个向量代表一个商品，而不是一个消费者。</p>
+<p>线下对相似物品的计算非常的耗时，最差情况下。</p>
+<h2 id="2-2-算法对比"><a href="#2-2-算法对比" class="headerlink" title="2.2 算法对比"></a>2.2 算法对比</h2><p>亚马逊有2900万消费者和几百万的商品。其他的零售店也有相对较大的资源，这些数据都提供机会。</p>
+<p>基本上当前所有的算法都是在小数据集上进行的测评，这些数据集有MovieLens data set，包括35,000消费者和3,000物品，EachMovie data set，包括4,000消费者和1,600物品。</p>
+<p>对于非常大体量的数据集，一个可扩展的推荐算法必须能够在线下完成计算。做一个简短的对比，现存的方法有如下弊端：</p>
+<ul>
+<li>传统的CBF没有线下计算，线上计算量随着数据量呈线性增加，针对大数据集场景，该算法是无法投产的，除非对数据集进行将维、抽样、或者切分。但是这些操作都会降低推荐的质量。</li>
+<li>聚类算法在线下计算表现很好，但是线上推荐质量相对较差。为了提升，可以增加聚类后群组的数量，但是这个会让线上的分类计算量增加。</li>
+<li>基于搜索的方法建构了关键词，类别以及作者索引，但是不能提供更新、更有趣的推荐。这类方法对于有大量购买和评分的行为的用户而言，可扩展性差。</li>
+</ul>
+<p>i2i在可扩展性和表现上都很好的原因是，该算法在线下计算商品的相似度。i2i的online部分只是针对消费者的购买和评分行为，查找相似的商品，这个过程只是依赖于消费者购买或者评分了多少商品。因此，即便是针对特别大的数据集，该计算方式也是尤为快。因为算法推荐的都是高度相关的商品，因此推荐的效果也</p>
+<h1 id="3-生产场景应用"><a href="#3-生产场景应用" class="headerlink" title="3. 生产场景应用"></a>3. 生产场景应用</h1><p>待补充</p>
+<p>待补充</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/16/20210217-%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E7%9B%B8%E5%85%B3%E6%80%9D%E8%80%83/" rel="prev" title="产品经理相关思考">
+                  <i class="fa fa-chevron-left"></i> 产品经理相关思考
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/04/22/2021-Q2-Week3-%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" rel="next" title="2021_Q2_Week3_工作总结">
+                  2021_Q2_Week3_工作总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

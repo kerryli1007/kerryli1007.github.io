@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kerryli1007.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="对于产品设计这件事，时刻抱着空杯心态，向同事学习更好的设计思路。 背景To B的官网为用户提供产品试用，试用的入口，一般在右上角，会有一个“控制台”，用户可以从这里看到自己已经申请试用的产品。 产品试用一般是有周期的，比如7天、12天、14天不等。 我们的官网A和产品试用环境B，是两个域名。因此，对用户体验来说，从A到B需要一个跳转。 以上是官网逻辑之间的大的背景。我遇到的问题是当用户西蓝花，她申">
+<meta property="og:type" content="article">
+<meta property="og:title" content="产品设计经验积累">
+<meta property="og:url" content="https://kerryli1007.github.io/2020/07/07/20200708-%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="对于产品设计这件事，时刻抱着空杯心态，向同事学习更好的设计思路。 背景To B的官网为用户提供产品试用，试用的入口，一般在右上角，会有一个“控制台”，用户可以从这里看到自己已经申请试用的产品。 产品试用一般是有周期的，比如7天、12天、14天不等。 我们的官网A和产品试用环境B，是两个域名。因此，对用户体验来说，从A到B需要一个跳转。 以上是官网逻辑之间的大的背景。我遇到的问题是当用户西蓝花，她申">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-24T10:41:37.521Z">
+<meta property="article:author" content="一颗西蓝花🥦">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://kerryli1007.github.io/2020/07/07/20200708-%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://kerryli1007.github.io/2020/07/07/20200708-%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/","path":"2020/07/07/20200708-产品设计经验积累/","title":"产品设计经验积累"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>产品设计经验积累 | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="一颗西蓝花🥦" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">一颗西蓝花🥦</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">我的思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E4%BA%92%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="nav-number">3.</span> <span class="nav-text">交互的思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lessons-Learned"><span class="nav-number">4.</span> <span class="nav-text">Lessons Learned</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+  <div class="site-description" itemprop="description">AI/思考/学习</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kerryli1007.github.io/2020/07/07/20200708-%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="产品设计经验积累 | 一颗西蓝花🥦">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          产品设计经验积累
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-08 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-08T00:00:00+08:00">2020-07-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-24 18:41:37" itemprop="dateModified" datetime="2023-03-24T18:41:37+08:00">2023-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>对于产品设计这件事，时刻抱着空杯心态，向同事学习更好的设计思路。</p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>To B的官网为用户提供产品试用，试用的入口，一般在右上角，会有一个“控制台”，用户可以从这里看到自己已经申请试用的产品。</p>
+<p>产品试用一般是有周期的，比如7天、12天、14天不等。</p>
+<p>我们的官网A和产品试用环境B，是两个域名。因此，对用户体验来说，从A到B需要一个跳转。</p>
+<p>以上是官网逻辑之间的大的背景。我遇到的问题是当用户西蓝花，她申请试用的产品已经过期了，这个时候，她的操作体验流程如下：<br>点击控制台，来到试用环境，点击登录，被弹出。</p>
+<p>很明显，这个流程非常的奇怪，需要被改善。在这种场景下，我的改善思路，和专业交互的改善思路，是今天复盘思考的重点，分析我们之间的差异，以及背后的原因，从中总结出可复制的方法论，以后复用。</p>
+<h1 id="我的思路"><a href="#我的思路" class="headerlink" title="我的思路"></a>我的思路</h1><p>我的思路是，既然用户是的试用环境登录时候被弹出，那么我们可以在这个页面，做一个弹框，提示用户“你的产品已过试用期，如需继续使用，请联系管理员”。这是我的思路，这个思路，和研发讨论了一下，也说明了一下，这里的问题是，这个登录界面是Prophet的，Prophet是不支持加这些弹框的。</p>
+<p>总结一下：</p>
+<ol>
+<li>我的思路是加弹框，提示用户</li>
+<li>但是我的思路，有可能技术上无法实现，因为产品耦合的关系，Prophet的登录逻辑，我们是不能动的。</li>
+</ol>
+<h1 id="交互的思路"><a href="#交互的思路" class="headerlink" title="交互的思路"></a>交互的思路</h1><p>了解背景之后，交互提出得解决方案是，在控制台界面，直接将控制台页面做调整</p>
+<ol>
+<li>展示维度：将产品icon置灰，且可以加一个标签提示语，如“已过试用期”</li>
+<li>交互维度：用户点击，无反应</li>
+</ol>
+<p>听完交互的思路，我觉得这个方案好啊。好在哪里呢？</p>
+<ol>
+<li>首先，避免了用户做跳转的动作。如果让用户跳转了之后，再告诉用户，你已经过了试用期，用户也会不爽</li>
+<li>其次，我们不用动Prophet的逻辑</li>
+<li>最后，当我们上线的产品多了以后，就可以在这个页面，展示所有的产品状态，而不是，用户点击每个产品，都要跳转到对应页面，才能知道是否过了试用期</li>
+</ol>
+<p>综上，这个方案非常好，从用户体验维度、技术实现难度、以及未来发展可复用性，都很好。</p>
+<h1 id="Lessons-Learned"><a href="#Lessons-Learned" class="headerlink" title="Lessons Learned"></a>Lessons Learned</h1><ol>
+<li>多向同事学习，虚心请教。</li>
+<li>多复盘、总结，举一反三。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/07/07/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/" rel="prev" title="时间序列项目经验积累">
+                  <i class="fa fa-chevron-left"></i> 时间序列项目经验积累
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/08/03/Q3-Week4-%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" rel="next" title="Q3_Week4_工作总结">
+                  Q3_Week4_工作总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kerryli1007.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="工业界的推荐算法链路，通常是召回、粗排、精排。 一、召回在召回章节，我的构思书写思路为  多路召回 每路召回的具体实现 召回与过滤  推荐系统的召回阶段是根据用户的数据（静态数据，历史行为数据），为用户在海量的候选集中粗选一批待推荐的内容。在实际应用中，召回模块一般都是多路召回的架构。这样设计主要出于如下几点的考虑  考虑用户层面。 考虑系统层面。增强系统的鲁棒性，部分召回实效，其余召回队列正常工">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐策略产品必备技能之推荐算法原理（上）">
+<meta property="og:url" content="https://kerryli1007.github.io/2021/05/29/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="工业界的推荐算法链路，通常是召回、粗排、精排。 一、召回在召回章节，我的构思书写思路为  多路召回 每路召回的具体实现 召回与过滤  推荐系统的召回阶段是根据用户的数据（静态数据，历史行为数据），为用户在海量的候选集中粗选一批待推荐的内容。在实际应用中，召回模块一般都是多路召回的架构。这样设计主要出于如下几点的考虑  考虑用户层面。 考虑系统层面。增强系统的鲁棒性，部分召回实效，其余召回队列正常工">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kerryli1007.github.io/images/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/1.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/2.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/3.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/4.png">
+<meta property="article:published_time" content="2021-05-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-24T10:41:37.529Z">
+<meta property="article:author" content="一颗西蓝花🥦">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kerryli1007.github.io/images/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/1.png">
+
+
+<link rel="canonical" href="https://kerryli1007.github.io/2021/05/29/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://kerryli1007.github.io/2021/05/29/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/","path":"2021/05/29/推荐策略产品必备技能之推荐算法原理（上）/","title":"推荐策略产品必备技能之推荐算法原理（上）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>推荐策略产品必备技能之推荐算法原理（上） | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="一颗西蓝花🥦" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">一颗西蓝花🥦</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%8F%AC%E5%9B%9E"><span class="nav-number">1.</span> <span class="nav-text">一、召回</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AE%B9%E7%9A%84%E5%8F%AC%E5%9B%9E"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 基于内容的召回</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">3.2 协同过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-%E7%94%A8%E6%88%B7%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88user-to-user-collaborative-filtering%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">3.2.1 用户协同过滤（user-to-user collaborative filtering）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-%E7%89%A9%E5%93%81%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88item-to-item-collaborative-filtering%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">3.2.2 物品协同过滤（item-to-item collaborative filtering）</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+  <div class="site-description" itemprop="description">AI/思考/学习</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kerryli1007.github.io/2021/05/29/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="推荐策略产品必备技能之推荐算法原理（上） | 一颗西蓝花🥦">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          推荐策略产品必备技能之推荐算法原理（上）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-30T00:00:00+08:00">2021-05-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-24 18:41:37" itemprop="dateModified" datetime="2023-03-24T18:41:37+08:00">2023-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">推荐策略产品必备技能</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>工业界的推荐算法链路，通常是召回、粗排、精排。</p>
+<h1 id="一、召回"><a href="#一、召回" class="headerlink" title="一、召回"></a>一、召回</h1><p>在召回章节，我的构思书写思路为</p>
+<ol>
+<li>多路召回</li>
+<li>每路召回的具体实现</li>
+<li>召回与过滤</li>
+</ol>
+<p>推荐系统的召回阶段是根据用户的数据（静态数据，历史行为数据），为用户在海量的候选集中粗选一批待推荐的内容。<br>在实际应用中，召回模块一般都是多路召回的架构。这样设计主要出于如下几点的考虑</p>
+<ol>
+<li>考虑用户层面。</li>
+<li>考虑系统层面。增强系统的鲁棒性，部分召回实效，其余召回队列正常工作，不会导致整个召回层失效。</li>
+<li>考虑多样性内容分发。图文、视频、小视频，精准、试探、时效各占一定比例。召回目标的多元化。</li>
+<li>可解释性，某一部分是有明确的推荐理由的。</li>
+</ol>
+<p>比如京东电商推荐的召回</p>
+<p><img src="https://kerryli1007.github.io/images/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/1.png"></p>
+<p>这些召回规则对于特定的场景都是通用的，但是问题来了，有的用户是有一些反馈记录的，比如截图一个抖音主页推荐，我对一些推荐的视频是有明确的负反馈的，如果这类视频再推荐给我，是非常伤害用户体验的，所以这个阶段，会进行一个过滤。</p>
+<p>过滤之后，会对召回出来的物料进行模型排序。</p>
+<p>在上篇，主要讲一下召回。每一路召回的目标是不一样的。</p>
+<p>比如在电商场景，常见的召回有</p>
+<ul>
+<li>基于内容的召回</li>
+<li>协同过滤召回</li>
+<li>基于模型的召回</li>
+<li>DSSM召回</li>
+</ul>
+<h2 id="1-1-基于内容的召回"><a href="#1-1-基于内容的召回" class="headerlink" title="1.1 基于内容的召回"></a>1.1 基于内容的召回</h2><p>基于内容推荐的基本思想是为用户推荐与他感兴趣的项目内容相似的项目，即发掘用户曾经喜欢过项目的特征，并推荐类似的项目。</p>
+<p>基于内容的推荐系统主要包括：项目建模、用户建模、产生推荐。</p>
+<p>一般来说，物品都有一些关于内容的分类，电影有战争、科幻、爱情等。基于内容的推荐，就是根据这些物品的内容属性和用户历史评分或操作记录，计算出用户对不同内容的爱好程度，再根据这些爱好推荐其他相同属性的物品。</p>
+<p>内容推荐的基本方法有如下4个步骤：<br>1）内容表征（item representation）：为每个item都抽取出一些特征来表示此item；<br>2）用户偏好计算：利用过去一个用户的显式评分或隐式操作，计算用户不同特征上的偏好分数。<br>3）内容召回：将待推荐物品的特征与用户偏好得分相匹配，取出用户最有可能喜欢的物品池<br>4）物品排序：按用户偏好召回物品池</p>
+<p><strong>步骤一：内容表征</strong><br>从文章内容中抽取出一些代表他们的属性，最常用的方法就是利用出现在一篇文章中的词来代表这篇文章。item会有一些属性对它进行描述，这些属性通常分为两种：结构化与非结构化信息。</p>
+<p>比如电影类别特征，例如可选的电影类别有：爱情、剧情、科幻、战争、中国、日本、韩国、美国，合计8个类别。《银河护卫队》同时具有科幻和美国2个内容特征，那么它的结构话特征可用一个8位的二进制数表示如下：</p>
+<p>对于一些非结构化的内容，需要进行处理，提取出相对应的特征。</p>
+<p>比如对电影，具有如下字段：电影ID（id）、标题（title）、上映时间（year）、电影类型&#x2F;标签（genre，基因）、指示（indicators）、indicators数组的数量（numFields）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="string">&quot;id&quot;</span>: <span class="string">&quot;65006&quot;</span>,</span><br><span class="line"> <span class="string">&quot;title&quot;</span>: <span class="string">&quot;Impulse&quot;</span>,</span><br><span class="line"> <span class="string">&quot;year&quot;</span>: <span class="string">&quot;2008&quot;</span>,</span><br><span class="line"> <span class="string">&quot;genre&quot;</span>: [<span class="string">&quot;Mystery&quot;</span>,<span class="string">&quot;Thriller&quot;</span>],</span><br><span class="line"> <span class="string">&quot;indicators&quot;</span>: [<span class="string">&quot;154&quot;</span>,<span class="string">&quot;272&quot;</span>,”<span class="number">154</span><span class="string">&quot;,&quot;</span><span class="number">308</span><span class="string">&quot;, &quot;</span><span class="number">535</span><span class="string">&quot;, &quot;</span><span class="number">583</span><span class="string">&quot;, &quot;</span><span class="number">593</span><span class="string">&quot;, &quot;</span><span class="number">668</span><span class="string">&quot;, &quot;</span><span class="number">670</span><span class="string">&quot;, &quot;</span><span class="number">680</span><span class="string">&quot;, &quot;</span><span class="number">702</span><span class="string">&quot;, &quot;</span><span class="number">745</span><span class="string">&quot;],</span></span><br><span class="line"><span class="string"> &quot;</span>numFields<span class="string">&quot;: 12</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>一般这些数据都是放在es中，便于索引。关于这些数据在es中，如何做索引的，暂时还没有进一步做研究，后续补充。</p>
+<p><strong>步骤二：用户偏好计算</strong>，比如在电影场景，我们可以分析用户西蓝花在过去一周的行为。来计算user_behavior_profile。<br><strong>步骤三：内容召回</strong>，根据用户偏好召回对应内容。<br><strong>步骤四：物品排序</strong>，最后进行排序，</p>
+<p>基于内容的推荐方法，优点</p>
+<ol>
+<li>物品没有冷启动问题，因为物品的内容特征不依赖用户数据</li>
+<li>原理简单，易于定位问题.</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>依赖于物品的meta信息，如果物品的信息较少，则无法做出推荐</li>
+</ol>
+<h2 id="3-2-协同过滤"><a href="#3-2-协同过滤" class="headerlink" title="3.2 协同过滤"></a>3.2 协同过滤</h2><p>协同过滤做的是一件什么事？协同过滤根据用户的历史数据，计算用户之间的相似度，计算item之间的相似度，然后基于这些相似度给用户做推荐。协同过滤强依赖用户行为！协同过滤强依赖用户行为！协同过滤强依赖用户行为！</p>
+<p>协同过滤分为基于用户的协同过滤和基于物品的协同过滤。</p>
+<p>协同过滤的思想：<br>1）抽象一点，物以类聚，人以群分。<br>2）具体一点，西蓝花和短短都很喜欢健身，也都很喜欢好看的legging和运动背心，短短买了一件新款legging，西蓝花也有很大可能喜欢。</p>
+<h3 id="3-2-1-用户协同过滤（user-to-user-collaborative-filtering）"><a href="#3-2-1-用户协同过滤（user-to-user-collaborative-filtering）" class="headerlink" title="3.2.1 用户协同过滤（user-to-user collaborative filtering）"></a>3.2.1 用户协同过滤（user-to-user collaborative filtering）</h3><p><img src="https://kerryli1007.github.io/images/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/2.png"><br>上述截图页面，就是一个典型的用户协同过滤页面，购买过《深度学习推荐系统》的人还购买过什么。<br>一点题外话，仔细分析一下这个推荐页面，可以发现这个推荐是没有经过业务逻辑处理的。</p>
+<p>原因有2:<br>1）《深度学习推荐系统》是我目前已经加购到购物车的商品；<br>2）《智能搜索和推荐系统：原理、算法与应用》《推荐系统与深度学习：新时代技术新未来》是我过去两周才购买了的商品。</p>
+<p>不过，或许京东推荐团队有其他考虑～</p>
+<p>用户协同过滤更详细流程：<br>1）找到和目标推荐用户相似的用户群A；<br>2）找到用户群A购买的商品集合B；<br>3）从商品集合B中减目标用户已经购买过的商品，得到C；<br>4）计算商品合计C中商品，目标用户的点击率；<br>5）最后添加一些业务逻辑规则</p>
+<p>比如豆瓣电影的“喜欢这部电影的人也喜欢”</p>
+<p><img src="https://kerryli1007.github.io/images/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/3.png"></p>
+<h3 id="3-2-2-物品协同过滤（item-to-item-collaborative-filtering）"><a href="#3-2-2-物品协同过滤（item-to-item-collaborative-filtering）" class="headerlink" title="3.2.2 物品协同过滤（item-to-item collaborative filtering）"></a>3.2.2 物品协同过滤（item-to-item collaborative filtering）</h3><p>物品协同过滤的核心是给用户推荐那些和他们喜欢的物品相似的物品。</p>
+<p><img src="https://kerryli1007.github.io/images/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/4.png"></p>
+<p>比如当当网的经常一起购买的商品。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/25/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%EF%BC%88%E4%B8%8B%EF%BC%89/" rel="prev" title="推荐策略产品必备技能之推荐系统框架（下）">
+                  <i class="fa fa-chevron-left"></i> 推荐策略产品必备技能之推荐系统框架（下）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/07/20210708-%E4%BA%8E%E9%BB%91%E6%9A%97%E4%B8%AD%E4%BD%9C%E5%85%89%E6%98%8E/" rel="next" title="于黑暗中作光明">
+                  于黑暗中作光明 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

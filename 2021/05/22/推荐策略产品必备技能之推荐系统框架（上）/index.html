@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kerryli1007.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本模块的目标：  梳理推荐系统框架 梳理推荐系统框架中的各个模块的实现 理解推荐系统的数据流  一个推荐系统，大致分为4层，分别是离线层、存储层、近线层和在线层。离线、近线和在线的区分在于响应用户行为的速度差异。 一个经典的Web推荐系统的架构，主要包括如下四部分：  推荐服务：该服务从Web服务器获取推荐请求，然后返回推荐结果。 存储系统：这些系统存储用户特征、物品特征和模型参数，为了方便检索，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐策略产品必备技能之推荐系统框架（上）">
+<meta property="og:url" content="https://kerryli1007.github.io/2021/05/22/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%EF%BC%88%E4%B8%8A%EF%BC%89/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="本模块的目标：  梳理推荐系统框架 梳理推荐系统框架中的各个模块的实现 理解推荐系统的数据流  一个推荐系统，大致分为4层，分别是离线层、存储层、近线层和在线层。离线、近线和在线的区分在于响应用户行为的速度差异。 一个经典的Web推荐系统的架构，主要包括如下四部分：  推荐服务：该服务从Web服务器获取推荐请求，然后返回推荐结果。 存储系统：这些系统存储用户特征、物品特征和模型参数，为了方便检索，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kerryli1007.github.io/images/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%EF%BC%88%E4%B8%8A%EF%BC%89/1.jpg">
+<meta property="article:published_time" content="2021-05-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-24T10:41:37.529Z">
+<meta property="article:author" content="一颗西蓝花🥦">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kerryli1007.github.io/images/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%EF%BC%88%E4%B8%8A%EF%BC%89/1.jpg">
+
+
+<link rel="canonical" href="https://kerryli1007.github.io/2021/05/22/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%EF%BC%88%E4%B8%8A%EF%BC%89/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://kerryli1007.github.io/2021/05/22/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%EF%BC%88%E4%B8%8A%EF%BC%89/","path":"2021/05/22/推荐策略产品必备技能之推荐系统框架（上）/","title":"推荐策略产品必备技能之推荐系统框架（上）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>推荐策略产品必备技能之推荐系统框架（上） | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="一颗西蓝花🥦" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">一颗西蓝花🥦</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+  <div class="site-description" itemprop="description">AI/思考/学习</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kerryli1007.github.io/2021/05/22/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%EF%BC%88%E4%B8%8A%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="推荐策略产品必备技能之推荐系统框架（上） | 一颗西蓝花🥦">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          推荐策略产品必备技能之推荐系统框架（上）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-23T00:00:00+08:00">2021-05-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-24 18:41:37" itemprop="dateModified" datetime="2023-03-24T18:41:37+08:00">2023-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">推荐策略产品必备技能</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>本模块的目标：</p>
+<ol>
+<li>梳理推荐系统框架</li>
+<li>梳理推荐系统框架中的各个模块的实现</li>
+<li>理解推荐系统的数据流</li>
+</ol>
+<p>一个推荐系统，大致分为4层，分别是离线层、存储层、近线层和在线层。<br>离线、近线和在线的区分在于响应用户行为的速度差异。</p>
+<p>一个经典的Web推荐系统的架构，主要包括如下四部分：</p>
+<ol>
+<li>推荐服务：该服务从Web服务器获取推荐请求，然后返回推荐结果。</li>
+<li>存储系统：这些系统存储用户特征、物品特征和模型参数，为了方便检索，也存储了物品索引。</li>
+<li>离线学习：<ol>
+<li>该组建从用户行为数据中学习模型参数，然后按照一定的周期将参数推送到在线存储系统中。</li>
+<li>物品特征学习</li>
+<li>用户特征学习</li>
+</ol>
+</li>
+<li>在线学习：</li>
+</ol>
+<p><strong>推荐服务模块</strong>的功能是对来自业务的request进行预测。比如，我这会打开抖音，抖音后台会发送一个request给服务器，服务器接收到这个request之后，会根据过去我在抖音上的行为偏好，为我推荐向我可能感兴趣的短视频。</p>
+<p><strong>存储系统</strong>的功能是存储用户特征、物品特征、以及物品索引。</p>
+<p><strong>离线学习</strong>的功能包括：模型训练、物品特征、用户特征计算。</p>
+<ul>
+<li>模型训练是指给定用户和物品，以及用户对该物品的响应数据，来训练模型参数，这个过程一般需要耗费好几个小时的时间。</li>
+<li>物品特征是比如对于非结构化数据，经常需要对这些数据进行TF_IDF计算，这个也是在离线层进行。</li>
+<li>用户特征也是。</li>
+</ul>
+<p><strong>在线学习</strong> 的功能是利用用户的即时数据进行预估。<br>来看一个经典的推荐系统架构的设计</p>
+<p><img src="https://kerryli1007.github.io/images/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%EF%BC%88%E4%B8%8A%EF%BC%89/1.jpg"></p>
+<p>这是Netflix的推荐系统架构，这个架构的设计目标是：<br>1）支持好的用户体验，且能支持快速的迭代；<br>2）针对用户的行为，作出快速的响应。</p>
+<p>在这个设计中，计算被分为了离线、近线和在线。</p>
+<p>计算可以离线进行、近线进行、也可以在线进行。对于用户产生的最新行为，在线计算能更好地进行反馈，但是在线必须实时进行反馈。这样的话，就对算法的计算复杂性有很大的限制，同时，也会限制能处理的数据量。</p>
+<p>离线训练能处理较大的数据量，且不要求必须是实时的。模型的更新一般是离线进行的，在模型的前后两次更新这个时间窗口中，由于没有进入新的数据，所以这个模型一直使用的是旧的数据。对于推荐系统架构最关键的因素是如何将在线和离线计算无缝结合。</p>
+<p>近线计算是在上述两者之间，在近线计算，我们可以执行类似在线的计算，但不要求实时响应。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/21/%E6%88%91%E7%90%86%E8%A7%A3%E7%9A%84%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E7%9A%84%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD/" rel="prev" title="我理解的推荐策略产品之必备技能">
+                  <i class="fa fa-chevron-left"></i> 我理解的推荐策略产品之必备技能
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/05/25/%E6%8E%A8%E8%8D%90%E7%AD%96%E7%95%A5%E4%BA%A7%E5%93%81%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8B%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%EF%BC%88%E4%B8%8B%EF%BC%89/" rel="next" title="推荐策略产品必备技能之推荐系统框架（下）">
+                  推荐策略产品必备技能之推荐系统框架（下） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

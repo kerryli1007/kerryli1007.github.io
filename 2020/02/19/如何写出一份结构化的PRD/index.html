@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kerryli1007.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="为什么会写这个主题？ 由于公司组织结构调整，我换到了另一个部门，并且承担新部门官网设计的产品工作，到这里，我成为了一名正式的PM，从Project Manager，到PProduct Manager。 作为PM，需要设计产品，写PRD文档。  优秀的产品经理，一定会写一份优秀的PRD。    本文主题，围绕我写的第一份PRD文档。我会将V1版本，和最终交付版本进行对比，从而阐明主题，如何写出一份结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何写出一份结构化的PRD">
+<meta property="og:url" content="https://kerryli1007.github.io/2020/02/19/%E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E4%B8%80%E4%BB%BD%E7%BB%93%E6%9E%84%E5%8C%96%E7%9A%84PRD/index.html">
+<meta property="og:site_name" content="一颗西蓝花🥦">
+<meta property="og:description" content="为什么会写这个主题？ 由于公司组织结构调整，我换到了另一个部门，并且承担新部门官网设计的产品工作，到这里，我成为了一名正式的PM，从Project Manager，到PProduct Manager。 作为PM，需要设计产品，写PRD文档。  优秀的产品经理，一定会写一份优秀的PRD。    本文主题，围绕我写的第一份PRD文档。我会将V1版本，和最终交付版本进行对比，从而阐明主题，如何写出一份结">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kerryli1007.github.io/images/%E5%86%99%E5%87%BA%E4%B8%80%E4%BB%BD%E7%BB%93%E6%9E%84%E5%8C%96%E7%9A%84PRD/1.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/%E5%86%99%E5%87%BA%E4%B8%80%E4%BB%BD%E7%BB%93%E6%9E%84%E5%8C%96%E7%9A%84PRD/2.png">
+<meta property="og:image" content="https://kerryli1007.github.io/images/%E5%86%99%E5%87%BA%E4%B8%80%E4%BB%BD%E7%BB%93%E6%9E%84%E5%8C%96%E7%9A%84PRD/3.png">
+<meta property="article:published_time" content="2020-02-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-24T10:41:37.525Z">
+<meta property="article:author" content="一颗西蓝花🥦">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kerryli1007.github.io/images/%E5%86%99%E5%87%BA%E4%B8%80%E4%BB%BD%E7%BB%93%E6%9E%84%E5%8C%96%E7%9A%84PRD/1.png">
+
+
+<link rel="canonical" href="https://kerryli1007.github.io/2020/02/19/%E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E4%B8%80%E4%BB%BD%E7%BB%93%E6%9E%84%E5%8C%96%E7%9A%84PRD/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://kerryli1007.github.io/2020/02/19/%E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E4%B8%80%E4%BB%BD%E7%BB%93%E6%9E%84%E5%8C%96%E7%9A%84PRD/","path":"2020/02/19/如何写出一份结构化的PRD/","title":"如何写出一份结构化的PRD"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>如何写出一份结构化的PRD | 一颗西蓝花🥦</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="一颗西蓝花🥦" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">一颗西蓝花🥦</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BA%A7%E5%93%81%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">一、产品背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E8%83%8C%E6%99%AF%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 背景概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E9%97%AE%E9%A2%98%E4%B8%8E%E6%9C%BA%E4%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 问题与机会</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-%E5%BD%93%E5%89%8D%E6%B5%81%E7%A8%8B%E5%AD%98%E5%9C%A8%E5%A6%82%E4%B8%8B%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 当前流程存在如下问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-%E6%88%91%E4%BB%AC%E7%9A%84%E4%BC%98%E5%8C%96%E7%9B%AE%E6%A0%87-x2F-%E6%9C%BA%E4%BC%9A"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2 我们的优化目标&#x2F;机会</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E8%BE%B9%E7%95%8C%E7%95%8C%E5%AE%9A"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 边界界定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">2. 名词解释（可选）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E4%BA%A7%E5%93%81%E7%BB%BC%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">3. 产品综述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E7%94%A8%E6%88%B7%E6%95%85%E4%BA%8B"><span class="nav-number">4.</span> <span class="nav-text">4. 用户故事</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E9%9C%80%E6%B1%82%E8%AF%A6%E8%BF%B0"><span class="nav-number">5.</span> <span class="nav-text">5. 需求详述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E9%9C%80%E6%B1%82%E4%B8%80"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 需求一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-%E9%9C%80%E6%B1%82%E4%BA%8C"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 需求二</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">一颗西蓝花🥦</p>
+  <div class="site-description" itemprop="description">AI/思考/学习</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kerryli1007.github.io/2020/02/19/%E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E4%B8%80%E4%BB%BD%E7%BB%93%E6%9E%84%E5%8C%96%E7%9A%84PRD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一颗西蓝花🥦">
+      <meta itemprop="description" content="AI/思考/学习">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="如何写出一份结构化的PRD | 一颗西蓝花🥦">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何写出一份结构化的PRD
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-02-20 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-20T00:00:00+08:00">2020-02-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-24 18:41:37" itemprop="dateModified" datetime="2023-03-24T18:41:37+08:00">2023-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">工作</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>为什么会写这个主题？</p>
+<p>由于公司组织结构调整，我换到了另一个部门，并且承担新部门官网设计的产品工作，到这里，我成为了一名正式的PM，从Project Manager，到PProduct Manager。</p>
+<p>作为PM，需要设计产品，写PRD文档。</p>
+<blockquote>
+<p>优秀的产品经理，一定会写一份优秀的PRD。  </p>
+</blockquote>
+<p>本文主题，围绕我写的第一份PRD文档。我会将V1版本，和最终交付版本进行对比，从而阐明主题，如何写出一份结构化的PRD文档。</p>
+<p>对V1和最终交付版本PRD的比较，会从下面两个维度展开比对：</p>
+<ul>
+<li>格式</li>
+<li>产品逻辑</li>
+</ul>
+<p>在回顾的过程中，也会顺带对评审会时候大家讨论的一些产品细节，进行复盘思考。</p>
+<p>介绍一下背景：<br>部门官网有待优化，因此，我需要给出产品优化文档。</p>
+<p>我首先参考了网上的一个官网注册登录需求文档，写了第一版的PRD。写完后，发给了组长，组长给了反馈：觉得我写的比较像流水账，像是意识流，不够结构化。接着，他给了一份PRD文稿模版。</p>
+<p>关于“结构化”这里比较有意思，虾宝给了如下建议：<br>    1. 什么是结构化？结构化是拆分组块业务逻辑<br>    2. 文字是脑子的表现，写得不清晰，不是文档的问题，是对业务逻辑的理解不够</p>
+<p>同时，虾宝建议：<br>    1. 可以先找研发对一下需求，连接上下游的关系。然后再写，把层次关系梳理出现，再用图表或流程图表现</p>
+<p>虾宝的建议，对我非常有启发。如果说PRD模版给我的是一个框架，框架可以让我有地方填东西。虾宝给的反馈，让我懂得了如何思考。通过思考，将经过梳理的内容正确地填进框架之中。单有框架是远远不够的，还需要，知道思考如何把内容填进框架中。</p>
+<p>拆分组块业务逻辑，梳理业务上下游。这是思考的方式。</p>
+<p>于此时，我终于开始知道了如何正确地用PRD文档来表达我的需求。下面，我会仔细描述一下修改后的PRD文档以及在评审会时候大家的讨论，通过这个描述，梳理总结出正确的思考表达逻辑。</p>
+<p>目录</p>
+<hr>
+<ol>
+<li>产品背景<ol>
+<li>背景概述</li>
+<li>问题和机会（可选）</li>
+<li>产品目标与范围（可选）</li>
+</ol>
+</li>
+<li>名次解释</li>
+<li>产品综述</li>
+<li>用户故事</li>
+<li>需求详述</li>
+<li>评审记录</li>
+<li>其他问题描述</li>
+</ol>
+<p>对于每一个小模块，我都会分别从3个方面阐述：含义解释、PRD描述正文、以及注释。</p>
+<p>含义解释是从定义上界定该模块需要描述的内容，PRD描述正文是PRD文档中我对该模块的详细展开，注释是解释为什么PRD描述正文会这样展开，背后的思考逻辑。</p>
+<h1 id="一、产品背景"><a href="#一、产品背景" class="headerlink" title="一、产品背景"></a>一、产品背景</h1><h2 id="1-1-背景概述"><a href="#1-1-背景概述" class="headerlink" title="1.1 背景概述"></a>1.1 背景概述</h2><p>含义解释：<br>背景概述是用简单的语言大概概括一下大的背景，让人知道我们本次要讲的内容大概是什么。</p>
+<p>描述正文：<br>官网为用户提供产品试用，目前，完整的试用流程如下：<br>用户在官网进行注册，填写申请试用表单。商务（运营）在管理后台，对用户的申请进行授权操作（允许&#x2F;拒绝）。</p>
+<p>注释：<br>这样的背景描述，是将云官网，本次的产品需求，用业务流程串联起来，从前端到后端。从业务流程出发，将业务串联起来，这是一种非常好的方式。用一个事件，将涉及的所有产品功能都串联起来，让本次讨论有主线。</p>
+<h2 id="1-2-问题与机会"><a href="#1-2-问题与机会" class="headerlink" title="1.2 问题与机会"></a>1.2 问题与机会</h2><p>含义解释：<br>问题与机会描述我们希望通过这个产品需要解决的问题，或者是我们正在寻求的机遇。一般来说，这段话的作用在于让人阅读后明白我们为什么要花时间做这件事，以及明白了这件事的意义所在。重点在WHY，关于WHY的重要性，大家可以看一个演讲叫做How great leaders inspire action。</p>
+<h3 id="1-2-1-当前流程存在如下问题"><a href="#1-2-1-当前流程存在如下问题" class="headerlink" title="1.2.1 当前流程存在如下问题"></a>1.2.1 当前流程存在如下问题</h3><p>描述正文：<br>1）用户端（官网）：<br>    * 试用注册流程繁琐<br>    * 试用申请表单无法支持用户身份区别（企业&#x2F; 个人）<br>    * 未申请试用的用户进入到控制台，无任何提示<br>2）运营端（管理后台）<br>    * 无法查看用户申请试用的时间<br>    * 不支持运营就试用用户跟进做记录<br>    * 需要为每个申请试用的用户手动开通账号</p>
+<p>注释：<br>在这里我将问题进行了拆分，将前端与后端做分别描述。</p>
+<h3 id="1-2-2-我们的优化目标-x2F-机会"><a href="#1-2-2-我们的优化目标-x2F-机会" class="headerlink" title="1.2.2 我们的优化目标&#x2F;机会"></a>1.2.2 我们的优化目标&#x2F;机会</h3><p>描述正文：<br>通过优化，让来到官网的用户，可以体验良好的进行注册、申请试用产品。</p>
+<p>注释：<br>目标的制定，如果按照管理大师德鲁克在《管理实践》中提出的目标管理方法原则来制定，更好。顺便回顾一下，德鲁克提出的SMART目标计划</p>
+<ol>
+<li>目标要具体</li>
+<li>目标要可衡量</li>
+<li>目标要可实现</li>
+<li>目标要相关</li>
+<li>目标要有实现性</li>
+</ol>
+<h2 id="1-3-边界界定"><a href="#1-3-边界界定" class="headerlink" title="1.3 边界界定"></a>1.3 边界界定</h2><p>含义解释：<br>明确界定产品规划的界限，列出不在此次版本产品规划之内的需求。有利于在未来讨论时不用反复出现“那我们做不做这个？做不做那个”的讨论。</p>
+<p>描述正文：<br>暂无</p>
+<p>注释：<br>值得说明的一点，其实有时候，设计资源、研发资源也会左右边界的界定。</p>
+<h1 id="2-名词解释（可选）"><a href="#2-名词解释（可选）" class="headerlink" title="2. 名词解释（可选）"></a>2. 名词解释（可选）</h1><p>含义解释：<br>名词解释表，用于列举和解释PRD文档中产生的新名词。这一点实在是太重要了，如果在PRD文稿中出现了大家不知道含义的名词，那就是一份非常糟糕的PRD。</p>
+<h1 id="3-产品综述"><a href="#3-产品综述" class="headerlink" title="3. 产品综述"></a>3. 产品综述</h1><p>名词解释：<br>产品需求指从用户的视角撰写的声明。例如“我希望通过这个产品我可以实现……”它不需要包含具体的实施细节，也不需要写具体的界面元素。它们只是对于产品成功的一些具体表现。</p>
+<p>描述正文：<br>暂无</p>
+<p>注释：<br>在产品需求这里的定义值得细细分析，产品需求是说，从用户的角度出发，希望通过这个产品可以实现，而不是简单的功能描述！</p>
+<h1 id="4-用户故事"><a href="#4-用户故事" class="headerlink" title="4. 用户故事"></a>4. 用户故事</h1><p>名词解释：<br>每个用户故事是描述了一段独立的end-to-end的使用体验。它包括：用户画像（persona），使用场景（context), 使用意图（intent), 步骤（flow), 产品价值（value, 产品如何帮助用户实现价值），以及优先级（priority）一般优先级最高的进入MVP（minimal viable product), 然后依次类推，优先级最低的进入backlog，大家有空有资源再考虑实现。</p>
+<p>描述正文：<br>暂无</p>
+<h1 id="5-需求详述"><a href="#5-需求详述" class="headerlink" title="5. 需求详述"></a>5. 需求详述</h1><h2 id="5-1-需求一"><a href="#5-1-需求一" class="headerlink" title="5.1 需求一"></a>5.1 需求一</h2><p><img src="https://kerryli1007.github.io/images/%E5%86%99%E5%87%BA%E4%B8%80%E4%BB%BD%E7%BB%93%E6%9E%84%E5%8C%96%E7%9A%84PRD/1.png"></p>
+<p>在试用注册流程简化，同事小A提出了疑问：“当判断用户是否登陆时，如何用户未登陆，那么应该跳转到登录页面，而不是注册页面。”</p>
+<p>我对此进行了解释，但解释比较糟糕，并没有很好地defend myself：</p>
+<ol>
+<li>我们官网To B，受众小，其实是没有什么用户来注册的。</li>
+<li>如果用户已有账号，网站支持登录状态保持，那么其实不需要重新登录</li>
+</ol>
+<p>因此，我将判断未登陆的用户，下一个页面是注册页面。</p>
+<p>显然，我的解释，并不能让小A满意，他补充到：</p>
+<ol>
+<li>第一，我们目前官网逻辑的都是跳转到登录页</li>
+<li>第二，网站支持的登录保持状态，其实也是有时效性的</li>
+</ol>
+<p>当这里，我其实有点不知道怎么解释我的观点了。同事小B帮我解释：</p>
+<ol>
+<li>目前我们官网的注册用户比较少，绝大部份来到官网的用户，都是新用户，大家都需要注册，我理解这个设计逻辑是以优化新用户注册流程为导向的</li>
+</ol>
+<p>听到同事小B的解释，我都要泪流满面了。他准确地表达出了，我没有表达出的意思。</p>
+<p>我讲第一点，我们官网目前没有什么用户是已注册的，表达的意思就是，目前来官网的用户，大部分都是新用户，新用户需要经过注册、登录，才能申请试用我们的产品，因此我们的目标是降低新用户试用我们产品的门槛。</p>
+<p>暂停一下，我再放慢速度，重新回复回顾一下，这里的思考逻辑。</p>
+<p>为什么我要设计这样的产品，我是设计给谁使用的，来到我们网站的用户，他们是谁？他们为什么来？按照这个思考方式，我重新来阐述一下我的思路。</p>
+<p>我们的网站To B，目前存量用户少。我们的需求是，通过运营活动，或者自然流量，来到官网的用户，能够在最快时间内完成申请试用，只有试用了我们的产品，才有可能推进下一步。同时，每增加一个步骤，用户就会减少一些。因此，我的设计原则是，通过减少注册环节，来尽可能得提高注册成功率。</p>
+<p>分解一下：<br>目标： 缩短注册流程，尽可能地让来到官网的用户都注册。<br>逻辑：每多一个环节，用户就大量流失<br>我的操作 ：将用户链接到注册页面</p>
+<p>对上一个争论点复盘完毕，我们来看下一个争论点。</p>
+<p>用户完成注册后自动登录，是否会跳转会产品试用页面。</p>
+<p>在这个产品设计实现的前提是，用户注册之后，会自动登录。我先去看看，这个自动登录的功能是如何实现的<a target="_blank" rel="noopener" href="https://www.php.cn/blog/detail/7587.html">注册成功后自动登录 - ThinkPHP5.1 - php中文网博客</a></p>
+<p>注册后自动登录这个功能技术上是完全可以实现。但是，自动登录后是否需要跳回申请试用页面？这是我们讨论的重点，另一位同事提出，不需要，这个对开发的工作量要求比较大。并且，不跳转回试用页面，用户自己回去点击试用，其实也没有很大区别。这里哦，其实是因为我在设计产品流程的时候，没有考虑工作量。这从侧面确实是说明我在这一块知识积累不充足。需要有一定改进。（产品经理也需要站在研发的角度考虑问题奥！）</p>
+<h2 id="5-2-需求二"><a href="#5-2-需求二" class="headerlink" title="5.2 需求二"></a>5.2 需求二</h2><p><img src="https://kerryli1007.github.io/images/%E5%86%99%E5%87%BA%E4%B8%80%E4%BB%BD%E7%BB%93%E6%9E%84%E5%8C%96%E7%9A%84PRD/2.png"></p>
+<p>讲述优化后的产品试用申请，我的逻辑是，先给大家展示原来的申请试用页面，然后讲述修改版本后的申请试用页面。通过最近的工作，我发现，对比在产品经理的工作中是非常重要的一部分。因此，产品经理的工作，很多时候都是在对原有流程，做完善和优化。既然是完善和优化，那么产品经理就需要向运营、向研发证明，为什么这样的修改，相较于原来的流程，更好。因此，对比是与研发和运营沟通中，非常重要的一点。产品经理要让运营知道，修改后的产品逻辑，可以更好的支持业务运转；产品经理也要让研发知道，修改后的产品逻辑，是更有价值的，并没有浪费研发的工作，并没有让他们的汗白流（在被组长说了几次之后，终于有的领悟，心酸</p>
+<p>我总的讲述逻辑是没有问题的，但一个小问题在于，在讲解修改版本后的申请试用页面的时候，没有逻辑。重温一下，《金字塔原理》里面的讲述逻辑，在我们写文章或者讲述业务时候，我们的思想必须符合以下原则：</p>
+<p><img src="https://kerryli1007.github.io/images/%E5%86%99%E5%87%BA%E4%B8%80%E4%BB%BD%E7%BB%93%E6%9E%84%E5%8C%96%E7%9A%84PRD/3.png"></p>
+<p>画重点，我们必须有明确的理由说明，为什么要把第二个原因放在第二个，而不是放在第一个或者第三个。为什么说这个呢？因为在讲述申请试用页面的修改时候，我的讲述是没有逻辑的，让我们来看看我在会上的讲述是多么没有逻辑：</p>
+<blockquote>
+<p>第一个点，对联系电话进行了删除<br>第二个点，添加了身份属性，企业用户和个人用户<br>接下来对企业用户身份属性和个人用户身份属性进行了分别描述  </p>
+</blockquote>
+<p>更好的讲述逻辑示例是什么？</p>
+<blockquote>
+<p>我将从增删两个角度来说明，我们对该申请试页面的修改。  </p>
+<p>在增加部分，我们添加了身份属性，企业用户和个人用户。<br>在删除部分，我们将联系电话进行了删除。  </p>
+<p>接下来，分别说一下增加和删除的背后逻辑。增加身份属性，是为了方便运营开展工作，删除联系方式是因为在注册环节，用户已经填写过联系电话，并且通过验证。  </p>
+</blockquote>
+<p>总分的方式，首先让大家知道我描述的总体内容是什么，界定范围，给听众安全感，然后分点描述，这才是更好的描述方式。</p>
+<p>接下来示例如下：</p>
+<blockquote>
+<p>用户可以在身份属性这里，对个人的身份属性做选择。<br>当选择企业用户时候，当前默认页面不做变化；<br>当选择个人用户时候，当前默认页面做变化；相对应的最下方的三个输入框会进行变化，分别变成：  </p>
+<ol>
+<li>研究方向  </li>
+<li>身份  </li>
+<li>您期待产品为您解决什么样的问题？</li>
+</ol>
+</blockquote>
+<p>在研究方向这里的讲述没有什么好复盘的，重点来看看身份这里。<br>身份选项这里我在评审会上的讲述，堪称灾难，毫无逻辑。会后反思，我应该首先介绍，身份这里的产品设计是什么，接着再描述为什么要有身份这个设计。</p>
+<p>示例如下：</p>
+<blockquote>
+<p>在身份设计，我们通过下拉框的方式，提供给个人用户两个选项“ 在校&#x2F;在职”。<br>个人用户的身份属性字段，是为了方便运营工作的开展，在校和在职身份，可以辅助后续的用户画像分析，对两个维度有帮助  </p>
+<ul>
+<li>用户付费能力分析  </li>
+<li>拉新渠道质量分析</li>
+</ul>
+</blockquote>
+<p>注释：<br>如果我的讲述逻辑是，产品功能设计是什么，设计这样产品功能的背后逻辑，那么我的讲述就会更简洁明了，提高同事的体验</p>
+<p>本来还想继续写，但是涉及业务层面的知识太多了，讲解起来非常费力，就写到这里吧～以后有时间再继续更新。</p>
+<p>总结一下，如何写一份结构化的PRD？<br>思考原则：拆分组块业务逻辑，梳理业务上下游。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/07/07/Santander-Customer-Transaction-Prediction/" rel="prev" title="Santander Customer Transaction Prediction">
+                  <i class="fa fa-chevron-left"></i> Santander Customer Transaction Prediction
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/04/12/20200413-%E8%AF%BB-%E3%80%8A%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E3%80%8B%EF%BC%8C%E5%AD%A6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" rel="next" title="读《人月神话》，学项目管理？">
+                  读《人月神话》，学项目管理？ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗西蓝花🥦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
